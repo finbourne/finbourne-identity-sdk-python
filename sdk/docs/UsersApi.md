@@ -1,0 +1,332 @@
+# finbourne_identity.UsersApi
+
+All URIs are relative to *https://www.lusid.com/identity*
+
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**create_user**](UsersApi.md#create_user) | **POST** /api/users | [EARLY ACCESS] Create User
+[**delete_user**](UsersApi.md#delete_user) | **DELETE** /api/users/{id} | [EARLY ACCESS] Delete User
+[**get_user**](UsersApi.md#get_user) | **GET** /api/users/{id} | [EARLY ACCESS] Get User
+[**list_users**](UsersApi.md#list_users) | **GET** /api/users | [EARLY ACCESS] List Users
+[**update_user**](UsersApi.md#update_user) | **PUT** /api/users/{id} | [EARLY ACCESS] Update User
+
+
+# **create_user**
+> UserResponse create_user(create_user_request, wait_for_reindex=wait_for_reindex)
+
+[EARLY ACCESS] Create User
+
+Create a new User
+
+### Example
+
+* OAuth Authentication (oauth2):
+```python
+from __future__ import print_function
+import time
+import finbourne_identity
+from finbourne_identity.rest import ApiException
+from pprint import pprint
+configuration = finbourne_identity.Configuration()
+# Configure OAuth2 access token for authorization: oauth2
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
+
+# Defining host is optional and default to https://www.lusid.com/identity
+configuration.host = "https://www.lusid.com/identity"
+# Create an instance of the API class
+api_instance = finbourne_identity.UsersApi(finbourne_identity.ApiClient(configuration))
+create_user_request = {"firstName":"Joe","lastName":"Bloggs","emailAddress":"joe.bloggs@myco.com","login":"joe.bloggs@myco.com","type":"Personal"} # CreateUserRequest | Details of the User to be created
+wait_for_reindex = False # bool | Should the request wait until the newly created User is indexed (available in List) before returning (optional) (default to False)
+
+try:
+    # [EARLY ACCESS] Create User
+    api_response = api_instance.create_user(create_user_request, wait_for_reindex=wait_for_reindex)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling UsersApi->create_user: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **create_user_request** | [**CreateUserRequest**](CreateUserRequest.md)| Details of the User to be created | 
+ **wait_for_reindex** | **bool**| Should the request wait until the newly created User is indexed (available in List) before returning | [optional] [default to False]
+
+### Return type
+
+[**UserResponse**](UserResponse.md)
+
+### Authorization
+
+[oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | Create a new user |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **delete_user**
+> delete_user(id, purge=purge)
+
+[EARLY ACCESS] Delete User
+
+By default the user will be de-provisioned and inactive, however their record will remain in the identity  provider for audit purposes. If this is not desirable and removal of all trace of the user is required,  the purge parameter can be specified to indicate the details should be purged completely.
+
+### Example
+
+* OAuth Authentication (oauth2):
+```python
+from __future__ import print_function
+import time
+import finbourne_identity
+from finbourne_identity.rest import ApiException
+from pprint import pprint
+configuration = finbourne_identity.Configuration()
+# Configure OAuth2 access token for authorization: oauth2
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
+
+# Defining host is optional and default to https://www.lusid.com/identity
+configuration.host = "https://www.lusid.com/identity"
+# Create an instance of the API class
+api_instance = finbourne_identity.UsersApi(finbourne_identity.ApiClient(configuration))
+id = 'id_example' # str | The unique identifier for the user
+purge = True # bool | Whether to purge any trace of the user from the identity provider (will affect audit) (optional)
+
+try:
+    # [EARLY ACCESS] Delete User
+    api_instance.delete_user(id, purge=purge)
+except ApiException as e:
+    print("Exception when calling UsersApi->delete_user: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**| The unique identifier for the user | 
+ **purge** | **bool**| Whether to purge any trace of the user from the identity provider (will affect audit) | [optional] 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | Success |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_user**
+> UserResponse get_user(id, include_roles=include_roles)
+
+[EARLY ACCESS] Get User
+
+Get the specified User
+
+### Example
+
+* OAuth Authentication (oauth2):
+```python
+from __future__ import print_function
+import time
+import finbourne_identity
+from finbourne_identity.rest import ApiException
+from pprint import pprint
+configuration = finbourne_identity.Configuration()
+# Configure OAuth2 access token for authorization: oauth2
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
+
+# Defining host is optional and default to https://www.lusid.com/identity
+configuration.host = "https://www.lusid.com/identity"
+# Create an instance of the API class
+api_instance = finbourne_identity.UsersApi(finbourne_identity.ApiClient(configuration))
+id = 'id_example' # str | The unique identifier for the User
+include_roles = True # bool | Flag indicating that the users roles should be included in the response (optional)
+
+try:
+    # [EARLY ACCESS] Get User
+    api_response = api_instance.get_user(id, include_roles=include_roles)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling UsersApi->get_user: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**| The unique identifier for the User | 
+ **include_roles** | **bool**| Flag indicating that the users roles should be included in the response | [optional] 
+
+### Return type
+
+[**UserResponse**](UserResponse.md)
+
+### Authorization
+
+[oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Get the specified user |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **list_users**
+> list[UserResponse] list_users(include_roles=include_roles, include_deactivated=include_deactivated)
+
+[EARLY ACCESS] List Users
+
+List the available Users
+
+### Example
+
+* OAuth Authentication (oauth2):
+```python
+from __future__ import print_function
+import time
+import finbourne_identity
+from finbourne_identity.rest import ApiException
+from pprint import pprint
+configuration = finbourne_identity.Configuration()
+# Configure OAuth2 access token for authorization: oauth2
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
+
+# Defining host is optional and default to https://www.lusid.com/identity
+configuration.host = "https://www.lusid.com/identity"
+# Create an instance of the API class
+api_instance = finbourne_identity.UsersApi(finbourne_identity.ApiClient(configuration))
+include_roles = False # bool | Flag indicating that the users roles should be included in the response (optional) (default to False)
+include_deactivated = False # bool | Include previously deleted (not purged) users (optional) (default to False)
+
+try:
+    # [EARLY ACCESS] List Users
+    api_response = api_instance.list_users(include_roles=include_roles, include_deactivated=include_deactivated)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling UsersApi->list_users: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **include_roles** | **bool**| Flag indicating that the users roles should be included in the response | [optional] [default to False]
+ **include_deactivated** | **bool**| Include previously deleted (not purged) users | [optional] [default to False]
+
+### Return type
+
+[**list[UserResponse]**](UserResponse.md)
+
+### Authorization
+
+[oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | List the available users |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **update_user**
+> UserResponse update_user(id, update_user_request)
+
+[EARLY ACCESS] Update User
+
+Updates the specified User
+
+### Example
+
+* OAuth Authentication (oauth2):
+```python
+from __future__ import print_function
+import time
+import finbourne_identity
+from finbourne_identity.rest import ApiException
+from pprint import pprint
+configuration = finbourne_identity.Configuration()
+# Configure OAuth2 access token for authorization: oauth2
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
+
+# Defining host is optional and default to https://www.lusid.com/identity
+configuration.host = "https://www.lusid.com/identity"
+# Create an instance of the API class
+api_instance = finbourne_identity.UsersApi(finbourne_identity.ApiClient(configuration))
+id = 'id_example' # str | The unique identifier for the User to be updated
+update_user_request = {"firstName":"Joe","lastName":"Bloggs","emailAddress":"joe.bloggs@myco.com","login":"joe.bloggs@myco.com"} # UpdateUserRequest | The new definition of the User
+
+try:
+    # [EARLY ACCESS] Update User
+    api_response = api_instance.update_user(id, update_user_request)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling UsersApi->update_user: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**| The unique identifier for the User to be updated | 
+ **update_user_request** | [**UpdateUserRequest**](UpdateUserRequest.md)| The new definition of the User | 
+
+### Return type
+
+[**UserResponse**](UserResponse.md)
+
+### Authorization
+
+[oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Update a user |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+

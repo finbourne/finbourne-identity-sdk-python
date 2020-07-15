@@ -1,0 +1,6 @@
+{
+  "packageName": "finbourne_identity",
+  "projectName": "finbourne-identity-sdk",
+  "generateSourceCodeOnly": "generateSourceCodeOnly",
+  "packageVersion": "0.1.0"
+}
