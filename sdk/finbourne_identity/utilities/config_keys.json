@@ -3,9 +3,9 @@
       "env": "FBN_TOKEN_URL",
       "config": "tokenUrl"
   },
-  "api_url": {
-      "env": "FBN_LUSID_API_URL",
-      "config": "apiUrl"
+  "identity_url": {
+      "env": "FBN_LUSID_IDENTITY_URL",
+      "config": "identityUrl"
   },
   "username": {
       "env": "FBN_USERNAME",
