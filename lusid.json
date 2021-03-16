@@ -8,7 +8,7 @@
       "url": "https://www.finbourne.com",
       "email": "info@finbourne.com"
     },
-    "version": "0.0.1048",
+    "version": "0.0.1128",
     "x-logo": {
       "url": "https://content.finbourne.com/LUSID-header.png",
       "backgroundColor": "#415464"
@@ -914,15 +914,15 @@
                   }
                 },
                 "example": {
-                  "termsAndConditions-20190101-GBP": {
-                    "name": "TermsAndConditions-20190101-GB",
-                    "signedBy": "DomainOwnerUserId",
-                    "signedAt": "2019-01-05T10:15:00.0000000+00:00"
-                  },
                   "termsAndConditions-20190301-GBP": {
                     "name": "TermsAndConditions-20190301-GB",
                     "signedBy": "DomainOwnerUserId",
                     "signedAt": "2019-03-07T13:23:07.0000000+00:00"
+                  },
+                  "termsAndConditions-20190101-GBP": {
+                    "name": "TermsAndConditions-20190101-GB",
+                    "signedBy": "DomainOwnerUserId",
+                    "signedAt": "2019-01-05T10:15:00.0000000+00:00"
                   }
                 }
               },
@@ -934,15 +934,15 @@
                   }
                 },
                 "example": {
-                  "termsAndConditions-20190101-GBP": {
-                    "name": "TermsAndConditions-20190101-GB",
-                    "signedBy": "DomainOwnerUserId",
-                    "signedAt": "2019-01-05T10:15:00.0000000+00:00"
-                  },
                   "termsAndConditions-20190301-GBP": {
                     "name": "TermsAndConditions-20190301-GB",
                     "signedBy": "DomainOwnerUserId",
                     "signedAt": "2019-03-07T13:23:07.0000000+00:00"
+                  },
+                  "termsAndConditions-20190101-GBP": {
+                    "name": "TermsAndConditions-20190101-GB",
+                    "signedBy": "DomainOwnerUserId",
+                    "signedAt": "2019-01-05T10:15:00.0000000+00:00"
                   }
                 }
               },
@@ -954,15 +954,15 @@
                   }
                 },
                 "example": {
-                  "termsAndConditions-20190101-GBP": {
-                    "name": "TermsAndConditions-20190101-GB",
-                    "signedBy": "DomainOwnerUserId",
-                    "signedAt": "2019-01-05T10:15:00.0000000+00:00"
-                  },
                   "termsAndConditions-20190301-GBP": {
                     "name": "TermsAndConditions-20190301-GB",
                     "signedBy": "DomainOwnerUserId",
                     "signedAt": "2019-03-07T13:23:07.0000000+00:00"
+                  },
+                  "termsAndConditions-20190101-GBP": {
+                    "name": "TermsAndConditions-20190101-GB",
+                    "signedBy": "DomainOwnerUserId",
+                    "signedAt": "2019-01-05T10:15:00.0000000+00:00"
                   }
                 }
               }
@@ -2715,6 +2715,62 @@
         ],
         "x-fbn-apistatus": "EarlyAccess"
       }
+    },
+    "/api/users/{id}/lifecycle/$unlock": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "[EXPERIMENTAL] Unlock User",
+        "description": "Unlocks the specified User",
+        "operationId": "UnlockUser",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The unique identifier for the User to be unlocked",
+            "required": true,
+            "schema": {
+              "maxLength": 64,
+              "minLength": 1,
+              "pattern": "^[a-zA-Z0-9\\-_]+$",
+              "type": "string",
+              "description": "The unique identifier for the User to be unlocked"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "The details of the input related failure",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidValidationProblemDetails"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "oauth2": []
+          }
+        ],
+        "x-fbn-apistatus": "Experimental"
+      }
     }
   },
   "components": {
@@ -2823,22 +2879,42 @@
             "maxLength": 50,
             "minLength": 1,
             "pattern": "(?s).*",
-            "type": "string"
+            "type": "string",
+            "description": "The Display Name of the application"
           },
           "clientId": {
             "maxLength": 50,
             "minLength": 6,
             "pattern": "^[a-zA-Z][a-zA-Z0-9-]{5,49}",
-            "type": "string"
+            "type": "string",
+            "description": "The OpenID Connect ClientId of the application"
           },
           "type": {
             "maxLength": 20,
             "minLength": 1,
             "pattern": "^[a-zA-Z]*$",
-            "type": "string"
+            "type": "string",
+            "description": "The Type of the application. This must be either Native or Web"
+          },
+          "redirectUris": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "A web application's acceptable list of post-login redirect URIs",
+            "nullable": true
+          },
+          "postLogoutRedirectUris": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "A web application's acceptable list of post-logout redirect URIs",
+            "nullable": true
           }
         },
-        "additionalProperties": false
+        "additionalProperties": false,
+        "description": "A request to create an application for authenticating the source of token requests"
       },
       "LusidValidationProblemDetails": {
         "required": [
@@ -3620,7 +3696,6 @@
       },
       "RoleResponse": {
         "required": [
-          "description",
           "id",
           "name",
           "roleId"
@@ -3640,7 +3715,8 @@
           },
           "description": {
             "type": "string",
-            "description": "The description for this role"
+            "description": "The description for this role",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -3758,6 +3834,13 @@
           "external": {
             "type": "boolean",
             "description": "Whether or not the user originates from an external identity system"
+          },
+          "links": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Link"
+            },
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -3791,6 +3874,7 @@
           "login": {
             "maxLength": 80,
             "minLength": 5,
+            "pattern": "(?s).*",
             "type": "string",
             "description": "The user's login username, in the form of an email address, which must be unique within the system.\r\nFor user accounts this should exactly match the user's email address."
           },
@@ -3811,7 +3895,7 @@
         "description": "OAuth2 Implicit Grant",
         "flows": {
           "implicit": {
-            "authorizationUrl": "https://lusid.okta.com/oauth2/default/v1/authorize",
+            "authorizationUrl": "https://dummyurl.lusid.com/",
             "scopes": {}
           }
         }
