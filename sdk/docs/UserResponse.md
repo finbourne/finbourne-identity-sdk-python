@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **type** | **str** | The type of user (e.g. Personal or Service) | 
 **status** | **str** | The status of the user | 
 **external** | **bool** | Whether or not the user originates from an external identity system | 
+**links** | [**list[Link]**](Link.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

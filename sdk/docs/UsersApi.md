@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**delete_user**](UsersApi.md#delete_user) | **DELETE** /api/users/{id} | [EARLY ACCESS] Delete User
 [**get_user**](UsersApi.md#get_user) | **GET** /api/users/{id} | [EARLY ACCESS] Get User
 [**list_users**](UsersApi.md#list_users) | **GET** /api/users | [EARLY ACCESS] List Users
+[**unlock_user**](UsersApi.md#unlock_user) | **POST** /api/users/{id}/lifecycle/$unlock | [EXPERIMENTAL] Unlock User
 [**update_user**](UsersApi.md#update_user) | **PUT** /api/users/{id} | [EARLY ACCESS] Update User
 
 
@@ -261,6 +262,67 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | List the available users |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **unlock_user**
+> unlock_user(id)
+
+[EXPERIMENTAL] Unlock User
+
+Unlocks the specified User
+
+### Example
+
+* OAuth Authentication (oauth2):
+```python
+from __future__ import print_function
+import time
+import finbourne_identity
+from finbourne_identity.rest import ApiException
+from pprint import pprint
+configuration = finbourne_identity.Configuration()
+# Configure OAuth2 access token for authorization: oauth2
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
+
+# Defining host is optional and default to https://www.lusid.com/identity
+configuration.host = "https://www.lusid.com/identity"
+# Create an instance of the API class
+api_instance = finbourne_identity.UsersApi(finbourne_identity.ApiClient(configuration))
+id = 'id_example' # str | The unique identifier for the User to be unlocked
+
+try:
+    # [EXPERIMENTAL] Unlock User
+    api_instance.unlock_user(id)
+except ApiException as e:
+    print("Exception when calling UsersApi->unlock_user: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**| The unique identifier for the User to be unlocked | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | Success |  -  |
 **400** | The details of the input related failure |  -  |
 **0** | Error response |  -  |
 
