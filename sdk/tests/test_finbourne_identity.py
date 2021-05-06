@@ -1,18 +1,14 @@
 import unittest
-from finbourne_identity import ApiClientBuilder as identity_api
 from finbourne_identity import api as iapi
 from finbourne_identity.utilities import ApiClientFactory
 
-class Lydia(unittest.TestCase):
+class IdentityTests(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
         api_client_factory = ApiClientFactory(api_secrets_filename="secrets.json")
-        api_client = api_client_factory.api_client
-        identity_api_client = identity_api.build(api_secrets_filename="secrets.json",
-                                                 token=api_client.configuration.access_token)
-        cls.users_api = iapi.UsersApi(identity_api_client)
-        cls.roles_iapi = iapi.RolesApi(identity_api_client)
+        cls.users_api = api_client_factory.build(iapi.UsersApi)
+        cls.roles_iapi = api_client_factory.build(iapi.RolesApi)
 
     def test_roles(self):
         identity_roles = self.roles_iapi.list_roles()
@@ -21,7 +17,7 @@ class Lydia(unittest.TestCase):
 
     def test_users(self):
         user_list = self.users_api.list_users()
-        self.assertIsNotNone(user_list[0].to_dict()['id'])
+        self.assertGreater(len(user_list), 0)
 
 
 if __name__ == '__main__':
