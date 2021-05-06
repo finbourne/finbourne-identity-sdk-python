@@ -2,14 +2,13 @@ import unittest
 from finbourne_identity import ApiClientBuilder as identity_api
 from finbourne_identity import api as iapi
 from lusidjam import RefreshingToken
-import lusid
-
+from finbourne_identity.utilities import ApiClientFactory
 
 class Lydia(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
-        lusid_api_factory = lusid.utilities.ApiClientFactory(token=RefreshingToken(),
+        lusid_api_factory = ApiClientFactory(token=RefreshingToken(),
                                                              api_secrets_filename="secrets.json")
         api_client = lusid_api_factory.api_client
         identity_api_client = identity_api.build(api_secrets_filename="secrets.json",
