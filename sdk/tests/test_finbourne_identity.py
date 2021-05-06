@@ -17,7 +17,6 @@ class Lydia(unittest.TestCase):
     def test_roles(self):
         identity_roles = self.roles_iapi.list_roles()
         self.assertIsNotNone(identity_roles)
-        self.assertEqual(type(identity_roles[0].to_dict()['description']), str)
         self.assertIsNot(identity_roles, str)
 
     def test_users(self):
