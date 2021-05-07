@@ -40,7 +40,11 @@
       "config": "username"
   },
   "proxy_password": {
-      "env": "FBN_PROXY_PASSWORD",
-      "config": "password"
-  }
+    "env": "FBN_PROXY_PASSWORD",
+    "config": "password"
+  },
+   "identity_url" : {
+     "env": "FBN_IDENTITY_URL",
+     "config" : "password"
+   }
 }

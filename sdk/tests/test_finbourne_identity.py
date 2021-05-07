@@ -6,7 +6,7 @@ class IdentityTests(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
-        api_client_factory = ApiClientFactory(api_secrets_filename="secrets.json")
+        api_client_factory = ApiClientFactory()
         cls.users_api = api_client_factory.build(iapi.UsersApi)
         cls.roles_iapi = api_client_factory.build(iapi.RolesApi)
 
