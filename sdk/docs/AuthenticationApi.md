@@ -1,6 +1,6 @@
 # finbourne_identity.AuthenticationApi
 
-All URIs are relative to *https://www.lusid.com/identity*
+All URIs are relative to *https://fbn-ci.lusid.com/identity*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -30,8 +30,8 @@ configuration = finbourne_identity.Configuration()
 # Configure OAuth2 access token for authorization: oauth2
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# Defining host is optional and default to https://www.lusid.com/identity
-configuration.host = "https://www.lusid.com/identity"
+# Defining host is optional and default to https://fbn-ci.lusid.com/identity
+configuration.host = "https://fbn-ci.lusid.com/identity"
 # Create an instance of the API class
 api_instance = finbourne_identity.AuthenticationApi(finbourne_identity.ApiClient(configuration))
 
@@ -87,8 +87,8 @@ configuration = finbourne_identity.Configuration()
 # Configure OAuth2 access token for authorization: oauth2
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# Defining host is optional and default to https://www.lusid.com/identity
-configuration.host = "https://www.lusid.com/identity"
+# Defining host is optional and default to https://fbn-ci.lusid.com/identity
+configuration.host = "https://fbn-ci.lusid.com/identity"
 # Create an instance of the API class
 api_instance = finbourne_identity.AuthenticationApi(finbourne_identity.ApiClient(configuration))
 
@@ -144,8 +144,8 @@ configuration = finbourne_identity.Configuration()
 # Configure OAuth2 access token for authorization: oauth2
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# Defining host is optional and default to https://www.lusid.com/identity
-configuration.host = "https://www.lusid.com/identity"
+# Defining host is optional and default to https://fbn-ci.lusid.com/identity
+configuration.host = "https://fbn-ci.lusid.com/identity"
 # Create an instance of the API class
 api_instance = finbourne_identity.AuthenticationApi(finbourne_identity.ApiClient(configuration))
 support_access_request = {"duration":"PT24H","description":"Investigate issues detailed in support ticket 0604"} # SupportAccessRequest | Request detailing the duration and reasons for supplying support access
@@ -206,8 +206,8 @@ configuration = finbourne_identity.Configuration()
 # Configure OAuth2 access token for authorization: oauth2
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# Defining host is optional and default to https://www.lusid.com/identity
-configuration.host = "https://www.lusid.com/identity"
+# Defining host is optional and default to https://fbn-ci.lusid.com/identity
+configuration.host = "https://fbn-ci.lusid.com/identity"
 # Create an instance of the API class
 api_instance = finbourne_identity.AuthenticationApi(finbourne_identity.ApiClient(configuration))
 

@@ -1,13 +1,18 @@
 # finbourne_identity.UsersApi
 
-All URIs are relative to *https://www.lusid.com/identity*
+All URIs are relative to *https://fbn-ci.lusid.com/identity*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**create_user**](UsersApi.md#create_user) | **POST** /api/users | [EARLY ACCESS] Create User
 [**delete_user**](UsersApi.md#delete_user) | **DELETE** /api/users/{id} | [EARLY ACCESS] Delete User
+[**expire_password**](UsersApi.md#expire_password) | **POST** /api/users/{id}/lifecycle/$expirepassword | [EXPERIMENTAL] Reset the user&#39;s password to a temporary one
+[**find_users_by_id**](UsersApi.md#find_users_by_id) | **GET** /api/directory | [EARLY ACCESS] Find users by id endpoint
 [**get_user**](UsersApi.md#get_user) | **GET** /api/users/{id} | [EARLY ACCESS] Get User
 [**list_users**](UsersApi.md#list_users) | **GET** /api/users | [EARLY ACCESS] List Users
+[**reset_factors**](UsersApi.md#reset_factors) | **POST** /api/users/{id}/lifecycle/$resetfactors | [EXPERIMENTAL] Reset MFA factors
+[**reset_password**](UsersApi.md#reset_password) | **POST** /api/users/{id}/lifecycle/$resetpassword | [EXPERIMENTAL] Reset Password
+[**send_activation_email**](UsersApi.md#send_activation_email) | **POST** /api/users/{id}/lifecycle/$activate | [EXPERIMENTAL] Sends an activation email to the User
 [**unlock_user**](UsersApi.md#unlock_user) | **POST** /api/users/{id}/lifecycle/$unlock | [EXPERIMENTAL] Unlock User
 [**update_user**](UsersApi.md#update_user) | **PUT** /api/users/{id} | [EARLY ACCESS] Update User
 
@@ -32,8 +37,8 @@ configuration = finbourne_identity.Configuration()
 # Configure OAuth2 access token for authorization: oauth2
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# Defining host is optional and default to https://www.lusid.com/identity
-configuration.host = "https://www.lusid.com/identity"
+# Defining host is optional and default to https://fbn-ci.lusid.com/identity
+configuration.host = "https://fbn-ci.lusid.com/identity"
 # Create an instance of the API class
 api_instance = finbourne_identity.UsersApi(finbourne_identity.ApiClient(configuration))
 create_user_request = {"firstName":"Joe","lastName":"Bloggs","emailAddress":"joe.bloggs@myco.com","login":"joe.bloggs@myco.com","type":"Personal"} # CreateUserRequest | Details of the User to be created
@@ -96,8 +101,8 @@ configuration = finbourne_identity.Configuration()
 # Configure OAuth2 access token for authorization: oauth2
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# Defining host is optional and default to https://www.lusid.com/identity
-configuration.host = "https://www.lusid.com/identity"
+# Defining host is optional and default to https://fbn-ci.lusid.com/identity
+configuration.host = "https://fbn-ci.lusid.com/identity"
 # Create an instance of the API class
 api_instance = finbourne_identity.UsersApi(finbourne_identity.ApiClient(configuration))
 id = 'id_example' # str | The unique identifier for the user
@@ -139,6 +144,130 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **expire_password**
+> TemporaryPassword expire_password(id)
+
+[EXPERIMENTAL] Reset the user's password to a temporary one
+
+Resets the user's password to a temporary one which is then expired
+
+### Example
+
+* OAuth Authentication (oauth2):
+```python
+from __future__ import print_function
+import time
+import finbourne_identity
+from finbourne_identity.rest import ApiException
+from pprint import pprint
+configuration = finbourne_identity.Configuration()
+# Configure OAuth2 access token for authorization: oauth2
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
+
+# Defining host is optional and default to https://fbn-ci.lusid.com/identity
+configuration.host = "https://fbn-ci.lusid.com/identity"
+# Create an instance of the API class
+api_instance = finbourne_identity.UsersApi(finbourne_identity.ApiClient(configuration))
+id = 'id_example' # str | The unique identifier for the User having its password reset
+
+try:
+    # [EXPERIMENTAL] Reset the user's password to a temporary one
+    api_response = api_instance.expire_password(id)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling UsersApi->expire_password: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**| The unique identifier for the User having its password reset | 
+
+### Return type
+
+[**TemporaryPassword**](TemporaryPassword.md)
+
+### Authorization
+
+[oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Reset the user&#39;s password |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **find_users_by_id**
+> ListUsersResponse find_users_by_id(id)
+
+[EARLY ACCESS] Find users by id endpoint
+
+Finds a maximum of 50 users by ID
+
+### Example
+
+* OAuth Authentication (oauth2):
+```python
+from __future__ import print_function
+import time
+import finbourne_identity
+from finbourne_identity.rest import ApiException
+from pprint import pprint
+configuration = finbourne_identity.Configuration()
+# Configure OAuth2 access token for authorization: oauth2
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
+
+# Defining host is optional and default to https://fbn-ci.lusid.com/identity
+configuration.host = "https://fbn-ci.lusid.com/identity"
+# Create an instance of the API class
+api_instance = finbourne_identity.UsersApi(finbourne_identity.ApiClient(configuration))
+id = ['id_example'] # list[str] | A list of unique identifiers for the users
+
+try:
+    # [EARLY ACCESS] Find users by id endpoint
+    api_response = api_instance.find_users_by_id(id)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling UsersApi->find_users_by_id: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | [**list[str]**](str.md)| A list of unique identifiers for the users | 
+
+### Return type
+
+[**ListUsersResponse**](ListUsersResponse.md)
+
+### Authorization
+
+[oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Success |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **get_user**
 > UserResponse get_user(id, include_roles=include_roles)
 
@@ -159,8 +288,8 @@ configuration = finbourne_identity.Configuration()
 # Configure OAuth2 access token for authorization: oauth2
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# Defining host is optional and default to https://www.lusid.com/identity
-configuration.host = "https://www.lusid.com/identity"
+# Defining host is optional and default to https://fbn-ci.lusid.com/identity
+configuration.host = "https://fbn-ci.lusid.com/identity"
 # Create an instance of the API class
 api_instance = finbourne_identity.UsersApi(finbourne_identity.ApiClient(configuration))
 id = 'id_example' # str | The unique identifier for the User
@@ -223,8 +352,8 @@ configuration = finbourne_identity.Configuration()
 # Configure OAuth2 access token for authorization: oauth2
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# Defining host is optional and default to https://www.lusid.com/identity
-configuration.host = "https://www.lusid.com/identity"
+# Defining host is optional and default to https://fbn-ci.lusid.com/identity
+configuration.host = "https://fbn-ci.lusid.com/identity"
 # Create an instance of the API class
 api_instance = finbourne_identity.UsersApi(finbourne_identity.ApiClient(configuration))
 include_roles = False # bool | Flag indicating that the users roles should be included in the response (optional) (default to False)
@@ -267,6 +396,190 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **reset_factors**
+> reset_factors(id)
+
+[EXPERIMENTAL] Reset MFA factors
+
+Resets the MFA factors of the specified User
+
+### Example
+
+* OAuth Authentication (oauth2):
+```python
+from __future__ import print_function
+import time
+import finbourne_identity
+from finbourne_identity.rest import ApiException
+from pprint import pprint
+configuration = finbourne_identity.Configuration()
+# Configure OAuth2 access token for authorization: oauth2
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
+
+# Defining host is optional and default to https://fbn-ci.lusid.com/identity
+configuration.host = "https://fbn-ci.lusid.com/identity"
+# Create an instance of the API class
+api_instance = finbourne_identity.UsersApi(finbourne_identity.ApiClient(configuration))
+id = 'id_example' # str | The unique identifier for the User having their MFA factors reset
+
+try:
+    # [EXPERIMENTAL] Reset MFA factors
+    api_instance.reset_factors(id)
+except ApiException as e:
+    print("Exception when calling UsersApi->reset_factors: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**| The unique identifier for the User having their MFA factors reset | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | Success |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **reset_password**
+> ResetPasswordUrl reset_password(id)
+
+[EXPERIMENTAL] Reset Password
+
+Resets the password of the specified User
+
+### Example
+
+* OAuth Authentication (oauth2):
+```python
+from __future__ import print_function
+import time
+import finbourne_identity
+from finbourne_identity.rest import ApiException
+from pprint import pprint
+configuration = finbourne_identity.Configuration()
+# Configure OAuth2 access token for authorization: oauth2
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
+
+# Defining host is optional and default to https://fbn-ci.lusid.com/identity
+configuration.host = "https://fbn-ci.lusid.com/identity"
+# Create an instance of the API class
+api_instance = finbourne_identity.UsersApi(finbourne_identity.ApiClient(configuration))
+id = 'id_example' # str | The unique identifier for the User having their password reset
+
+try:
+    # [EXPERIMENTAL] Reset Password
+    api_response = api_instance.reset_password(id)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling UsersApi->reset_password: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**| The unique identifier for the User having their password reset | 
+
+### Return type
+
+[**ResetPasswordUrl**](ResetPasswordUrl.md)
+
+### Authorization
+
+[oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Reset the user&#39;s password |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **send_activation_email**
+> send_activation_email(id)
+
+[EXPERIMENTAL] Sends an activation email to the User
+
+Sends an activation email to the specified User
+
+### Example
+
+* OAuth Authentication (oauth2):
+```python
+from __future__ import print_function
+import time
+import finbourne_identity
+from finbourne_identity.rest import ApiException
+from pprint import pprint
+configuration = finbourne_identity.Configuration()
+# Configure OAuth2 access token for authorization: oauth2
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
+
+# Defining host is optional and default to https://fbn-ci.lusid.com/identity
+configuration.host = "https://fbn-ci.lusid.com/identity"
+# Create an instance of the API class
+api_instance = finbourne_identity.UsersApi(finbourne_identity.ApiClient(configuration))
+id = 'id_example' # str | The unique identifier for the User to be activated
+
+try:
+    # [EXPERIMENTAL] Sends an activation email to the User
+    api_instance.send_activation_email(id)
+except ApiException as e:
+    print("Exception when calling UsersApi->send_activation_email: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**| The unique identifier for the User to be activated | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | Success |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **unlock_user**
 > unlock_user(id)
 
@@ -287,8 +600,8 @@ configuration = finbourne_identity.Configuration()
 # Configure OAuth2 access token for authorization: oauth2
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# Defining host is optional and default to https://www.lusid.com/identity
-configuration.host = "https://www.lusid.com/identity"
+# Defining host is optional and default to https://fbn-ci.lusid.com/identity
+configuration.host = "https://fbn-ci.lusid.com/identity"
 # Create an instance of the API class
 api_instance = finbourne_identity.UsersApi(finbourne_identity.ApiClient(configuration))
 id = 'id_example' # str | The unique identifier for the User to be unlocked
@@ -348,8 +661,8 @@ configuration = finbourne_identity.Configuration()
 # Configure OAuth2 access token for authorization: oauth2
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# Defining host is optional and default to https://www.lusid.com/identity
-configuration.host = "https://www.lusid.com/identity"
+# Defining host is optional and default to https://fbn-ci.lusid.com/identity
+configuration.host = "https://fbn-ci.lusid.com/identity"
 # Create an instance of the API class
 api_instance = finbourne_identity.UsersApi(finbourne_identity.ApiClient(configuration))
 id = 'id_example' # str | The unique identifier for the User to be updated

@@ -1,6 +1,6 @@
 # finbourne_identity.ApplicationsApi
 
-All URIs are relative to *https://www.lusid.com/identity*
+All URIs are relative to *https://fbn-ci.lusid.com/identity*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**delete_application**](ApplicationsApi.md#delete_application) | **DELETE** /api/applications/{id} | [EARLY ACCESS] Delete Application
 [**get_application**](ApplicationsApi.md#get_application) | **GET** /api/applications/{id} | [EARLY ACCESS] Get Application
 [**list_applications**](ApplicationsApi.md#list_applications) | **GET** /api/applications | [EARLY ACCESS] List Applications
+[**rotate_application_secrets**](ApplicationsApi.md#rotate_application_secrets) | **POST** /api/applications/{id}/lifecycle/$newsecret | [EXPERIMENTAL] Rotate Application Secrets
 
 
 # **create_application**
@@ -30,8 +31,8 @@ configuration = finbourne_identity.Configuration()
 # Configure OAuth2 access token for authorization: oauth2
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# Defining host is optional and default to https://www.lusid.com/identity
-configuration.host = "https://www.lusid.com/identity"
+# Defining host is optional and default to https://fbn-ci.lusid.com/identity
+configuration.host = "https://fbn-ci.lusid.com/identity"
 # Create an instance of the API class
 api_instance = finbourne_identity.ApplicationsApi(finbourne_identity.ApiClient(configuration))
 create_application_request = {"displayName":"My First Application","clientId":"my-first-application","type":"native"} # CreateApplicationRequest | Details of the application to be created (optional)
@@ -92,8 +93,8 @@ configuration = finbourne_identity.Configuration()
 # Configure OAuth2 access token for authorization: oauth2
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# Defining host is optional and default to https://www.lusid.com/identity
-configuration.host = "https://www.lusid.com/identity"
+# Defining host is optional and default to https://fbn-ci.lusid.com/identity
+configuration.host = "https://fbn-ci.lusid.com/identity"
 # Create an instance of the API class
 api_instance = finbourne_identity.ApplicationsApi(finbourne_identity.ApiClient(configuration))
 id = 'id_example' # str | The unique identifier for the application
@@ -153,8 +154,8 @@ configuration = finbourne_identity.Configuration()
 # Configure OAuth2 access token for authorization: oauth2
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# Defining host is optional and default to https://www.lusid.com/identity
-configuration.host = "https://www.lusid.com/identity"
+# Defining host is optional and default to https://fbn-ci.lusid.com/identity
+configuration.host = "https://fbn-ci.lusid.com/identity"
 # Create an instance of the API class
 api_instance = finbourne_identity.ApplicationsApi(finbourne_identity.ApiClient(configuration))
 id = 'id_example' # str | The unique identifier for the application
@@ -218,8 +219,8 @@ configuration = finbourne_identity.Configuration()
 # Configure OAuth2 access token for authorization: oauth2
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# Defining host is optional and default to https://www.lusid.com/identity
-configuration.host = "https://www.lusid.com/identity"
+# Defining host is optional and default to https://fbn-ci.lusid.com/identity
+configuration.host = "https://fbn-ci.lusid.com/identity"
 # Create an instance of the API class
 api_instance = finbourne_identity.ApplicationsApi(finbourne_identity.ApiClient(configuration))
 
@@ -251,6 +252,68 @@ This endpoint does not need any parameter.
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | List the available applications |  -  |
+**0** | Error response |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **rotate_application_secrets**
+> OAuthApplication rotate_application_secrets(id)
+
+[EXPERIMENTAL] Rotate Application Secrets
+
+Rotate the secrets for the specified application
+
+### Example
+
+* OAuth Authentication (oauth2):
+```python
+from __future__ import print_function
+import time
+import finbourne_identity
+from finbourne_identity.rest import ApiException
+from pprint import pprint
+configuration = finbourne_identity.Configuration()
+# Configure OAuth2 access token for authorization: oauth2
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
+
+# Defining host is optional and default to https://fbn-ci.lusid.com/identity
+configuration.host = "https://fbn-ci.lusid.com/identity"
+# Create an instance of the API class
+api_instance = finbourne_identity.ApplicationsApi(finbourne_identity.ApiClient(configuration))
+id = 'id_example' # str | The unique identifier for the application
+
+try:
+    # [EXPERIMENTAL] Rotate Application Secrets
+    api_response = api_instance.rotate_application_secrets(id)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling ApplicationsApi->rotate_application_secrets: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**| The unique identifier for the application | 
+
+### Return type
+
+[**OAuthApplication**](OAuthApplication.md)
+
+### Authorization
+
+[oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Rotate Application Secrets |  -  |
+**400** | The details of the input related failure |  -  |
 **0** | Error response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

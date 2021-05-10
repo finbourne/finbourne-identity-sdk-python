@@ -1,6 +1,6 @@
 # finbourne_identity.PersonalAuthenticationTokensApi
 
-All URIs are relative to *https://www.lusid.com/identity*
+All URIs are relative to *https://fbn-ci.lusid.com/identity*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -29,8 +29,8 @@ configuration = finbourne_identity.Configuration()
 # Configure OAuth2 access token for authorization: oauth2
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# Defining host is optional and default to https://www.lusid.com/identity
-configuration.host = "https://www.lusid.com/identity"
+# Defining host is optional and default to https://fbn-ci.lusid.com/identity
+configuration.host = "https://fbn-ci.lusid.com/identity"
 # Create an instance of the API class
 api_instance = finbourne_identity.PersonalAuthenticationTokensApi(finbourne_identity.ApiClient(configuration))
 create_api_key = {"displayName":"My API Key","deactivationDate":"2022-12-08T13:30:12.0000000+00:00"} # CreateApiKey | The request to create a new Personal Access Token
@@ -91,8 +91,8 @@ configuration = finbourne_identity.Configuration()
 # Configure OAuth2 access token for authorization: oauth2
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# Defining host is optional and default to https://www.lusid.com/identity
-configuration.host = "https://www.lusid.com/identity"
+# Defining host is optional and default to https://fbn-ci.lusid.com/identity
+configuration.host = "https://fbn-ci.lusid.com/identity"
 # Create an instance of the API class
 api_instance = finbourne_identity.PersonalAuthenticationTokensApi(finbourne_identity.ApiClient(configuration))
 id = 'id_example' # str | The id of the Personal Access Token to delete
@@ -153,8 +153,8 @@ configuration = finbourne_identity.Configuration()
 # Configure OAuth2 access token for authorization: oauth2
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# Defining host is optional and default to https://www.lusid.com/identity
-configuration.host = "https://www.lusid.com/identity"
+# Defining host is optional and default to https://fbn-ci.lusid.com/identity
+configuration.host = "https://fbn-ci.lusid.com/identity"
 # Create an instance of the API class
 api_instance = finbourne_identity.PersonalAuthenticationTokensApi(finbourne_identity.ApiClient(configuration))
 

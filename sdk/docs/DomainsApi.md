@@ -1,6 +1,6 @@
 # finbourne_identity.DomainsApi
 
-All URIs are relative to *https://www.lusid.com/identity*
+All URIs are relative to *https://fbn-ci.lusid.com/identity*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -31,8 +31,8 @@ configuration = finbourne_identity.Configuration()
 # Configure OAuth2 access token for authorization: oauth2
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# Defining host is optional and default to https://www.lusid.com/identity
-configuration.host = "https://www.lusid.com/identity"
+# Defining host is optional and default to https://fbn-ci.lusid.com/identity
+configuration.host = "https://fbn-ci.lusid.com/identity"
 # Create an instance of the API class
 api_instance = finbourne_identity.DomainsApi(finbourne_identity.ApiClient(configuration))
 code = 'code_example' # str | The verification code necessary to create domains
@@ -95,8 +95,8 @@ configuration = finbourne_identity.Configuration()
 # Configure OAuth2 access token for authorization: oauth2
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# Defining host is optional and default to https://www.lusid.com/identity
-configuration.host = "https://www.lusid.com/identity"
+# Defining host is optional and default to https://fbn-ci.lusid.com/identity
+configuration.host = "https://fbn-ci.lusid.com/identity"
 # Create an instance of the API class
 api_instance = finbourne_identity.DomainsApi(finbourne_identity.ApiClient(configuration))
 agreement = 'agreement_example' # str | Name of the agreement
@@ -158,8 +158,8 @@ configuration = finbourne_identity.Configuration()
 # Configure OAuth2 access token for authorization: oauth2
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# Defining host is optional and default to https://www.lusid.com/identity
-configuration.host = "https://www.lusid.com/identity"
+# Defining host is optional and default to https://fbn-ci.lusid.com/identity
+configuration.host = "https://fbn-ci.lusid.com/identity"
 # Create an instance of the API class
 api_instance = finbourne_identity.DomainsApi(finbourne_identity.ApiClient(configuration))
 
@@ -215,8 +215,8 @@ configuration = finbourne_identity.Configuration()
 # Configure OAuth2 access token for authorization: oauth2
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# Defining host is optional and default to https://www.lusid.com/identity
-configuration.host = "https://www.lusid.com/identity"
+# Defining host is optional and default to https://fbn-ci.lusid.com/identity
+configuration.host = "https://fbn-ci.lusid.com/identity"
 # Create an instance of the API class
 api_instance = finbourne_identity.DomainsApi(finbourne_identity.ApiClient(configuration))
 
@@ -272,8 +272,8 @@ configuration = finbourne_identity.Configuration()
 # Configure OAuth2 access token for authorization: oauth2
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# Defining host is optional and default to https://www.lusid.com/identity
-configuration.host = "https://www.lusid.com/identity"
+# Defining host is optional and default to https://fbn-ci.lusid.com/identity
+configuration.host = "https://fbn-ci.lusid.com/identity"
 # Create an instance of the API class
 api_instance = finbourne_identity.DomainsApi(finbourne_identity.ApiClient(configuration))
 agreement = 'agreement_example' # str | Name of the agreement being signed
