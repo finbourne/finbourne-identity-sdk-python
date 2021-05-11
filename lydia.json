@@ -8,7 +8,7 @@
       "url": "https://www.finbourne.com",
       "email": "info@finbourne.com"
     },
-    "version": "0.0.1170",
+    "version": "0.0.1172",
     "x-logo": {
       "url": "https://content.finbourne.com/LUSID-header.png",
       "backgroundColor": "#415464"
@@ -3793,7 +3793,7 @@
         "type": "object",
         "properties": {
           "domain": {
-            "maxLength": 20,
+            "maxLength": 25,
             "minLength": 3,
             "pattern": "^[a-zA-Z][a-zA-Z0-9-]*$",
             "type": "string",
