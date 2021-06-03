@@ -17,17 +17,18 @@ class ApiClientFactory:
     """
     def __init__(self, **kwargs):
         """
-        Iniitalise an ApiClientFactory by passing the token, identity_url and app_name, or by
+        Iniitalise an ApiClientFactory by passing the token, api_url and app_name, or by
         passing in the api_secrets_filename
 
         :param str token: Bearer token used to initialise the API
         :param str api_secrets_filename: Name of secrets file (including full path)
-        :param str identity_url: LUSID API url
+        :param str api_url: Identity API url
         :param str app_name: Application name (optional)
         :param str certificate_filename: Name of the certificate file (.pem, .cer or .crt)
         :param str proxy_url: The url of the proxy to use including the port e.g. http://myproxy.com:8888
         :param str proxy_username: The username for the proxy to use
         :param str proxy_password: The password for the proxy to use
+        :param str correlation_id: Correlation id for all calls made from the returned Identity API instances
         """
 
         builder_kwargs = {}
@@ -35,7 +36,7 @@ class ApiClientFactory:
         if "token" in kwargs and str(kwargs["token"]) != "None":
             # If there is a token use it along with the specified proxy details if specified
             config = ApiConfiguration(
-                identity_url=kwargs.get("identity_url", None),
+                api_url=kwargs.get("api_url", None),
                 certificate_filename=kwargs.get("certificate_filename", None),
                 proxy_config=ProxyConfig(
                     address=kwargs.get("proxy_url", None),
@@ -50,6 +51,9 @@ class ApiClientFactory:
 
         # Otherwise use a secrets file if it exists
         builder_kwargs["api_secrets_filename"] = kwargs.get("api_secrets_filename", None)
+
+        # add the correlation id if specified
+        builder_kwargs["correlation_id"] = kwargs.get("correlation_id", None)
 
         # Call the client builder, this will result in using either a token, secrets file or environment variables
         self.api_client = ApiClientBuilder.build(**builder_kwargs)
