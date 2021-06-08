@@ -7,9 +7,9 @@ from threading import Thread
 from finbourne_identity import RolesApi
 from finbourne_identity.utilities import ApiClientFactory
 
-from utilities import TokenUtilities as tu, CredentialsSource
-from utilities.temp_file_manager import TempFileManager
-from utilities import MockApiResponse
+from . import TokenUtilities as tu, CredentialsSource
+from . import TempFileManager
+from . import MockApiResponse
 
 
 class UnknownApi:

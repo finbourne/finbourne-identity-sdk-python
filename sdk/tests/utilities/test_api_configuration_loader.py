@@ -6,8 +6,8 @@ from finbourne_identity import ApiConfigurationLoader
 from finbourne_identity.utilities.api_configuration import ApiConfiguration
 from finbourne_identity.utilities.proxy_config import ProxyConfig
 
-from utilities import CredentialsSource
-from utilities.temp_file_manager import TempFileManager
+from . import CredentialsSource
+from . import TempFileManager
 
 source_config_details, config_keys = CredentialsSource.fetch_credentials(), CredentialsSource.fetch_config_keys()
 
