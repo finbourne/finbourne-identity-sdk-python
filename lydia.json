@@ -8,7 +8,7 @@
       "url": "https://www.finbourne.com",
       "email": "info@finbourne.com"
     },
-    "version": "0.0.1190",
+    "version": "0.0.1214",
     "x-logo": {
       "url": "https://content.finbourne.com/LUSID-header.png",
       "backgroundColor": "#415464"
@@ -794,7 +794,7 @@
             "schema": {
               "maxLength": 2147483647,
               "minLength": 1,
-              "pattern": "(?s).*",
+              "pattern": "^[\\s\\S]*$",
               "type": "string",
               "description": "The verification code necessary to create domains"
             }
@@ -1112,15 +1112,15 @@
                   }
                 },
                 "example": {
-                  "termsAndConditions-20190101-GBP": {
-                    "name": "TermsAndConditions-20190101-GB",
-                    "signedBy": "DomainOwnerUserId",
-                    "signedAt": "2019-01-05T10:15:00.0000000+00:00"
-                  },
                   "termsAndConditions-20190301-GBP": {
                     "name": "TermsAndConditions-20190301-GB",
                     "signedBy": "DomainOwnerUserId",
                     "signedAt": "2019-03-07T13:23:07.0000000+00:00"
+                  },
+                  "termsAndConditions-20190101-GBP": {
+                    "name": "TermsAndConditions-20190101-GB",
+                    "signedBy": "DomainOwnerUserId",
+                    "signedAt": "2019-01-05T10:15:00.0000000+00:00"
                   }
                 }
               },
@@ -1132,15 +1132,15 @@
                   }
                 },
                 "example": {
-                  "termsAndConditions-20190101-GBP": {
-                    "name": "TermsAndConditions-20190101-GB",
-                    "signedBy": "DomainOwnerUserId",
-                    "signedAt": "2019-01-05T10:15:00.0000000+00:00"
-                  },
                   "termsAndConditions-20190301-GBP": {
                     "name": "TermsAndConditions-20190301-GB",
                     "signedBy": "DomainOwnerUserId",
                     "signedAt": "2019-03-07T13:23:07.0000000+00:00"
+                  },
+                  "termsAndConditions-20190101-GBP": {
+                    "name": "TermsAndConditions-20190101-GB",
+                    "signedBy": "DomainOwnerUserId",
+                    "signedAt": "2019-01-05T10:15:00.0000000+00:00"
                   }
                 }
               },
@@ -1152,15 +1152,15 @@
                   }
                 },
                 "example": {
-                  "termsAndConditions-20190101-GBP": {
-                    "name": "TermsAndConditions-20190101-GB",
-                    "signedBy": "DomainOwnerUserId",
-                    "signedAt": "2019-01-05T10:15:00.0000000+00:00"
-                  },
                   "termsAndConditions-20190301-GBP": {
                     "name": "TermsAndConditions-20190301-GB",
                     "signedBy": "DomainOwnerUserId",
                     "signedAt": "2019-03-07T13:23:07.0000000+00:00"
+                  },
+                  "termsAndConditions-20190101-GBP": {
+                    "name": "TermsAndConditions-20190101-GB",
+                    "signedBy": "DomainOwnerUserId",
+                    "signedAt": "2019-01-05T10:15:00.0000000+00:00"
                   }
                 }
               }
@@ -3230,7 +3230,7 @@
           "displayName": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "(?s).*",
+            "pattern": "^[\\s\\S]*$",
             "type": "string"
           },
           "secret": {
@@ -3314,7 +3314,7 @@
           "displayName": {
             "maxLength": 50,
             "minLength": 1,
-            "pattern": "(?s).*",
+            "pattern": "^[\\s\\S]*$",
             "type": "string",
             "description": "The Display Name of the application"
           },
@@ -3537,7 +3537,7 @@
           "description": {
             "maxLength": 1024,
             "minLength": 0,
-            "pattern": "(?s).*",
+            "pattern": "^[\\s\\S]*$",
             "type": "string",
             "description": "The description of why the support access has been granted (i.e. support ticket numbers)",
             "nullable": true
@@ -3569,7 +3569,7 @@
           "description": {
             "maxLength": 1024,
             "minLength": 0,
-            "pattern": "(?s).*",
+            "pattern": "^[\\s\\S]*$",
             "type": "string",
             "description": "The description of why the support access has been granted (i.e. support ticket numbers)",
             "nullable": true
@@ -3742,14 +3742,14 @@
           "firstName": {
             "maxLength": 50,
             "minLength": 1,
-            "pattern": "(?s).*",
+            "pattern": "^[\\s\\S]*$",
             "type": "string",
             "description": "The first name of the user"
           },
           "lastName": {
             "maxLength": 50,
             "minLength": 2,
-            "pattern": "(?s).*",
+            "pattern": "^[\\s\\S]*$",
             "type": "string",
             "description": "The last name of the user"
           },
@@ -3802,7 +3802,7 @@
           "description": {
             "maxLength": 50,
             "minLength": 5,
-            "pattern": "(?s).*",
+            "pattern": "^[\\s\\S]*$",
             "type": "string",
             "description": "Optional. Free text description of the domain.",
             "nullable": true
@@ -3810,7 +3810,7 @@
           "companyName": {
             "maxLength": 50,
             "minLength": 2,
-            "pattern": "(?s).*",
+            "pattern": "^[\\s\\S]*$",
             "type": "string",
             "description": "The name of the company to which the domain is registered"
           },
@@ -3935,7 +3935,7 @@
           "displayName": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "(?s).*",
+            "pattern": "^[\\s\\S]*$",
             "type": "string",
             "description": "The display name for the API key"
           },
@@ -3972,7 +3972,7 @@
           "displayName": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "(?s).*",
+            "pattern": "^[\\s\\S]*$",
             "type": "string",
             "description": "The display name of the API key"
           },
@@ -4009,7 +4009,7 @@
           "displayName": {
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "(?s).*",
+            "pattern": "^[\\s\\S]*$",
             "type": "string",
             "description": "The display name of the API key"
           },
@@ -4275,7 +4275,7 @@
           "description": {
             "maxLength": 1024,
             "minLength": 0,
-            "pattern": "(?s).*",
+            "pattern": "^[\\s\\S]*$",
             "type": "string",
             "description": "The description for this role",
             "nullable": true
@@ -4290,7 +4290,7 @@
           "description": {
             "maxLength": 1024,
             "minLength": 0,
-            "pattern": "(?s).*",
+            "pattern": "^[\\s\\S]*$",
             "type": "string",
             "description": "The description for this role",
             "nullable": true
@@ -4395,13 +4395,13 @@
           "firstName": {
             "maxLength": 50,
             "minLength": 1,
-            "pattern": "(?s).*",
+            "pattern": "^[\\s\\S]*$",
             "type": "string"
           },
           "lastName": {
             "maxLength": 50,
             "minLength": 2,
-            "pattern": "(?s).*",
+            "pattern": "^[\\s\\S]*$",
             "type": "string"
           },
           "emailAddress": {
@@ -4412,7 +4412,7 @@
           "login": {
             "maxLength": 80,
             "minLength": 5,
-            "pattern": "(?s).*",
+            "pattern": "^[\\s\\S]*$",
             "type": "string",
             "description": "The user's login username, in the form of an email address, which must be unique within the system.\r\nFor user accounts this should exactly match the user's email address."
           },
