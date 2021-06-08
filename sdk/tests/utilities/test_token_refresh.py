@@ -7,10 +7,10 @@ from finbourne_identity.utilities import ApiConfigurationLoader
 from finbourne_identity.utilities.proxy_config import ProxyConfig
 from finbourne_identity.utilities import RefreshingToken
 
-from . import CredentialsSource
+from utilities import CredentialsSource
 from unittest.mock import patch
-from . import TempFileManager
-from . import MockApiResponse
+from utilities.temp_file_manager import TempFileManager
+from utilities import MockApiResponse
 
 source_config_details, config_keys = CredentialsSource.fetch_credentials(), CredentialsSource.fetch_config_keys()
 
