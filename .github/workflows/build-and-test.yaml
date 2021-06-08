@@ -39,7 +39,7 @@ jobs:
           FBN_PASSWORD: ${{ secrets.DEVELOP_FBN_PASSWORD }}
           FBN_CLIENT_ID: ${{ secrets.DEVELOP_FBN_CLIENT_ID }}
           FBN_CLIENT_SECRET: ${{ secrets.DEVELOP_FBN_CLIENT_SECRET }}
-          FBN_LUSID_ACCESS_URL: ${{ secrets.DEVELOP_FBN_ACCESS_URL }}
+          FBN_LUSID_IDENTITY_URL: ${{ secrets.DEVELOP_FBN_IDENTITY_URL}}
           FBN_APP_NAME: ${{ secrets.DEVELOP_FBN_CLIENT_ID }}
         run: |
           echo "env variables for DEVELOP have been set"
