@@ -4,7 +4,7 @@ import finbourne_identity.api
 from finbourne_identity import ApiException
 from finbourne_identity.utilities import ApiClientFactory
 
-from utilities import CredentialsSource
+from . import CredentialsSource
 
 
 class MockApi:
