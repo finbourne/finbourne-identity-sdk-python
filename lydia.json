@@ -8,7 +8,7 @@
       "url": "https://www.finbourne.com",
       "email": "info@finbourne.com"
     },
-    "version": "0.0.1226",
+    "version": "0.0.1230",
     "x-logo": {
       "url": "https://content.finbourne.com/LUSID-header.png",
       "backgroundColor": "#415464"
@@ -3113,15 +3113,8 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "Reset the user's password",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ResetPasswordUrl"
-                }
-              }
-            }
+          "204": {
+            "description": "Success"
           },
           "400": {
             "description": "The details of the input related failure",
@@ -4435,19 +4428,6 @@
           "password": {
             "type": "string",
             "description": "The user's temporary password"
-          }
-        },
-        "additionalProperties": false
-      },
-      "ResetPasswordUrl": {
-        "required": [
-          "url"
-        ],
-        "type": "object",
-        "properties": {
-          "url": {
-            "type": "string",
-            "description": "The url to reset the user's password"
           }
         },
         "additionalProperties": false

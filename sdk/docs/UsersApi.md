@@ -458,7 +458,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **reset_password**
-> ResetPasswordUrl reset_password(id)
+> reset_password(id)
 
 [EXPERIMENTAL] Reset Password
 
@@ -485,8 +485,7 @@ id = 'id_example' # str | The unique identifier for the User having their passwo
 
 try:
     # [EXPERIMENTAL] Reset Password
-    api_response = api_instance.reset_password(id)
-    pprint(api_response)
+    api_instance.reset_password(id)
 except ApiException as e:
     print("Exception when calling UsersApi->reset_password: %s\n" % e)
 ```
@@ -499,7 +498,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResetPasswordUrl**](ResetPasswordUrl.md)
+void (empty response body)
 
 ### Authorization
 
@@ -513,7 +512,7 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Reset the user&#39;s password |  -  |
+**204** | Success |  -  |
 **400** | The details of the input related failure |  -  |
 **0** | Error response |  -  |
 
