@@ -1,5 +1,7 @@
 # ErrorDetail
 
+Provides details about an entity error that occured
+
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------

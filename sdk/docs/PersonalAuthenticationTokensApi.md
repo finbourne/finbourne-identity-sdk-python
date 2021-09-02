@@ -25,22 +25,35 @@ import time
 import finbourne_identity
 from finbourne_identity.rest import ApiException
 from pprint import pprint
-configuration = finbourne_identity.Configuration()
+# Defining the host is optional and defaults to https://fbn-ci.lusid.com/identity
+# See configuration.py for a list of all supported configuration parameters.
+configuration = finbourne_identity.Configuration(
+    host = "https://fbn-ci.lusid.com/identity"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
 # Configure OAuth2 access token for authorization: oauth2
+configuration = finbourne_identity.Configuration(
+    host = "https://fbn-ci.lusid.com/identity"
+)
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# Defining host is optional and default to https://fbn-ci.lusid.com/identity
-configuration.host = "https://fbn-ci.lusid.com/identity"
-# Create an instance of the API class
-api_instance = finbourne_identity.PersonalAuthenticationTokensApi(finbourne_identity.ApiClient(configuration))
-create_api_key = {"displayName":"My API Key","deactivationDate":"2022-12-08T13:30:12.0000000+00:00"} # CreateApiKey | The request to create a new Personal Access Token
+# Enter a context with an instance of the API client
+with finbourne_identity.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = finbourne_identity.PersonalAuthenticationTokensApi(api_client)
+    create_api_key = {"displayName":"My API Key","deactivationDate":"2022-12-08T13:30:12.0000000+00:00"} # CreateApiKey | The request to create a new Personal Access Token
 
-try:
-    # [EXPERIMENTAL] Create a Personal Access Token
-    api_response = api_instance.create_api_key(create_api_key)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling PersonalAuthenticationTokensApi->create_api_key: %s\n" % e)
+    try:
+        # [EXPERIMENTAL] Create a Personal Access Token
+        api_response = api_instance.create_api_key(create_api_key)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling PersonalAuthenticationTokensApi->create_api_key: %s\n" % e)
 ```
 
 ### Parameters
@@ -87,22 +100,35 @@ import time
 import finbourne_identity
 from finbourne_identity.rest import ApiException
 from pprint import pprint
-configuration = finbourne_identity.Configuration()
+# Defining the host is optional and defaults to https://fbn-ci.lusid.com/identity
+# See configuration.py for a list of all supported configuration parameters.
+configuration = finbourne_identity.Configuration(
+    host = "https://fbn-ci.lusid.com/identity"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
 # Configure OAuth2 access token for authorization: oauth2
+configuration = finbourne_identity.Configuration(
+    host = "https://fbn-ci.lusid.com/identity"
+)
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# Defining host is optional and default to https://fbn-ci.lusid.com/identity
-configuration.host = "https://fbn-ci.lusid.com/identity"
-# Create an instance of the API class
-api_instance = finbourne_identity.PersonalAuthenticationTokensApi(finbourne_identity.ApiClient(configuration))
-id = 'id_example' # str | The id of the Personal Access Token to delete
+# Enter a context with an instance of the API client
+with finbourne_identity.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = finbourne_identity.PersonalAuthenticationTokensApi(api_client)
+    id = 'id_example' # str | The id of the Personal Access Token to delete
 
-try:
-    # [EXPERIMENTAL] Invalidate a Personal Access Token
-    api_response = api_instance.delete_api_key(id)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling PersonalAuthenticationTokensApi->delete_api_key: %s\n" % e)
+    try:
+        # [EXPERIMENTAL] Invalidate a Personal Access Token
+        api_response = api_instance.delete_api_key(id)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling PersonalAuthenticationTokensApi->delete_api_key: %s\n" % e)
 ```
 
 ### Parameters
@@ -149,21 +175,34 @@ import time
 import finbourne_identity
 from finbourne_identity.rest import ApiException
 from pprint import pprint
-configuration = finbourne_identity.Configuration()
+# Defining the host is optional and defaults to https://fbn-ci.lusid.com/identity
+# See configuration.py for a list of all supported configuration parameters.
+configuration = finbourne_identity.Configuration(
+    host = "https://fbn-ci.lusid.com/identity"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
 # Configure OAuth2 access token for authorization: oauth2
+configuration = finbourne_identity.Configuration(
+    host = "https://fbn-ci.lusid.com/identity"
+)
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# Defining host is optional and default to https://fbn-ci.lusid.com/identity
-configuration.host = "https://fbn-ci.lusid.com/identity"
-# Create an instance of the API class
-api_instance = finbourne_identity.PersonalAuthenticationTokensApi(finbourne_identity.ApiClient(configuration))
-
-try:
-    # [EXPERIMENTAL] Gets the meta data for all of the user's existing Personal Access Tokens.
-    api_response = api_instance.list_own_api_keys()
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling PersonalAuthenticationTokensApi->list_own_api_keys: %s\n" % e)
+# Enter a context with an instance of the API client
+with finbourne_identity.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = finbourne_identity.PersonalAuthenticationTokensApi(api_client)
+    
+    try:
+        # [EXPERIMENTAL] Gets the meta data for all of the user's existing Personal Access Tokens.
+        api_response = api_instance.list_own_api_keys()
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling PersonalAuthenticationTokensApi->list_own_api_keys: %s\n" % e)
 ```
 
 ### Parameters

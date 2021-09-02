@@ -1,5 +1,7 @@
 # ListUsersResponse
 
+Users directory query response
+
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------

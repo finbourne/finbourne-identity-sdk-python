@@ -1,5 +1,7 @@
 # CreateApiKey
 
+Create an API key
+
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------

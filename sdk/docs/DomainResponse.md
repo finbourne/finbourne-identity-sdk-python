@@ -1,5 +1,6 @@
 # DomainResponse
 
+
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------

@@ -33,23 +33,36 @@ import time
 import finbourne_identity
 from finbourne_identity.rest import ApiException
 from pprint import pprint
-configuration = finbourne_identity.Configuration()
+# Defining the host is optional and defaults to https://fbn-ci.lusid.com/identity
+# See configuration.py for a list of all supported configuration parameters.
+configuration = finbourne_identity.Configuration(
+    host = "https://fbn-ci.lusid.com/identity"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
 # Configure OAuth2 access token for authorization: oauth2
+configuration = finbourne_identity.Configuration(
+    host = "https://fbn-ci.lusid.com/identity"
+)
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# Defining host is optional and default to https://fbn-ci.lusid.com/identity
-configuration.host = "https://fbn-ci.lusid.com/identity"
-# Create an instance of the API class
-api_instance = finbourne_identity.UsersApi(finbourne_identity.ApiClient(configuration))
-create_user_request = {"firstName":"Joe","lastName":"Bloggs","emailAddress":"joe.bloggs@myco.com","login":"joe.bloggs@myco.com","type":"Personal"} # CreateUserRequest | Details of the User to be created
+# Enter a context with an instance of the API client
+with finbourne_identity.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = finbourne_identity.UsersApi(api_client)
+    create_user_request = {"firstName":"Joe","lastName":"Bloggs","emailAddress":"joe.bloggs@myco.com","login":"joe.bloggs@myco.com","type":"Personal"} # CreateUserRequest | Details of the User to be created
 wait_for_reindex = False # bool | Should the request wait until the newly created User is indexed (available in List) before returning (optional) (default to False)
 
-try:
-    # [EARLY ACCESS] Create User
-    api_response = api_instance.create_user(create_user_request, wait_for_reindex=wait_for_reindex)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling UsersApi->create_user: %s\n" % e)
+    try:
+        # [EARLY ACCESS] Create User
+        api_response = api_instance.create_user(create_user_request, wait_for_reindex=wait_for_reindex)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling UsersApi->create_user: %s\n" % e)
 ```
 
 ### Parameters
@@ -97,22 +110,35 @@ import time
 import finbourne_identity
 from finbourne_identity.rest import ApiException
 from pprint import pprint
-configuration = finbourne_identity.Configuration()
+# Defining the host is optional and defaults to https://fbn-ci.lusid.com/identity
+# See configuration.py for a list of all supported configuration parameters.
+configuration = finbourne_identity.Configuration(
+    host = "https://fbn-ci.lusid.com/identity"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
 # Configure OAuth2 access token for authorization: oauth2
+configuration = finbourne_identity.Configuration(
+    host = "https://fbn-ci.lusid.com/identity"
+)
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# Defining host is optional and default to https://fbn-ci.lusid.com/identity
-configuration.host = "https://fbn-ci.lusid.com/identity"
-# Create an instance of the API class
-api_instance = finbourne_identity.UsersApi(finbourne_identity.ApiClient(configuration))
-id = 'id_example' # str | The unique identifier for the user
+# Enter a context with an instance of the API client
+with finbourne_identity.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = finbourne_identity.UsersApi(api_client)
+    id = 'id_example' # str | The unique identifier for the user
 purge = True # bool | Whether to purge any trace of the user from the identity provider (will affect audit) (optional)
 
-try:
-    # [EARLY ACCESS] Delete User
-    api_instance.delete_user(id, purge=purge)
-except ApiException as e:
-    print("Exception when calling UsersApi->delete_user: %s\n" % e)
+    try:
+        # [EARLY ACCESS] Delete User
+        api_instance.delete_user(id, purge=purge)
+    except ApiException as e:
+        print("Exception when calling UsersApi->delete_user: %s\n" % e)
 ```
 
 ### Parameters
@@ -160,22 +186,35 @@ import time
 import finbourne_identity
 from finbourne_identity.rest import ApiException
 from pprint import pprint
-configuration = finbourne_identity.Configuration()
+# Defining the host is optional and defaults to https://fbn-ci.lusid.com/identity
+# See configuration.py for a list of all supported configuration parameters.
+configuration = finbourne_identity.Configuration(
+    host = "https://fbn-ci.lusid.com/identity"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
 # Configure OAuth2 access token for authorization: oauth2
+configuration = finbourne_identity.Configuration(
+    host = "https://fbn-ci.lusid.com/identity"
+)
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# Defining host is optional and default to https://fbn-ci.lusid.com/identity
-configuration.host = "https://fbn-ci.lusid.com/identity"
-# Create an instance of the API class
-api_instance = finbourne_identity.UsersApi(finbourne_identity.ApiClient(configuration))
-id = 'id_example' # str | The unique identifier for the User having its password reset
+# Enter a context with an instance of the API client
+with finbourne_identity.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = finbourne_identity.UsersApi(api_client)
+    id = 'id_example' # str | The unique identifier for the User having its password reset
 
-try:
-    # [EXPERIMENTAL] Reset the user's password to a temporary one
-    api_response = api_instance.expire_password(id)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling UsersApi->expire_password: %s\n" % e)
+    try:
+        # [EXPERIMENTAL] Reset the user's password to a temporary one
+        api_response = api_instance.expire_password(id)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling UsersApi->expire_password: %s\n" % e)
 ```
 
 ### Parameters
@@ -222,22 +261,35 @@ import time
 import finbourne_identity
 from finbourne_identity.rest import ApiException
 from pprint import pprint
-configuration = finbourne_identity.Configuration()
+# Defining the host is optional and defaults to https://fbn-ci.lusid.com/identity
+# See configuration.py for a list of all supported configuration parameters.
+configuration = finbourne_identity.Configuration(
+    host = "https://fbn-ci.lusid.com/identity"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
 # Configure OAuth2 access token for authorization: oauth2
+configuration = finbourne_identity.Configuration(
+    host = "https://fbn-ci.lusid.com/identity"
+)
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# Defining host is optional and default to https://fbn-ci.lusid.com/identity
-configuration.host = "https://fbn-ci.lusid.com/identity"
-# Create an instance of the API class
-api_instance = finbourne_identity.UsersApi(finbourne_identity.ApiClient(configuration))
-id = ['id_example'] # list[str] | A list of unique identifiers for the users
+# Enter a context with an instance of the API client
+with finbourne_identity.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = finbourne_identity.UsersApi(api_client)
+    id = ['id_example'] # list[str] | A list of unique identifiers for the users
 
-try:
-    # [EARLY ACCESS] Find users by id endpoint
-    api_response = api_instance.find_users_by_id(id)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling UsersApi->find_users_by_id: %s\n" % e)
+    try:
+        # [EARLY ACCESS] Find users by id endpoint
+        api_response = api_instance.find_users_by_id(id)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling UsersApi->find_users_by_id: %s\n" % e)
 ```
 
 ### Parameters
@@ -284,23 +336,36 @@ import time
 import finbourne_identity
 from finbourne_identity.rest import ApiException
 from pprint import pprint
-configuration = finbourne_identity.Configuration()
+# Defining the host is optional and defaults to https://fbn-ci.lusid.com/identity
+# See configuration.py for a list of all supported configuration parameters.
+configuration = finbourne_identity.Configuration(
+    host = "https://fbn-ci.lusid.com/identity"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
 # Configure OAuth2 access token for authorization: oauth2
+configuration = finbourne_identity.Configuration(
+    host = "https://fbn-ci.lusid.com/identity"
+)
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# Defining host is optional and default to https://fbn-ci.lusid.com/identity
-configuration.host = "https://fbn-ci.lusid.com/identity"
-# Create an instance of the API class
-api_instance = finbourne_identity.UsersApi(finbourne_identity.ApiClient(configuration))
-id = 'id_example' # str | The unique identifier for the User
+# Enter a context with an instance of the API client
+with finbourne_identity.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = finbourne_identity.UsersApi(api_client)
+    id = 'id_example' # str | The unique identifier for the User
 include_roles = True # bool | Flag indicating that the users roles should be included in the response (optional)
 
-try:
-    # [EARLY ACCESS] Get User
-    api_response = api_instance.get_user(id, include_roles=include_roles)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling UsersApi->get_user: %s\n" % e)
+    try:
+        # [EARLY ACCESS] Get User
+        api_response = api_instance.get_user(id, include_roles=include_roles)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling UsersApi->get_user: %s\n" % e)
 ```
 
 ### Parameters
@@ -348,23 +413,36 @@ import time
 import finbourne_identity
 from finbourne_identity.rest import ApiException
 from pprint import pprint
-configuration = finbourne_identity.Configuration()
+# Defining the host is optional and defaults to https://fbn-ci.lusid.com/identity
+# See configuration.py for a list of all supported configuration parameters.
+configuration = finbourne_identity.Configuration(
+    host = "https://fbn-ci.lusid.com/identity"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
 # Configure OAuth2 access token for authorization: oauth2
+configuration = finbourne_identity.Configuration(
+    host = "https://fbn-ci.lusid.com/identity"
+)
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# Defining host is optional and default to https://fbn-ci.lusid.com/identity
-configuration.host = "https://fbn-ci.lusid.com/identity"
-# Create an instance of the API class
-api_instance = finbourne_identity.UsersApi(finbourne_identity.ApiClient(configuration))
-include_roles = False # bool | Flag indicating that the users roles should be included in the response (optional) (default to False)
+# Enter a context with an instance of the API client
+with finbourne_identity.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = finbourne_identity.UsersApi(api_client)
+    include_roles = False # bool | Flag indicating that the users roles should be included in the response (optional) (default to False)
 include_deactivated = False # bool | Include previously deleted (not purged) users (optional) (default to False)
 
-try:
-    # [EARLY ACCESS] List Users
-    api_response = api_instance.list_users(include_roles=include_roles, include_deactivated=include_deactivated)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling UsersApi->list_users: %s\n" % e)
+    try:
+        # [EARLY ACCESS] List Users
+        api_response = api_instance.list_users(include_roles=include_roles, include_deactivated=include_deactivated)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling UsersApi->list_users: %s\n" % e)
 ```
 
 ### Parameters
@@ -412,21 +490,34 @@ import time
 import finbourne_identity
 from finbourne_identity.rest import ApiException
 from pprint import pprint
-configuration = finbourne_identity.Configuration()
+# Defining the host is optional and defaults to https://fbn-ci.lusid.com/identity
+# See configuration.py for a list of all supported configuration parameters.
+configuration = finbourne_identity.Configuration(
+    host = "https://fbn-ci.lusid.com/identity"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
 # Configure OAuth2 access token for authorization: oauth2
+configuration = finbourne_identity.Configuration(
+    host = "https://fbn-ci.lusid.com/identity"
+)
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# Defining host is optional and default to https://fbn-ci.lusid.com/identity
-configuration.host = "https://fbn-ci.lusid.com/identity"
-# Create an instance of the API class
-api_instance = finbourne_identity.UsersApi(finbourne_identity.ApiClient(configuration))
-id = 'id_example' # str | The unique identifier for the User having their MFA factors reset
+# Enter a context with an instance of the API client
+with finbourne_identity.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = finbourne_identity.UsersApi(api_client)
+    id = 'id_example' # str | The unique identifier for the User having their MFA factors reset
 
-try:
-    # [EXPERIMENTAL] Reset MFA factors
-    api_instance.reset_factors(id)
-except ApiException as e:
-    print("Exception when calling UsersApi->reset_factors: %s\n" % e)
+    try:
+        # [EXPERIMENTAL] Reset MFA factors
+        api_instance.reset_factors(id)
+    except ApiException as e:
+        print("Exception when calling UsersApi->reset_factors: %s\n" % e)
 ```
 
 ### Parameters
@@ -473,21 +564,34 @@ import time
 import finbourne_identity
 from finbourne_identity.rest import ApiException
 from pprint import pprint
-configuration = finbourne_identity.Configuration()
+# Defining the host is optional and defaults to https://fbn-ci.lusid.com/identity
+# See configuration.py for a list of all supported configuration parameters.
+configuration = finbourne_identity.Configuration(
+    host = "https://fbn-ci.lusid.com/identity"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
 # Configure OAuth2 access token for authorization: oauth2
+configuration = finbourne_identity.Configuration(
+    host = "https://fbn-ci.lusid.com/identity"
+)
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# Defining host is optional and default to https://fbn-ci.lusid.com/identity
-configuration.host = "https://fbn-ci.lusid.com/identity"
-# Create an instance of the API class
-api_instance = finbourne_identity.UsersApi(finbourne_identity.ApiClient(configuration))
-id = 'id_example' # str | The unique identifier for the User having their password reset
+# Enter a context with an instance of the API client
+with finbourne_identity.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = finbourne_identity.UsersApi(api_client)
+    id = 'id_example' # str | The unique identifier for the User having their password reset
 
-try:
-    # [EXPERIMENTAL] Reset Password
-    api_instance.reset_password(id)
-except ApiException as e:
-    print("Exception when calling UsersApi->reset_password: %s\n" % e)
+    try:
+        # [EXPERIMENTAL] Reset Password
+        api_instance.reset_password(id)
+    except ApiException as e:
+        print("Exception when calling UsersApi->reset_password: %s\n" % e)
 ```
 
 ### Parameters
@@ -534,21 +638,34 @@ import time
 import finbourne_identity
 from finbourne_identity.rest import ApiException
 from pprint import pprint
-configuration = finbourne_identity.Configuration()
+# Defining the host is optional and defaults to https://fbn-ci.lusid.com/identity
+# See configuration.py for a list of all supported configuration parameters.
+configuration = finbourne_identity.Configuration(
+    host = "https://fbn-ci.lusid.com/identity"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
 # Configure OAuth2 access token for authorization: oauth2
+configuration = finbourne_identity.Configuration(
+    host = "https://fbn-ci.lusid.com/identity"
+)
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# Defining host is optional and default to https://fbn-ci.lusid.com/identity
-configuration.host = "https://fbn-ci.lusid.com/identity"
-# Create an instance of the API class
-api_instance = finbourne_identity.UsersApi(finbourne_identity.ApiClient(configuration))
-id = 'id_example' # str | The unique identifier for the User to be activated
+# Enter a context with an instance of the API client
+with finbourne_identity.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = finbourne_identity.UsersApi(api_client)
+    id = 'id_example' # str | The unique identifier for the User to be activated
 
-try:
-    # [EXPERIMENTAL] Sends an activation email to the User
-    api_instance.send_activation_email(id)
-except ApiException as e:
-    print("Exception when calling UsersApi->send_activation_email: %s\n" % e)
+    try:
+        # [EXPERIMENTAL] Sends an activation email to the User
+        api_instance.send_activation_email(id)
+    except ApiException as e:
+        print("Exception when calling UsersApi->send_activation_email: %s\n" % e)
 ```
 
 ### Parameters
@@ -595,21 +712,34 @@ import time
 import finbourne_identity
 from finbourne_identity.rest import ApiException
 from pprint import pprint
-configuration = finbourne_identity.Configuration()
+# Defining the host is optional and defaults to https://fbn-ci.lusid.com/identity
+# See configuration.py for a list of all supported configuration parameters.
+configuration = finbourne_identity.Configuration(
+    host = "https://fbn-ci.lusid.com/identity"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
 # Configure OAuth2 access token for authorization: oauth2
+configuration = finbourne_identity.Configuration(
+    host = "https://fbn-ci.lusid.com/identity"
+)
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# Defining host is optional and default to https://fbn-ci.lusid.com/identity
-configuration.host = "https://fbn-ci.lusid.com/identity"
-# Create an instance of the API class
-api_instance = finbourne_identity.UsersApi(finbourne_identity.ApiClient(configuration))
-id = 'id_example' # str | The unique identifier for the User to be unlocked
+# Enter a context with an instance of the API client
+with finbourne_identity.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = finbourne_identity.UsersApi(api_client)
+    id = 'id_example' # str | The unique identifier for the User to be unlocked
 
-try:
-    # [EXPERIMENTAL] Unlock User
-    api_instance.unlock_user(id)
-except ApiException as e:
-    print("Exception when calling UsersApi->unlock_user: %s\n" % e)
+    try:
+        # [EXPERIMENTAL] Unlock User
+        api_instance.unlock_user(id)
+    except ApiException as e:
+        print("Exception when calling UsersApi->unlock_user: %s\n" % e)
 ```
 
 ### Parameters
@@ -656,23 +786,36 @@ import time
 import finbourne_identity
 from finbourne_identity.rest import ApiException
 from pprint import pprint
-configuration = finbourne_identity.Configuration()
+# Defining the host is optional and defaults to https://fbn-ci.lusid.com/identity
+# See configuration.py for a list of all supported configuration parameters.
+configuration = finbourne_identity.Configuration(
+    host = "https://fbn-ci.lusid.com/identity"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
 # Configure OAuth2 access token for authorization: oauth2
+configuration = finbourne_identity.Configuration(
+    host = "https://fbn-ci.lusid.com/identity"
+)
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# Defining host is optional and default to https://fbn-ci.lusid.com/identity
-configuration.host = "https://fbn-ci.lusid.com/identity"
-# Create an instance of the API class
-api_instance = finbourne_identity.UsersApi(finbourne_identity.ApiClient(configuration))
-id = 'id_example' # str | The unique identifier for the User to be updated
+# Enter a context with an instance of the API client
+with finbourne_identity.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = finbourne_identity.UsersApi(api_client)
+    id = 'id_example' # str | The unique identifier for the User to be updated
 update_user_request = {"firstName":"Joe","lastName":"Bloggs","emailAddress":"joe.bloggs@myco.com","login":"joe.bloggs@myco.com"} # UpdateUserRequest | The new definition of the User
 
-try:
-    # [EARLY ACCESS] Update User
-    api_response = api_instance.update_user(id, update_user_request)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling UsersApi->update_user: %s\n" % e)
+    try:
+        # [EARLY ACCESS] Update User
+        api_response = api_instance.update_user(id, update_user_request)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling UsersApi->update_user: %s\n" % e)
 ```
 
 ### Parameters

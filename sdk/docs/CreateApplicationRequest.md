@@ -1,5 +1,7 @@
 # CreateApplicationRequest
 
+A request to create an application for authenticating the source of token requests
+
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------

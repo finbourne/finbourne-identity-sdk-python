@@ -27,23 +27,36 @@ import time
 import finbourne_identity
 from finbourne_identity.rest import ApiException
 from pprint import pprint
-configuration = finbourne_identity.Configuration()
+# Defining the host is optional and defaults to https://fbn-ci.lusid.com/identity
+# See configuration.py for a list of all supported configuration parameters.
+configuration = finbourne_identity.Configuration(
+    host = "https://fbn-ci.lusid.com/identity"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
 # Configure OAuth2 access token for authorization: oauth2
+configuration = finbourne_identity.Configuration(
+    host = "https://fbn-ci.lusid.com/identity"
+)
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# Defining host is optional and default to https://fbn-ci.lusid.com/identity
-configuration.host = "https://fbn-ci.lusid.com/identity"
-# Create an instance of the API class
-api_instance = finbourne_identity.DomainsApi(finbourne_identity.ApiClient(configuration))
-code = 'code_example' # str | The verification code necessary to create domains
+# Enter a context with an instance of the API client
+with finbourne_identity.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = finbourne_identity.DomainsApi(api_client)
+    code = 'code_example' # str | The verification code necessary to create domains
 create_domain_request = {"domain":"MyCo","companyName":"MyCo USA","owner":{"firstName":"Owner","lastName":"OfAccount","emailAddress":"owner.ofaccount@myco.com","login":"owner.ofaccount@myco.com","type":"Personal"},"signedAgreements":["TermsAndConditions_01012019_Gb"]} # CreateDomainRequest | The definition of the domain
 
-try:
-    # Create Domain
-    api_response = api_instance.create_domain(code, create_domain_request)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling DomainsApi->create_domain: %s\n" % e)
+    try:
+        # Create Domain
+        api_response = api_instance.create_domain(code, create_domain_request)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling DomainsApi->create_domain: %s\n" % e)
 ```
 
 ### Parameters
@@ -91,22 +104,35 @@ import time
 import finbourne_identity
 from finbourne_identity.rest import ApiException
 from pprint import pprint
-configuration = finbourne_identity.Configuration()
+# Defining the host is optional and defaults to https://fbn-ci.lusid.com/identity
+# See configuration.py for a list of all supported configuration parameters.
+configuration = finbourne_identity.Configuration(
+    host = "https://fbn-ci.lusid.com/identity"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
 # Configure OAuth2 access token for authorization: oauth2
+configuration = finbourne_identity.Configuration(
+    host = "https://fbn-ci.lusid.com/identity"
+)
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# Defining host is optional and default to https://fbn-ci.lusid.com/identity
-configuration.host = "https://fbn-ci.lusid.com/identity"
-# Create an instance of the API class
-api_instance = finbourne_identity.DomainsApi(finbourne_identity.ApiClient(configuration))
-agreement = 'agreement_example' # str | Name of the agreement
+# Enter a context with an instance of the API client
+with finbourne_identity.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = finbourne_identity.DomainsApi(api_client)
+    agreement = 'agreement_example' # str | Name of the agreement
 
-try:
-    # Get Agreement
-    api_response = api_instance.get_agreement(agreement)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling DomainsApi->get_agreement: %s\n" % e)
+    try:
+        # Get Agreement
+        api_response = api_instance.get_agreement(agreement)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling DomainsApi->get_agreement: %s\n" % e)
 ```
 
 ### Parameters
@@ -154,21 +180,34 @@ import time
 import finbourne_identity
 from finbourne_identity.rest import ApiException
 from pprint import pprint
-configuration = finbourne_identity.Configuration()
+# Defining the host is optional and defaults to https://fbn-ci.lusid.com/identity
+# See configuration.py for a list of all supported configuration parameters.
+configuration = finbourne_identity.Configuration(
+    host = "https://fbn-ci.lusid.com/identity"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
 # Configure OAuth2 access token for authorization: oauth2
+configuration = finbourne_identity.Configuration(
+    host = "https://fbn-ci.lusid.com/identity"
+)
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# Defining host is optional and default to https://fbn-ci.lusid.com/identity
-configuration.host = "https://fbn-ci.lusid.com/identity"
-# Create an instance of the API class
-api_instance = finbourne_identity.DomainsApi(finbourne_identity.ApiClient(configuration))
-
-try:
-    # Get current Domain
-    api_response = api_instance.get_my_domain()
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling DomainsApi->get_my_domain: %s\n" % e)
+# Enter a context with an instance of the API client
+with finbourne_identity.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = finbourne_identity.DomainsApi(api_client)
+    
+    try:
+        # Get current Domain
+        api_response = api_instance.get_my_domain()
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling DomainsApi->get_my_domain: %s\n" % e)
 ```
 
 ### Parameters
@@ -211,21 +250,34 @@ import time
 import finbourne_identity
 from finbourne_identity.rest import ApiException
 from pprint import pprint
-configuration = finbourne_identity.Configuration()
+# Defining the host is optional and defaults to https://fbn-ci.lusid.com/identity
+# See configuration.py for a list of all supported configuration parameters.
+configuration = finbourne_identity.Configuration(
+    host = "https://fbn-ci.lusid.com/identity"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
 # Configure OAuth2 access token for authorization: oauth2
+configuration = finbourne_identity.Configuration(
+    host = "https://fbn-ci.lusid.com/identity"
+)
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# Defining host is optional and default to https://fbn-ci.lusid.com/identity
-configuration.host = "https://fbn-ci.lusid.com/identity"
-# Create an instance of the API class
-api_instance = finbourne_identity.DomainsApi(finbourne_identity.ApiClient(configuration))
-
-try:
-    # List Agreements
-    api_response = api_instance.list_agreements()
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling DomainsApi->list_agreements: %s\n" % e)
+# Enter a context with an instance of the API client
+with finbourne_identity.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = finbourne_identity.DomainsApi(api_client)
+    
+    try:
+        # List Agreements
+        api_response = api_instance.list_agreements()
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling DomainsApi->list_agreements: %s\n" % e)
 ```
 
 ### Parameters
@@ -268,22 +320,35 @@ import time
 import finbourne_identity
 from finbourne_identity.rest import ApiException
 from pprint import pprint
-configuration = finbourne_identity.Configuration()
+# Defining the host is optional and defaults to https://fbn-ci.lusid.com/identity
+# See configuration.py for a list of all supported configuration parameters.
+configuration = finbourne_identity.Configuration(
+    host = "https://fbn-ci.lusid.com/identity"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
 # Configure OAuth2 access token for authorization: oauth2
+configuration = finbourne_identity.Configuration(
+    host = "https://fbn-ci.lusid.com/identity"
+)
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# Defining host is optional and default to https://fbn-ci.lusid.com/identity
-configuration.host = "https://fbn-ci.lusid.com/identity"
-# Create an instance of the API class
-api_instance = finbourne_identity.DomainsApi(finbourne_identity.ApiClient(configuration))
-agreement = 'agreement_example' # str | Name of the agreement being signed
+# Enter a context with an instance of the API client
+with finbourne_identity.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = finbourne_identity.DomainsApi(api_client)
+    agreement = 'agreement_example' # str | Name of the agreement being signed
 
-try:
-    # Sign Agreement
-    api_response = api_instance.sign_agreement(agreement)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling DomainsApi->sign_agreement: %s\n" % e)
+    try:
+        # Sign Agreement
+        api_response = api_instance.sign_agreement(agreement)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling DomainsApi->sign_agreement: %s\n" % e)
 ```
 
 ### Parameters

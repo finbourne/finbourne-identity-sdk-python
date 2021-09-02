@@ -27,22 +27,35 @@ import time
 import finbourne_identity
 from finbourne_identity.rest import ApiException
 from pprint import pprint
-configuration = finbourne_identity.Configuration()
+# Defining the host is optional and defaults to https://fbn-ci.lusid.com/identity
+# See configuration.py for a list of all supported configuration parameters.
+configuration = finbourne_identity.Configuration(
+    host = "https://fbn-ci.lusid.com/identity"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
 # Configure OAuth2 access token for authorization: oauth2
+configuration = finbourne_identity.Configuration(
+    host = "https://fbn-ci.lusid.com/identity"
+)
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# Defining host is optional and default to https://fbn-ci.lusid.com/identity
-configuration.host = "https://fbn-ci.lusid.com/identity"
-# Create an instance of the API class
-api_instance = finbourne_identity.ApplicationsApi(finbourne_identity.ApiClient(configuration))
-create_application_request = {"displayName":"My First Application","clientId":"my-first-application","type":"native"} # CreateApplicationRequest | Details of the application to be created (optional)
+# Enter a context with an instance of the API client
+with finbourne_identity.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = finbourne_identity.ApplicationsApi(api_client)
+    create_application_request = {"displayName":"My First Application","clientId":"my-first-application","type":"native"} # CreateApplicationRequest | Details of the application to be created (optional)
 
-try:
-    # [EARLY ACCESS] Create Application
-    api_response = api_instance.create_application(create_application_request=create_application_request)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling ApplicationsApi->create_application: %s\n" % e)
+    try:
+        # [EARLY ACCESS] Create Application
+        api_response = api_instance.create_application(create_application_request=create_application_request)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling ApplicationsApi->create_application: %s\n" % e)
 ```
 
 ### Parameters
@@ -89,21 +102,34 @@ import time
 import finbourne_identity
 from finbourne_identity.rest import ApiException
 from pprint import pprint
-configuration = finbourne_identity.Configuration()
+# Defining the host is optional and defaults to https://fbn-ci.lusid.com/identity
+# See configuration.py for a list of all supported configuration parameters.
+configuration = finbourne_identity.Configuration(
+    host = "https://fbn-ci.lusid.com/identity"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
 # Configure OAuth2 access token for authorization: oauth2
+configuration = finbourne_identity.Configuration(
+    host = "https://fbn-ci.lusid.com/identity"
+)
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# Defining host is optional and default to https://fbn-ci.lusid.com/identity
-configuration.host = "https://fbn-ci.lusid.com/identity"
-# Create an instance of the API class
-api_instance = finbourne_identity.ApplicationsApi(finbourne_identity.ApiClient(configuration))
-id = 'id_example' # str | The unique identifier for the application
+# Enter a context with an instance of the API client
+with finbourne_identity.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = finbourne_identity.ApplicationsApi(api_client)
+    id = 'id_example' # str | The unique identifier for the application
 
-try:
-    # [EARLY ACCESS] Delete Application
-    api_instance.delete_application(id)
-except ApiException as e:
-    print("Exception when calling ApplicationsApi->delete_application: %s\n" % e)
+    try:
+        # [EARLY ACCESS] Delete Application
+        api_instance.delete_application(id)
+    except ApiException as e:
+        print("Exception when calling ApplicationsApi->delete_application: %s\n" % e)
 ```
 
 ### Parameters
@@ -150,23 +176,36 @@ import time
 import finbourne_identity
 from finbourne_identity.rest import ApiException
 from pprint import pprint
-configuration = finbourne_identity.Configuration()
+# Defining the host is optional and defaults to https://fbn-ci.lusid.com/identity
+# See configuration.py for a list of all supported configuration parameters.
+configuration = finbourne_identity.Configuration(
+    host = "https://fbn-ci.lusid.com/identity"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
 # Configure OAuth2 access token for authorization: oauth2
+configuration = finbourne_identity.Configuration(
+    host = "https://fbn-ci.lusid.com/identity"
+)
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# Defining host is optional and default to https://fbn-ci.lusid.com/identity
-configuration.host = "https://fbn-ci.lusid.com/identity"
-# Create an instance of the API class
-api_instance = finbourne_identity.ApplicationsApi(finbourne_identity.ApiClient(configuration))
-id = 'id_example' # str | The unique identifier for the application
+# Enter a context with an instance of the API client
+with finbourne_identity.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = finbourne_identity.ApplicationsApi(api_client)
+    id = 'id_example' # str | The unique identifier for the application
 include_secret = True # bool | Optional. If set to true, the application secrets will be returned in plain text (optional)
 
-try:
-    # [EARLY ACCESS] Get Application
-    api_response = api_instance.get_application(id, include_secret=include_secret)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling ApplicationsApi->get_application: %s\n" % e)
+    try:
+        # [EARLY ACCESS] Get Application
+        api_response = api_instance.get_application(id, include_secret=include_secret)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling ApplicationsApi->get_application: %s\n" % e)
 ```
 
 ### Parameters
@@ -215,21 +254,34 @@ import time
 import finbourne_identity
 from finbourne_identity.rest import ApiException
 from pprint import pprint
-configuration = finbourne_identity.Configuration()
+# Defining the host is optional and defaults to https://fbn-ci.lusid.com/identity
+# See configuration.py for a list of all supported configuration parameters.
+configuration = finbourne_identity.Configuration(
+    host = "https://fbn-ci.lusid.com/identity"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
 # Configure OAuth2 access token for authorization: oauth2
+configuration = finbourne_identity.Configuration(
+    host = "https://fbn-ci.lusid.com/identity"
+)
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# Defining host is optional and default to https://fbn-ci.lusid.com/identity
-configuration.host = "https://fbn-ci.lusid.com/identity"
-# Create an instance of the API class
-api_instance = finbourne_identity.ApplicationsApi(finbourne_identity.ApiClient(configuration))
-
-try:
-    # [EARLY ACCESS] List Applications
-    api_response = api_instance.list_applications()
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling ApplicationsApi->list_applications: %s\n" % e)
+# Enter a context with an instance of the API client
+with finbourne_identity.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = finbourne_identity.ApplicationsApi(api_client)
+    
+    try:
+        # [EARLY ACCESS] List Applications
+        api_response = api_instance.list_applications()
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling ApplicationsApi->list_applications: %s\n" % e)
 ```
 
 ### Parameters
@@ -272,22 +324,35 @@ import time
 import finbourne_identity
 from finbourne_identity.rest import ApiException
 from pprint import pprint
-configuration = finbourne_identity.Configuration()
+# Defining the host is optional and defaults to https://fbn-ci.lusid.com/identity
+# See configuration.py for a list of all supported configuration parameters.
+configuration = finbourne_identity.Configuration(
+    host = "https://fbn-ci.lusid.com/identity"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
 # Configure OAuth2 access token for authorization: oauth2
+configuration = finbourne_identity.Configuration(
+    host = "https://fbn-ci.lusid.com/identity"
+)
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# Defining host is optional and default to https://fbn-ci.lusid.com/identity
-configuration.host = "https://fbn-ci.lusid.com/identity"
-# Create an instance of the API class
-api_instance = finbourne_identity.ApplicationsApi(finbourne_identity.ApiClient(configuration))
-id = 'id_example' # str | The unique identifier for the application
+# Enter a context with an instance of the API client
+with finbourne_identity.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = finbourne_identity.ApplicationsApi(api_client)
+    id = 'id_example' # str | The unique identifier for the application
 
-try:
-    # [EXPERIMENTAL] Rotate Application Secrets
-    api_response = api_instance.rotate_application_secrets(id)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling ApplicationsApi->rotate_application_secrets: %s\n" % e)
+    try:
+        # [EXPERIMENTAL] Rotate Application Secrets
+        api_response = api_instance.rotate_application_secrets(id)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling ApplicationsApi->rotate_application_secrets: %s\n" % e)
 ```
 
 ### Parameters

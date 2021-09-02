@@ -1,5 +1,7 @@
 # CreateRoleRequest
 
+Specifies the information required to create a new role.
+
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------

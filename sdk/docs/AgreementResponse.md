@@ -1,5 +1,7 @@
 # AgreementResponse
 
+Agreement DTO
+
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------

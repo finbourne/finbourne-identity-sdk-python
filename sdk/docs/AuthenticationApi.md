@@ -26,21 +26,34 @@ import time
 import finbourne_identity
 from finbourne_identity.rest import ApiException
 from pprint import pprint
-configuration = finbourne_identity.Configuration()
+# Defining the host is optional and defaults to https://fbn-ci.lusid.com/identity
+# See configuration.py for a list of all supported configuration parameters.
+configuration = finbourne_identity.Configuration(
+    host = "https://fbn-ci.lusid.com/identity"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
 # Configure OAuth2 access token for authorization: oauth2
+configuration = finbourne_identity.Configuration(
+    host = "https://fbn-ci.lusid.com/identity"
+)
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# Defining host is optional and default to https://fbn-ci.lusid.com/identity
-configuration.host = "https://fbn-ci.lusid.com/identity"
-# Create an instance of the API class
-api_instance = finbourne_identity.AuthenticationApi(finbourne_identity.ApiClient(configuration))
-
-try:
-    # Gets AuthenticationInformation
-    api_response = api_instance.get_authentication_information()
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling AuthenticationApi->get_authentication_information: %s\n" % e)
+# Enter a context with an instance of the API client
+with finbourne_identity.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = finbourne_identity.AuthenticationApi(api_client)
+    
+    try:
+        # Gets AuthenticationInformation
+        api_response = api_instance.get_authentication_information()
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling AuthenticationApi->get_authentication_information: %s\n" % e)
 ```
 
 ### Parameters
@@ -83,21 +96,34 @@ import time
 import finbourne_identity
 from finbourne_identity.rest import ApiException
 from pprint import pprint
-configuration = finbourne_identity.Configuration()
+# Defining the host is optional and defaults to https://fbn-ci.lusid.com/identity
+# See configuration.py for a list of all supported configuration parameters.
+configuration = finbourne_identity.Configuration(
+    host = "https://fbn-ci.lusid.com/identity"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
 # Configure OAuth2 access token for authorization: oauth2
+configuration = finbourne_identity.Configuration(
+    host = "https://fbn-ci.lusid.com/identity"
+)
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# Defining host is optional and default to https://fbn-ci.lusid.com/identity
-configuration.host = "https://fbn-ci.lusid.com/identity"
-# Create an instance of the API class
-api_instance = finbourne_identity.AuthenticationApi(finbourne_identity.ApiClient(configuration))
-
-try:
-    # [EXPERIMENTAL] Get the history of all support access granted and any information pertaining to their termination
-    api_response = api_instance.get_support_access_history()
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling AuthenticationApi->get_support_access_history: %s\n" % e)
+# Enter a context with an instance of the API client
+with finbourne_identity.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = finbourne_identity.AuthenticationApi(api_client)
+    
+    try:
+        # [EXPERIMENTAL] Get the history of all support access granted and any information pertaining to their termination
+        api_response = api_instance.get_support_access_history()
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling AuthenticationApi->get_support_access_history: %s\n" % e)
 ```
 
 ### Parameters
@@ -140,22 +166,35 @@ import time
 import finbourne_identity
 from finbourne_identity.rest import ApiException
 from pprint import pprint
-configuration = finbourne_identity.Configuration()
+# Defining the host is optional and defaults to https://fbn-ci.lusid.com/identity
+# See configuration.py for a list of all supported configuration parameters.
+configuration = finbourne_identity.Configuration(
+    host = "https://fbn-ci.lusid.com/identity"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
 # Configure OAuth2 access token for authorization: oauth2
+configuration = finbourne_identity.Configuration(
+    host = "https://fbn-ci.lusid.com/identity"
+)
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# Defining host is optional and default to https://fbn-ci.lusid.com/identity
-configuration.host = "https://fbn-ci.lusid.com/identity"
-# Create an instance of the API class
-api_instance = finbourne_identity.AuthenticationApi(finbourne_identity.ApiClient(configuration))
-support_access_request = {"duration":"PT24H","description":"Investigate issues detailed in support ticket 0604"} # SupportAccessRequest | Request detailing the duration and reasons for supplying support access
+# Enter a context with an instance of the API client
+with finbourne_identity.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = finbourne_identity.AuthenticationApi(api_client)
+    support_access_request = {"duration":"PT24H","description":"Investigate issues detailed in support ticket 0604"} # SupportAccessRequest | Request detailing the duration and reasons for supplying support access
 
-try:
-    # [EXPERIMENTAL] Grants FINBOURNE support access to your account
-    api_response = api_instance.grant_support_access(support_access_request)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling AuthenticationApi->grant_support_access: %s\n" % e)
+    try:
+        # [EXPERIMENTAL] Grants FINBOURNE support access to your account
+        api_response = api_instance.grant_support_access(support_access_request)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling AuthenticationApi->grant_support_access: %s\n" % e)
 ```
 
 ### Parameters
@@ -202,21 +241,34 @@ import time
 import finbourne_identity
 from finbourne_identity.rest import ApiException
 from pprint import pprint
-configuration = finbourne_identity.Configuration()
+# Defining the host is optional and defaults to https://fbn-ci.lusid.com/identity
+# See configuration.py for a list of all supported configuration parameters.
+configuration = finbourne_identity.Configuration(
+    host = "https://fbn-ci.lusid.com/identity"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
 # Configure OAuth2 access token for authorization: oauth2
+configuration = finbourne_identity.Configuration(
+    host = "https://fbn-ci.lusid.com/identity"
+)
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# Defining host is optional and default to https://fbn-ci.lusid.com/identity
-configuration.host = "https://fbn-ci.lusid.com/identity"
-# Create an instance of the API class
-api_instance = finbourne_identity.AuthenticationApi(finbourne_identity.ApiClient(configuration))
-
-try:
-    # [EXPERIMENTAL] Revoke any FINBOURNE support access to your account
-    api_response = api_instance.invalidate_support_access()
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling AuthenticationApi->invalidate_support_access: %s\n" % e)
+# Enter a context with an instance of the API client
+with finbourne_identity.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = finbourne_identity.AuthenticationApi(api_client)
+    
+    try:
+        # [EXPERIMENTAL] Revoke any FINBOURNE support access to your account
+        api_response = api_instance.invalidate_support_access()
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling AuthenticationApi->invalidate_support_access: %s\n" % e)
 ```
 
 ### Parameters

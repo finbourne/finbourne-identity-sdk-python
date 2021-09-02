@@ -1,5 +1,7 @@
 # SupportAccessRequest
 
+A Request to grant support access to your account
+
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------

@@ -1,5 +1,7 @@
 # SupportAccessResponse
 
+Timestamped successful response to grant access to your account
+
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------

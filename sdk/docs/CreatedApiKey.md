@@ -1,5 +1,7 @@
 # CreatedApiKey
 
+A newly created API key
+
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------

@@ -30,22 +30,35 @@ import time
 import finbourne_identity
 from finbourne_identity.rest import ApiException
 from pprint import pprint
-configuration = finbourne_identity.Configuration()
+# Defining the host is optional and defaults to https://fbn-ci.lusid.com/identity
+# See configuration.py for a list of all supported configuration parameters.
+configuration = finbourne_identity.Configuration(
+    host = "https://fbn-ci.lusid.com/identity"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
 # Configure OAuth2 access token for authorization: oauth2
+configuration = finbourne_identity.Configuration(
+    host = "https://fbn-ci.lusid.com/identity"
+)
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# Defining host is optional and default to https://fbn-ci.lusid.com/identity
-configuration.host = "https://fbn-ci.lusid.com/identity"
-# Create an instance of the API class
-api_instance = finbourne_identity.RolesApi(finbourne_identity.ApiClient(configuration))
-id = 'id_example' # str | The unique identifier for the Role
+# Enter a context with an instance of the API client
+with finbourne_identity.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = finbourne_identity.RolesApi(api_client)
+    id = 'id_example' # str | The unique identifier for the Role
 user_id = 'user_id_example' # str | The unique identifier for the User
 
-try:
-    # [EARLY ACCESS] Add User to Role
-    api_instance.add_user_to_role(id, user_id)
-except ApiException as e:
-    print("Exception when calling RolesApi->add_user_to_role: %s\n" % e)
+    try:
+        # [EARLY ACCESS] Add User to Role
+        api_instance.add_user_to_role(id, user_id)
+    except ApiException as e:
+        print("Exception when calling RolesApi->add_user_to_role: %s\n" % e)
 ```
 
 ### Parameters
@@ -94,22 +107,35 @@ import time
 import finbourne_identity
 from finbourne_identity.rest import ApiException
 from pprint import pprint
-configuration = finbourne_identity.Configuration()
+# Defining the host is optional and defaults to https://fbn-ci.lusid.com/identity
+# See configuration.py for a list of all supported configuration parameters.
+configuration = finbourne_identity.Configuration(
+    host = "https://fbn-ci.lusid.com/identity"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
 # Configure OAuth2 access token for authorization: oauth2
+configuration = finbourne_identity.Configuration(
+    host = "https://fbn-ci.lusid.com/identity"
+)
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# Defining host is optional and default to https://fbn-ci.lusid.com/identity
-configuration.host = "https://fbn-ci.lusid.com/identity"
-# Create an instance of the API class
-api_instance = finbourne_identity.RolesApi(finbourne_identity.ApiClient(configuration))
-create_role_request = {"name":"LUSID:FrontOfficeAdministrator","description":"Front office administration role"} # CreateRoleRequest | Details of the role to be created
+# Enter a context with an instance of the API client
+with finbourne_identity.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = finbourne_identity.RolesApi(api_client)
+    create_role_request = {"name":"LUSID:FrontOfficeAdministrator","description":"Front office administration role"} # CreateRoleRequest | Details of the role to be created
 
-try:
-    # [EARLY ACCESS] Create Role
-    api_response = api_instance.create_role(create_role_request)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling RolesApi->create_role: %s\n" % e)
+    try:
+        # [EARLY ACCESS] Create Role
+        api_response = api_instance.create_role(create_role_request)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling RolesApi->create_role: %s\n" % e)
 ```
 
 ### Parameters
@@ -157,21 +183,34 @@ import time
 import finbourne_identity
 from finbourne_identity.rest import ApiException
 from pprint import pprint
-configuration = finbourne_identity.Configuration()
+# Defining the host is optional and defaults to https://fbn-ci.lusid.com/identity
+# See configuration.py for a list of all supported configuration parameters.
+configuration = finbourne_identity.Configuration(
+    host = "https://fbn-ci.lusid.com/identity"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
 # Configure OAuth2 access token for authorization: oauth2
+configuration = finbourne_identity.Configuration(
+    host = "https://fbn-ci.lusid.com/identity"
+)
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# Defining host is optional and default to https://fbn-ci.lusid.com/identity
-configuration.host = "https://fbn-ci.lusid.com/identity"
-# Create an instance of the API class
-api_instance = finbourne_identity.RolesApi(finbourne_identity.ApiClient(configuration))
-id = 'id_example' # str | The unique identifier for the role
+# Enter a context with an instance of the API client
+with finbourne_identity.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = finbourne_identity.RolesApi(api_client)
+    id = 'id_example' # str | The unique identifier for the role
 
-try:
-    # [EARLY ACCESS] Delete Role
-    api_instance.delete_role(id)
-except ApiException as e:
-    print("Exception when calling RolesApi->delete_role: %s\n" % e)
+    try:
+        # [EARLY ACCESS] Delete Role
+        api_instance.delete_role(id)
+    except ApiException as e:
+        print("Exception when calling RolesApi->delete_role: %s\n" % e)
 ```
 
 ### Parameters
@@ -218,22 +257,35 @@ import time
 import finbourne_identity
 from finbourne_identity.rest import ApiException
 from pprint import pprint
-configuration = finbourne_identity.Configuration()
+# Defining the host is optional and defaults to https://fbn-ci.lusid.com/identity
+# See configuration.py for a list of all supported configuration parameters.
+configuration = finbourne_identity.Configuration(
+    host = "https://fbn-ci.lusid.com/identity"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
 # Configure OAuth2 access token for authorization: oauth2
+configuration = finbourne_identity.Configuration(
+    host = "https://fbn-ci.lusid.com/identity"
+)
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# Defining host is optional and default to https://fbn-ci.lusid.com/identity
-configuration.host = "https://fbn-ci.lusid.com/identity"
-# Create an instance of the API class
-api_instance = finbourne_identity.RolesApi(finbourne_identity.ApiClient(configuration))
-id = 'id_example' # str | The unique identifier for the role
+# Enter a context with an instance of the API client
+with finbourne_identity.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = finbourne_identity.RolesApi(api_client)
+    id = 'id_example' # str | The unique identifier for the role
 
-try:
-    # [EARLY ACCESS] Get Role
-    api_response = api_instance.get_role(id)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling RolesApi->get_role: %s\n" % e)
+    try:
+        # [EARLY ACCESS] Get Role
+        api_response = api_instance.get_role(id)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling RolesApi->get_role: %s\n" % e)
 ```
 
 ### Parameters
@@ -281,21 +333,34 @@ import time
 import finbourne_identity
 from finbourne_identity.rest import ApiException
 from pprint import pprint
-configuration = finbourne_identity.Configuration()
+# Defining the host is optional and defaults to https://fbn-ci.lusid.com/identity
+# See configuration.py for a list of all supported configuration parameters.
+configuration = finbourne_identity.Configuration(
+    host = "https://fbn-ci.lusid.com/identity"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
 # Configure OAuth2 access token for authorization: oauth2
+configuration = finbourne_identity.Configuration(
+    host = "https://fbn-ci.lusid.com/identity"
+)
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# Defining host is optional and default to https://fbn-ci.lusid.com/identity
-configuration.host = "https://fbn-ci.lusid.com/identity"
-# Create an instance of the API class
-api_instance = finbourne_identity.RolesApi(finbourne_identity.ApiClient(configuration))
-
-try:
-    # [EARLY ACCESS] List Roles
-    api_response = api_instance.list_roles()
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling RolesApi->list_roles: %s\n" % e)
+# Enter a context with an instance of the API client
+with finbourne_identity.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = finbourne_identity.RolesApi(api_client)
+    
+    try:
+        # [EARLY ACCESS] List Roles
+        api_response = api_instance.list_roles()
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling RolesApi->list_roles: %s\n" % e)
 ```
 
 ### Parameters
@@ -338,22 +403,35 @@ import time
 import finbourne_identity
 from finbourne_identity.rest import ApiException
 from pprint import pprint
-configuration = finbourne_identity.Configuration()
+# Defining the host is optional and defaults to https://fbn-ci.lusid.com/identity
+# See configuration.py for a list of all supported configuration parameters.
+configuration = finbourne_identity.Configuration(
+    host = "https://fbn-ci.lusid.com/identity"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
 # Configure OAuth2 access token for authorization: oauth2
+configuration = finbourne_identity.Configuration(
+    host = "https://fbn-ci.lusid.com/identity"
+)
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# Defining host is optional and default to https://fbn-ci.lusid.com/identity
-configuration.host = "https://fbn-ci.lusid.com/identity"
-# Create an instance of the API class
-api_instance = finbourne_identity.RolesApi(finbourne_identity.ApiClient(configuration))
-id = 'id_example' # str | The unique identifier for the Role
+# Enter a context with an instance of the API client
+with finbourne_identity.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = finbourne_identity.RolesApi(api_client)
+    id = 'id_example' # str | The unique identifier for the Role
 
-try:
-    # [EARLY ACCESS] Get the users in the specified role.
-    api_response = api_instance.list_users_in_role(id)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling RolesApi->list_users_in_role: %s\n" % e)
+    try:
+        # [EARLY ACCESS] Get the users in the specified role.
+        api_response = api_instance.list_users_in_role(id)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling RolesApi->list_users_in_role: %s\n" % e)
 ```
 
 ### Parameters
@@ -400,22 +478,35 @@ import time
 import finbourne_identity
 from finbourne_identity.rest import ApiException
 from pprint import pprint
-configuration = finbourne_identity.Configuration()
+# Defining the host is optional and defaults to https://fbn-ci.lusid.com/identity
+# See configuration.py for a list of all supported configuration parameters.
+configuration = finbourne_identity.Configuration(
+    host = "https://fbn-ci.lusid.com/identity"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
 # Configure OAuth2 access token for authorization: oauth2
+configuration = finbourne_identity.Configuration(
+    host = "https://fbn-ci.lusid.com/identity"
+)
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# Defining host is optional and default to https://fbn-ci.lusid.com/identity
-configuration.host = "https://fbn-ci.lusid.com/identity"
-# Create an instance of the API class
-api_instance = finbourne_identity.RolesApi(finbourne_identity.ApiClient(configuration))
-id = 'id_example' # str | The unique identifier for the Role
+# Enter a context with an instance of the API client
+with finbourne_identity.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = finbourne_identity.RolesApi(api_client)
+    id = 'id_example' # str | The unique identifier for the Role
 user_id = 'user_id_example' # str | The unique identifier for the User
 
-try:
-    # [EARLY ACCESS] Remove User from Role
-    api_instance.remove_user_from_role(id, user_id)
-except ApiException as e:
-    print("Exception when calling RolesApi->remove_user_from_role: %s\n" % e)
+    try:
+        # [EARLY ACCESS] Remove User from Role
+        api_instance.remove_user_from_role(id, user_id)
+    except ApiException as e:
+        print("Exception when calling RolesApi->remove_user_from_role: %s\n" % e)
 ```
 
 ### Parameters
@@ -464,23 +555,36 @@ import time
 import finbourne_identity
 from finbourne_identity.rest import ApiException
 from pprint import pprint
-configuration = finbourne_identity.Configuration()
+# Defining the host is optional and defaults to https://fbn-ci.lusid.com/identity
+# See configuration.py for a list of all supported configuration parameters.
+configuration = finbourne_identity.Configuration(
+    host = "https://fbn-ci.lusid.com/identity"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
 # Configure OAuth2 access token for authorization: oauth2
+configuration = finbourne_identity.Configuration(
+    host = "https://fbn-ci.lusid.com/identity"
+)
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# Defining host is optional and default to https://fbn-ci.lusid.com/identity
-configuration.host = "https://fbn-ci.lusid.com/identity"
-# Create an instance of the API class
-api_instance = finbourne_identity.RolesApi(finbourne_identity.ApiClient(configuration))
-id = 'id_example' # str | The unique identifier for the role to be updated
+# Enter a context with an instance of the API client
+with finbourne_identity.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = finbourne_identity.RolesApi(api_client)
+    id = 'id_example' # str | The unique identifier for the role to be updated
 update_role_request = {"description":"Front office administration role"} # UpdateRoleRequest | The new definition of the role (optional)
 
-try:
-    # [EARLY ACCESS] Update Role
-    api_response = api_instance.update_role(id, update_role_request=update_role_request)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling RolesApi->update_role: %s\n" % e)
+    try:
+        # [EARLY ACCESS] Update Role
+        api_response = api_instance.update_role(id, update_role_request=update_role_request)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling RolesApi->update_role: %s\n" % e)
 ```
 
 ### Parameters

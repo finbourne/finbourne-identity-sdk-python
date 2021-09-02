@@ -1,5 +1,7 @@
 # UserSummary
 
+Lightweight view of an user details
+
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------

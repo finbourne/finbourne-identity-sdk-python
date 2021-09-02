@@ -1,5 +1,7 @@
 # SupportAccessExpiry
 
+Time at which the support access expires
+
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------

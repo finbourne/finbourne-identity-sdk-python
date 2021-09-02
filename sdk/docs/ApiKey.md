@@ -1,5 +1,7 @@
 # ApiKey
 
+The metadata of an API key
+
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
