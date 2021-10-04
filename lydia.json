@@ -8,7 +8,7 @@
       "url": "https://www.finbourne.com",
       "email": "info@finbourne.com"
     },
-    "version": "0.0.1385",
+    "version": "0.0.1387",
     "x-logo": {
       "url": "https://content.finbourne.com/LUSID-header.png",
       "backgroundColor": "#415464"
@@ -26,7 +26,7 @@
         "tags": [
           "Applications"
         ],
-        "summary": "[EARLY ACCESS] List Applications",
+        "summary": "[EARLY ACCESS] ListApplications: List Applications",
         "description": "List the available applications",
         "operationId": "ListApplications",
         "responses": {
@@ -75,7 +75,7 @@
         "tags": [
           "Applications"
         ],
-        "summary": "[EARLY ACCESS] Create Application",
+        "summary": "[EARLY ACCESS] CreateApplication: Create Application",
         "description": "Create a new Application",
         "operationId": "CreateApplication",
         "requestBody": {
@@ -176,7 +176,7 @@
         "tags": [
           "Applications"
         ],
-        "summary": "[EARLY ACCESS] Get Application",
+        "summary": "[EARLY ACCESS] GetApplication: Get Application",
         "description": "get the specified application, and optionally the OIDC secret",
         "operationId": "GetApplication",
         "parameters": [
@@ -265,7 +265,7 @@
         "tags": [
           "Applications"
         ],
-        "summary": "[EARLY ACCESS] Delete Application",
+        "summary": "[EARLY ACCESS] DeleteApplication: Delete Application",
         "description": "Delete the specified application",
         "operationId": "DeleteApplication",
         "parameters": [
@@ -321,7 +321,7 @@
         "tags": [
           "Applications"
         ],
-        "summary": "[EXPERIMENTAL] Rotate Application Secrets",
+        "summary": "[EXPERIMENTAL] RotateApplicationSecrets: Rotate Application Secrets",
         "description": "Rotate the secrets for the specified application",
         "operationId": "RotateApplicationSecrets",
         "parameters": [
@@ -392,7 +392,7 @@
         "tags": [
           "Authentication"
         ],
-        "summary": "Gets AuthenticationInformation",
+        "summary": "GetAuthenticationInformation: Gets AuthenticationInformation",
         "description": "Get the AuthenticationInformation associated with the current domain. This includes all the\r\nnecessary information to login to this domain.",
         "operationId": "GetAuthenticationInformation",
         "responses": {
@@ -434,7 +434,7 @@
         "tags": [
           "Authentication"
         ],
-        "summary": "[EXPERIMENTAL] Grants FINBOURNE support access to your account",
+        "summary": "[EXPERIMENTAL] GrantSupportAccess: Grants FINBOURNE support access to your account",
         "description": "Granting support access will allow FINBOURNE employees full access to your data with the express intent to investigate support issues\r\nYou can revoke this (and all) access at any time using the InvalidateSupportAccess endpoint.",
         "operationId": "GrantSupportAccess",
         "requestBody": {
@@ -531,7 +531,7 @@
         "tags": [
           "Authentication"
         ],
-        "summary": "[EXPERIMENTAL] Revoke any FINBOURNE support access to your account",
+        "summary": "[EXPERIMENTAL] InvalidateSupportAccess: Revoke any FINBOURNE support access to your account",
         "description": "This will result in a loss of access to your data for all FINBOURNE support agents",
         "operationId": "InvalidateSupportAccess",
         "responses": {
@@ -592,7 +592,7 @@
         "tags": [
           "Authentication"
         ],
-        "summary": "[EXPERIMENTAL] Get the history of all support access granted and any information pertaining to their termination",
+        "summary": "[EXPERIMENTAL] GetSupportAccessHistory: Get the history of all support access granted and any information pertaining to their termination",
         "description": "The active and inactive support requests will be returned, inactive support requests will have information pertaining to their termination\r\nincluding obfuscated userIds of those who created and terminated the request",
         "operationId": "GetSupportAccessHistory",
         "responses": {
@@ -655,7 +655,7 @@
         "tags": [
           "Users"
         ],
-        "summary": "[EARLY ACCESS] Find users by id endpoint",
+        "summary": "[EARLY ACCESS] FindUsersById: Find users by id endpoint",
         "description": "Finds a maximum of 50 users by ID",
         "operationId": "FindUsersById",
         "parameters": [
@@ -782,7 +782,7 @@
         "tags": [
           "Domains"
         ],
-        "summary": "Create Domain",
+        "summary": "CreateDomain: Create Domain",
         "description": "Creates a Domain",
         "operationId": "CreateDomain",
         "parameters": [
@@ -998,7 +998,7 @@
         "tags": [
           "Domains"
         ],
-        "summary": "Get current Domain",
+        "summary": "GetMyDomain: Get current Domain",
         "description": "Gets the Domain of the requesting User",
         "operationId": "GetMyDomain",
         "responses": {
@@ -1097,7 +1097,7 @@
         "tags": [
           "Domains"
         ],
-        "summary": "List Agreements",
+        "summary": "ListAgreements: List Agreements",
         "description": "Lists the signed agreements for the current domain",
         "operationId": "ListAgreements",
         "responses": {
@@ -1112,15 +1112,15 @@
                   }
                 },
                 "example": {
-                  "termsAndConditions-20190301-GBP": {
-                    "name": "TermsAndConditions-20190301-GB",
-                    "signedBy": "DomainOwnerUserId",
-                    "signedAt": "2019-03-07T13:23:07.0000000+00:00"
-                  },
                   "termsAndConditions-20190101-GBP": {
                     "name": "TermsAndConditions-20190101-GB",
                     "signedBy": "DomainOwnerUserId",
                     "signedAt": "2019-01-05T10:15:00.0000000+00:00"
+                  },
+                  "termsAndConditions-20190301-GBP": {
+                    "name": "TermsAndConditions-20190301-GB",
+                    "signedBy": "DomainOwnerUserId",
+                    "signedAt": "2019-03-07T13:23:07.0000000+00:00"
                   }
                 }
               },
@@ -1132,15 +1132,15 @@
                   }
                 },
                 "example": {
-                  "termsAndConditions-20190301-GBP": {
-                    "name": "TermsAndConditions-20190301-GB",
-                    "signedBy": "DomainOwnerUserId",
-                    "signedAt": "2019-03-07T13:23:07.0000000+00:00"
-                  },
                   "termsAndConditions-20190101-GBP": {
                     "name": "TermsAndConditions-20190101-GB",
                     "signedBy": "DomainOwnerUserId",
                     "signedAt": "2019-01-05T10:15:00.0000000+00:00"
+                  },
+                  "termsAndConditions-20190301-GBP": {
+                    "name": "TermsAndConditions-20190301-GB",
+                    "signedBy": "DomainOwnerUserId",
+                    "signedAt": "2019-03-07T13:23:07.0000000+00:00"
                   }
                 }
               },
@@ -1152,15 +1152,15 @@
                   }
                 },
                 "example": {
-                  "termsAndConditions-20190301-GBP": {
-                    "name": "TermsAndConditions-20190301-GB",
-                    "signedBy": "DomainOwnerUserId",
-                    "signedAt": "2019-03-07T13:23:07.0000000+00:00"
-                  },
                   "termsAndConditions-20190101-GBP": {
                     "name": "TermsAndConditions-20190101-GB",
                     "signedBy": "DomainOwnerUserId",
                     "signedAt": "2019-01-05T10:15:00.0000000+00:00"
+                  },
+                  "termsAndConditions-20190301-GBP": {
+                    "name": "TermsAndConditions-20190301-GB",
+                    "signedBy": "DomainOwnerUserId",
+                    "signedAt": "2019-03-07T13:23:07.0000000+00:00"
                   }
                 }
               }
@@ -1190,7 +1190,7 @@
         "tags": [
           "Domains"
         ],
-        "summary": "Sign Agreement",
+        "summary": "SignAgreement: Sign Agreement",
         "description": "Signs a specified agreement. Only the owner of a domain can sign an agreement",
         "operationId": "SignAgreement",
         "parameters": [
@@ -1285,7 +1285,7 @@
         "tags": [
           "Domains"
         ],
-        "summary": "Get Agreement",
+        "summary": "GetAgreement: Get Agreement",
         "description": "Check whether the domain has signed a specific agreement",
         "operationId": "GetAgreement",
         "parameters": [
@@ -1387,7 +1387,7 @@
         "tags": [
           "Personal Authentication Tokens"
         ],
-        "summary": "[EXPERIMENTAL] Create a Personal Access Token",
+        "summary": "[EXPERIMENTAL] CreateApiKey: Create a Personal Access Token",
         "description": "Generates a Personal Access Token and returns the new key and its associated metadata.",
         "operationId": "CreateApiKey",
         "requestBody": {
@@ -1482,7 +1482,7 @@
         "tags": [
           "Personal Authentication Tokens"
         ],
-        "summary": "[EXPERIMENTAL] Gets the meta data for all of the user's existing Personal Access Tokens.",
+        "summary": "[EXPERIMENTAL] ListOwnApiKeys: Gets the meta data for all of the user's existing Personal Access Tokens.",
         "description": "Gets the meta data for all of the user's Personal Access Tokens that have not been deleted. They may be\r\ninvalid due to the deactivation date having passed.",
         "operationId": "ListOwnApiKeys",
         "responses": {
@@ -1543,7 +1543,7 @@
         "tags": [
           "Personal Authentication Tokens"
         ],
-        "summary": "[EXPERIMENTAL] Invalidate a Personal Access Token",
+        "summary": "[EXPERIMENTAL] DeleteApiKey: Invalidate a Personal Access Token",
         "description": "Immediately invalidates the specified Personal Access Token",
         "operationId": "DeleteApiKey",
         "parameters": [
@@ -1612,7 +1612,7 @@
         "tags": [
           "Application Metadata"
         ],
-        "summary": "[EARLY ACCESS] Get resources available for access control",
+        "summary": "[EARLY ACCESS] ListAccessControlledResources: Get resources available for access control",
         "description": "Get the comprehensive set of resources that are available for access control",
         "operationId": "ListAccessControlledResources",
         "responses": {
@@ -1660,7 +1660,7 @@
         "tags": [
           "Application Metadata"
         ],
-        "summary": "[EARLY ACCESS] Check Registration availability",
+        "summary": "[EARLY ACCESS] GetRegistrationAvailability: Check Registration availability",
         "description": "Identify whether there registrations service is available",
         "operationId": "GetRegistrationAvailability",
         "responses": {
@@ -1708,7 +1708,7 @@
         "tags": [
           "Roles"
         ],
-        "summary": "[EARLY ACCESS] List Roles",
+        "summary": "[EARLY ACCESS] ListRoles: List Roles",
         "description": "List the available Roles",
         "operationId": "ListRoles",
         "responses": {
@@ -1758,7 +1758,7 @@
         "tags": [
           "Roles"
         ],
-        "summary": "[EARLY ACCESS] Create Role",
+        "summary": "[EARLY ACCESS] CreateRole: Create Role",
         "description": "Creates a new Role",
         "operationId": "CreateRole",
         "requestBody": {
@@ -1867,7 +1867,7 @@
         "tags": [
           "Roles"
         ],
-        "summary": "[EARLY ACCESS] Get Role",
+        "summary": "[EARLY ACCESS] GetRole: Get Role",
         "description": "Get the specified role",
         "operationId": "GetRole",
         "parameters": [
@@ -1947,7 +1947,7 @@
         "tags": [
           "Roles"
         ],
-        "summary": "[EARLY ACCESS] Delete Role",
+        "summary": "[EARLY ACCESS] DeleteRole: Delete Role",
         "description": "Delete the specified role",
         "operationId": "DeleteRole",
         "parameters": [
@@ -2001,7 +2001,7 @@
         "tags": [
           "Roles"
         ],
-        "summary": "[EARLY ACCESS] Update Role",
+        "summary": "[EARLY ACCESS] UpdateRole: Update Role",
         "description": "Update the specified Role",
         "operationId": "UpdateRole",
         "parameters": [
@@ -2120,7 +2120,7 @@
         "tags": [
           "Roles"
         ],
-        "summary": "[EARLY ACCESS] Get the users in the specified role.",
+        "summary": "[EARLY ACCESS] ListUsersInRole: Get the users in the specified role.",
         "description": "List all Users in the specified Role",
         "operationId": "ListUsersInRole",
         "parameters": [
@@ -2209,7 +2209,7 @@
         "tags": [
           "Roles"
         ],
-        "summary": "[EARLY ACCESS] Add User to Role",
+        "summary": "[EARLY ACCESS] AddUserToRole: Add User to Role",
         "description": "Adds the User to the specified Role",
         "operationId": "AddUserToRole",
         "parameters": [
@@ -2286,7 +2286,7 @@
         "tags": [
           "Roles"
         ],
-        "summary": "[EARLY ACCESS] Remove User from Role",
+        "summary": "[EARLY ACCESS] RemoveUserFromRole: Remove User from Role",
         "description": "Removes the User from the specified Role",
         "operationId": "RemoveUserFromRole",
         "parameters": [
@@ -2365,7 +2365,7 @@
         "tags": [
           "Tokens"
         ],
-        "summary": "[EXPERIMENTAL] Invalidate current JWT token (sign out)",
+        "summary": "[EXPERIMENTAL] InvalidateToken: Invalidate current JWT token (sign out)",
         "description": "Log the current user out of all Finbourne platforms by invalidating the current token",
         "operationId": "InvalidateToken",
         "responses": {
@@ -2396,7 +2396,7 @@
         "tags": [
           "Users"
         ],
-        "summary": "[EARLY ACCESS] List Users",
+        "summary": "[EARLY ACCESS] ListUsers: List Users",
         "description": "List the available Users",
         "operationId": "ListUsers",
         "parameters": [
@@ -2492,7 +2492,7 @@
         "tags": [
           "Users"
         ],
-        "summary": "[EARLY ACCESS] Create User",
+        "summary": "[EARLY ACCESS] CreateUser: Create User",
         "description": "Create a new User",
         "operationId": "CreateUser",
         "parameters": [
@@ -2628,7 +2628,7 @@
         "tags": [
           "Users"
         ],
-        "summary": "[EARLY ACCESS] Get User",
+        "summary": "[EARLY ACCESS] GetUser: Get User",
         "description": "Get the specified User",
         "operationId": "GetUser",
         "parameters": [
@@ -2721,7 +2721,7 @@
         "tags": [
           "Users"
         ],
-        "summary": "[EARLY ACCESS] Delete User",
+        "summary": "[EARLY ACCESS] DeleteUser: Delete User",
         "description": "By default the user will be de-provisioned and inactive, however their record will remain in the identity\r\nprovider for audit purposes. If this is not desirable and removal of all trace of the user is required,\r\nthe purge parameter can be specified to indicate the details should be purged completely.",
         "operationId": "DeleteUser",
         "parameters": [
@@ -2785,7 +2785,7 @@
         "tags": [
           "Users"
         ],
-        "summary": "[EARLY ACCESS] Update User",
+        "summary": "[EARLY ACCESS] UpdateUser: Update User",
         "description": "Updates the specified User",
         "operationId": "UpdateUser",
         "parameters": [
@@ -2919,7 +2919,7 @@
         "tags": [
           "Users"
         ],
-        "summary": "[EXPERIMENTAL] Sends an activation email to the User",
+        "summary": "[EXPERIMENTAL] SendActivationEmail: Sends an activation email to the User",
         "description": "Sends an activation email to the specified User",
         "operationId": "SendActivationEmail",
         "parameters": [
@@ -2975,7 +2975,7 @@
         "tags": [
           "Users"
         ],
-        "summary": "[EXPERIMENTAL] Reset the user's password to a temporary one",
+        "summary": "[EXPERIMENTAL] ExpirePassword: Reset the user's password to a temporary one",
         "description": "Resets the user's password to a temporary one which is then expired",
         "operationId": "ExpirePassword",
         "parameters": [
@@ -3038,7 +3038,7 @@
         "tags": [
           "Users"
         ],
-        "summary": "[EXPERIMENTAL] Reset MFA factors",
+        "summary": "[EXPERIMENTAL] ResetFactors: Reset MFA factors",
         "description": "Resets the MFA factors of the specified User",
         "operationId": "ResetFactors",
         "parameters": [
@@ -3094,7 +3094,7 @@
         "tags": [
           "Users"
         ],
-        "summary": "[EXPERIMENTAL] Reset Password",
+        "summary": "[EXPERIMENTAL] ResetPassword: Reset Password",
         "description": "Resets the password of the specified User",
         "operationId": "ResetPassword",
         "parameters": [
@@ -3150,7 +3150,7 @@
         "tags": [
           "Users"
         ],
-        "summary": "[EXPERIMENTAL] Unlock User",
+        "summary": "[EXPERIMENTAL] UnlockUser: Unlock User",
         "description": "Unlocks the specified User",
         "operationId": "UnlockUser",
         "parameters": [

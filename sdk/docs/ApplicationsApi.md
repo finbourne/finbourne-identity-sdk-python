@@ -4,17 +4,17 @@ All URIs are relative to *https://fbn-ci.lusid.com/identity*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**create_application**](ApplicationsApi.md#create_application) | **POST** /api/applications | [EARLY ACCESS] Create Application
-[**delete_application**](ApplicationsApi.md#delete_application) | **DELETE** /api/applications/{id} | [EARLY ACCESS] Delete Application
-[**get_application**](ApplicationsApi.md#get_application) | **GET** /api/applications/{id} | [EARLY ACCESS] Get Application
-[**list_applications**](ApplicationsApi.md#list_applications) | **GET** /api/applications | [EARLY ACCESS] List Applications
-[**rotate_application_secrets**](ApplicationsApi.md#rotate_application_secrets) | **POST** /api/applications/{id}/lifecycle/$newsecret | [EXPERIMENTAL] Rotate Application Secrets
+[**create_application**](ApplicationsApi.md#create_application) | **POST** /api/applications | [EARLY ACCESS] CreateApplication: Create Application
+[**delete_application**](ApplicationsApi.md#delete_application) | **DELETE** /api/applications/{id} | [EARLY ACCESS] DeleteApplication: Delete Application
+[**get_application**](ApplicationsApi.md#get_application) | **GET** /api/applications/{id} | [EARLY ACCESS] GetApplication: Get Application
+[**list_applications**](ApplicationsApi.md#list_applications) | **GET** /api/applications | [EARLY ACCESS] ListApplications: List Applications
+[**rotate_application_secrets**](ApplicationsApi.md#rotate_application_secrets) | **POST** /api/applications/{id}/lifecycle/$newsecret | [EXPERIMENTAL] RotateApplicationSecrets: Rotate Application Secrets
 
 
 # **create_application**
 > OAuthApplication create_application(create_application_request=create_application_request)
 
-[EARLY ACCESS] Create Application
+[EARLY ACCESS] CreateApplication: Create Application
 
 Create a new Application
 
@@ -51,7 +51,7 @@ with finbourne_identity.ApiClient(configuration) as api_client:
     create_application_request = {"displayName":"My First Application","clientId":"my-first-application","type":"native"} # CreateApplicationRequest | Details of the application to be created (optional)
 
     try:
-        # [EARLY ACCESS] Create Application
+        # [EARLY ACCESS] CreateApplication: Create Application
         api_response = api_instance.create_application(create_application_request=create_application_request)
         pprint(api_response)
     except ApiException as e:
@@ -89,7 +89,7 @@ Name | Type | Description  | Notes
 # **delete_application**
 > delete_application(id)
 
-[EARLY ACCESS] Delete Application
+[EARLY ACCESS] DeleteApplication: Delete Application
 
 Delete the specified application
 
@@ -126,7 +126,7 @@ with finbourne_identity.ApiClient(configuration) as api_client:
     id = 'id_example' # str | The unique identifier for the application
 
     try:
-        # [EARLY ACCESS] Delete Application
+        # [EARLY ACCESS] DeleteApplication: Delete Application
         api_instance.delete_application(id)
     except ApiException as e:
         print("Exception when calling ApplicationsApi->delete_application: %s\n" % e)
@@ -163,7 +163,7 @@ void (empty response body)
 # **get_application**
 > OAuthApplication get_application(id, include_secret=include_secret)
 
-[EARLY ACCESS] Get Application
+[EARLY ACCESS] GetApplication: Get Application
 
 get the specified application, and optionally the OIDC secret
 
@@ -201,7 +201,7 @@ with finbourne_identity.ApiClient(configuration) as api_client:
 include_secret = True # bool | Optional. If set to true, the application secrets will be returned in plain text (optional)
 
     try:
-        # [EARLY ACCESS] Get Application
+        # [EARLY ACCESS] GetApplication: Get Application
         api_response = api_instance.get_application(id, include_secret=include_secret)
         pprint(api_response)
     except ApiException as e:
@@ -241,7 +241,7 @@ Name | Type | Description  | Notes
 # **list_applications**
 > list[OAuthApplication] list_applications()
 
-[EARLY ACCESS] List Applications
+[EARLY ACCESS] ListApplications: List Applications
 
 List the available applications
 
@@ -277,7 +277,7 @@ with finbourne_identity.ApiClient(configuration) as api_client:
     api_instance = finbourne_identity.ApplicationsApi(api_client)
     
     try:
-        # [EARLY ACCESS] List Applications
+        # [EARLY ACCESS] ListApplications: List Applications
         api_response = api_instance.list_applications()
         pprint(api_response)
     except ApiException as e:
@@ -311,7 +311,7 @@ This endpoint does not need any parameter.
 # **rotate_application_secrets**
 > OAuthApplication rotate_application_secrets(id)
 
-[EXPERIMENTAL] Rotate Application Secrets
+[EXPERIMENTAL] RotateApplicationSecrets: Rotate Application Secrets
 
 Rotate the secrets for the specified application
 
@@ -348,7 +348,7 @@ with finbourne_identity.ApiClient(configuration) as api_client:
     id = 'id_example' # str | The unique identifier for the application
 
     try:
-        # [EXPERIMENTAL] Rotate Application Secrets
+        # [EXPERIMENTAL] RotateApplicationSecrets: Rotate Application Secrets
         api_response = api_instance.rotate_application_secrets(id)
         pprint(api_response)
     except ApiException as e:
