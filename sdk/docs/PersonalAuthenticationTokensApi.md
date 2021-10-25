@@ -4,15 +4,15 @@ All URIs are relative to *https://fbn-ci.lusid.com/identity*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**create_api_key**](PersonalAuthenticationTokensApi.md#create_api_key) | **POST** /api/keys | [EXPERIMENTAL] CreateApiKey: Create a Personal Access Token
-[**delete_api_key**](PersonalAuthenticationTokensApi.md#delete_api_key) | **DELETE** /api/keys/{id} | [EXPERIMENTAL] DeleteApiKey: Invalidate a Personal Access Token
-[**list_own_api_keys**](PersonalAuthenticationTokensApi.md#list_own_api_keys) | **GET** /api/keys | [EXPERIMENTAL] ListOwnApiKeys: Gets the meta data for all of the user&#39;s existing Personal Access Tokens.
+[**create_api_key**](PersonalAuthenticationTokensApi.md#create_api_key) | **POST** /api/keys | [EARLY ACCESS] CreateApiKey: Create a Personal Access Token
+[**delete_api_key**](PersonalAuthenticationTokensApi.md#delete_api_key) | **DELETE** /api/keys/{id} | [EARLY ACCESS] DeleteApiKey: Invalidate a Personal Access Token
+[**list_own_api_keys**](PersonalAuthenticationTokensApi.md#list_own_api_keys) | **GET** /api/keys | [EARLY ACCESS] ListOwnApiKeys: Gets the meta data for all of the user&#39;s existing Personal Access Tokens.
 
 
 # **create_api_key**
 > CreatedApiKey create_api_key(create_api_key)
 
-[EXPERIMENTAL] CreateApiKey: Create a Personal Access Token
+[EARLY ACCESS] CreateApiKey: Create a Personal Access Token
 
 Generates a Personal Access Token and returns the new key and its associated metadata.
 
@@ -49,7 +49,7 @@ with finbourne_identity.ApiClient(configuration) as api_client:
     create_api_key = {"displayName":"My API Key","deactivationDate":"2022-12-08T13:30:12.0000000+00:00"} # CreateApiKey | The request to create a new Personal Access Token
 
     try:
-        # [EXPERIMENTAL] CreateApiKey: Create a Personal Access Token
+        # [EARLY ACCESS] CreateApiKey: Create a Personal Access Token
         api_response = api_instance.create_api_key(create_api_key)
         pprint(api_response)
     except ApiException as e:
@@ -87,7 +87,7 @@ Name | Type | Description  | Notes
 # **delete_api_key**
 > ApiKey delete_api_key(id)
 
-[EXPERIMENTAL] DeleteApiKey: Invalidate a Personal Access Token
+[EARLY ACCESS] DeleteApiKey: Invalidate a Personal Access Token
 
 Immediately invalidates the specified Personal Access Token
 
@@ -124,7 +124,7 @@ with finbourne_identity.ApiClient(configuration) as api_client:
     id = 'id_example' # str | The id of the Personal Access Token to delete
 
     try:
-        # [EXPERIMENTAL] DeleteApiKey: Invalidate a Personal Access Token
+        # [EARLY ACCESS] DeleteApiKey: Invalidate a Personal Access Token
         api_response = api_instance.delete_api_key(id)
         pprint(api_response)
     except ApiException as e:
@@ -162,7 +162,7 @@ Name | Type | Description  | Notes
 # **list_own_api_keys**
 > list[ApiKey] list_own_api_keys()
 
-[EXPERIMENTAL] ListOwnApiKeys: Gets the meta data for all of the user's existing Personal Access Tokens.
+[EARLY ACCESS] ListOwnApiKeys: Gets the meta data for all of the user's existing Personal Access Tokens.
 
 Gets the meta data for all of the user's Personal Access Tokens that have not been deleted. They may be  invalid due to the deactivation date having passed.
 
@@ -198,7 +198,7 @@ with finbourne_identity.ApiClient(configuration) as api_client:
     api_instance = finbourne_identity.PersonalAuthenticationTokensApi(api_client)
     
     try:
-        # [EXPERIMENTAL] ListOwnApiKeys: Gets the meta data for all of the user's existing Personal Access Tokens.
+        # [EARLY ACCESS] ListOwnApiKeys: Gets the meta data for all of the user's existing Personal Access Tokens.
         api_response = api_instance.list_own_api_keys()
         pprint(api_response)
     except ApiException as e:

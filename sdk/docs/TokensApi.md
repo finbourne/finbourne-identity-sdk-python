@@ -4,13 +4,13 @@ All URIs are relative to *https://fbn-ci.lusid.com/identity*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**invalidate_token**](TokensApi.md#invalidate_token) | **DELETE** /api/tokens | [EXPERIMENTAL] InvalidateToken: Invalidate current JWT token (sign out)
+[**invalidate_token**](TokensApi.md#invalidate_token) | **DELETE** /api/tokens | [EARLY ACCESS] InvalidateToken: Invalidate current JWT token (sign out)
 
 
 # **invalidate_token**
 > invalidate_token()
 
-[EXPERIMENTAL] InvalidateToken: Invalidate current JWT token (sign out)
+[EARLY ACCESS] InvalidateToken: Invalidate current JWT token (sign out)
 
 Log the current user out of all Finbourne platforms by invalidating the current token
 
@@ -46,7 +46,7 @@ with finbourne_identity.ApiClient(configuration) as api_client:
     api_instance = finbourne_identity.TokensApi(api_client)
     
     try:
-        # [EXPERIMENTAL] InvalidateToken: Invalidate current JWT token (sign out)
+        # [EARLY ACCESS] InvalidateToken: Invalidate current JWT token (sign out)
         api_instance.invalidate_token()
     except ApiException as e:
         print("Exception when calling TokensApi->invalidate_token: %s\n" % e)

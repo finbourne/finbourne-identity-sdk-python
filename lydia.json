@@ -8,7 +8,7 @@
       "url": "https://www.finbourne.com",
       "email": "info@finbourne.com"
     },
-    "version": "0.0.1435",
+    "version": "0.0.1437",
     "x-logo": {
       "url": "https://content.finbourne.com/LUSID-header.png",
       "backgroundColor": "#415464"
@@ -434,7 +434,7 @@
         "tags": [
           "Authentication"
         ],
-        "summary": "[EXPERIMENTAL] GrantSupportAccess: Grants FINBOURNE support access to your account",
+        "summary": "[EARLY ACCESS] GrantSupportAccess: Grants FINBOURNE support access to your account",
         "description": "Granting support access will allow FINBOURNE employees full access to your data with the express intent to investigate support issues\r\nYou can revoke this (and all) access at any time using the InvalidateSupportAccess endpoint.",
         "operationId": "GrantSupportAccess",
         "requestBody": {
@@ -525,13 +525,13 @@
             "oauth2": []
           }
         ],
-        "x-fbn-apistatus": "Experimental"
+        "x-fbn-apistatus": "EarlyAccess"
       },
       "delete": {
         "tags": [
           "Authentication"
         ],
-        "summary": "[EXPERIMENTAL] InvalidateSupportAccess: Revoke any FINBOURNE support access to your account",
+        "summary": "[EARLY ACCESS] InvalidateSupportAccess: Revoke any FINBOURNE support access to your account",
         "description": "This will result in a loss of access to your data for all FINBOURNE support agents",
         "operationId": "InvalidateSupportAccess",
         "responses": {
@@ -586,13 +586,13 @@
             "oauth2": []
           }
         ],
-        "x-fbn-apistatus": "Experimental"
+        "x-fbn-apistatus": "EarlyAccess"
       },
       "get": {
         "tags": [
           "Authentication"
         ],
-        "summary": "[EXPERIMENTAL] GetSupportAccessHistory: Get the history of all support access granted and any information pertaining to their termination",
+        "summary": "[EARLY ACCESS] GetSupportAccessHistory: Get the history of all support access granted and any information pertaining to their termination",
         "description": "The active and inactive support requests will be returned, inactive support requests will have information pertaining to their termination\r\nincluding obfuscated userIds of those who created and terminated the request",
         "operationId": "GetSupportAccessHistory",
         "responses": {
@@ -647,7 +647,7 @@
             "oauth2": []
           }
         ],
-        "x-fbn-apistatus": "Experimental"
+        "x-fbn-apistatus": "EarlyAccess"
       }
     },
     "/api/directory": {
@@ -1387,7 +1387,7 @@
         "tags": [
           "Personal Authentication Tokens"
         ],
-        "summary": "[EXPERIMENTAL] CreateApiKey: Create a Personal Access Token",
+        "summary": "[EARLY ACCESS] CreateApiKey: Create a Personal Access Token",
         "description": "Generates a Personal Access Token and returns the new key and its associated metadata.",
         "operationId": "CreateApiKey",
         "requestBody": {
@@ -1476,13 +1476,13 @@
             "oauth2": []
           }
         ],
-        "x-fbn-apistatus": "Experimental"
+        "x-fbn-apistatus": "EarlyAccess"
       },
       "get": {
         "tags": [
           "Personal Authentication Tokens"
         ],
-        "summary": "[EXPERIMENTAL] ListOwnApiKeys: Gets the meta data for all of the user's existing Personal Access Tokens.",
+        "summary": "[EARLY ACCESS] ListOwnApiKeys: Gets the meta data for all of the user's existing Personal Access Tokens.",
         "description": "Gets the meta data for all of the user's Personal Access Tokens that have not been deleted. They may be\r\ninvalid due to the deactivation date having passed.",
         "operationId": "ListOwnApiKeys",
         "responses": {
@@ -1535,7 +1535,7 @@
             "oauth2": []
           }
         ],
-        "x-fbn-apistatus": "Experimental"
+        "x-fbn-apistatus": "EarlyAccess"
       }
     },
     "/api/keys/{id}": {
@@ -1543,7 +1543,7 @@
         "tags": [
           "Personal Authentication Tokens"
         ],
-        "summary": "[EXPERIMENTAL] DeleteApiKey: Invalidate a Personal Access Token",
+        "summary": "[EARLY ACCESS] DeleteApiKey: Invalidate a Personal Access Token",
         "description": "Immediately invalidates the specified Personal Access Token",
         "operationId": "DeleteApiKey",
         "parameters": [
@@ -1604,7 +1604,7 @@
             "oauth2": []
           }
         ],
-        "x-fbn-apistatus": "Experimental"
+        "x-fbn-apistatus": "EarlyAccess"
       }
     },
     "/api/metadata/access/resources": {
@@ -2365,7 +2365,7 @@
         "tags": [
           "Tokens"
         ],
-        "summary": "[EXPERIMENTAL] InvalidateToken: Invalidate current JWT token (sign out)",
+        "summary": "[EARLY ACCESS] InvalidateToken: Invalidate current JWT token (sign out)",
         "description": "Log the current user out of all Finbourne platforms by invalidating the current token",
         "operationId": "InvalidateToken",
         "responses": {
@@ -2388,7 +2388,7 @@
             "oauth2": []
           }
         ],
-        "x-fbn-apistatus": "Experimental"
+        "x-fbn-apistatus": "EarlyAccess"
       }
     },
     "/api/users": {
@@ -2919,7 +2919,7 @@
         "tags": [
           "Users"
         ],
-        "summary": "[EXPERIMENTAL] SendActivationEmail: Sends an activation email to the User",
+        "summary": "[BETA] SendActivationEmail: Sends an activation email to the User",
         "description": "Sends an activation email to the specified User",
         "operationId": "SendActivationEmail",
         "parameters": [
@@ -2967,7 +2967,7 @@
             "oauth2": []
           }
         ],
-        "x-fbn-apistatus": "Experimental"
+        "x-fbn-apistatus": "Beta"
       }
     },
     "/api/users/{id}/lifecycle/$expirepassword": {
@@ -2975,7 +2975,7 @@
         "tags": [
           "Users"
         ],
-        "summary": "[EXPERIMENTAL] ExpirePassword: Reset the user's password to a temporary one",
+        "summary": "[BETA] ExpirePassword: Reset the user's password to a temporary one",
         "description": "Resets the user's password to a temporary one which is then expired",
         "operationId": "ExpirePassword",
         "parameters": [
@@ -3030,7 +3030,7 @@
             "oauth2": []
           }
         ],
-        "x-fbn-apistatus": "Experimental"
+        "x-fbn-apistatus": "Beta"
       }
     },
     "/api/users/{id}/lifecycle/$resetfactors": {
@@ -3038,7 +3038,7 @@
         "tags": [
           "Users"
         ],
-        "summary": "[EXPERIMENTAL] ResetFactors: Reset MFA factors",
+        "summary": "[BETA] ResetFactors: Reset MFA factors",
         "description": "Resets the MFA factors of the specified User",
         "operationId": "ResetFactors",
         "parameters": [
@@ -3086,7 +3086,7 @@
             "oauth2": []
           }
         ],
-        "x-fbn-apistatus": "Experimental"
+        "x-fbn-apistatus": "Beta"
       }
     },
     "/api/users/{id}/lifecycle/$resetpassword": {
@@ -3094,7 +3094,7 @@
         "tags": [
           "Users"
         ],
-        "summary": "[EXPERIMENTAL] ResetPassword: Reset Password",
+        "summary": "[BETA] ResetPassword: Reset Password",
         "description": "Resets the password of the specified User",
         "operationId": "ResetPassword",
         "parameters": [
@@ -3142,7 +3142,7 @@
             "oauth2": []
           }
         ],
-        "x-fbn-apistatus": "Experimental"
+        "x-fbn-apistatus": "Beta"
       }
     },
     "/api/users/{id}/lifecycle/$unlock": {
@@ -3150,7 +3150,7 @@
         "tags": [
           "Users"
         ],
-        "summary": "[EXPERIMENTAL] UnlockUser: Unlock User",
+        "summary": "[BETA] UnlockUser: Unlock User",
         "description": "Unlocks the specified User",
         "operationId": "UnlockUser",
         "parameters": [
@@ -3198,7 +3198,7 @@
             "oauth2": []
           }
         ],
-        "x-fbn-apistatus": "Experimental"
+        "x-fbn-apistatus": "Beta"
       }
     }
   },
