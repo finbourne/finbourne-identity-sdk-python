@@ -8,7 +8,7 @@
       "url": "https://www.finbourne.com",
       "email": "info@finbourne.com"
     },
-    "version": "0.0.1449",
+    "version": "0.0.1451",
     "x-logo": {
       "url": "https://content.finbourne.com/LUSID-header.png",
       "backgroundColor": "#415464"
@@ -88,7 +88,7 @@
               "example": {
                 "displayName": "My First Application",
                 "clientId": "my-first-application",
-                "type": "native"
+                "type": "Native"
               }
             },
             "application/json": {
@@ -98,7 +98,7 @@
               "example": {
                 "displayName": "My First Application",
                 "clientId": "my-first-application",
-                "type": "native"
+                "type": "Native"
               }
             },
             "text/json": {
@@ -108,7 +108,7 @@
               "example": {
                 "displayName": "My First Application",
                 "clientId": "my-first-application",
-                "type": "native"
+                "type": "Native"
               }
             },
             "application/*+json": {
@@ -118,13 +118,13 @@
               "example": {
                 "displayName": "My First Application",
                 "clientId": "my-first-application",
-                "type": "native"
+                "type": "Native"
               }
             }
           }
         },
         "responses": {
-          "201": {
+          "200": {
             "description": "Create Application",
             "content": {
               "application/json": {
@@ -1112,15 +1112,15 @@
                   }
                 },
                 "example": {
-                  "termsAndConditions-20190301-GBP": {
-                    "name": "TermsAndConditions-20190301-GB",
-                    "signedBy": "DomainOwnerUserId",
-                    "signedAt": "2019-03-07T13:23:07.0000000+00:00"
-                  },
                   "termsAndConditions-20190101-GBP": {
                     "name": "TermsAndConditions-20190101-GB",
                     "signedBy": "DomainOwnerUserId",
                     "signedAt": "2019-01-05T10:15:00.0000000+00:00"
+                  },
+                  "termsAndConditions-20190301-GBP": {
+                    "name": "TermsAndConditions-20190301-GB",
+                    "signedBy": "DomainOwnerUserId",
+                    "signedAt": "2019-03-07T13:23:07.0000000+00:00"
                   }
                 }
               },
@@ -1132,15 +1132,15 @@
                   }
                 },
                 "example": {
-                  "termsAndConditions-20190301-GBP": {
-                    "name": "TermsAndConditions-20190301-GB",
-                    "signedBy": "DomainOwnerUserId",
-                    "signedAt": "2019-03-07T13:23:07.0000000+00:00"
-                  },
                   "termsAndConditions-20190101-GBP": {
                     "name": "TermsAndConditions-20190101-GB",
                     "signedBy": "DomainOwnerUserId",
                     "signedAt": "2019-01-05T10:15:00.0000000+00:00"
+                  },
+                  "termsAndConditions-20190301-GBP": {
+                    "name": "TermsAndConditions-20190301-GB",
+                    "signedBy": "DomainOwnerUserId",
+                    "signedAt": "2019-03-07T13:23:07.0000000+00:00"
                   }
                 }
               },
@@ -1152,15 +1152,15 @@
                   }
                 },
                 "example": {
-                  "termsAndConditions-20190301-GBP": {
-                    "name": "TermsAndConditions-20190301-GB",
-                    "signedBy": "DomainOwnerUserId",
-                    "signedAt": "2019-03-07T13:23:07.0000000+00:00"
-                  },
                   "termsAndConditions-20190101-GBP": {
                     "name": "TermsAndConditions-20190101-GB",
                     "signedBy": "DomainOwnerUserId",
                     "signedAt": "2019-01-05T10:15:00.0000000+00:00"
+                  },
+                  "termsAndConditions-20190301-GBP": {
+                    "name": "TermsAndConditions-20190301-GB",
+                    "signedBy": "DomainOwnerUserId",
+                    "signedAt": "2019-03-07T13:23:07.0000000+00:00"
                   }
                 }
               }

@@ -48,7 +48,7 @@ configuration.access_token = 'YOUR_ACCESS_TOKEN'
 with finbourne_identity.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = finbourne_identity.ApplicationsApi(api_client)
-    create_application_request = {"displayName":"My First Application","clientId":"my-first-application","type":"native"} # CreateApplicationRequest | Details of the application to be created (optional)
+    create_application_request = {"displayName":"My First Application","clientId":"my-first-application","type":"Native"} # CreateApplicationRequest | Details of the application to be created (optional)
 
     try:
         # [EARLY ACCESS] CreateApplication: Create Application
@@ -80,7 +80,7 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**201** | Create Application |  -  |
+**200** | Create Application |  -  |
 **400** | The details of the input related failure |  -  |
 **0** | Error response |  -  |
 
