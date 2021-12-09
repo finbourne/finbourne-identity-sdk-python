@@ -8,9 +8,9 @@
       "url": "https://www.finbourne.com",
       "email": "info@finbourne.com"
     },
-    "version": "0.0.1479",
+    "version": "0.0.1481",
     "x-logo": {
-      "url": "https://content.finbourne.com/LUSID-header.png",
+      "url": "https://www.lusid.com/app/assets/logo_white.png",
       "backgroundColor": "#415464"
     },
     "description": "FINBOURNE Technology"
@@ -792,7 +792,7 @@
             "description": "The verification code necessary to create domains",
             "required": true,
             "schema": {
-              "maxLength": 2147483647,
+              "maxLength": 262144,
               "minLength": 1,
               "pattern": "^[\\s\\S]*$",
               "type": "string",
