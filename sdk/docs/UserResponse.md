@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **login** | **str** |  | 
 **first_name** | **str** | The user&#39;s first name | 
 **last_name** | **str** | The user&#39;s last name | 
-**roles** | [**list[Role]**](Role.md) | The roles that the user has. | [optional] 
+**roles** | [**list[RoleResponse]**](RoleResponse.md) | The roles that the user has. | [optional] 
 **type** | **str** | The type of user (e.g. Personal or Service) | 
 **status** | **str** | The status of the user | 
 **external** | **bool** | Whether or not the user originates from an external identity system | 

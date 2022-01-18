@@ -8,7 +8,7 @@
       "url": "https://www.finbourne.com",
       "email": "info@finbourne.com"
     },
-    "version": "0.0.1517",
+    "version": "0.0.1519",
     "x-logo": {
       "url": "https://www.lusid.com/app/assets/logo_white.png",
       "backgroundColor": "#415464"
@@ -1112,15 +1112,15 @@
                   }
                 },
                 "example": {
-                  "termsAndConditions-20190301-GBP": {
-                    "name": "TermsAndConditions-20190301-GB",
-                    "signedBy": "DomainOwnerUserId",
-                    "signedAt": "2019-03-07T13:23:07.0000000+00:00"
-                  },
                   "termsAndConditions-20190101-GBP": {
                     "name": "TermsAndConditions-20190101-GB",
                     "signedBy": "DomainOwnerUserId",
                     "signedAt": "2019-01-05T10:15:00.0000000+00:00"
+                  },
+                  "termsAndConditions-20190301-GBP": {
+                    "name": "TermsAndConditions-20190301-GB",
+                    "signedBy": "DomainOwnerUserId",
+                    "signedAt": "2019-03-07T13:23:07.0000000+00:00"
                   }
                 }
               },
@@ -1132,15 +1132,15 @@
                   }
                 },
                 "example": {
-                  "termsAndConditions-20190301-GBP": {
-                    "name": "TermsAndConditions-20190301-GB",
-                    "signedBy": "DomainOwnerUserId",
-                    "signedAt": "2019-03-07T13:23:07.0000000+00:00"
-                  },
                   "termsAndConditions-20190101-GBP": {
                     "name": "TermsAndConditions-20190101-GB",
                     "signedBy": "DomainOwnerUserId",
                     "signedAt": "2019-01-05T10:15:00.0000000+00:00"
+                  },
+                  "termsAndConditions-20190301-GBP": {
+                    "name": "TermsAndConditions-20190301-GB",
+                    "signedBy": "DomainOwnerUserId",
+                    "signedAt": "2019-03-07T13:23:07.0000000+00:00"
                   }
                 }
               },
@@ -1152,15 +1152,15 @@
                   }
                 },
                 "example": {
-                  "termsAndConditions-20190301-GBP": {
-                    "name": "TermsAndConditions-20190301-GB",
-                    "signedBy": "DomainOwnerUserId",
-                    "signedAt": "2019-03-07T13:23:07.0000000+00:00"
-                  },
                   "termsAndConditions-20190101-GBP": {
                     "name": "TermsAndConditions-20190101-GB",
                     "signedBy": "DomainOwnerUserId",
                     "signedAt": "2019-01-05T10:15:00.0000000+00:00"
+                  },
+                  "termsAndConditions-20190301-GBP": {
+                    "name": "TermsAndConditions-20190301-GB",
+                    "signedBy": "DomainOwnerUserId",
+                    "signedAt": "2019-03-07T13:23:07.0000000+00:00"
                   }
                 }
               }
@@ -1729,6 +1729,7 @@
                       "scope": "LUSID",
                       "code": "FrontOfficeAdministrator"
                     },
+                    "source": "LusidUser",
                     "name": "LUSID:FrontOfficeAdministrator",
                     "description": "Front office administration role"
                   }
@@ -1817,6 +1818,7 @@
                     "scope": "LUSID",
                     "code": "FrontOfficeAdministrator"
                   },
+                  "source": "LusidUser",
                   "name": "LUSID:FrontOfficeAdministrator",
                   "description": "Front office administration role"
                 }
@@ -1899,6 +1901,7 @@
                     "scope": "LUSID",
                     "code": "FrontOfficeAdministrator"
                   },
+                  "source": "LusidUser",
                   "name": "LUSID:FrontOfficeAdministrator",
                   "description": "Front office administration role"
                 }
@@ -2070,6 +2073,7 @@
                     "scope": "LUSID",
                     "code": "FrontOfficeAdministrator"
                   },
+                  "source": "LusidUser",
                   "name": "LUSID:FrontOfficeAdministrator",
                   "description": "Front office administration role"
                 }
@@ -2163,6 +2167,7 @@
                           "scope": "default",
                           "code": "customrole2"
                         },
+                        "source": "LusidUser",
                         "name": "Front Office Administrator",
                         "description": "Administration role for Front Office staff"
                       }
@@ -2448,6 +2453,7 @@
                           "scope": "default",
                           "code": "customrole2"
                         },
+                        "source": "LusidUser",
                         "name": "Front Office Administrator",
                         "description": "Administration role for Front Office staff"
                       }
@@ -2583,6 +2589,7 @@
                         "scope": "default",
                         "code": "customrole2"
                       },
+                      "source": "LusidUser",
                       "name": "Front Office Administrator",
                       "description": "Administration role for Front Office staff"
                     }
@@ -2678,6 +2685,7 @@
                         "scope": "default",
                         "code": "customrole2"
                       },
+                      "source": "LusidUser",
                       "name": "Front Office Administrator",
                       "description": "Administration role for Front Office staff"
                     }
@@ -2874,6 +2882,7 @@
                         "scope": "default",
                         "code": "customrole2"
                       },
+                      "source": "LusidUser",
                       "name": "Front Office Administrator",
                       "description": "Administration role for Front Office staff"
                     }
@@ -4070,29 +4079,6 @@
         },
         "additionalProperties": false
       },
-      "Role": {
-        "required": [
-          "id",
-          "name"
-        ],
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "roleId": {
-            "$ref": "#/components/schemas/RoleId"
-          },
-          "name": {
-            "type": "string"
-          },
-          "description": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
       "RoleId": {
         "required": [
           "code"
@@ -4117,7 +4103,8 @@
         "required": [
           "id",
           "name",
-          "roleId"
+          "roleId",
+          "source"
         ],
         "type": "object",
         "properties": {
@@ -4127,6 +4114,10 @@
           },
           "roleId": {
             "$ref": "#/components/schemas/RoleId"
+          },
+          "source": {
+            "type": "string",
+            "description": "The source of the role"
           },
           "name": {
             "type": "string",
@@ -4361,7 +4352,7 @@
           "roles": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Role"
+              "$ref": "#/components/schemas/RoleResponse"
             },
             "description": "The roles that the user has.",
             "nullable": true

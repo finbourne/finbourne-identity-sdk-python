@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **str** | The role&#39;s system supplied unique identifier | 
 **role_id** | [**RoleId**](RoleId.md) |  | 
+**source** | **str** | The source of the role | 
 **name** | **str** | The role name, which must be unique within the system. | 
 **description** | **str** | The description for this role | [optional] 
 
