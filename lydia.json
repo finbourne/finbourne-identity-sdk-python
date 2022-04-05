@@ -8,7 +8,7 @@
       "url": "https://www.finbourne.com",
       "email": "info@finbourne.com"
     },
-    "version": "0.0.1579",
+    "version": "0.0.1583",
     "x-logo": {
       "url": "https://www.lusid.com/app/assets/logo_white.png",
       "backgroundColor": "#415464"
@@ -1112,15 +1112,15 @@
                   }
                 },
                 "example": {
-                  "termsAndConditions-20190101-GBP": {
-                    "name": "TermsAndConditions-20190101-GB",
-                    "signedBy": "DomainOwnerUserId",
-                    "signedAt": "2019-01-05T10:15:00.0000000+00:00"
-                  },
                   "termsAndConditions-20190301-GBP": {
                     "name": "TermsAndConditions-20190301-GB",
                     "signedBy": "DomainOwnerUserId",
                     "signedAt": "2019-03-07T13:23:07.0000000+00:00"
+                  },
+                  "termsAndConditions-20190101-GBP": {
+                    "name": "TermsAndConditions-20190101-GB",
+                    "signedBy": "DomainOwnerUserId",
+                    "signedAt": "2019-01-05T10:15:00.0000000+00:00"
                   }
                 }
               },
@@ -1132,15 +1132,15 @@
                   }
                 },
                 "example": {
-                  "termsAndConditions-20190101-GBP": {
-                    "name": "TermsAndConditions-20190101-GB",
-                    "signedBy": "DomainOwnerUserId",
-                    "signedAt": "2019-01-05T10:15:00.0000000+00:00"
-                  },
                   "termsAndConditions-20190301-GBP": {
                     "name": "TermsAndConditions-20190301-GB",
                     "signedBy": "DomainOwnerUserId",
                     "signedAt": "2019-03-07T13:23:07.0000000+00:00"
+                  },
+                  "termsAndConditions-20190101-GBP": {
+                    "name": "TermsAndConditions-20190101-GB",
+                    "signedBy": "DomainOwnerUserId",
+                    "signedAt": "2019-01-05T10:15:00.0000000+00:00"
                   }
                 }
               },
@@ -1152,15 +1152,15 @@
                   }
                 },
                 "example": {
-                  "termsAndConditions-20190101-GBP": {
-                    "name": "TermsAndConditions-20190101-GB",
-                    "signedBy": "DomainOwnerUserId",
-                    "signedAt": "2019-01-05T10:15:00.0000000+00:00"
-                  },
                   "termsAndConditions-20190301-GBP": {
                     "name": "TermsAndConditions-20190301-GB",
                     "signedBy": "DomainOwnerUserId",
                     "signedAt": "2019-03-07T13:23:07.0000000+00:00"
+                  },
+                  "termsAndConditions-20190101-GBP": {
+                    "name": "TermsAndConditions-20190101-GB",
+                    "signedBy": "DomainOwnerUserId",
+                    "signedAt": "2019-01-05T10:15:00.0000000+00:00"
                   }
                 }
               }
@@ -1584,6 +1584,49 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/LusidValidationProblemDetails"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "oauth2": []
+          }
+        ],
+        "x-fbn-apistatus": "EarlyAccess"
+      }
+    },
+    "/api/me": {
+      "get": {
+        "tags": [
+          "Me"
+        ],
+        "summary": "[EARLY ACCESS] GetUserInfo: Get User Info",
+        "description": "Get the requesting user's basic info",
+        "operationId": "GetUserInfo",
+        "responses": {
+          "200": {
+            "description": "Get the specified user's info",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CurrentUserResponse"
+                },
+                "example": {
+                  "id": "asybvrs5",
+                  "emailAddress": "joe.bloggs@myco.com",
+                  "type": "Personal"
                 }
               }
             }
@@ -3639,6 +3682,36 @@
         "additionalProperties": false,
         "description": "Details necessary for creating a new user"
       },
+      "CurrentUserResponse": {
+        "required": [
+          "emailAddress",
+          "id",
+          "type"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The user's system supplied unique identifier"
+          },
+          "emailAddress": {
+            "type": "string",
+            "description": "The user's email address which may be null depending on the authentication method"
+          },
+          "type": {
+            "type": "string",
+            "description": "The type of user (e.g. Personal or Service)"
+          },
+          "links": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Link"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "DomainId": {
         "required": [
           "name"
@@ -4458,6 +4531,10 @@
       "description": "Endpoints for administering Domains"
     },
     {
+      "name": "Me",
+      "description": "Endpoints for getting more information about the current User"
+    },
+    {
       "name": "Personal Authentication Tokens",
       "description": "Endpoints for administering one's own Personal Access Tokens"
     },
@@ -4481,6 +4558,7 @@
       "Applications",
       "Authentication",
       "Domains",
+      "Me",
       "Personal Authentication Tokens",
       "Roles",
       "Tokens",
