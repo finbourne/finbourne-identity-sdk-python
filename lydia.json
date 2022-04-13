@@ -8,7 +8,7 @@
       "url": "https://www.finbourne.com",
       "email": "info@finbourne.com"
     },
-    "version": "0.0.1587",
+    "version": "0.0.1589",
     "x-logo": {
       "url": "https://www.lusid.com/app/assets/logo_white.png",
       "backgroundColor": "#415464"
@@ -3563,7 +3563,7 @@
           "domain": {
             "maxLength": 25,
             "minLength": 3,
-            "pattern": "^[a-zA-Z][a-zA-Z0-9-]*$",
+            "pattern": "^[a-zA-Z]([a-zA-Z0-9-]*[a-zA-Z0-9])?$",
             "type": "string",
             "description": "The name LUSID domain to create"
           },
