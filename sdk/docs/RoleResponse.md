@@ -4,11 +4,11 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **str** | The role&#39;s system supplied unique identifier | 
+**id** | **str** |  | 
 **role_id** | [**RoleId**](RoleId.md) |  | 
-**source** | **str** | The source of the role | 
-**name** | **str** | The role name, which must be unique within the system. | 
-**description** | **str** | The description for this role | [optional] 
+**source** | **str** |  | 
+**name** | **str** |  | 
+**description** | **str** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
