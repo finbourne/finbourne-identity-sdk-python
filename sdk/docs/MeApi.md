@@ -4,13 +4,15 @@ All URIs are relative to *https://fbn-ci.lusid.com/identity*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**get_user_info**](MeApi.md#get_user_info) | **GET** /api/me | [EARLY ACCESS] GetUserInfo: 
+[**get_user_info**](MeApi.md#get_user_info) | **GET** /api/me | [EARLY ACCESS] GetUserInfo: Get User Info
 
 
 # **get_user_info**
 > CurrentUserResponse get_user_info()
 
-[EARLY ACCESS] GetUserInfo: 
+[EARLY ACCESS] GetUserInfo: Get User Info
+
+Get the requesting user's basic info
 
 ### Example
 
@@ -44,7 +46,7 @@ with finbourne_identity.ApiClient(configuration) as api_client:
     api_instance = finbourne_identity.MeApi(api_client)
     
     try:
-        # [EARLY ACCESS] GetUserInfo: 
+        # [EARLY ACCESS] GetUserInfo: Get User Info
         api_response = api_instance.get_user_info()
         pprint(api_response)
     except ApiException as e:

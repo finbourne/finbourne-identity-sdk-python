@@ -4,20 +4,22 @@ All URIs are relative to *https://fbn-ci.lusid.com/identity*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**add_user_to_role**](RolesApi.md#add_user_to_role) | **PUT** /api/roles/{id}/users/{userId} | [EARLY ACCESS] AddUserToRole: 
-[**create_role**](RolesApi.md#create_role) | **POST** /api/roles | [EARLY ACCESS] CreateRole: 
-[**delete_role**](RolesApi.md#delete_role) | **DELETE** /api/roles/{id} | [EARLY ACCESS] DeleteRole: 
-[**get_role**](RolesApi.md#get_role) | **GET** /api/roles/{id} | [EARLY ACCESS] GetRole: 
-[**list_roles**](RolesApi.md#list_roles) | **GET** /api/roles | [EARLY ACCESS] ListRoles: 
-[**list_users_in_role**](RolesApi.md#list_users_in_role) | **GET** /api/roles/{id}/users | [EARLY ACCESS] ListUsersInRole: 
-[**remove_user_from_role**](RolesApi.md#remove_user_from_role) | **DELETE** /api/roles/{id}/users/{userId} | [EARLY ACCESS] RemoveUserFromRole: 
-[**update_role**](RolesApi.md#update_role) | **PUT** /api/roles/{id} | [EARLY ACCESS] UpdateRole: 
+[**add_user_to_role**](RolesApi.md#add_user_to_role) | **PUT** /api/roles/{id}/users/{userId} | [EARLY ACCESS] AddUserToRole: Add User to Role
+[**create_role**](RolesApi.md#create_role) | **POST** /api/roles | [EARLY ACCESS] CreateRole: Create Role
+[**delete_role**](RolesApi.md#delete_role) | **DELETE** /api/roles/{id} | [EARLY ACCESS] DeleteRole: Delete Role
+[**get_role**](RolesApi.md#get_role) | **GET** /api/roles/{id} | [EARLY ACCESS] GetRole: Get Role
+[**list_roles**](RolesApi.md#list_roles) | **GET** /api/roles | [EARLY ACCESS] ListRoles: List Roles
+[**list_users_in_role**](RolesApi.md#list_users_in_role) | **GET** /api/roles/{id}/users | [EARLY ACCESS] ListUsersInRole: Get the users in the specified role.
+[**remove_user_from_role**](RolesApi.md#remove_user_from_role) | **DELETE** /api/roles/{id}/users/{userId} | [EARLY ACCESS] RemoveUserFromRole: Remove User from Role
+[**update_role**](RolesApi.md#update_role) | **PUT** /api/roles/{id} | [EARLY ACCESS] UpdateRole: Update Role
 
 
 # **add_user_to_role**
 > add_user_to_role(id, user_id)
 
-[EARLY ACCESS] AddUserToRole: 
+[EARLY ACCESS] AddUserToRole: Add User to Role
+
+Adds the User to the specified Role
 
 ### Example
 
@@ -49,11 +51,11 @@ configuration.access_token = 'YOUR_ACCESS_TOKEN'
 with finbourne_identity.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = finbourne_identity.RolesApi(api_client)
-    id = 'id_example' # str | 
-user_id = 'user_id_example' # str | 
+    id = 'id_example' # str | The unique identifier for the Role
+user_id = 'user_id_example' # str | The unique identifier for the User
 
     try:
-        # [EARLY ACCESS] AddUserToRole: 
+        # [EARLY ACCESS] AddUserToRole: Add User to Role
         api_instance.add_user_to_role(id, user_id)
     except ApiException as e:
         print("Exception when calling RolesApi->add_user_to_role: %s\n" % e)
@@ -63,8 +65,8 @@ user_id = 'user_id_example' # str |
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **str**|  | 
- **user_id** | **str**|  | 
+ **id** | **str**| The unique identifier for the Role | 
+ **user_id** | **str**| The unique identifier for the User | 
 
 ### Return type
 
@@ -92,7 +94,9 @@ void (empty response body)
 # **create_role**
 > RoleResponse create_role(create_role_request)
 
-[EARLY ACCESS] CreateRole: 
+[EARLY ACCESS] CreateRole: Create Role
+
+Creates a new Role
 
 ### Example
 
@@ -124,10 +128,10 @@ configuration.access_token = 'YOUR_ACCESS_TOKEN'
 with finbourne_identity.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = finbourne_identity.RolesApi(api_client)
-    create_role_request = {"name":"LUSID:FrontOfficeAdministrator","description":"Front office administration role"} # CreateRoleRequest | 
+    create_role_request = {"name":"LUSID:FrontOfficeAdministrator","description":"Front office administration role"} # CreateRoleRequest | Details of the role to be created
 
     try:
-        # [EARLY ACCESS] CreateRole: 
+        # [EARLY ACCESS] CreateRole: Create Role
         api_response = api_instance.create_role(create_role_request)
         pprint(api_response)
     except ApiException as e:
@@ -138,7 +142,7 @@ with finbourne_identity.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **create_role_request** | [**CreateRoleRequest**](CreateRoleRequest.md)|  | 
+ **create_role_request** | [**CreateRoleRequest**](CreateRoleRequest.md)| Details of the role to be created | 
 
 ### Return type
 
@@ -166,7 +170,9 @@ Name | Type | Description  | Notes
 # **delete_role**
 > delete_role(id)
 
-[EARLY ACCESS] DeleteRole: 
+[EARLY ACCESS] DeleteRole: Delete Role
+
+Delete the specified role
 
 ### Example
 
@@ -198,10 +204,10 @@ configuration.access_token = 'YOUR_ACCESS_TOKEN'
 with finbourne_identity.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = finbourne_identity.RolesApi(api_client)
-    id = 'id_example' # str | 
+    id = 'id_example' # str | The unique identifier for the role
 
     try:
-        # [EARLY ACCESS] DeleteRole: 
+        # [EARLY ACCESS] DeleteRole: Delete Role
         api_instance.delete_role(id)
     except ApiException as e:
         print("Exception when calling RolesApi->delete_role: %s\n" % e)
@@ -211,7 +217,7 @@ with finbourne_identity.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **str**|  | 
+ **id** | **str**| The unique identifier for the role | 
 
 ### Return type
 
@@ -238,7 +244,9 @@ void (empty response body)
 # **get_role**
 > RoleResponse get_role(id)
 
-[EARLY ACCESS] GetRole: 
+[EARLY ACCESS] GetRole: Get Role
+
+Get the specified role
 
 ### Example
 
@@ -270,10 +278,10 @@ configuration.access_token = 'YOUR_ACCESS_TOKEN'
 with finbourne_identity.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = finbourne_identity.RolesApi(api_client)
-    id = 'id_example' # str | 
+    id = 'id_example' # str | The unique identifier for the role
 
     try:
-        # [EARLY ACCESS] GetRole: 
+        # [EARLY ACCESS] GetRole: Get Role
         api_response = api_instance.get_role(id)
         pprint(api_response)
     except ApiException as e:
@@ -284,7 +292,7 @@ with finbourne_identity.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **str**|  | 
+ **id** | **str**| The unique identifier for the role | 
 
 ### Return type
 
@@ -312,7 +320,9 @@ Name | Type | Description  | Notes
 # **list_roles**
 > list[RoleResponse] list_roles()
 
-[EARLY ACCESS] ListRoles: 
+[EARLY ACCESS] ListRoles: List Roles
+
+List the available Roles
 
 ### Example
 
@@ -346,7 +356,7 @@ with finbourne_identity.ApiClient(configuration) as api_client:
     api_instance = finbourne_identity.RolesApi(api_client)
     
     try:
-        # [EARLY ACCESS] ListRoles: 
+        # [EARLY ACCESS] ListRoles: List Roles
         api_response = api_instance.list_roles()
         pprint(api_response)
     except ApiException as e:
@@ -380,7 +390,9 @@ This endpoint does not need any parameter.
 # **list_users_in_role**
 > list[UserResponse] list_users_in_role(id)
 
-[EARLY ACCESS] ListUsersInRole: 
+[EARLY ACCESS] ListUsersInRole: Get the users in the specified role.
+
+List all Users in the specified Role
 
 ### Example
 
@@ -412,10 +424,10 @@ configuration.access_token = 'YOUR_ACCESS_TOKEN'
 with finbourne_identity.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = finbourne_identity.RolesApi(api_client)
-    id = 'id_example' # str | 
+    id = 'id_example' # str | The unique identifier for the Role
 
     try:
-        # [EARLY ACCESS] ListUsersInRole: 
+        # [EARLY ACCESS] ListUsersInRole: Get the users in the specified role.
         api_response = api_instance.list_users_in_role(id)
         pprint(api_response)
     except ApiException as e:
@@ -426,7 +438,7 @@ with finbourne_identity.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **str**|  | 
+ **id** | **str**| The unique identifier for the Role | 
 
 ### Return type
 
@@ -453,7 +465,9 @@ Name | Type | Description  | Notes
 # **remove_user_from_role**
 > remove_user_from_role(id, user_id)
 
-[EARLY ACCESS] RemoveUserFromRole: 
+[EARLY ACCESS] RemoveUserFromRole: Remove User from Role
+
+Removes the User from the specified Role
 
 ### Example
 
@@ -485,11 +499,11 @@ configuration.access_token = 'YOUR_ACCESS_TOKEN'
 with finbourne_identity.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = finbourne_identity.RolesApi(api_client)
-    id = 'id_example' # str | 
-user_id = 'user_id_example' # str | 
+    id = 'id_example' # str | The unique identifier for the Role
+user_id = 'user_id_example' # str | The unique identifier for the User
 
     try:
-        # [EARLY ACCESS] RemoveUserFromRole: 
+        # [EARLY ACCESS] RemoveUserFromRole: Remove User from Role
         api_instance.remove_user_from_role(id, user_id)
     except ApiException as e:
         print("Exception when calling RolesApi->remove_user_from_role: %s\n" % e)
@@ -499,8 +513,8 @@ user_id = 'user_id_example' # str |
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **str**|  | 
- **user_id** | **str**|  | 
+ **id** | **str**| The unique identifier for the Role | 
+ **user_id** | **str**| The unique identifier for the User | 
 
 ### Return type
 
@@ -528,7 +542,9 @@ void (empty response body)
 # **update_role**
 > RoleResponse update_role(id, update_role_request=update_role_request)
 
-[EARLY ACCESS] UpdateRole: 
+[EARLY ACCESS] UpdateRole: Update Role
+
+Update the specified Role
 
 ### Example
 
@@ -560,11 +576,11 @@ configuration.access_token = 'YOUR_ACCESS_TOKEN'
 with finbourne_identity.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = finbourne_identity.RolesApi(api_client)
-    id = 'id_example' # str | 
-update_role_request = {"description":"Front office administration role"} # UpdateRoleRequest |  (optional)
+    id = 'id_example' # str | The unique identifier for the role to be updated
+update_role_request = {"description":"Front office administration role"} # UpdateRoleRequest | The new definition of the role (optional)
 
     try:
-        # [EARLY ACCESS] UpdateRole: 
+        # [EARLY ACCESS] UpdateRole: Update Role
         api_response = api_instance.update_role(id, update_role_request=update_role_request)
         pprint(api_response)
     except ApiException as e:
@@ -575,8 +591,8 @@ update_role_request = {"description":"Front office administration role"} # Updat
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **str**|  | 
- **update_role_request** | [**UpdateRoleRequest**](UpdateRoleRequest.md)|  | [optional] 
+ **id** | **str**| The unique identifier for the role to be updated | 
+ **update_role_request** | [**UpdateRoleRequest**](UpdateRoleRequest.md)| The new definition of the role | [optional] 
 
 ### Return type
 

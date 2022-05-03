@@ -4,14 +4,16 @@ All URIs are relative to *https://fbn-ci.lusid.com/identity*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**get_registration_availability**](ApplicationMetadataApi.md#get_registration_availability) | **GET** /api/metadata/eap | [EARLY ACCESS] GetRegistrationAvailability: 
-[**list_access_controlled_resources**](ApplicationMetadataApi.md#list_access_controlled_resources) | **GET** /api/metadata/access/resources | [EARLY ACCESS] ListAccessControlledResources: 
+[**get_registration_availability**](ApplicationMetadataApi.md#get_registration_availability) | **GET** /api/metadata/eap | [EARLY ACCESS] GetRegistrationAvailability: Check Registration availability
+[**list_access_controlled_resources**](ApplicationMetadataApi.md#list_access_controlled_resources) | **GET** /api/metadata/access/resources | [EARLY ACCESS] ListAccessControlledResources: Get resources available for access control
 
 
 # **get_registration_availability**
 > str get_registration_availability()
 
-[EARLY ACCESS] GetRegistrationAvailability: 
+[EARLY ACCESS] GetRegistrationAvailability: Check Registration availability
+
+Identify whether there registrations service is available
 
 ### Example
 
@@ -45,7 +47,7 @@ with finbourne_identity.ApiClient(configuration) as api_client:
     api_instance = finbourne_identity.ApplicationMetadataApi(api_client)
     
     try:
-        # [EARLY ACCESS] GetRegistrationAvailability: 
+        # [EARLY ACCESS] GetRegistrationAvailability: Check Registration availability
         api_response = api_instance.get_registration_availability()
         pprint(api_response)
     except ApiException as e:
@@ -79,7 +81,9 @@ This endpoint does not need any parameter.
 # **list_access_controlled_resources**
 > ResourceListOfAccessControlledResource list_access_controlled_resources()
 
-[EARLY ACCESS] ListAccessControlledResources: 
+[EARLY ACCESS] ListAccessControlledResources: Get resources available for access control
+
+Get the comprehensive set of resources that are available for access control
 
 ### Example
 
@@ -113,7 +117,7 @@ with finbourne_identity.ApiClient(configuration) as api_client:
     api_instance = finbourne_identity.ApplicationMetadataApi(api_client)
     
     try:
-        # [EARLY ACCESS] ListAccessControlledResources: 
+        # [EARLY ACCESS] ListAccessControlledResources: Get resources available for access control
         api_response = api_instance.list_access_controlled_resources()
         pprint(api_response)
     except ApiException as e:

@@ -4,17 +4,19 @@ All URIs are relative to *https://fbn-ci.lusid.com/identity*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**create_domain**](DomainsApi.md#create_domain) | **POST** /api/domains | CreateDomain: 
-[**get_agreement**](DomainsApi.md#get_agreement) | **HEAD** /api/domains/me/agreements/{agreement} | GetAgreement: 
-[**get_my_domain**](DomainsApi.md#get_my_domain) | **GET** /api/domains/me | GetMyDomain: 
-[**list_agreements**](DomainsApi.md#list_agreements) | **GET** /api/domains/me/agreements | ListAgreements: 
-[**sign_agreement**](DomainsApi.md#sign_agreement) | **PUT** /api/domains/me/agreements/{agreement} | SignAgreement: 
+[**create_domain**](DomainsApi.md#create_domain) | **POST** /api/domains | CreateDomain: Create Domain
+[**get_agreement**](DomainsApi.md#get_agreement) | **HEAD** /api/domains/me/agreements/{agreement} | GetAgreement: Get Agreement
+[**get_my_domain**](DomainsApi.md#get_my_domain) | **GET** /api/domains/me | GetMyDomain: Get current Domain
+[**list_agreements**](DomainsApi.md#list_agreements) | **GET** /api/domains/me/agreements | ListAgreements: List Agreements
+[**sign_agreement**](DomainsApi.md#sign_agreement) | **PUT** /api/domains/me/agreements/{agreement} | SignAgreement: Sign Agreement
 
 
 # **create_domain**
 > DomainResponse create_domain(code, create_domain_request)
 
-CreateDomain: 
+CreateDomain: Create Domain
+
+Creates a Domain
 
 ### Example
 
@@ -46,11 +48,11 @@ configuration.access_token = 'YOUR_ACCESS_TOKEN'
 with finbourne_identity.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = finbourne_identity.DomainsApi(api_client)
-    code = 'code_example' # str | 
-create_domain_request = {"domain":"MyCo","companyName":"MyCo USA","owner":{"firstName":"Owner","lastName":"OfAccount","emailAddress":"owner.ofaccount@myco.com","login":"owner.ofaccount@myco.com","type":"Personal"},"signedAgreements":["TermsAndConditions_01012019_Gb"]} # CreateDomainRequest | 
+    code = 'code_example' # str | The verification code necessary to create domains
+create_domain_request = {"domain":"MyCo","companyName":"MyCo USA","owner":{"firstName":"Owner","lastName":"OfAccount","emailAddress":"owner.ofaccount@myco.com","login":"owner.ofaccount@myco.com","type":"Personal"},"signedAgreements":["TermsAndConditions_01012019_Gb"]} # CreateDomainRequest | The definition of the domain
 
     try:
-        # CreateDomain: 
+        # CreateDomain: Create Domain
         api_response = api_instance.create_domain(code, create_domain_request)
         pprint(api_response)
     except ApiException as e:
@@ -61,8 +63,8 @@ create_domain_request = {"domain":"MyCo","companyName":"MyCo USA","owner":{"firs
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **code** | **str**|  | 
- **create_domain_request** | [**CreateDomainRequest**](CreateDomainRequest.md)|  | 
+ **code** | **str**| The verification code necessary to create domains | 
+ **create_domain_request** | [**CreateDomainRequest**](CreateDomainRequest.md)| The definition of the domain | 
 
 ### Return type
 
@@ -89,7 +91,9 @@ Name | Type | Description  | Notes
 # **get_agreement**
 > bool get_agreement(agreement)
 
-GetAgreement: 
+GetAgreement: Get Agreement
+
+Check whether the domain has signed a specific agreement
 
 ### Example
 
@@ -121,10 +125,10 @@ configuration.access_token = 'YOUR_ACCESS_TOKEN'
 with finbourne_identity.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = finbourne_identity.DomainsApi(api_client)
-    agreement = 'agreement_example' # str | 
+    agreement = 'agreement_example' # str | Name of the agreement
 
     try:
-        # GetAgreement: 
+        # GetAgreement: Get Agreement
         api_response = api_instance.get_agreement(agreement)
         pprint(api_response)
     except ApiException as e:
@@ -135,7 +139,7 @@ with finbourne_identity.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **agreement** | **str**|  | 
+ **agreement** | **str**| Name of the agreement | 
 
 ### Return type
 
@@ -163,7 +167,9 @@ Name | Type | Description  | Notes
 # **get_my_domain**
 > DomainResponse get_my_domain()
 
-GetMyDomain: 
+GetMyDomain: Get current Domain
+
+Gets the Domain of the requesting User
 
 ### Example
 
@@ -197,7 +203,7 @@ with finbourne_identity.ApiClient(configuration) as api_client:
     api_instance = finbourne_identity.DomainsApi(api_client)
     
     try:
-        # GetMyDomain: 
+        # GetMyDomain: Get current Domain
         api_response = api_instance.get_my_domain()
         pprint(api_response)
     except ApiException as e:
@@ -231,7 +237,9 @@ This endpoint does not need any parameter.
 # **list_agreements**
 > dict(str, AgreementResponse) list_agreements()
 
-ListAgreements: 
+ListAgreements: List Agreements
+
+Lists the signed agreements for the current domain
 
 ### Example
 
@@ -265,7 +273,7 @@ with finbourne_identity.ApiClient(configuration) as api_client:
     api_instance = finbourne_identity.DomainsApi(api_client)
     
     try:
-        # ListAgreements: 
+        # ListAgreements: List Agreements
         api_response = api_instance.list_agreements()
         pprint(api_response)
     except ApiException as e:
@@ -299,7 +307,9 @@ This endpoint does not need any parameter.
 # **sign_agreement**
 > AgreementResponse sign_agreement(agreement)
 
-SignAgreement: 
+SignAgreement: Sign Agreement
+
+Signs a specified agreement. Only the owner of a domain can sign an agreement
 
 ### Example
 
@@ -331,10 +341,10 @@ configuration.access_token = 'YOUR_ACCESS_TOKEN'
 with finbourne_identity.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = finbourne_identity.DomainsApi(api_client)
-    agreement = 'agreement_example' # str | 
+    agreement = 'agreement_example' # str | Name of the agreement being signed
 
     try:
-        # SignAgreement: 
+        # SignAgreement: Sign Agreement
         api_response = api_instance.sign_agreement(agreement)
         pprint(api_response)
     except ApiException as e:
@@ -345,7 +355,7 @@ with finbourne_identity.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **agreement** | **str**|  | 
+ **agreement** | **str**| Name of the agreement being signed | 
 
 ### Return type
 

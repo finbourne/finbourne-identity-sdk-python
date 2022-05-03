@@ -8,7 +8,7 @@
       "url": "https://www.finbourne.com",
       "email": "info@finbourne.com"
     },
-    "version": "0.0.1620",
+    "version": "0.0.1622",
     "x-logo": {
       "url": "https://www.lusid.com/app/assets/logo_white.png",
       "backgroundColor": "#415464"
@@ -26,7 +26,8 @@
         "tags": [
           "Applications"
         ],
-        "summary": "[EARLY ACCESS] ListApplications: ",
+        "summary": "[EARLY ACCESS] ListApplications: List Applications",
+        "description": "List the available applications",
         "operationId": "ListApplications",
         "responses": {
           "200": {
@@ -74,9 +75,11 @@
         "tags": [
           "Applications"
         ],
-        "summary": "[EARLY ACCESS] CreateApplication: ",
+        "summary": "[EARLY ACCESS] CreateApplication: Create Application",
+        "description": "Create a new Application",
         "operationId": "CreateApplication",
         "requestBody": {
+          "description": "Details of the application to be created",
           "content": {
             "application/json-patch+json": {
               "schema": {
@@ -173,25 +176,30 @@
         "tags": [
           "Applications"
         ],
-        "summary": "[EARLY ACCESS] GetApplication: ",
+        "summary": "[EARLY ACCESS] GetApplication: Get Application",
+        "description": "get the specified application, and optionally the OIDC secret",
         "operationId": "GetApplication",
         "parameters": [
           {
             "name": "id",
             "in": "path",
+            "description": "The unique identifier for the application",
             "required": true,
             "schema": {
               "maxLength": 64,
               "minLength": 1,
               "pattern": "^[a-zA-Z0-9\\-_]+$",
-              "type": "string"
+              "type": "string",
+              "description": "The unique identifier for the application"
             }
           },
           {
             "name": "includeSecret",
             "in": "query",
+            "description": "Optional. If set to true, the application secrets will be returned in plain text",
             "schema": {
-              "type": "boolean"
+              "type": "boolean",
+              "description": "Optional. If set to true, the application secrets will be returned in plain text"
             },
             "x-nullable": true
           }
@@ -257,18 +265,21 @@
         "tags": [
           "Applications"
         ],
-        "summary": "[EARLY ACCESS] DeleteApplication: ",
+        "summary": "[EARLY ACCESS] DeleteApplication: Delete Application",
+        "description": "Delete the specified application",
         "operationId": "DeleteApplication",
         "parameters": [
           {
             "name": "id",
             "in": "path",
+            "description": "The unique identifier for the application",
             "required": true,
             "schema": {
               "maxLength": 64,
               "minLength": 1,
               "pattern": "^[a-zA-Z0-9\\-_]+$",
-              "type": "string"
+              "type": "string",
+              "description": "The unique identifier for the application"
             }
           }
         ],
@@ -310,18 +321,21 @@
         "tags": [
           "Applications"
         ],
-        "summary": "[EXPERIMENTAL] RotateApplicationSecrets: ",
+        "summary": "[EXPERIMENTAL] RotateApplicationSecrets: Rotate Application Secrets",
+        "description": "Rotate the secrets for the specified application",
         "operationId": "RotateApplicationSecrets",
         "parameters": [
           {
             "name": "id",
             "in": "path",
+            "description": "The unique identifier for the application",
             "required": true,
             "schema": {
               "maxLength": 64,
               "minLength": 1,
               "pattern": "^[a-zA-Z0-9\\-_]+$",
-              "type": "string"
+              "type": "string",
+              "description": "The unique identifier for the application"
             }
           }
         ],
@@ -378,7 +392,8 @@
         "tags": [
           "Authentication"
         ],
-        "summary": "GetAuthenticationInformation: Get authentication information",
+        "summary": "GetAuthenticationInformation: Gets AuthenticationInformation",
+        "description": "Get the AuthenticationInformation associated with the current domain. This includes all the\r\nnecessary information to login to this domain.",
         "operationId": "GetAuthenticationInformation",
         "responses": {
           "200": {
@@ -419,9 +434,11 @@
         "tags": [
           "Authentication"
         ],
-        "summary": "[EARLY ACCESS] GrantSupportAccess: Grant FINBOURNE the ability to access your account",
+        "summary": "[EARLY ACCESS] GrantSupportAccess: Grants FINBOURNE support access to your account",
+        "description": "Granting support access will allow FINBOURNE employees full access to your data with the express intent to investigate support issues\r\nYou can revoke this (and all) access at any time using the InvalidateSupportAccess endpoint.",
         "operationId": "GrantSupportAccess",
         "requestBody": {
+          "description": "Request detailing the duration and reasons for supplying support access",
           "content": {
             "application/json-patch+json": {
               "schema": {
@@ -514,7 +531,8 @@
         "tags": [
           "Authentication"
         ],
-        "summary": "[EARLY ACCESS] InvalidateSupportAccess: Invalidate all FINBOURNE support access to your account",
+        "summary": "[EARLY ACCESS] InvalidateSupportAccess: Revoke any FINBOURNE support access to your account",
+        "description": "This will result in a loss of access to your data for all FINBOURNE support agents",
         "operationId": "InvalidateSupportAccess",
         "responses": {
           "200": {
@@ -574,7 +592,8 @@
         "tags": [
           "Authentication"
         ],
-        "summary": "[EARLY ACCESS] GetSupportAccessHistory: Get support access history",
+        "summary": "[EARLY ACCESS] GetSupportAccessHistory: Get the history of all support access granted and any information pertaining to their termination",
+        "description": "The active and inactive support requests will be returned, inactive support requests will have information pertaining to their termination\r\nincluding obfuscated userIds of those who created and terminated the request",
         "operationId": "GetSupportAccessHistory",
         "responses": {
           "200": {
@@ -636,18 +655,21 @@
         "tags": [
           "Users"
         ],
-        "summary": "[EARLY ACCESS] FindUsersById: ",
+        "summary": "[EARLY ACCESS] FindUsersById: Find users by id endpoint",
+        "description": "Finds a maximum of 50 users by ID",
         "operationId": "FindUsersById",
         "parameters": [
           {
             "name": "id",
             "in": "query",
+            "description": "A list of unique identifiers for the users",
             "required": true,
             "schema": {
               "type": "array",
               "items": {
                 "type": "string"
-              }
+              },
+              "description": "A list of unique identifiers for the users"
             }
           }
         ],
@@ -760,22 +782,26 @@
         "tags": [
           "Domains"
         ],
-        "summary": "CreateDomain: ",
+        "summary": "CreateDomain: Create Domain",
+        "description": "Creates a Domain",
         "operationId": "CreateDomain",
         "parameters": [
           {
             "name": "code",
             "in": "query",
+            "description": "The verification code necessary to create domains",
             "required": true,
             "schema": {
               "maxLength": 262144,
               "minLength": 1,
               "pattern": "^[\\s\\S]*$",
-              "type": "string"
+              "type": "string",
+              "description": "The verification code necessary to create domains"
             }
           }
         ],
         "requestBody": {
+          "description": "The definition of the domain",
           "content": {
             "application/json-patch+json": {
               "schema": {
@@ -972,7 +998,8 @@
         "tags": [
           "Domains"
         ],
-        "summary": "GetMyDomain: ",
+        "summary": "GetMyDomain: Get current Domain",
+        "description": "Gets the Domain of the requesting User",
         "operationId": "GetMyDomain",
         "responses": {
           "200": {
@@ -1070,7 +1097,8 @@
         "tags": [
           "Domains"
         ],
-        "summary": "ListAgreements: ",
+        "summary": "ListAgreements: List Agreements",
+        "description": "Lists the signed agreements for the current domain",
         "operationId": "ListAgreements",
         "responses": {
           "200": {
@@ -1084,15 +1112,15 @@
                   }
                 },
                 "example": {
-                  "termsAndConditions-20190301-GBP": {
-                    "name": "TermsAndConditions-20190301-GB",
-                    "signedBy": "DomainOwnerUserId",
-                    "signedAt": "2019-03-07T13:23:07.0000000+00:00"
-                  },
                   "termsAndConditions-20190101-GBP": {
                     "name": "TermsAndConditions-20190101-GB",
                     "signedBy": "DomainOwnerUserId",
                     "signedAt": "2019-01-05T10:15:00.0000000+00:00"
+                  },
+                  "termsAndConditions-20190301-GBP": {
+                    "name": "TermsAndConditions-20190301-GB",
+                    "signedBy": "DomainOwnerUserId",
+                    "signedAt": "2019-03-07T13:23:07.0000000+00:00"
                   }
                 }
               },
@@ -1104,15 +1132,15 @@
                   }
                 },
                 "example": {
-                  "termsAndConditions-20190301-GBP": {
-                    "name": "TermsAndConditions-20190301-GB",
-                    "signedBy": "DomainOwnerUserId",
-                    "signedAt": "2019-03-07T13:23:07.0000000+00:00"
-                  },
                   "termsAndConditions-20190101-GBP": {
                     "name": "TermsAndConditions-20190101-GB",
                     "signedBy": "DomainOwnerUserId",
                     "signedAt": "2019-01-05T10:15:00.0000000+00:00"
+                  },
+                  "termsAndConditions-20190301-GBP": {
+                    "name": "TermsAndConditions-20190301-GB",
+                    "signedBy": "DomainOwnerUserId",
+                    "signedAt": "2019-03-07T13:23:07.0000000+00:00"
                   }
                 }
               },
@@ -1124,15 +1152,15 @@
                   }
                 },
                 "example": {
-                  "termsAndConditions-20190301-GBP": {
-                    "name": "TermsAndConditions-20190301-GB",
-                    "signedBy": "DomainOwnerUserId",
-                    "signedAt": "2019-03-07T13:23:07.0000000+00:00"
-                  },
                   "termsAndConditions-20190101-GBP": {
                     "name": "TermsAndConditions-20190101-GB",
                     "signedBy": "DomainOwnerUserId",
                     "signedAt": "2019-01-05T10:15:00.0000000+00:00"
+                  },
+                  "termsAndConditions-20190301-GBP": {
+                    "name": "TermsAndConditions-20190301-GB",
+                    "signedBy": "DomainOwnerUserId",
+                    "signedAt": "2019-03-07T13:23:07.0000000+00:00"
                   }
                 }
               }
@@ -1162,17 +1190,20 @@
         "tags": [
           "Domains"
         ],
-        "summary": "SignAgreement: ",
+        "summary": "SignAgreement: Sign Agreement",
+        "description": "Signs a specified agreement. Only the owner of a domain can sign an agreement",
         "operationId": "SignAgreement",
         "parameters": [
           {
             "name": "agreement",
             "in": "path",
+            "description": "Name of the agreement being signed",
             "required": true,
             "schema": {
               "maxLength": 100,
               "minLength": 0,
-              "type": "string"
+              "type": "string",
+              "description": "Name of the agreement being signed"
             }
           }
         ],
@@ -1254,17 +1285,20 @@
         "tags": [
           "Domains"
         ],
-        "summary": "GetAgreement: ",
+        "summary": "GetAgreement: Get Agreement",
+        "description": "Check whether the domain has signed a specific agreement",
         "operationId": "GetAgreement",
         "parameters": [
           {
             "name": "agreement",
             "in": "path",
+            "description": "Name of the agreement",
             "required": true,
             "schema": {
               "maxLength": 100,
               "minLength": 0,
-              "type": "string"
+              "type": "string",
+              "description": "Name of the agreement"
             }
           }
         ],
@@ -1353,9 +1387,11 @@
         "tags": [
           "Personal Authentication Tokens"
         ],
-        "summary": "[EARLY ACCESS] CreateApiKey: ",
+        "summary": "[EARLY ACCESS] CreateApiKey: Create a Personal Access Token",
+        "description": "Generates a Personal Access Token and returns the new key and its associated metadata.",
         "operationId": "CreateApiKey",
         "requestBody": {
+          "description": "The request to create a new Personal Access Token",
           "content": {
             "application/json-patch+json": {
               "schema": {
@@ -1446,7 +1482,8 @@
         "tags": [
           "Personal Authentication Tokens"
         ],
-        "summary": "[EARLY ACCESS] ListOwnApiKeys: ",
+        "summary": "[EARLY ACCESS] ListOwnApiKeys: Gets the meta data for all of the user's existing Personal Access Tokens.",
+        "description": "Gets the meta data for all of the user's Personal Access Tokens that have not been deleted. They may be\r\ninvalid due to the deactivation date having passed.",
         "operationId": "ListOwnApiKeys",
         "responses": {
           "200": {
@@ -1506,18 +1543,21 @@
         "tags": [
           "Personal Authentication Tokens"
         ],
-        "summary": "[EARLY ACCESS] DeleteApiKey: ",
+        "summary": "[EARLY ACCESS] DeleteApiKey: Invalidate a Personal Access Token",
+        "description": "Immediately invalidates the specified Personal Access Token",
         "operationId": "DeleteApiKey",
         "parameters": [
           {
             "name": "id",
             "in": "path",
+            "description": "The id of the Personal Access Token to delete",
             "required": true,
             "schema": {
               "maxLength": 64,
               "minLength": 1,
               "pattern": "^[a-zA-Z0-9\\-_]+$",
-              "type": "string"
+              "type": "string",
+              "description": "The id of the Personal Access Token to delete"
             }
           }
         ],
@@ -1572,7 +1612,8 @@
         "tags": [
           "Me"
         ],
-        "summary": "[EARLY ACCESS] GetUserInfo: ",
+        "summary": "[EARLY ACCESS] GetUserInfo: Get User Info",
+        "description": "Get the requesting user's basic info",
         "operationId": "GetUserInfo",
         "responses": {
           "200": {
@@ -1614,7 +1655,8 @@
         "tags": [
           "Application Metadata"
         ],
-        "summary": "[EARLY ACCESS] ListAccessControlledResources: ",
+        "summary": "[EARLY ACCESS] ListAccessControlledResources: Get resources available for access control",
+        "description": "Get the comprehensive set of resources that are available for access control",
         "operationId": "ListAccessControlledResources",
         "responses": {
           "200": {
@@ -1661,7 +1703,8 @@
         "tags": [
           "Application Metadata"
         ],
-        "summary": "[EARLY ACCESS] GetRegistrationAvailability: ",
+        "summary": "[EARLY ACCESS] GetRegistrationAvailability: Check Registration availability",
+        "description": "Identify whether there registrations service is available",
         "operationId": "GetRegistrationAvailability",
         "responses": {
           "200": {
@@ -1708,7 +1751,8 @@
         "tags": [
           "Roles"
         ],
-        "summary": "[EARLY ACCESS] ListRoles: ",
+        "summary": "[EARLY ACCESS] ListRoles: List Roles",
+        "description": "List the available Roles",
         "operationId": "ListRoles",
         "responses": {
           "200": {
@@ -1758,9 +1802,11 @@
         "tags": [
           "Roles"
         ],
-        "summary": "[EARLY ACCESS] CreateRole: ",
+        "summary": "[EARLY ACCESS] CreateRole: Create Role",
+        "description": "Creates a new Role",
         "operationId": "CreateRole",
         "requestBody": {
+          "description": "Details of the role to be created",
           "content": {
             "application/json-patch+json": {
               "schema": {
@@ -1866,18 +1912,21 @@
         "tags": [
           "Roles"
         ],
-        "summary": "[EARLY ACCESS] GetRole: ",
+        "summary": "[EARLY ACCESS] GetRole: Get Role",
+        "description": "Get the specified role",
         "operationId": "GetRole",
         "parameters": [
           {
             "name": "id",
             "in": "path",
+            "description": "The unique identifier for the role",
             "required": true,
             "schema": {
               "maxLength": 64,
               "minLength": 1,
               "pattern": "^[a-zA-Z0-9\\-_]+$",
-              "type": "string"
+              "type": "string",
+              "description": "The unique identifier for the role"
             }
           }
         ],
@@ -1944,18 +1993,21 @@
         "tags": [
           "Roles"
         ],
-        "summary": "[EARLY ACCESS] DeleteRole: ",
+        "summary": "[EARLY ACCESS] DeleteRole: Delete Role",
+        "description": "Delete the specified role",
         "operationId": "DeleteRole",
         "parameters": [
           {
             "name": "id",
             "in": "path",
+            "description": "The unique identifier for the role",
             "required": true,
             "schema": {
               "maxLength": 64,
               "minLength": 1,
               "pattern": "^[a-zA-Z0-9\\-_]+$",
-              "type": "string"
+              "type": "string",
+              "description": "The unique identifier for the role"
             }
           }
         ],
@@ -1995,22 +2047,26 @@
         "tags": [
           "Roles"
         ],
-        "summary": "[EARLY ACCESS] UpdateRole: ",
+        "summary": "[EARLY ACCESS] UpdateRole: Update Role",
+        "description": "Update the specified Role",
         "operationId": "UpdateRole",
         "parameters": [
           {
             "name": "id",
             "in": "path",
+            "description": "The unique identifier for the role to be updated",
             "required": true,
             "schema": {
               "maxLength": 64,
               "minLength": 1,
               "pattern": "^[a-zA-Z0-9\\-_]+$",
-              "type": "string"
+              "type": "string",
+              "description": "The unique identifier for the role to be updated"
             }
           }
         ],
         "requestBody": {
+          "description": "The new definition of the role",
           "content": {
             "application/json-patch+json": {
               "schema": {
@@ -2111,18 +2167,21 @@
         "tags": [
           "Roles"
         ],
-        "summary": "[EARLY ACCESS] ListUsersInRole: ",
+        "summary": "[EARLY ACCESS] ListUsersInRole: Get the users in the specified role.",
+        "description": "List all Users in the specified Role",
         "operationId": "ListUsersInRole",
         "parameters": [
           {
             "name": "id",
             "in": "path",
+            "description": "The unique identifier for the Role",
             "required": true,
             "schema": {
               "maxLength": 64,
               "minLength": 1,
               "pattern": "^[a-zA-Z0-9\\-_]+$",
-              "type": "string"
+              "type": "string",
+              "description": "The unique identifier for the Role"
             }
           }
         ],
@@ -2198,29 +2257,34 @@
         "tags": [
           "Roles"
         ],
-        "summary": "[EARLY ACCESS] AddUserToRole: ",
+        "summary": "[EARLY ACCESS] AddUserToRole: Add User to Role",
+        "description": "Adds the User to the specified Role",
         "operationId": "AddUserToRole",
         "parameters": [
           {
             "name": "id",
             "in": "path",
+            "description": "The unique identifier for the Role",
             "required": true,
             "schema": {
               "maxLength": 64,
               "minLength": 1,
               "pattern": "^[a-zA-Z0-9\\-_]+$",
-              "type": "string"
+              "type": "string",
+              "description": "The unique identifier for the Role"
             }
           },
           {
             "name": "userId",
             "in": "path",
+            "description": "The unique identifier for the User",
             "required": true,
             "schema": {
               "maxLength": 64,
               "minLength": 1,
               "pattern": "^[a-zA-Z0-9\\-_]+$",
-              "type": "string"
+              "type": "string",
+              "description": "The unique identifier for the User"
             }
           }
         ],
@@ -2270,29 +2334,34 @@
         "tags": [
           "Roles"
         ],
-        "summary": "[EARLY ACCESS] RemoveUserFromRole: ",
+        "summary": "[EARLY ACCESS] RemoveUserFromRole: Remove User from Role",
+        "description": "Removes the User from the specified Role",
         "operationId": "RemoveUserFromRole",
         "parameters": [
           {
             "name": "id",
             "in": "path",
+            "description": "The unique identifier for the Role",
             "required": true,
             "schema": {
               "maxLength": 64,
               "minLength": 1,
               "pattern": "^[a-zA-Z0-9\\-_]+$",
-              "type": "string"
+              "type": "string",
+              "description": "The unique identifier for the Role"
             }
           },
           {
             "name": "userId",
             "in": "path",
+            "description": "The unique identifier for the User",
             "required": true,
             "schema": {
               "maxLength": 64,
               "minLength": 1,
               "pattern": "^[a-zA-Z0-9\\-_]+$",
-              "type": "string"
+              "type": "string",
+              "description": "The unique identifier for the User"
             }
           }
         ],
@@ -2344,7 +2413,8 @@
         "tags": [
           "Tokens"
         ],
-        "summary": "[EARLY ACCESS] InvalidateToken: ",
+        "summary": "[EARLY ACCESS] InvalidateToken: Invalidate current JWT token (sign out)",
+        "description": "Log the current user out of all Finbourne platforms by invalidating the current token",
         "operationId": "InvalidateToken",
         "responses": {
           "204": {
@@ -2374,14 +2444,17 @@
         "tags": [
           "Users"
         ],
-        "summary": "[EARLY ACCESS] ListUsers: ",
+        "summary": "[EARLY ACCESS] ListUsers: List Users",
+        "description": "List the available Users",
         "operationId": "ListUsers",
         "parameters": [
           {
             "name": "includeRoles",
             "in": "query",
+            "description": "Flag indicating that the users roles should be included in the response",
             "schema": {
               "type": "boolean",
+              "description": "Flag indicating that the users roles should be included in the response",
               "default": false
             },
             "x-nullable": true
@@ -2389,8 +2462,10 @@
           {
             "name": "includeDeactivated",
             "in": "query",
+            "description": "Include previously deleted (not purged) users",
             "schema": {
               "type": "boolean",
+              "description": "Include previously deleted (not purged) users",
               "default": false
             },
             "x-nullable": true
@@ -2466,20 +2541,24 @@
         "tags": [
           "Users"
         ],
-        "summary": "[EARLY ACCESS] CreateUser: ",
+        "summary": "[EARLY ACCESS] CreateUser: Create User",
+        "description": "Create a new User",
         "operationId": "CreateUser",
         "parameters": [
           {
             "name": "waitForReindex",
             "in": "query",
+            "description": "Should the request wait until the newly created User is indexed (available in List) before returning",
             "schema": {
               "type": "boolean",
+              "description": "Should the request wait until the newly created User is indexed (available in List) before returning",
               "default": false
             },
             "x-nullable": true
           }
         ],
         "requestBody": {
+          "description": "Details of the User to be created",
           "content": {
             "application/json-patch+json": {
               "schema": {
@@ -2599,25 +2678,30 @@
         "tags": [
           "Users"
         ],
-        "summary": "[EARLY ACCESS] GetUser: ",
+        "summary": "[EARLY ACCESS] GetUser: Get User",
+        "description": "Get the specified User",
         "operationId": "GetUser",
         "parameters": [
           {
             "name": "id",
             "in": "path",
+            "description": "The unique identifier for the User",
             "required": true,
             "schema": {
               "maxLength": 64,
               "minLength": 1,
               "pattern": "^[a-zA-Z0-9\\-_]+$",
-              "type": "string"
+              "type": "string",
+              "description": "The unique identifier for the User"
             }
           },
           {
             "name": "includeRoles",
             "in": "query",
+            "description": "Flag indicating that the users roles should be included in the response",
             "schema": {
               "type": "boolean",
+              "description": "Flag indicating that the users roles should be included in the response",
               "nullable": true
             },
             "x-nullable": true
@@ -2688,25 +2772,30 @@
         "tags": [
           "Users"
         ],
-        "summary": "[EARLY ACCESS] DeleteUser: ",
+        "summary": "[EARLY ACCESS] DeleteUser: Delete User",
+        "description": "By default the user will be de-provisioned and inactive, however their record will remain in the identity\r\nprovider for audit purposes. If this is not desirable and removal of all trace of the user is required,\r\nthe purge parameter can be specified to indicate the details should be purged completely.",
         "operationId": "DeleteUser",
         "parameters": [
           {
             "name": "id",
             "in": "path",
+            "description": "The unique identifier for the user",
             "required": true,
             "schema": {
               "maxLength": 64,
               "minLength": 1,
               "pattern": "^[a-zA-Z0-9\\-_]+$",
-              "type": "string"
+              "type": "string",
+              "description": "The unique identifier for the user"
             }
           },
           {
             "name": "purge",
             "in": "query",
+            "description": "Whether to purge any trace of the user from the identity provider (will affect audit)",
             "schema": {
-              "type": "boolean"
+              "type": "boolean",
+              "description": "Whether to purge any trace of the user from the identity provider (will affect audit)"
             },
             "x-nullable": true
           }
@@ -2747,22 +2836,26 @@
         "tags": [
           "Users"
         ],
-        "summary": "[EARLY ACCESS] UpdateUser: ",
+        "summary": "[EARLY ACCESS] UpdateUser: Update User",
+        "description": "Updates the specified User",
         "operationId": "UpdateUser",
         "parameters": [
           {
             "name": "id",
             "in": "path",
+            "description": "The unique identifier for the User to be updated",
             "required": true,
             "schema": {
               "maxLength": 64,
               "minLength": 1,
               "pattern": "^[a-zA-Z0-9\\-_]+$",
-              "type": "string"
+              "type": "string",
+              "description": "The unique identifier for the User to be updated"
             }
           }
         ],
         "requestBody": {
+          "description": "The new definition of the User",
           "content": {
             "application/json-patch+json": {
               "schema": {
@@ -2878,18 +2971,21 @@
         "tags": [
           "Users"
         ],
-        "summary": "[BETA] SendActivationEmail: ",
+        "summary": "[BETA] SendActivationEmail: Sends an activation email to the User",
+        "description": "Sends an activation email to the specified User",
         "operationId": "SendActivationEmail",
         "parameters": [
           {
             "name": "id",
             "in": "path",
+            "description": "The unique identifier for the User to be activated",
             "required": true,
             "schema": {
               "maxLength": 64,
               "minLength": 1,
               "pattern": "^[a-zA-Z0-9\\-_]+$",
-              "type": "string"
+              "type": "string",
+              "description": "The unique identifier for the User to be activated"
             }
           }
         ],
@@ -2931,18 +3027,21 @@
         "tags": [
           "Users"
         ],
-        "summary": "[BETA] ExpirePassword: ",
+        "summary": "[BETA] ExpirePassword: Reset the user's password to a temporary one",
+        "description": "Resets the user's password to a temporary one which is then expired",
         "operationId": "ExpirePassword",
         "parameters": [
           {
             "name": "id",
             "in": "path",
+            "description": "The unique identifier for the User having its password reset",
             "required": true,
             "schema": {
               "maxLength": 64,
               "minLength": 1,
               "pattern": "^[a-zA-Z0-9\\-_]+$",
-              "type": "string"
+              "type": "string",
+              "description": "The unique identifier for the User having its password reset"
             }
           }
         ],
@@ -2991,18 +3090,21 @@
         "tags": [
           "Users"
         ],
-        "summary": "[BETA] ResetFactors: ",
+        "summary": "[BETA] ResetFactors: Reset MFA factors",
+        "description": "Resets the MFA factors of the specified User",
         "operationId": "ResetFactors",
         "parameters": [
           {
             "name": "id",
             "in": "path",
+            "description": "The unique identifier for the User having their MFA factors reset",
             "required": true,
             "schema": {
               "maxLength": 64,
               "minLength": 1,
               "pattern": "^[a-zA-Z0-9\\-_]+$",
-              "type": "string"
+              "type": "string",
+              "description": "The unique identifier for the User having their MFA factors reset"
             }
           }
         ],
@@ -3044,18 +3146,21 @@
         "tags": [
           "Users"
         ],
-        "summary": "[BETA] ResetPassword: ",
+        "summary": "[BETA] ResetPassword: Reset Password",
+        "description": "Resets the password of the specified User",
         "operationId": "ResetPassword",
         "parameters": [
           {
             "name": "id",
             "in": "path",
+            "description": "The unique identifier for the User having their password reset",
             "required": true,
             "schema": {
               "maxLength": 64,
               "minLength": 1,
               "pattern": "^[a-zA-Z0-9\\-_]+$",
-              "type": "string"
+              "type": "string",
+              "description": "The unique identifier for the User having their password reset"
             }
           }
         ],
@@ -3097,18 +3202,21 @@
         "tags": [
           "Users"
         ],
-        "summary": "[BETA] UnlockUser: ",
+        "summary": "[BETA] UnlockUser: Unlock User",
+        "description": "Unlocks the specified User",
         "operationId": "UnlockUser",
         "parameters": [
           {
             "name": "id",
             "in": "path",
+            "description": "The unique identifier for the User to be unlocked",
             "required": true,
             "schema": {
               "maxLength": 64,
               "minLength": 1,
               "pattern": "^[a-zA-Z0-9\\-_]+$",
-              "type": "string"
+              "type": "string",
+              "description": "The unique identifier for the User to be unlocked"
             }
           }
         ],
@@ -3250,18 +3358,22 @@
         "properties": {
           "name": {
             "type": "string",
+            "description": "Name of the agreement",
             "nullable": true
           },
           "signedBy": {
             "type": "string",
+            "description": "UserID (obfuscated) of the user who signed this agreement",
             "nullable": true
           },
           "signedAt": {
             "type": "string",
+            "description": "Datetime at which the agreement was signed",
             "format": "date-time"
           }
         },
-        "additionalProperties": false
+        "additionalProperties": false,
+        "description": "Agreement DTO"
       },
       "ApiKey": {
         "required": [
@@ -3275,25 +3387,30 @@
             "maxLength": 64,
             "minLength": 1,
             "pattern": "^[a-zA-Z0-9\\-_]+$",
-            "type": "string"
+            "type": "string",
+            "description": "The unique Id of the API key"
           },
           "displayName": {
             "maxLength": 512,
             "minLength": 1,
             "pattern": "^[\\s\\S]*$",
-            "type": "string"
+            "type": "string",
+            "description": "The display name of the API key"
           },
           "createdDate": {
             "type": "string",
+            "description": "The creation date of the API key",
             "format": "date-time"
           },
           "deactivationDate": {
             "type": "string",
+            "description": "The deactivation date of the API key",
             "format": "date-time",
             "nullable": true
           }
         },
-        "additionalProperties": false
+        "additionalProperties": false,
+        "description": "The metadata of an API key"
       },
       "AuthenticationInformation": {
         "required": [
@@ -3331,15 +3448,18 @@
             "maxLength": 512,
             "minLength": 1,
             "pattern": "^[\\s\\S]*$",
-            "type": "string"
+            "type": "string",
+            "description": "The display name for the API key"
           },
           "deactivationDate": {
             "type": "string",
+            "description": "The optional date at which the key should deactivate",
             "format": "date-time",
             "nullable": true
           }
         },
-        "additionalProperties": false
+        "additionalProperties": false,
+        "description": "Create an API key"
       },
       "CreateApplicationRequest": {
         "required": [
@@ -3353,25 +3473,29 @@
             "maxLength": 50,
             "minLength": 1,
             "pattern": "^[\\s\\S]*$",
-            "type": "string"
+            "type": "string",
+            "description": "The Display Name of the application"
           },
           "clientId": {
             "maxLength": 50,
             "minLength": 6,
             "pattern": "^[a-zA-Z][a-zA-Z0-9-]{5,49}",
-            "type": "string"
+            "type": "string",
+            "description": "The OpenID Connect ClientId of the application"
           },
           "type": {
             "maxLength": 20,
             "minLength": 1,
             "pattern": "^[a-zA-Z]*$",
-            "type": "string"
+            "type": "string",
+            "description": "The Type of the application. This must be either Native or Web"
           },
           "redirectUris": {
             "type": "array",
             "items": {
               "type": "string"
             },
+            "description": "A web application's acceptable list of post-login redirect URIs",
             "nullable": true
           },
           "postLogoutRedirectUris": {
@@ -3379,10 +3503,12 @@
             "items": {
               "type": "string"
             },
+            "description": "A web application's acceptable list of post-logout redirect URIs",
             "nullable": true
           }
         },
-        "additionalProperties": false
+        "additionalProperties": false,
+        "description": "A request to create an application for authenticating the source of token requests"
       },
       "CreatedApiKey": {
         "required": [
@@ -3394,31 +3520,37 @@
         "type": "object",
         "properties": {
           "key": {
-            "type": "string"
+            "type": "string",
+            "description": "The API Key value"
           },
           "id": {
             "maxLength": 64,
             "minLength": 1,
             "pattern": "^[a-zA-Z0-9\\-_]+$",
-            "type": "string"
+            "type": "string",
+            "description": "The unique Id of the API key"
           },
           "displayName": {
             "maxLength": 512,
             "minLength": 1,
             "pattern": "^[\\s\\S]*$",
-            "type": "string"
+            "type": "string",
+            "description": "The display name of the API key"
           },
           "createdDate": {
             "type": "string",
+            "description": "The creation date of the API key",
             "format": "date-time"
           },
           "deactivationDate": {
             "type": "string",
+            "description": "The deactivation date of the API key",
             "format": "date-time",
             "nullable": true
           }
         },
-        "additionalProperties": false
+        "additionalProperties": false,
+        "description": "A newly created API key"
       },
       "CreateDomainRequest": {
         "required": [
@@ -3432,20 +3564,23 @@
             "maxLength": 25,
             "minLength": 3,
             "pattern": "^[a-zA-Z]([a-zA-Z0-9-]*[a-zA-Z0-9])?$",
-            "type": "string"
+            "type": "string",
+            "description": "The name LUSID domain to create"
           },
           "description": {
             "maxLength": 50,
             "minLength": 5,
             "pattern": "^[\\s\\S]*$",
             "type": "string",
+            "description": "Optional. Free text description of the domain.",
             "nullable": true
           },
           "companyName": {
             "maxLength": 50,
             "minLength": 2,
             "pattern": "^[\\s\\S]*$",
-            "type": "string"
+            "type": "string",
+            "description": "The name of the company to which the domain is registered"
           },
           "owner": {
             "$ref": "#/components/schemas/CreateUserRequest"
@@ -3461,6 +3596,7 @@
             "items": {
               "type": "string"
             },
+            "description": "Optional. If Terms and Conditions agreements have been signed during the sign up process",
             "nullable": true
           }
         },
@@ -3476,17 +3612,20 @@
             "maxLength": 512,
             "minLength": 1,
             "pattern": "^[a-zA-Z][a-zA-Z0-9-_ +]{2,100}$",
-            "type": "string"
+            "type": "string",
+            "description": "The role name, which must be unique within the system."
           },
           "description": {
             "maxLength": 1024,
             "minLength": 0,
             "pattern": "^[\\s\\S]*$",
             "type": "string",
+            "description": "The description for this role",
             "nullable": true
           }
         },
-        "additionalProperties": false
+        "additionalProperties": false,
+        "description": "Specifies the information required to create a new role."
       },
       "CreateUserRequest": {
         "required": [
@@ -3502,39 +3641,46 @@
             "maxLength": 50,
             "minLength": 1,
             "pattern": "^[\\s\\S]*$",
-            "type": "string"
+            "type": "string",
+            "description": "The first name of the user"
           },
           "lastName": {
             "maxLength": 50,
             "minLength": 2,
             "pattern": "^[\\s\\S]*$",
-            "type": "string"
+            "type": "string",
+            "description": "The last name of the user"
           },
           "emailAddress": {
             "maxLength": 80,
             "minLength": 5,
-            "type": "string"
+            "type": "string",
+            "description": "The user's email address - to which the account validation email will be sent. For user accounts\r\nthis should exactly match the Login."
           },
           "login": {
             "maxLength": 80,
             "minLength": 5,
-            "type": "string"
+            "type": "string",
+            "description": "The user's login username, in the form of an email address, which must be unique within the system.\r\nFor user accounts this should exactly match the user's email address."
           },
           "roles": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/RoleId"
             },
+            "description": "Optional. Any known roles the user should be created with.",
             "nullable": true
           },
           "type": {
             "maxLength": 20,
             "minLength": 1,
             "pattern": "^[a-zA-Z]*$",
-            "type": "string"
+            "type": "string",
+            "description": "The type of user (e.g. Personal or Service)"
           }
         },
-        "additionalProperties": false
+        "additionalProperties": false,
+        "description": "Details necessary for creating a new user"
       },
       "CurrentUserResponse": {
         "required": [
@@ -3545,13 +3691,16 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "string"
+            "type": "string",
+            "description": "The user's system supplied unique identifier"
           },
           "emailAddress": {
-            "type": "string"
+            "type": "string",
+            "description": "The user's email address which may be null depending on the authentication method"
           },
           "type": {
-            "type": "string"
+            "type": "string",
+            "description": "The type of user (e.g. Personal or Service)"
           },
           "links": {
             "type": "array",
@@ -3586,10 +3735,12 @@
           },
           "description": {
             "type": "string",
+            "description": "A description of the domain",
             "nullable": true
           },
           "companyName": {
             "type": "string",
+            "description": "The company name for the domain",
             "nullable": true
           },
           "owner": {
@@ -3603,6 +3754,7 @@
           },
           "created": {
             "type": "string",
+            "description": "The",
             "format": "date-time"
           },
           "links": {
@@ -3620,18 +3772,22 @@
         "properties": {
           "id": {
             "type": "string",
+            "description": "Id of the entity this error relates to",
             "nullable": true
           },
           "type": {
             "type": "string",
+            "description": "Error type",
             "nullable": true
           },
           "detail": {
             "type": "string",
+            "description": "Human readable description of the error",
             "nullable": true
           }
         },
-        "additionalProperties": false
+        "additionalProperties": false,
+        "description": "Provides details about an entity error that occured"
       },
       "IdentifierPartSchema": {
         "required": [
@@ -3735,6 +3891,7 @@
         "properties": {
           "href": {
             "type": "string",
+            "description": "Uri of this response",
             "format": "uri",
             "nullable": true
           },
@@ -3743,6 +3900,7 @@
             "additionalProperties": {
               "$ref": "#/components/schemas/UserSummary"
             },
+            "description": "Successful entities, indexed by their id",
             "nullable": true
           },
           "failed": {
@@ -3750,6 +3908,7 @@
             "additionalProperties": {
               "$ref": "#/components/schemas/ErrorDetail"
             },
+            "description": "Failed entities, indexed by their id",
             "nullable": true
           },
           "links": {
@@ -3760,7 +3919,8 @@
             "nullable": true
           }
         },
-        "additionalProperties": false
+        "additionalProperties": false,
+        "description": "Users directory query response"
       },
       "LusidProblemDetails": {
         "required": [
@@ -4022,19 +4182,23 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "string"
+            "type": "string",
+            "description": "The role's system supplied unique identifier"
           },
           "roleId": {
             "$ref": "#/components/schemas/RoleId"
           },
           "source": {
-            "type": "string"
+            "type": "string",
+            "description": "The source of the role"
           },
           "name": {
-            "type": "string"
+            "type": "string",
+            "description": "The role name, which must be unique within the system."
           },
           "description": {
             "type": "string",
+            "description": "The description for this role",
             "nullable": true
           }
         },
@@ -4048,10 +4212,12 @@
         "properties": {
           "expiry": {
             "type": "string",
+            "description": "DateTimeOffset at which the access will be revoked",
             "format": "date-time"
           }
         },
-        "additionalProperties": false
+        "additionalProperties": false,
+        "description": "Time at which the support access expires"
       },
       "SupportAccessRequest": {
         "required": [
@@ -4063,17 +4229,20 @@
             "maxLength": 30,
             "minLength": 2,
             "pattern": "^P(?!$)((\\d+Y)|(\\d+\\.\\d+Y$))?((\\d+M)|(\\d+\\.\\d+M$))?((\\d+W)|(\\d+\\.\\d+W$))?((\\d+D)|(\\d+\\.\\d+D$))?(T(?=\\d)((\\d+H)|(\\d+\\.\\d+H$))?((\\d+M)|(\\d+\\.\\d+M$))?(\\d+(\\.\\d+)?S)?)??$",
-            "type": "string"
+            "type": "string",
+            "description": "The duration for which access is requested (in any ISO-8601 format)"
           },
           "description": {
             "maxLength": 1024,
             "minLength": 0,
             "pattern": "^[\\s\\S]*$",
             "type": "string",
+            "description": "The description of why the support access has been granted (i.e. support ticket numbers)",
             "nullable": true
           }
         },
-        "additionalProperties": false
+        "additionalProperties": false,
+        "description": "A Request to grant support access to your account"
       },
       "SupportAccessResponse": {
         "required": [
@@ -4086,45 +4255,55 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "string"
+            "type": "string",
+            "description": "ID of the support access request"
           },
           "duration": {
             "maxLength": 50,
             "minLength": 3,
-            "type": "string"
+            "type": "string",
+            "description": "The duration for which access is requested (in any ISO-8601 format)"
           },
           "description": {
             "maxLength": 1024,
             "minLength": 0,
             "pattern": "^[\\s\\S]*$",
             "type": "string",
+            "description": "The description of why the support access has been granted (i.e. support ticket numbers)",
             "nullable": true
           },
           "createdAt": {
             "type": "string",
+            "description": "DateTimeOffset at which the access was granted",
             "format": "date-time"
           },
           "expiry": {
             "type": "string",
+            "description": "DateTimeOffset at which the access will be revoked",
             "format": "date-time"
           },
           "createdBy": {
-            "type": "string"
+            "type": "string",
+            "description": "Obfuscated UserId of the user who granted the support access"
           },
           "terminated": {
-            "type": "boolean"
+            "type": "boolean",
+            "description": "Whether or not that access has been invalidated"
           },
           "terminatedAt": {
             "type": "string",
+            "description": "DateTimeOffset at which the access was invalidated",
             "format": "date-time",
             "nullable": true
           },
           "terminatedBy": {
             "type": "string",
+            "description": "Obfuscated UserId of the user who revoked the access",
             "nullable": true
           }
         },
-        "additionalProperties": false
+        "additionalProperties": false,
+        "description": "Timestamped successful response to grant access to your account"
       },
       "TemporaryPassword": {
         "required": [
@@ -4133,7 +4312,8 @@
         "type": "object",
         "properties": {
           "password": {
-            "type": "string"
+            "type": "string",
+            "description": "The user's temporary password"
           }
         },
         "additionalProperties": false
@@ -4146,6 +4326,7 @@
             "minLength": 0,
             "pattern": "^[\\s\\S]*$",
             "type": "string",
+            "description": "The description for this role",
             "nullable": true
           }
         },
@@ -4181,7 +4362,8 @@
             "maxLength": 80,
             "minLength": 5,
             "pattern": "^[\\s\\S]*$",
-            "type": "string"
+            "type": "string",
+            "description": "The user's login username, in the form of an email address, which must be unique within the system.\r\nFor user accounts this should exactly match the user's email address."
           },
           "roles": {
             "type": "array",
@@ -4222,35 +4404,43 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "string"
+            "type": "string",
+            "description": "The user's system supplied unique identifier"
           },
           "emailAddress": {
-            "type": "string"
+            "type": "string",
+            "description": "The user's emailAddress address, which must be unique within the system"
           },
           "login": {
             "type": "string"
           },
           "firstName": {
-            "type": "string"
+            "type": "string",
+            "description": "The user's first name"
           },
           "lastName": {
-            "type": "string"
+            "type": "string",
+            "description": "The user's last name"
           },
           "roles": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/RoleResponse"
             },
+            "description": "The roles that the user has.",
             "nullable": true
           },
           "type": {
-            "type": "string"
+            "type": "string",
+            "description": "The type of user (e.g. Personal or Service)"
           },
           "status": {
-            "type": "string"
+            "type": "string",
+            "description": "The status of the user"
           },
           "external": {
-            "type": "boolean"
+            "type": "boolean",
+            "description": "Whether or not the user originates from an external identity system"
           },
           "links": {
             "type": "array",
@@ -4267,26 +4457,32 @@
         "properties": {
           "id": {
             "type": "string",
+            "description": "The user id",
             "nullable": true
           },
           "login": {
             "type": "string",
+            "description": "The user login",
             "nullable": true
           },
           "email": {
             "type": "string",
+            "description": "The email address registered for that user",
             "nullable": true
           },
           "firstName": {
             "type": "string",
+            "description": "User's first name",
             "nullable": true
           },
           "lastName": {
             "type": "string",
+            "description": "User's last name",
             "nullable": true
           },
           "type": {
             "type": "string",
+            "description": "User's type (Personal, Service...)",
             "nullable": true
           },
           "links": {
@@ -4297,7 +4493,8 @@
             "nullable": true
           }
         },
-        "additionalProperties": false
+        "additionalProperties": false,
+        "description": "Lightweight view of an user details"
       }
     },
     "securitySchemes": {
