@@ -5,7 +5,7 @@ All URIs are relative to *https://fbn-ci.lusid.com/identity*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**get_user_info**](MeApi.md#get_user_info) | **GET** /api/me | [EARLY ACCESS] GetUserInfo: Get User Info
-[**set_password**](MeApi.md#set_password) | **PUT** /api/me/password | [EXPERIMENTAL] SetPassword: Set password of current user
+[**set_password**](MeApi.md#set_password) | **PUT** /api/me/password | SetPassword: Set password of current user
 
 
 # **get_user_info**
@@ -81,7 +81,7 @@ This endpoint does not need any parameter.
 # **set_password**
 > SetPasswordResponse set_password(set_password)
 
-[EXPERIMENTAL] SetPassword: Set password of current user
+SetPassword: Set password of current user
 
 Set the password of the current user to the specified value.                Note this is feature is only available to Service users authenticated using OpenID. For further information  relating to usage of this feature please consult the documentation.
 
@@ -118,7 +118,7 @@ with finbourne_identity.ApiClient(configuration) as api_client:
     set_password = {"value":""} # SetPassword | The request containing the new password value
 
     try:
-        # [EXPERIMENTAL] SetPassword: Set password of current user
+        # SetPassword: Set password of current user
         api_response = api_instance.set_password(set_password)
         pprint(api_response)
     except ApiException as e:

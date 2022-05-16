@@ -8,7 +8,7 @@
       "url": "https://www.finbourne.com",
       "email": "info@finbourne.com"
     },
-    "version": "0.0.1648",
+    "version": "0.0.1652",
     "x-logo": {
       "url": "https://www.lusid.com/app/assets/logo_white.png",
       "backgroundColor": "#415464"
@@ -1631,7 +1631,7 @@
         "tags": [
           "Me"
         ],
-        "summary": "[EXPERIMENTAL] SetPassword: Set password of current user",
+        "summary": "SetPassword: Set password of current user",
         "description": "Set the password of the current user to the specified value.\r\n            \r\nNote this is feature is only available to Service users authenticated using OpenID. For further information\r\nrelating to usage of this feature please consult the documentation.",
         "operationId": "SetPassword",
         "requestBody": {
@@ -1712,7 +1712,7 @@
             "oauth2": []
           }
         ],
-        "x-fbn-apistatus": "Experimental"
+        "x-fbn-apistatus": "Stable"
       }
     },
     "/api/metadata/access/resources": {
