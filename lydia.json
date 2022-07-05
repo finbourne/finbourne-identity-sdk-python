@@ -8,7 +8,7 @@
       "url": "https://www.finbourne.com",
       "email": "info@finbourne.com"
     },
-    "version": "0.0.1769",
+    "version": "0.0.1771",
     "x-logo": {
       "url": "https://www.lusid.com/app/assets/logo_white.png",
       "backgroundColor": "#415464"
@@ -3001,7 +3001,7 @@
         "tags": [
           "Users"
         ],
-        "summary": "[BETA] SendActivationEmail: Sends an activation email to the User",
+        "summary": "[EARLY ACCESS] SendActivationEmail: Sends an activation email to the User",
         "description": "Sends an activation email to the specified User",
         "operationId": "SendActivationEmail",
         "parameters": [
@@ -3049,7 +3049,7 @@
             "oauth2": []
           }
         ],
-        "x-fbn-apistatus": "Beta"
+        "x-fbn-apistatus": "EarlyAccess"
       }
     },
     "/api/users/{id}/lifecycle/$expirepassword": {
@@ -3057,7 +3057,7 @@
         "tags": [
           "Users"
         ],
-        "summary": "[BETA] ExpirePassword: Reset the user's password to a temporary one",
+        "summary": "[EARLY ACCESS] ExpirePassword: Reset the user's password to a temporary one",
         "description": "Resets the user's password to a temporary one which is then expired",
         "operationId": "ExpirePassword",
         "parameters": [
@@ -3112,7 +3112,7 @@
             "oauth2": []
           }
         ],
-        "x-fbn-apistatus": "Beta"
+        "x-fbn-apistatus": "EarlyAccess"
       }
     },
     "/api/users/{id}/lifecycle/$resetfactors": {
@@ -3120,7 +3120,7 @@
         "tags": [
           "Users"
         ],
-        "summary": "[BETA] ResetFactors: Reset MFA factors",
+        "summary": "[EARLY ACCESS] ResetFactors: Reset MFA factors",
         "description": "Resets the MFA factors of the specified User",
         "operationId": "ResetFactors",
         "parameters": [
@@ -3168,7 +3168,7 @@
             "oauth2": []
           }
         ],
-        "x-fbn-apistatus": "Beta"
+        "x-fbn-apistatus": "EarlyAccess"
       }
     },
     "/api/users/{id}/lifecycle/$resetpassword": {
@@ -3176,7 +3176,7 @@
         "tags": [
           "Users"
         ],
-        "summary": "[BETA] ResetPassword: Reset Password",
+        "summary": "[EARLY ACCESS] ResetPassword: Reset Password",
         "description": "Resets the password of the specified User",
         "operationId": "ResetPassword",
         "parameters": [
@@ -3224,7 +3224,7 @@
             "oauth2": []
           }
         ],
-        "x-fbn-apistatus": "Beta"
+        "x-fbn-apistatus": "EarlyAccess"
       }
     },
     "/api/users/{id}/lifecycle/$unlock": {
@@ -3232,7 +3232,7 @@
         "tags": [
           "Users"
         ],
-        "summary": "[BETA] UnlockUser: Unlock User",
+        "summary": "[EARLY ACCESS] UnlockUser: Unlock User",
         "description": "Unlocks the specified User",
         "operationId": "UnlockUser",
         "parameters": [
@@ -3280,7 +3280,7 @@
             "oauth2": []
           }
         ],
-        "x-fbn-apistatus": "Beta"
+        "x-fbn-apistatus": "EarlyAccess"
       }
     }
   },

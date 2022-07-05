@@ -6,14 +6,14 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**create_user**](UsersApi.md#create_user) | **POST** /api/users | [EARLY ACCESS] CreateUser: Create User
 [**delete_user**](UsersApi.md#delete_user) | **DELETE** /api/users/{id} | [EARLY ACCESS] DeleteUser: Delete User
-[**expire_password**](UsersApi.md#expire_password) | **POST** /api/users/{id}/lifecycle/$expirepassword | [BETA] ExpirePassword: Reset the user&#39;s password to a temporary one
+[**expire_password**](UsersApi.md#expire_password) | **POST** /api/users/{id}/lifecycle/$expirepassword | [EARLY ACCESS] ExpirePassword: Reset the user&#39;s password to a temporary one
 [**find_users_by_id**](UsersApi.md#find_users_by_id) | **GET** /api/directory | [EARLY ACCESS] FindUsersById: Find users by id endpoint
 [**get_user**](UsersApi.md#get_user) | **GET** /api/users/{id} | [EARLY ACCESS] GetUser: Get User
 [**list_users**](UsersApi.md#list_users) | **GET** /api/users | [EARLY ACCESS] ListUsers: List Users
-[**reset_factors**](UsersApi.md#reset_factors) | **POST** /api/users/{id}/lifecycle/$resetfactors | [BETA] ResetFactors: Reset MFA factors
-[**reset_password**](UsersApi.md#reset_password) | **POST** /api/users/{id}/lifecycle/$resetpassword | [BETA] ResetPassword: Reset Password
-[**send_activation_email**](UsersApi.md#send_activation_email) | **POST** /api/users/{id}/lifecycle/$activate | [BETA] SendActivationEmail: Sends an activation email to the User
-[**unlock_user**](UsersApi.md#unlock_user) | **POST** /api/users/{id}/lifecycle/$unlock | [BETA] UnlockUser: Unlock User
+[**reset_factors**](UsersApi.md#reset_factors) | **POST** /api/users/{id}/lifecycle/$resetfactors | [EARLY ACCESS] ResetFactors: Reset MFA factors
+[**reset_password**](UsersApi.md#reset_password) | **POST** /api/users/{id}/lifecycle/$resetpassword | [EARLY ACCESS] ResetPassword: Reset Password
+[**send_activation_email**](UsersApi.md#send_activation_email) | **POST** /api/users/{id}/lifecycle/$activate | [EARLY ACCESS] SendActivationEmail: Sends an activation email to the User
+[**unlock_user**](UsersApi.md#unlock_user) | **POST** /api/users/{id}/lifecycle/$unlock | [EARLY ACCESS] UnlockUser: Unlock User
 [**update_user**](UsersApi.md#update_user) | **PUT** /api/users/{id} | [EARLY ACCESS] UpdateUser: Update User
 
 
@@ -173,7 +173,7 @@ void (empty response body)
 # **expire_password**
 > TemporaryPassword expire_password(id)
 
-[BETA] ExpirePassword: Reset the user's password to a temporary one
+[EARLY ACCESS] ExpirePassword: Reset the user's password to a temporary one
 
 Resets the user's password to a temporary one which is then expired
 
@@ -210,7 +210,7 @@ with finbourne_identity.ApiClient(configuration) as api_client:
     id = 'id_example' # str | The unique identifier for the User having its password reset
 
     try:
-        # [BETA] ExpirePassword: Reset the user's password to a temporary one
+        # [EARLY ACCESS] ExpirePassword: Reset the user's password to a temporary one
         api_response = api_instance.expire_password(id)
         pprint(api_response)
     except ApiException as e:
@@ -477,7 +477,7 @@ Name | Type | Description  | Notes
 # **reset_factors**
 > reset_factors(id)
 
-[BETA] ResetFactors: Reset MFA factors
+[EARLY ACCESS] ResetFactors: Reset MFA factors
 
 Resets the MFA factors of the specified User
 
@@ -514,7 +514,7 @@ with finbourne_identity.ApiClient(configuration) as api_client:
     id = 'id_example' # str | The unique identifier for the User having their MFA factors reset
 
     try:
-        # [BETA] ResetFactors: Reset MFA factors
+        # [EARLY ACCESS] ResetFactors: Reset MFA factors
         api_instance.reset_factors(id)
     except ApiException as e:
         print("Exception when calling UsersApi->reset_factors: %s\n" % e)
@@ -551,7 +551,7 @@ void (empty response body)
 # **reset_password**
 > reset_password(id)
 
-[BETA] ResetPassword: Reset Password
+[EARLY ACCESS] ResetPassword: Reset Password
 
 Resets the password of the specified User
 
@@ -588,7 +588,7 @@ with finbourne_identity.ApiClient(configuration) as api_client:
     id = 'id_example' # str | The unique identifier for the User having their password reset
 
     try:
-        # [BETA] ResetPassword: Reset Password
+        # [EARLY ACCESS] ResetPassword: Reset Password
         api_instance.reset_password(id)
     except ApiException as e:
         print("Exception when calling UsersApi->reset_password: %s\n" % e)
@@ -625,7 +625,7 @@ void (empty response body)
 # **send_activation_email**
 > send_activation_email(id)
 
-[BETA] SendActivationEmail: Sends an activation email to the User
+[EARLY ACCESS] SendActivationEmail: Sends an activation email to the User
 
 Sends an activation email to the specified User
 
@@ -662,7 +662,7 @@ with finbourne_identity.ApiClient(configuration) as api_client:
     id = 'id_example' # str | The unique identifier for the User to be activated
 
     try:
-        # [BETA] SendActivationEmail: Sends an activation email to the User
+        # [EARLY ACCESS] SendActivationEmail: Sends an activation email to the User
         api_instance.send_activation_email(id)
     except ApiException as e:
         print("Exception when calling UsersApi->send_activation_email: %s\n" % e)
@@ -699,7 +699,7 @@ void (empty response body)
 # **unlock_user**
 > unlock_user(id)
 
-[BETA] UnlockUser: Unlock User
+[EARLY ACCESS] UnlockUser: Unlock User
 
 Unlocks the specified User
 
@@ -736,7 +736,7 @@ with finbourne_identity.ApiClient(configuration) as api_client:
     id = 'id_example' # str | The unique identifier for the User to be unlocked
 
     try:
-        # [BETA] UnlockUser: Unlock User
+        # [EARLY ACCESS] UnlockUser: Unlock User
         api_instance.unlock_user(id)
     except ApiException as e:
         print("Exception when calling UsersApi->unlock_user: %s\n" % e)
