@@ -14,7 +14,7 @@ from . import MockApiResponse
 
 source_config_details, config_keys = CredentialsSource.fetch_credentials(), CredentialsSource.fetch_config_keys()
 
-
+@unittest.skipIf(CredentialsSource.fetch_pat() is not None, "Skip if token present")
 class TokenRefresh(unittest.TestCase):
 
     @classmethod

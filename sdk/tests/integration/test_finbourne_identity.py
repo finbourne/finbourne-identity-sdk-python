@@ -1,3 +1,4 @@
+import os
 import unittest
 from finbourne_identity import api as iapi
 from finbourne_identity.utilities import ApiClientFactory
@@ -6,7 +7,8 @@ class IdentityTests(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
-        api_client_factory = ApiClientFactory()
+        token = os.getenv("FBN_ACCESS_TOKEN", None)
+        api_client_factory = ApiClientFactory(token=token)
         cls.users_api = api_client_factory.build(iapi.UsersApi)
         cls.roles_iapi = api_client_factory.build(iapi.RolesApi)
 
