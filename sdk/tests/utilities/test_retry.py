@@ -1,10 +1,11 @@
 import unittest
+import os
 
 import finbourne_identity.api
 from finbourne_identity import ApiException
 from finbourne_identity.utilities import ApiClientFactory
 
-from . import CredentialsSource
+from utilities import CredentialsSource
 
 
 class MockApi:
@@ -66,7 +67,12 @@ class RetryTests(unittest.TestCase):
     def setUpClass(cls):
         # add mock to the module
         finbourne_identity.api.MockApi = MockApi
-        cls.factory = ApiClientFactory(api_secrets_filename=CredentialsSource.secrets_path())
+        token = CredentialsSource.fetch_pat()
+        if token is None:
+            cls.factory = ApiClientFactory(api_secrets_filename=CredentialsSource.secrets_path())
+        else:
+            creds = CredentialsSource.fetch_credentials()
+            cls.factory = ApiClientFactory(token=creds["access_token"], api_url=creds["api_url"])
 
     def test_non_retryable_is_not_retried(self):
         api = self.factory.build(MockApi)

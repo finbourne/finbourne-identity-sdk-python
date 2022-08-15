@@ -11,6 +11,7 @@ from . import TokenUtilities as tu, CredentialsSource
 from . import TempFileManager
 from . import MockApiResponse
 
+import os
 
 class UnknownApi:
     pass
@@ -21,6 +22,7 @@ class UnknownImpl:
 
 
 source_config_details, config_keys = CredentialsSource.fetch_credentials(), CredentialsSource.fetch_config_keys()
+pat_token = CredentialsSource.fetch_pat()
 
 
 class RefreshingToken(UserString):
@@ -42,6 +44,11 @@ class RefreshingToken(UserString):
 
 
 class ApiFactory(unittest.TestCase):
+    def get_env_vars_without_pat(self):
+        env_vars = {config_keys[key]["env"]: value for key, value in source_config_details.items() if value is not None}
+        env_vars_without_pat = {k: env_vars[k] for k in env_vars if k != "FBN_ACCESS_TOKEN"}
+        return env_vars_without_pat
+
     def validate_api(self, api: RolesApi):
         result = api.list_roles()
         self.assertIsNotNone(result)
@@ -61,6 +68,7 @@ class ApiFactory(unittest.TestCase):
             factory.build(api_to_build)
         self.assertEqual(error.exception.args[0], error_message)
 
+    @unittest.skipIf(CredentialsSource.fetch_pat() is not None, "Skip if token present")
     def test_get_api_with_token(self):
         token, refresh_token = tu.get_okta_tokens(CredentialsSource.secrets_path())
         factory = ApiClientFactory(
@@ -72,6 +80,7 @@ class ApiFactory(unittest.TestCase):
         self.assertIsInstance(api, RolesApi)
         self.validate_api(api)
 
+    @unittest.skipIf(CredentialsSource.fetch_pat() is not None, "Skip if token present")
     def test_get_api_with_none_token(self):
         factory = ApiClientFactory(
             token=None,
@@ -83,6 +92,7 @@ class ApiFactory(unittest.TestCase):
         self.assertIsInstance(api, RolesApi)
         self.validate_api(api)
 
+    @unittest.skipIf(CredentialsSource.fetch_pat() is not None, "Skip if token present")
     def test_get_api_with_str_none_token(self):
         factory = ApiClientFactory(
             token=RefreshingToken(),
@@ -94,6 +104,7 @@ class ApiFactory(unittest.TestCase):
         self.assertIsInstance(api, RolesApi)
         self.validate_api(api)
 
+    @unittest.skipIf(CredentialsSource.fetch_pat() is not None, "Skip if token present")
     def test_get_api_with_token_url_as_env_var(self):
         token, refresh_token = tu.get_okta_tokens(CredentialsSource.secrets_path())
         with patch.dict('os.environ', {"FBN_LUSID_IDENTITY_URL": source_config_details["api_url"]}, clear=True):
@@ -229,40 +240,61 @@ class ApiFactory(unittest.TestCase):
             self.assertTrue("CorrelationId" in api.api_client.default_headers, msg="CorrelationId not found in headers")
             self.assertEquals(api.api_client.default_headers["CorrelationId"], "param-correlation-id")
 
-    def test_use_apifactory_multiple_threads(self):
+    @unittest.skipIf(CredentialsSource.fetch_pat() is not None, "Skip if token present")
+    def test_use_apifactory_with_id_provider_response_handler(self):
+        """
+        Ensures that an id_provider_response handler that is passed to the ApiClientFactory can be used during
+        communication with the id provider (if appropriate).
+        """
 
-        access_token = str(ApiClientFactory(
-            api_secrets_filename=CredentialsSource.secrets_path()
-        ).api_client.configuration.access_token)
+        with patch.dict('os.environ', self.get_env_vars_without_pat(), clear=True):
+            responses = []
 
-        api_factory = ApiClientFactory(
-            api_secrets_filename=CredentialsSource.secrets_path()
-        )
+            def record_response(id_provider_response):
+                nonlocal responses
+                responses.append(id_provider_response.status_code)
 
-        def get_roles(factory):
-            return factory.build(RolesApi).list_roles()
-
-        thread1 = Thread(target=get_roles, args=[api_factory])
-        thread2 = Thread(target=get_roles, args=[api_factory])
-        thread3 = Thread(target=get_roles, args=[api_factory])
-
-        with patch("requests.post") as identity_mock:
-            identity_mock.side_effect = lambda *args, **kwargs: MockApiResponse(
-                json_data={
-                    "access_token": f"{access_token}",
-                    "refresh_token": "mock_refresh_token",
-                    "expires_in": 3600
-                },
-                status_code=200
+            api_factory = ApiClientFactory(
+                api_secrets_filename=CredentialsSource.secrets_path(),
+                id_provider_response_handler=record_response
             )
 
-            thread1.start()
-            thread2.start()
-            thread3.start()
+            api = api_factory.build(InstrumentsApi)
+            self.validate_api(api)
 
-            thread1.join()
-            thread2.join()
-            thread3.join()
+            self.assertGreater(len(responses), 0)
 
-            # Ensure that we only got an access token once
-            self.assertEqual(1, identity_mock.call_count)
+    @unittest.skipIf(CredentialsSource.fetch_pat() is not None, "Skip if token present")
+    def test_use_apifactory_multiple_threads(self):
+
+        with patch.dict('os.environ', self.get_env_vars_without_pat(), clear=True):
+
+            api_factory = ApiClientFactory(api_secrets_filename=CredentialsSource.secrets_path())
+
+            def get_identifier_types(factory):
+                return factory.build(InstrumentsApi).get_instrument_identifier_types()
+
+            thread1 = Thread(target=get_identifier_types, args=[api_factory])
+            thread2 = Thread(target=get_identifier_types, args=[api_factory])
+            thread3 = Thread(target=get_identifier_types, args=[api_factory])
+
+            with patch("requests.post") as identity_mock:
+                identity_mock.side_effect = lambda *args, **kwargs: MockApiResponse(
+                    json_data={
+                        "access_token": f"mock_access_token",
+                        "refresh_token": "mock_refresh_token",
+                        "expires_in": 3600
+                    },
+                    status_code=200
+                )
+
+                thread1.start()
+                thread2.start()
+                thread3.start()
+
+                thread1.join()
+                thread2.join()
+                thread3.join()
+
+                # Ensure that we only got an access token once
+                self.assertEqual(1, identity_mock.call_count)
