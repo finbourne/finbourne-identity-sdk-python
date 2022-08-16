@@ -259,7 +259,7 @@ class ApiFactory(unittest.TestCase):
                 id_provider_response_handler=record_response
             )
 
-            api = api_factory.build(InstrumentsApi)
+            api = api_factory.build(RolesApi)
             self.validate_api(api)
 
             self.assertGreater(len(responses), 0)
@@ -271,12 +271,12 @@ class ApiFactory(unittest.TestCase):
 
             api_factory = ApiClientFactory(api_secrets_filename=CredentialsSource.secrets_path())
 
-            def get_identifier_types(factory):
-                return factory.build(InstrumentsApi).get_instrument_identifier_types()
+            def get_roles(factory):
+                return factory.build(RolesApi).list_roles()
 
-            thread1 = Thread(target=get_identifier_types, args=[api_factory])
-            thread2 = Thread(target=get_identifier_types, args=[api_factory])
-            thread3 = Thread(target=get_identifier_types, args=[api_factory])
+            thread1 = Thread(target=get_roles, args=[api_factory])
+            thread2 = Thread(target=get_roles, args=[api_factory])
+            thread3 = Thread(target=get_roles, args=[api_factory])
 
             with patch("requests.post") as identity_mock:
                 identity_mock.side_effect = lambda *args, **kwargs: MockApiResponse(
