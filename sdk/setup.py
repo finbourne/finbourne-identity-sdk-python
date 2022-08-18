@@ -33,12 +33,12 @@ from setuptools import setup, find_packages  # noqa: H301
 
 REQUIRES = [
     "certifi >= 14.05.14",
-    "six >= 1.10",
     "python-dateutil >= 2.5.3",
-    "setuputils >= 21.0.0",
-    "urllib3 >= 1.26.9",
     "requests >= 2.27.1",
-    "finbourne-sdk-utilities"
+    "six >= 1.10",
+    "urllib3 >= 1.26.9",
+
+    "finbourne-sdk-utilities >= 0.0.10",
 ]
 
 version = {}
