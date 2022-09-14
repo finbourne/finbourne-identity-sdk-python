@@ -89,7 +89,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_agreement**
-> bool get_agreement(agreement)
+> get_agreement(agreement)
 
 GetAgreement: Get Agreement
 
@@ -129,8 +129,7 @@ with finbourne_identity.ApiClient(configuration) as api_client:
 
     try:
         # GetAgreement: Get Agreement
-        api_response = api_instance.get_agreement(agreement)
-        pprint(api_response)
+        api_instance.get_agreement(agreement)
     except ApiException as e:
         print("Exception when calling DomainsApi->get_agreement: %s\n" % e)
 ```
@@ -143,7 +142,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**bool**
+void (empty response body)
 
 ### Authorization
 
@@ -157,8 +156,8 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**404** | Not Found |  -  |
-**200** | Whether agreement is signed |  -  |
+**404** | The agreement is not signed |  -  |
+**200** | The agreement is signed |  -  |
 **400** | The details of the input related failure |  -  |
 **0** | Error response |  -  |
 
