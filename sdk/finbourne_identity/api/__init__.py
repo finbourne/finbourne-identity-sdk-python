@@ -6,7 +6,6 @@ from __future__ import absolute_import
 from finbourne_identity.api.application_metadata_api import ApplicationMetadataApi
 from finbourne_identity.api.applications_api import ApplicationsApi
 from finbourne_identity.api.authentication_api import AuthenticationApi
-from finbourne_identity.api.domains_api import DomainsApi
 from finbourne_identity.api.identity_provider_api import IdentityProviderApi
 from finbourne_identity.api.me_api import MeApi
 from finbourne_identity.api.personal_authentication_tokens_api import PersonalAuthenticationTokensApi
