@@ -8,7 +8,7 @@
       "url": "https://www.finbourne.com",
       "email": "info@finbourne.com"
     },
-    "version": "0.0.1933",
+    "version": "0.0.1935",
     "x-logo": {
       "url": "https://www.lusid.com/app/assets/logo_white.png",
       "backgroundColor": "#415464"
@@ -3127,6 +3127,13 @@
             "type": "string",
             "description": "The user's email address - to which the account validation email will be sent. For user accounts\r\nthis should exactly match the Login."
           },
+          "secondEmailAddress": {
+            "maxLength": 80,
+            "minLength": 5,
+            "type": "string",
+            "description": "The user's second email address. Only allowed for Service users",
+            "nullable": true
+          },
           "login": {
             "maxLength": 80,
             "minLength": 5,
@@ -3775,6 +3782,12 @@
             "minLength": 5,
             "type": "string"
           },
+          "secondEmailAddress": {
+            "maxLength": 80,
+            "minLength": 5,
+            "type": "string",
+            "nullable": true
+          },
           "login": {
             "maxLength": 80,
             "minLength": 5,
@@ -3812,6 +3825,11 @@
           "emailAddress": {
             "type": "string",
             "description": "The user's emailAddress address, which must be unique within the system"
+          },
+          "secondEmailAddress": {
+            "type": "string",
+            "description": "The user's second email address. Only allowed for service users.",
+            "nullable": true
           },
           "login": {
             "type": "string"
@@ -3870,6 +3888,10 @@
           "email": {
             "type": "string",
             "description": "The email address registered for that user",
+            "nullable": true
+          },
+          "secondEmail": {
+            "type": "string",
             "nullable": true
           },
           "firstName": {
