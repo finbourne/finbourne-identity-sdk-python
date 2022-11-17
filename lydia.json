@@ -8,7 +8,7 @@
       "url": "https://www.finbourne.com",
       "email": "info@finbourne.com"
     },
-    "version": "0.0.1975",
+    "version": "0.0.1977",
     "x-logo": {
       "url": "https://www.lusid.com/app/assets/logo_white.png",
       "backgroundColor": "#415464"
@@ -398,7 +398,8 @@
                 },
                 "example": {
                   "issuerUrl": "https://myco.lusid.okta.com/12346",
-                  "samlIdentityProviderId": "0oa14txx1jAiz7T302p7as"
+                  "samlIdentityProviderId": "0oa14txx1jAiz7T302p7as",
+                  "supportAccessExpiryWithRole": []
                 }
               }
             }
@@ -487,7 +488,10 @@
                   "createdAt": "2020-01-06T12:05:00.0000000+00:00",
                   "expiry": "2020-01-07T12:05:00.0000000+00:00",
                   "createdBy": "UserId-54213",
-                  "terminated": false
+                  "terminated": false,
+                  "permittedRoles": [
+                    "support-role"
+                  ]
                 }
               }
             }
@@ -546,7 +550,10 @@
                     "createdAt": "2020-01-06T12:05:00.0000000+00:00",
                     "expiry": "2020-01-07T12:05:00.0000000+00:00",
                     "createdBy": "UserId-54213",
-                    "terminated": false
+                    "terminated": false,
+                    "permittedRoles": [
+                      "support-role"
+                    ]
                   },
                   {
                     "id": "37322a3efbf445fa861d39759ad22dcb",
@@ -557,7 +564,10 @@
                     "createdBy": "UserId-54213",
                     "terminated": true,
                     "terminatedAt": "2020-01-06T16:05:00.0000000+00:00",
-                    "terminatedBy": "UserId-54213"
+                    "terminatedBy": "UserId-54213",
+                    "permittedRoles": [
+                      "support-role"
+                    ]
                   }
                 ]
               }
@@ -607,7 +617,10 @@
                     "createdAt": "2020-01-06T12:05:00.0000000+00:00",
                     "expiry": "2020-01-07T12:05:00.0000000+00:00",
                     "createdBy": "UserId-54213",
-                    "terminated": false
+                    "terminated": false,
+                    "permittedRoles": [
+                      "support-role"
+                    ]
                   },
                   {
                     "id": "37322a3efbf445fa861d39759ad22dcb",
@@ -618,9 +631,62 @@
                     "createdBy": "UserId-54213",
                     "terminated": true,
                     "terminatedAt": "2020-01-06T16:05:00.0000000+00:00",
-                    "terminatedBy": "UserId-54213"
+                    "terminatedBy": "UserId-54213",
+                    "permittedRoles": [
+                      "support-role"
+                    ]
                   }
                 ]
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "oauth2": []
+          }
+        ],
+        "x-fbn-apistatus": "EarlyAccess"
+      }
+    },
+    "/api/authentication/support-roles": {
+      "get": {
+        "tags": [
+          "Authentication"
+        ],
+        "summary": "[EARLY ACCESS] GetSupportRoles: Get mapping of support roles, the internal representation to a human friendly representation",
+        "description": "Get mapping of support roles, the internal representation to a human friendly representation",
+        "operationId": "GetSupportRoles",
+        "responses": {
+          "200": {
+            "description": "Get support roles",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SupportRolesResponse"
+                },
+                "example": {
+                  "supportRoles": [
+                    {
+                      "label": "support-role",
+                      "roleIdentifier": {
+                        "scope": "scope",
+                        "code": "code"
+                      },
+                      "internalIdentifier": "1"
+                    }
+                  ]
+                }
               }
             }
           },
@@ -2865,6 +2931,7 @@
           "scope": {
             "maxLength": 100,
             "minLength": 3,
+            "pattern": "^(?=.*[a-zA-Z])[\\w][\\w +-]{2,100}$",
             "type": "string"
           },
           "activity": {
@@ -2947,6 +3014,13 @@
           },
           "support": {
             "$ref": "#/components/schemas/SupportAccessExpiry"
+          },
+          "supportAccessExpiryWithRole": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SupportAccessExpiryWithRole"
+            },
+            "nullable": true
           },
           "links": {
             "type": "array",
@@ -3643,6 +3717,26 @@
         "additionalProperties": false,
         "description": "Time at which the support access expires"
       },
+      "SupportAccessExpiryWithRole": {
+        "required": [
+          "expiry",
+          "permittedRole"
+        ],
+        "type": "object",
+        "properties": {
+          "expiry": {
+            "type": "string",
+            "description": "DateTimeOffset at which the access will be revoked",
+            "format": "date-time"
+          },
+          "permittedRole": {
+            "type": "string",
+            "description": "Unique identifier for permitted role. \r\nUse GET /identity/api/authentication/support-roles to lookup role label/code from identifier."
+          }
+        },
+        "additionalProperties": false,
+        "description": "Time at which the support access granted for a role expires"
+      },
       "SupportAccessRequest": {
         "required": [
           "duration"
@@ -3662,6 +3756,13 @@
             "pattern": "^[\\s\\S]*$",
             "type": "string",
             "description": "The description of why the support access has been granted (i.e. support ticket numbers)",
+            "nullable": true
+          },
+          "permittedRoles": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
             "nullable": true
           }
         },
@@ -3724,10 +3825,52 @@
             "type": "string",
             "description": "Obfuscated UserId of the user who revoked the access",
             "nullable": true
+          },
+          "permittedRoles": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "A list of permitted roles, valid for support staff to assume, for the duration of the access request",
+            "nullable": true
           }
         },
         "additionalProperties": false,
         "description": "Timestamped successful response to grant access to your account"
+      },
+      "SupportRole": {
+        "type": "object",
+        "properties": {
+          "label": {
+            "type": "string",
+            "nullable": true
+          },
+          "roleIdentifier": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "internalIdentifier": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SupportRolesResponse": {
+        "type": "object",
+        "properties": {
+          "supportRoles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SupportRole"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
       },
       "TemporaryPassword": {
         "required": [

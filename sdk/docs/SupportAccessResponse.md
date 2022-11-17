@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **terminated** | **bool** | Whether or not that access has been invalidated | [optional] 
 **terminated_at** | **datetime** | DateTimeOffset at which the access was invalidated | [optional] 
 **terminated_by** | **str** | Obfuscated UserId of the user who revoked the access | [optional] 
+**permitted_roles** | **list[str]** | A list of permitted roles, valid for support staff to assume, for the duration of the access request | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
