@@ -8,7 +8,7 @@
       "url": "https://www.finbourne.com",
       "email": "info@finbourne.com"
     },
-    "version": "0.0.2142",
+    "version": "0.0.2144",
     "x-logo": {
       "url": "https://www.lusid.com/app/assets/logo_white.png",
       "backgroundColor": "#415464"
@@ -679,6 +679,7 @@
                   "supportRoles": [
                     {
                       "label": "support-role",
+                      "description": "Description of support role",
                       "roleIdentifier": {
                         "scope": "scope",
                         "code": "code"
@@ -3848,6 +3849,10 @@
         "type": "object",
         "properties": {
           "label": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
             "type": "string",
             "nullable": true
           },

@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **label** | **str** |  | [optional] 
+**description** | **str** |  | [optional] 
 **role_identifier** | **dict(str, str)** |  | [optional] 
 **internal_identifier** | **str** |  | [optional] 
 
