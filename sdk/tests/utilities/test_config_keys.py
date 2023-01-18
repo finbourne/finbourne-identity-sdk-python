@@ -13,4 +13,6 @@ class TestConfigKeys(TestCase):
         actual_config_keys = ConfigKeys().get()
 
         # Assert
-        self.assertDictContainsSubset(expected_config_keys_subset, actual_config_keys)
+        self.assertEqual(
+            actual_config_keys, expected_config_keys_subset | actual_config_keys
+        )
