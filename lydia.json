@@ -8,7 +8,7 @@
       "url": "https://www.finbourne.com",
       "email": "info@finbourne.com"
     },
-    "version": "0.0.2207",
+    "version": "0.0.2209",
     "x-logo": {
       "url": "https://www.lusid.com/app/assets/logo_white.png",
       "backgroundColor": "#415464"
@@ -189,8 +189,7 @@
               "maxLength": 64,
               "minLength": 1,
               "pattern": "^[a-zA-Z0-9\\-_]+$",
-              "type": "string",
-              "description": "The unique identifier for the application"
+              "type": "string"
             }
           },
           {
@@ -198,8 +197,7 @@
             "in": "query",
             "description": "Optional. If set to true, the application secrets will be returned in plain text",
             "schema": {
-              "type": "boolean",
-              "description": "Optional. If set to true, the application secrets will be returned in plain text"
+              "type": "boolean"
             },
             "x-nullable": true
           }
@@ -271,14 +269,13 @@
               "maxLength": 64,
               "minLength": 1,
               "pattern": "^[a-zA-Z0-9\\-_]+$",
-              "type": "string",
-              "description": "The unique identifier for the application"
+              "type": "string"
             }
           }
         ],
         "responses": {
           "204": {
-            "description": "Success"
+            "description": "No Content"
           },
           "400": {
             "description": "The details of the input related failure",
@@ -327,8 +324,7 @@
               "maxLength": 64,
               "minLength": 1,
               "pattern": "^[a-zA-Z0-9\\-_]+$",
-              "type": "string",
-              "description": "The unique identifier for the application"
+              "type": "string"
             }
           }
         ],
@@ -728,8 +724,7 @@
               "type": "array",
               "items": {
                 "type": "string"
-              },
-              "description": "A list of unique identifiers for the users"
+              }
             }
           }
         ],
@@ -851,9 +846,7 @@
             "in": "query",
             "description": "The action to take. For the API token. Defaults to \"ensure\"",
             "schema": {
-              "type": "string",
-              "description": "The action to take. For the API token. Defaults to \"ensure\"",
-              "nullable": true
+              "type": "string"
             }
           },
           {
@@ -862,9 +855,7 @@
             "description": "Optional deactivation date for the old API token. Only used if apiTokenAction is \"regenerate\"",
             "schema": {
               "type": "string",
-              "description": "Optional deactivation date for the old API token. Only used if apiTokenAction is \"regenerate\"",
-              "format": "date-time",
-              "nullable": true
+              "format": "date-time"
             },
             "x-nullable": true
           }
@@ -949,7 +940,7 @@
         "operationId": "RemoveScim",
         "responses": {
           "204": {
-            "description": "Success"
+            "description": "No Content"
           },
           "default": {
             "description": "Error response",
@@ -1144,8 +1135,7 @@
               "maxLength": 64,
               "minLength": 1,
               "pattern": "^[a-zA-Z0-9\\-_]+$",
-              "type": "string",
-              "description": "The id of the Personal Access Token to delete"
+              "type": "string"
             }
           }
         ],
@@ -1547,8 +1537,7 @@
               "maxLength": 64,
               "minLength": 1,
               "pattern": "^[a-zA-Z0-9\\-_]+$",
-              "type": "string",
-              "description": "The unique identifier for the role"
+              "type": "string"
             }
           }
         ],
@@ -1621,14 +1610,13 @@
               "maxLength": 64,
               "minLength": 1,
               "pattern": "^[a-zA-Z0-9\\-_]+$",
-              "type": "string",
-              "description": "The unique identifier for the role"
+              "type": "string"
             }
           }
         ],
         "responses": {
           "204": {
-            "description": "Success"
+            "description": "No Content"
           },
           "400": {
             "description": "The details of the input related failure",
@@ -1675,8 +1663,7 @@
               "maxLength": 64,
               "minLength": 1,
               "pattern": "^[a-zA-Z0-9\\-_]+$",
-              "type": "string",
-              "description": "The unique identifier for the role to be updated"
+              "type": "string"
             }
           }
         ],
@@ -1788,8 +1775,7 @@
               "maxLength": 64,
               "minLength": 1,
               "pattern": "^[a-zA-Z0-9\\-_]+$",
-              "type": "string",
-              "description": "The unique identifier for the Role"
+              "type": "string"
             }
           }
         ],
@@ -1878,8 +1864,7 @@
               "maxLength": 64,
               "minLength": 1,
               "pattern": "^[a-zA-Z0-9\\-_]+$",
-              "type": "string",
-              "description": "The unique identifier for the Role"
+              "type": "string"
             }
           },
           {
@@ -1891,14 +1876,13 @@
               "maxLength": 64,
               "minLength": 1,
               "pattern": "^[a-zA-Z0-9\\-_]+$",
-              "type": "string",
-              "description": "The unique identifier for the User"
+              "type": "string"
             }
           }
         ],
         "responses": {
           "204": {
-            "description": "Success"
+            "description": "No Content"
           },
           "404": {
             "description": "Not Found"
@@ -1948,8 +1932,7 @@
               "maxLength": 64,
               "minLength": 1,
               "pattern": "^[a-zA-Z0-9\\-_]+$",
-              "type": "string",
-              "description": "The unique identifier for the Role"
+              "type": "string"
             }
           },
           {
@@ -1961,14 +1944,13 @@
               "maxLength": 64,
               "minLength": 1,
               "pattern": "^[a-zA-Z0-9\\-_]+$",
-              "type": "string",
-              "description": "The unique identifier for the User"
+              "type": "string"
             }
           }
         ],
         "responses": {
           "204": {
-            "description": "Success"
+            "description": "No Content"
           },
           "404": {
             "description": "Not Found"
@@ -2012,7 +1994,7 @@
         "operationId": "InvalidateToken",
         "responses": {
           "204": {
-            "description": "Success"
+            "description": "No Content"
           },
           "default": {
             "description": "Error response",
@@ -2048,7 +2030,6 @@
             "description": "Flag indicating that the users roles should be included in the response",
             "schema": {
               "type": "boolean",
-              "description": "Flag indicating that the users roles should be included in the response",
               "default": false
             },
             "x-nullable": true
@@ -2059,7 +2040,6 @@
             "description": "Include previously deleted (not purged) users",
             "schema": {
               "type": "boolean",
-              "description": "Include previously deleted (not purged) users",
               "default": false
             },
             "x-nullable": true
@@ -2145,7 +2125,6 @@
             "description": "Should the request wait until the newly created User is indexed (available in List) before returning",
             "schema": {
               "type": "boolean",
-              "description": "Should the request wait until the newly created User is indexed (available in List) before returning",
               "default": false
             },
             "x-nullable": true
@@ -2285,8 +2264,7 @@
               "maxLength": 64,
               "minLength": 1,
               "pattern": "^[a-zA-Z0-9\\-_]+$",
-              "type": "string",
-              "description": "The unique identifier for the User"
+              "type": "string"
             }
           },
           {
@@ -2294,9 +2272,7 @@
             "in": "query",
             "description": "Flag indicating that the users roles should be included in the response",
             "schema": {
-              "type": "boolean",
-              "description": "Flag indicating that the users roles should be included in the response",
-              "nullable": true
+              "type": "boolean"
             },
             "x-nullable": true
           }
@@ -2379,8 +2355,7 @@
               "maxLength": 64,
               "minLength": 1,
               "pattern": "^[a-zA-Z0-9\\-_]+$",
-              "type": "string",
-              "description": "The unique identifier for the user"
+              "type": "string"
             }
           },
           {
@@ -2388,15 +2363,14 @@
             "in": "query",
             "description": "Whether to purge any trace of the user from the identity provider (will affect audit)",
             "schema": {
-              "type": "boolean",
-              "description": "Whether to purge any trace of the user from the identity provider (will affect audit)"
+              "type": "boolean"
             },
             "x-nullable": true
           }
         ],
         "responses": {
           "204": {
-            "description": "Success"
+            "description": "No Content"
           },
           "400": {
             "description": "The details of the input related failure",
@@ -2443,8 +2417,7 @@
               "maxLength": 64,
               "minLength": 1,
               "pattern": "^[a-zA-Z0-9\\-_]+$",
-              "type": "string",
-              "description": "The unique identifier for the User to be updated"
+              "type": "string"
             }
           }
         ],
@@ -2578,14 +2551,13 @@
               "maxLength": 64,
               "minLength": 1,
               "pattern": "^[a-zA-Z0-9\\-_]+$",
-              "type": "string",
-              "description": "The unique identifier for the User to be activated"
+              "type": "string"
             }
           }
         ],
         "responses": {
           "204": {
-            "description": "Success"
+            "description": "No Content"
           },
           "400": {
             "description": "The details of the input related failure",
@@ -2634,8 +2606,7 @@
               "maxLength": 64,
               "minLength": 1,
               "pattern": "^[a-zA-Z0-9\\-_]+$",
-              "type": "string",
-              "description": "The unique identifier for the User having its password reset"
+              "type": "string"
             }
           }
         ],
@@ -2697,14 +2668,13 @@
               "maxLength": 64,
               "minLength": 1,
               "pattern": "^[a-zA-Z0-9\\-_]+$",
-              "type": "string",
-              "description": "The unique identifier for the User having their MFA factors reset"
+              "type": "string"
             }
           }
         ],
         "responses": {
           "204": {
-            "description": "Success"
+            "description": "No Content"
           },
           "400": {
             "description": "The details of the input related failure",
@@ -2753,14 +2723,13 @@
               "maxLength": 64,
               "minLength": 1,
               "pattern": "^[a-zA-Z0-9\\-_]+$",
-              "type": "string",
-              "description": "The unique identifier for the User having their password reset"
+              "type": "string"
             }
           }
         ],
         "responses": {
           "204": {
-            "description": "Success"
+            "description": "No Content"
           },
           "400": {
             "description": "The details of the input related failure",
@@ -2809,14 +2778,13 @@
               "maxLength": 64,
               "minLength": 1,
               "pattern": "^[a-zA-Z0-9\\-_]+$",
-              "type": "string",
-              "description": "The unique identifier for the User to be unlocked"
+              "type": "string"
             }
           }
         ],
         "responses": {
           "204": {
-            "description": "Success"
+            "description": "No Content"
           },
           "400": {
             "description": "The details of the input related failure",
@@ -2858,6 +2826,7 @@
         "type": "object",
         "properties": {
           "description": {
+            "minLength": 1,
             "type": "string"
           },
           "action": {
@@ -2896,6 +2865,7 @@
             "nullable": true
           },
           "description": {
+            "minLength": 1,
             "type": "string"
           },
           "actions": {
@@ -3006,6 +2976,7 @@
         "type": "object",
         "properties": {
           "issuerUrl": {
+            "minLength": 1,
             "type": "string"
           },
           "fallbackIssuerUrls": {
@@ -3121,6 +3092,7 @@
         "type": "object",
         "properties": {
           "key": {
+            "minLength": 1,
             "type": "string",
             "description": "The API Key value"
           },
@@ -3249,14 +3221,17 @@
         "type": "object",
         "properties": {
           "id": {
+            "minLength": 1,
             "type": "string",
             "description": "The user's system supplied unique identifier"
           },
           "emailAddress": {
+            "minLength": 1,
             "type": "string",
             "description": "The user's email address which may be null depending on the authentication method"
           },
           "type": {
+            "minLength": 1,
             "type": "string",
             "description": "The type of user (e.g. Personal or Service)"
           },
@@ -3307,12 +3282,15 @@
             "format": "int32"
           },
           "name": {
+            "minLength": 1,
             "type": "string"
           },
           "displayName": {
+            "minLength": 1,
             "type": "string"
           },
           "description": {
+            "minLength": 1,
             "type": "string"
           },
           "required": {
@@ -3343,7 +3321,7 @@
             }
           },
           "actions": {
-            "minLength": 1,
+            "minItems": 1,
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/ActionId"
@@ -3433,6 +3411,7 @@
         "type": "object",
         "properties": {
           "name": {
+            "minLength": 1,
             "type": "string"
           },
           "errorDetails": {
@@ -3469,18 +3448,9 @@
           "instance": {
             "type": "string",
             "nullable": true
-          },
-          "extensions": {
-            "type": "object",
-            "additionalProperties": {
-              "type": "object",
-              "additionalProperties": false
-            },
-            "nullable": true,
-            "readOnly": true
           }
         },
-        "additionalProperties": false
+        "additionalProperties": {}
       },
       "LusidValidationProblemDetails": {
         "required": [
@@ -3490,6 +3460,7 @@
         "type": "object",
         "properties": {
           "name": {
+            "minLength": 1,
             "type": "string"
           },
           "errorDetails": {
@@ -3536,18 +3507,9 @@
           "instance": {
             "type": "string",
             "nullable": true
-          },
-          "extensions": {
-            "type": "object",
-            "additionalProperties": {
-              "type": "object",
-              "additionalProperties": false
-            },
-            "nullable": true,
-            "readOnly": true
           }
         },
-        "additionalProperties": false
+        "additionalProperties": {}
       },
       "OAuthApplication": {
         "required": [
@@ -3560,9 +3522,11 @@
         "type": "object",
         "properties": {
           "id": {
+            "minLength": 1,
             "type": "string"
           },
           "type": {
+            "minLength": 1,
             "type": "string"
           },
           "displayName": {
@@ -3576,9 +3540,11 @@
             "nullable": true
           },
           "clientId": {
+            "minLength": 1,
             "type": "string"
           },
           "issuer": {
+            "minLength": 1,
             "type": "string"
           }
         },
@@ -3649,6 +3615,7 @@
         "type": "object",
         "properties": {
           "id": {
+            "minLength": 1,
             "type": "string",
             "description": "The role's system supplied unique identifier"
           },
@@ -3656,10 +3623,12 @@
             "$ref": "#/components/schemas/RoleId"
           },
           "source": {
+            "minLength": 1,
             "type": "string",
             "description": "The source of the role"
           },
           "name": {
+            "minLength": 1,
             "type": "string",
             "description": "The role name, which must be unique within the system."
           },
@@ -3737,6 +3706,7 @@
             "format": "date-time"
           },
           "permittedRole": {
+            "minLength": 1,
             "type": "string",
             "description": "Unique identifier for permitted role. \r\nUse GET /identity/api/authentication/support-roles to lookup role label/code from identifier."
           }
@@ -3787,6 +3757,7 @@
         "type": "object",
         "properties": {
           "id": {
+            "minLength": 1,
             "type": "string",
             "description": "ID of the support access request"
           },
@@ -3815,6 +3786,7 @@
             "format": "date-time"
           },
           "createdBy": {
+            "minLength": 1,
             "type": "string",
             "description": "Obfuscated UserId of the user who granted the support access"
           },
@@ -3890,6 +3862,7 @@
         "type": "object",
         "properties": {
           "password": {
+            "minLength": 1,
             "type": "string",
             "description": "The user's temporary password"
           }
@@ -3973,10 +3946,12 @@
         "type": "object",
         "properties": {
           "id": {
+            "minLength": 1,
             "type": "string",
             "description": "The user's system supplied unique identifier"
           },
           "emailAddress": {
+            "minLength": 1,
             "type": "string",
             "description": "The user's emailAddress address, which must be unique within the system"
           },
@@ -3986,13 +3961,16 @@
             "nullable": true
           },
           "login": {
+            "minLength": 1,
             "type": "string"
           },
           "firstName": {
+            "minLength": 1,
             "type": "string",
             "description": "The user's first name"
           },
           "lastName": {
+            "minLength": 1,
             "type": "string",
             "description": "The user's last name"
           },
@@ -4005,10 +3983,12 @@
             "nullable": true
           },
           "type": {
+            "minLength": 1,
             "type": "string",
             "description": "The type of user (e.g. Personal or Service)"
           },
           "status": {
+            "minLength": 1,
             "type": "string",
             "description": "The status of the user"
           },
