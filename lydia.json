@@ -8,7 +8,7 @@
       "url": "https://www.finbourne.com",
       "email": "info@finbourne.com"
     },
-    "version": "0.0.2450",
+    "version": "0.0.2452",
     "x-logo": {
       "url": "https://www.lusid.com/app/assets/logo_white.png",
       "backgroundColor": "#415464"
@@ -2224,6 +2224,71 @@
                 "schema": {
                   "$ref": "#/components/schemas/LusidValidationProblemDetails"
                 }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "oauth2": []
+          }
+        ],
+        "x-fbn-apistatus": "EarlyAccess"
+      }
+    },
+    "/api/users/$runnable": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "[EARLY ACCESS] ListRunnableUsers: List Runable Users",
+        "description": "List the available runnable Users",
+        "operationId": "ListRunnableUsers",
+        "responses": {
+          "200": {
+            "description": "List the available runnable users",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UserResponse"
+                  }
+                },
+                "example": [
+                  {
+                    "id": "asybvrs5",
+                    "emailAddress": "joe.bloggs@myco.com",
+                    "login": "joe.bloggs@myco.com",
+                    "firstName": "Joe",
+                    "lastName": "Bloggs",
+                    "roles": [
+                      {
+                        "id": "customrole1",
+                        "roleId": {
+                          "scope": "default",
+                          "code": "customrole2"
+                        },
+                        "source": "LusidUser",
+                        "name": "Front Office Administrator",
+                        "description": "Administration role for Front Office staff"
+                      }
+                    ],
+                    "type": "Personal",
+                    "status": "ACTIVE",
+                    "external": false
+                  }
+                ]
               }
             }
           },
