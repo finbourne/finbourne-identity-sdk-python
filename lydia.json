@@ -8,7 +8,7 @@
       "url": "https://www.finbourne.com",
       "email": "info@finbourne.com"
     },
-    "version": "0.0.2456",
+    "version": "0.0.2458",
     "x-logo": {
       "url": "https://www.lusid.com/app/assets/logo_white.png",
       "backgroundColor": "#415464"
@@ -594,6 +594,28 @@
         "summary": "[EARLY ACCESS] GetSupportAccessHistory: Get the history of all support access granted and any information pertaining to their termination",
         "description": "The active and inactive support requests will be returned, inactive support requests will have information pertaining to their termination\r\nincluding obfuscated userIds of those who created and terminated the request",
         "operationId": "GetSupportAccessHistory",
+        "parameters": [
+          {
+            "name": "start",
+            "in": "query",
+            "description": "The start expiry date to query support access requests from",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "x-nullable": true
+          },
+          {
+            "name": "end",
+            "in": "query",
+            "description": "The end expiry date to query support access requests to",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "x-nullable": true
+          }
+        ],
         "responses": {
           "200": {
             "description": "Get support access history",
@@ -633,6 +655,16 @@
                     ]
                   }
                 ]
+              }
+            }
+          },
+          "400": {
+            "description": "The details of the input related failure",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidValidationProblemDetails"
+                }
               }
             }
           },

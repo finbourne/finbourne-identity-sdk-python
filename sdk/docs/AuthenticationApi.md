@@ -82,7 +82,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_support_access_history**
-> list[SupportAccessResponse] get_support_access_history()
+> list[SupportAccessResponse] get_support_access_history(start=start, end=end)
 
 [EARLY ACCESS] GetSupportAccessHistory: Get the history of all support access granted and any information pertaining to their termination
 
@@ -118,17 +118,23 @@ configuration.access_token = 'YOUR_ACCESS_TOKEN'
 with finbourne_identity.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = finbourne_identity.AuthenticationApi(api_client)
-    
+    start = '2013-10-20T19:20:30+01:00' # datetime | The start expiry date to query support access requests from (optional)
+end = '2013-10-20T19:20:30+01:00' # datetime | The end expiry date to query support access requests to (optional)
+
     try:
         # [EARLY ACCESS] GetSupportAccessHistory: Get the history of all support access granted and any information pertaining to their termination
-        api_response = api_instance.get_support_access_history()
+        api_response = api_instance.get_support_access_history(start=start, end=end)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling AuthenticationApi->get_support_access_history: %s\n" % e)
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **start** | **datetime**| The start expiry date to query support access requests from | [optional] 
+ **end** | **datetime**| The end expiry date to query support access requests to | [optional] 
 
 ### Return type
 
@@ -147,6 +153,7 @@ This endpoint does not need any parameter.
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Get support access history |  -  |
+**400** | The details of the input related failure |  -  |
 **0** | Error response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
