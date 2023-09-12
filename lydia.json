@@ -8,7 +8,7 @@
       "url": "https://www.finbourne.com",
       "email": "info@finbourne.com"
     },
-    "version": "0.0.2611",
+    "version": "0.0.2613",
     "x-logo": {
       "url": "https://www.lusid.com/app/assets/logo_white.png",
       "backgroundColor": "#415464"
@@ -869,7 +869,7 @@
         "tags": [
           "Identity Provider"
         ],
-        "summary": "[EXPERIMENTAL] AddScim: Add SCIM",
+        "summary": "[EARLY ACCESS] AddScim: Add SCIM",
         "description": "Generates an API token to be used for SCIM",
         "operationId": "AddScim",
         "parameters": [
@@ -961,13 +961,13 @@
             "oauth2": []
           }
         ],
-        "x-fbn-apistatus": "Experimental"
+        "x-fbn-apistatus": "EarlyAccess"
       },
       "delete": {
         "tags": [
           "Identity Provider"
         ],
-        "summary": "[EXPERIMENTAL] RemoveScim: Remove SCIM",
+        "summary": "[EARLY ACCESS] RemoveScim: Remove SCIM",
         "description": "Deactivates any existing SCIM API token",
         "operationId": "RemoveScim",
         "responses": {
@@ -990,7 +990,7 @@
             "oauth2": []
           }
         ],
-        "x-fbn-apistatus": "Experimental"
+        "x-fbn-apistatus": "EarlyAccess"
       }
     },
     "/api/keys": {
