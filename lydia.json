@@ -8,7 +8,7 @@
       "url": "https://www.finbourne.com",
       "email": "info@finbourne.com"
     },
-    "version": "0.0.2629",
+    "version": "0.0.2631",
     "x-logo": {
       "url": "https://www.lusid.com/app/assets/logo_white.png",
       "backgroundColor": "#415464"
@@ -4080,6 +4080,7 @@
             "items": {
               "$ref": "#/components/schemas/RoleId"
             },
+            "description": "Deprecated. To update a user's roles use the AddUserToRole and RemoveUserFromRole endpoints",
             "nullable": true
           }
         },
