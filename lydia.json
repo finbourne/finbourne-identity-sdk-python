@@ -8,7 +8,7 @@
       "url": "https://www.finbourne.com",
       "email": "info@finbourne.com"
     },
-    "version": "0.0.2639",
+    "version": "0.0.2671",
     "x-logo": {
       "url": "https://www.lusid.com/app/assets/logo_white.png",
       "backgroundColor": "#415464"
@@ -3387,6 +3387,11 @@
             "minLength": 1,
             "type": "string",
             "description": "The type of user (e.g. Personal or Service)"
+          },
+          "domainType": {
+            "type": "string",
+            "description": "The type of domain in which the user exists",
+            "nullable": true
           },
           "links": {
             "type": "array",
