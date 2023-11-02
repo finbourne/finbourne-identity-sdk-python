@@ -21,38 +21,61 @@ Get the requesting user's basic info
 ```python
 from __future__ import print_function
 import time
+import os
 import finbourne_identity
 from finbourne_identity.rest import ApiException
+from finbourne_identity.models.current_user_response import CurrentUserResponse
 from pprint import pprint
-# Defining the host is optional and defaults to https://fbn-ci.lusid.com/identity
-# See configuration.py for a list of all supported configuration parameters.
-configuration = finbourne_identity.Configuration(
-    host = "https://fbn-ci.lusid.com/identity"
+
+from finbourne_identity import (
+	  ApiClientFactory,
+	  ApplicationMetadataApi,
+	  EnvironmentVariablesConfigurationLoader,
+	  SecretsFileConfigurationLoader,
+	  ArgsConfigurationLoader
 )
+
+# Use the finbourne_identity ApiClientFactory to build Api instances with a configured api client
+# By default this will read config from environment variables
+# Then from a secrets.json file found in the current working directory
+api_client_factory = ApiClientFactory()
+
+# The ApiClientFactory can be passed an iterable of configuration loaders to read configuration from
+
+api_url = "https://fbn-ci.lusid.com/identity"
+# Path to a secrets.json file containing authentication credentials
+# See https://support.lusid.com/knowledgebase/article/KA-01667/en-us
+# for a detailed guide to setting up the SDK make authenticated calls to LUSID APIs
+secrets_path = os.getenv("FBN_SECRETS_PATH")
+app_name="LusidJupyterNotebook"
+
+config_loaders = [
+	EnvironmentVariablesConfigurationLoader(),
+	SecretsFileConfigurationLoader(api_secrets_file=secrets_path),
+	ArgsConfigurationLoader(api_url=api_url, app_name=app_name)
+]
+api_client_factory = ApiClientFactory(config_loaders=config_loaders)
+
 
 # The client must configure the authentication and authorization parameters
 # in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
 
-# Configure OAuth2 access token for authorization: oauth2
-configuration = finbourne_identity.Configuration(
-    host = "https://fbn-ci.lusid.com/identity"
-)
-configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# Enter a context with an instance of the API client
-with finbourne_identity.ApiClient(configuration) as api_client:
+
+# Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
+async with api_client_factory:
     # Create an instance of the API class
-    api_instance = finbourne_identity.MeApi(api_client)
-    
+    api_instance = api_client_factory.build(finbourne_identity.MeApi)
+
     try:
         # [EARLY ACCESS] GetUserInfo: Get User Info
-        api_response = api_instance.get_user_info()
+        api_response = await api_instance.get_user_info()
+        print("The response of MeApi->get_user_info:\n")
         pprint(api_response)
-    except ApiException as e:
+    except Exception as e:
         print("Exception when calling MeApi->get_user_info: %s\n" % e)
 ```
+
 
 ### Parameters
 This endpoint does not need any parameter.
@@ -91,39 +114,63 @@ Set the password of the current user to the specified value.                Note
 ```python
 from __future__ import print_function
 import time
+import os
 import finbourne_identity
 from finbourne_identity.rest import ApiException
+from finbourne_identity.models.set_password import SetPassword
+from finbourne_identity.models.set_password_response import SetPasswordResponse
 from pprint import pprint
-# Defining the host is optional and defaults to https://fbn-ci.lusid.com/identity
-# See configuration.py for a list of all supported configuration parameters.
-configuration = finbourne_identity.Configuration(
-    host = "https://fbn-ci.lusid.com/identity"
+
+from finbourne_identity import (
+	  ApiClientFactory,
+	  ApplicationMetadataApi,
+	  EnvironmentVariablesConfigurationLoader,
+	  SecretsFileConfigurationLoader,
+	  ArgsConfigurationLoader
 )
+
+# Use the finbourne_identity ApiClientFactory to build Api instances with a configured api client
+# By default this will read config from environment variables
+# Then from a secrets.json file found in the current working directory
+api_client_factory = ApiClientFactory()
+
+# The ApiClientFactory can be passed an iterable of configuration loaders to read configuration from
+
+api_url = "https://fbn-ci.lusid.com/identity"
+# Path to a secrets.json file containing authentication credentials
+# See https://support.lusid.com/knowledgebase/article/KA-01667/en-us
+# for a detailed guide to setting up the SDK make authenticated calls to LUSID APIs
+secrets_path = os.getenv("FBN_SECRETS_PATH")
+app_name="LusidJupyterNotebook"
+
+config_loaders = [
+	EnvironmentVariablesConfigurationLoader(),
+	SecretsFileConfigurationLoader(api_secrets_file=secrets_path),
+	ArgsConfigurationLoader(api_url=api_url, app_name=app_name)
+]
+api_client_factory = ApiClientFactory(config_loaders=config_loaders)
+
 
 # The client must configure the authentication and authorization parameters
 # in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
 
-# Configure OAuth2 access token for authorization: oauth2
-configuration = finbourne_identity.Configuration(
-    host = "https://fbn-ci.lusid.com/identity"
-)
-configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# Enter a context with an instance of the API client
-with finbourne_identity.ApiClient(configuration) as api_client:
+
+# Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
+async with api_client_factory:
     # Create an instance of the API class
-    api_instance = finbourne_identity.MeApi(api_client)
+    api_instance = api_client_factory.build(finbourne_identity.MeApi)
     set_password = {"value":""} # SetPassword | The request containing the new password value
 
     try:
         # SetPassword: Set password of current user
-        api_response = api_instance.set_password(set_password)
+        api_response = await api_instance.set_password(set_password)
+        print("The response of MeApi->set_password:\n")
         pprint(api_response)
-    except ApiException as e:
+    except Exception as e:
         print("Exception when calling MeApi->set_password: %s\n" % e)
 ```
+
 
 ### Parameters
 

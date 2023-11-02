@@ -24,39 +24,63 @@ Create a new Application
 ```python
 from __future__ import print_function
 import time
+import os
 import finbourne_identity
 from finbourne_identity.rest import ApiException
+from finbourne_identity.models.create_application_request import CreateApplicationRequest
+from finbourne_identity.models.o_auth_application import OAuthApplication
 from pprint import pprint
-# Defining the host is optional and defaults to https://fbn-ci.lusid.com/identity
-# See configuration.py for a list of all supported configuration parameters.
-configuration = finbourne_identity.Configuration(
-    host = "https://fbn-ci.lusid.com/identity"
+
+from finbourne_identity import (
+	  ApiClientFactory,
+	  ApplicationMetadataApi,
+	  EnvironmentVariablesConfigurationLoader,
+	  SecretsFileConfigurationLoader,
+	  ArgsConfigurationLoader
 )
+
+# Use the finbourne_identity ApiClientFactory to build Api instances with a configured api client
+# By default this will read config from environment variables
+# Then from a secrets.json file found in the current working directory
+api_client_factory = ApiClientFactory()
+
+# The ApiClientFactory can be passed an iterable of configuration loaders to read configuration from
+
+api_url = "https://fbn-ci.lusid.com/identity"
+# Path to a secrets.json file containing authentication credentials
+# See https://support.lusid.com/knowledgebase/article/KA-01667/en-us
+# for a detailed guide to setting up the SDK make authenticated calls to LUSID APIs
+secrets_path = os.getenv("FBN_SECRETS_PATH")
+app_name="LusidJupyterNotebook"
+
+config_loaders = [
+	EnvironmentVariablesConfigurationLoader(),
+	SecretsFileConfigurationLoader(api_secrets_file=secrets_path),
+	ArgsConfigurationLoader(api_url=api_url, app_name=app_name)
+]
+api_client_factory = ApiClientFactory(config_loaders=config_loaders)
+
 
 # The client must configure the authentication and authorization parameters
 # in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
 
-# Configure OAuth2 access token for authorization: oauth2
-configuration = finbourne_identity.Configuration(
-    host = "https://fbn-ci.lusid.com/identity"
-)
-configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# Enter a context with an instance of the API client
-with finbourne_identity.ApiClient(configuration) as api_client:
+
+# Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
+async with api_client_factory:
     # Create an instance of the API class
-    api_instance = finbourne_identity.ApplicationsApi(api_client)
+    api_instance = api_client_factory.build(finbourne_identity.ApplicationsApi)
     create_application_request = {"displayName":"My First Application","clientId":"my-first-application","type":"Native"} # CreateApplicationRequest | Details of the application to be created (optional)
 
     try:
         # [EARLY ACCESS] CreateApplication: Create Application
-        api_response = api_instance.create_application(create_application_request=create_application_request)
+        api_response = await api_instance.create_application(create_application_request=create_application_request)
+        print("The response of ApplicationsApi->create_application:\n")
         pprint(api_response)
-    except ApiException as e:
+    except Exception as e:
         print("Exception when calling ApplicationsApi->create_application: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -99,38 +123,59 @@ Delete the specified application
 ```python
 from __future__ import print_function
 import time
+import os
 import finbourne_identity
 from finbourne_identity.rest import ApiException
 from pprint import pprint
-# Defining the host is optional and defaults to https://fbn-ci.lusid.com/identity
-# See configuration.py for a list of all supported configuration parameters.
-configuration = finbourne_identity.Configuration(
-    host = "https://fbn-ci.lusid.com/identity"
+
+from finbourne_identity import (
+	  ApiClientFactory,
+	  ApplicationMetadataApi,
+	  EnvironmentVariablesConfigurationLoader,
+	  SecretsFileConfigurationLoader,
+	  ArgsConfigurationLoader
 )
+
+# Use the finbourne_identity ApiClientFactory to build Api instances with a configured api client
+# By default this will read config from environment variables
+# Then from a secrets.json file found in the current working directory
+api_client_factory = ApiClientFactory()
+
+# The ApiClientFactory can be passed an iterable of configuration loaders to read configuration from
+
+api_url = "https://fbn-ci.lusid.com/identity"
+# Path to a secrets.json file containing authentication credentials
+# See https://support.lusid.com/knowledgebase/article/KA-01667/en-us
+# for a detailed guide to setting up the SDK make authenticated calls to LUSID APIs
+secrets_path = os.getenv("FBN_SECRETS_PATH")
+app_name="LusidJupyterNotebook"
+
+config_loaders = [
+	EnvironmentVariablesConfigurationLoader(),
+	SecretsFileConfigurationLoader(api_secrets_file=secrets_path),
+	ArgsConfigurationLoader(api_url=api_url, app_name=app_name)
+]
+api_client_factory = ApiClientFactory(config_loaders=config_loaders)
+
 
 # The client must configure the authentication and authorization parameters
 # in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
 
-# Configure OAuth2 access token for authorization: oauth2
-configuration = finbourne_identity.Configuration(
-    host = "https://fbn-ci.lusid.com/identity"
-)
-configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# Enter a context with an instance of the API client
-with finbourne_identity.ApiClient(configuration) as api_client:
+
+# Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
+async with api_client_factory:
     # Create an instance of the API class
-    api_instance = finbourne_identity.ApplicationsApi(api_client)
+    api_instance = api_client_factory.build(finbourne_identity.ApplicationsApi)
     id = 'id_example' # str | The unique identifier for the application
 
     try:
         # [EARLY ACCESS] DeleteApplication: Delete Application
-        api_instance.delete_application(id)
-    except ApiException as e:
+        await api_instance.delete_application(id)
+    except Exception as e:
         print("Exception when calling ApplicationsApi->delete_application: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -173,40 +218,63 @@ get the specified application, and optionally the OIDC secret
 ```python
 from __future__ import print_function
 import time
+import os
 import finbourne_identity
 from finbourne_identity.rest import ApiException
+from finbourne_identity.models.o_auth_application import OAuthApplication
 from pprint import pprint
-# Defining the host is optional and defaults to https://fbn-ci.lusid.com/identity
-# See configuration.py for a list of all supported configuration parameters.
-configuration = finbourne_identity.Configuration(
-    host = "https://fbn-ci.lusid.com/identity"
+
+from finbourne_identity import (
+	  ApiClientFactory,
+	  ApplicationMetadataApi,
+	  EnvironmentVariablesConfigurationLoader,
+	  SecretsFileConfigurationLoader,
+	  ArgsConfigurationLoader
 )
+
+# Use the finbourne_identity ApiClientFactory to build Api instances with a configured api client
+# By default this will read config from environment variables
+# Then from a secrets.json file found in the current working directory
+api_client_factory = ApiClientFactory()
+
+# The ApiClientFactory can be passed an iterable of configuration loaders to read configuration from
+
+api_url = "https://fbn-ci.lusid.com/identity"
+# Path to a secrets.json file containing authentication credentials
+# See https://support.lusid.com/knowledgebase/article/KA-01667/en-us
+# for a detailed guide to setting up the SDK make authenticated calls to LUSID APIs
+secrets_path = os.getenv("FBN_SECRETS_PATH")
+app_name="LusidJupyterNotebook"
+
+config_loaders = [
+	EnvironmentVariablesConfigurationLoader(),
+	SecretsFileConfigurationLoader(api_secrets_file=secrets_path),
+	ArgsConfigurationLoader(api_url=api_url, app_name=app_name)
+]
+api_client_factory = ApiClientFactory(config_loaders=config_loaders)
+
 
 # The client must configure the authentication and authorization parameters
 # in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
 
-# Configure OAuth2 access token for authorization: oauth2
-configuration = finbourne_identity.Configuration(
-    host = "https://fbn-ci.lusid.com/identity"
-)
-configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# Enter a context with an instance of the API client
-with finbourne_identity.ApiClient(configuration) as api_client:
+
+# Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
+async with api_client_factory:
     # Create an instance of the API class
-    api_instance = finbourne_identity.ApplicationsApi(api_client)
+    api_instance = api_client_factory.build(finbourne_identity.ApplicationsApi)
     id = 'id_example' # str | The unique identifier for the application
-include_secret = True # bool | Optional. If set to true, the application secrets will be returned in plain text (optional)
+    include_secret = True # bool | Optional. If set to true, the application secrets will be returned in plain text (optional)
 
     try:
         # [EARLY ACCESS] GetApplication: Get Application
-        api_response = api_instance.get_application(id, include_secret=include_secret)
+        api_response = await api_instance.get_application(id, include_secret=include_secret)
+        print("The response of ApplicationsApi->get_application:\n")
         pprint(api_response)
-    except ApiException as e:
+    except Exception as e:
         print("Exception when calling ApplicationsApi->get_application: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -239,7 +307,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_applications**
-> list[OAuthApplication] list_applications()
+> List[OAuthApplication] list_applications()
 
 [EARLY ACCESS] ListApplications: List Applications
 
@@ -251,45 +319,68 @@ List the available applications
 ```python
 from __future__ import print_function
 import time
+import os
 import finbourne_identity
 from finbourne_identity.rest import ApiException
+from finbourne_identity.models.o_auth_application import OAuthApplication
 from pprint import pprint
-# Defining the host is optional and defaults to https://fbn-ci.lusid.com/identity
-# See configuration.py for a list of all supported configuration parameters.
-configuration = finbourne_identity.Configuration(
-    host = "https://fbn-ci.lusid.com/identity"
+
+from finbourne_identity import (
+	  ApiClientFactory,
+	  ApplicationMetadataApi,
+	  EnvironmentVariablesConfigurationLoader,
+	  SecretsFileConfigurationLoader,
+	  ArgsConfigurationLoader
 )
+
+# Use the finbourne_identity ApiClientFactory to build Api instances with a configured api client
+# By default this will read config from environment variables
+# Then from a secrets.json file found in the current working directory
+api_client_factory = ApiClientFactory()
+
+# The ApiClientFactory can be passed an iterable of configuration loaders to read configuration from
+
+api_url = "https://fbn-ci.lusid.com/identity"
+# Path to a secrets.json file containing authentication credentials
+# See https://support.lusid.com/knowledgebase/article/KA-01667/en-us
+# for a detailed guide to setting up the SDK make authenticated calls to LUSID APIs
+secrets_path = os.getenv("FBN_SECRETS_PATH")
+app_name="LusidJupyterNotebook"
+
+config_loaders = [
+	EnvironmentVariablesConfigurationLoader(),
+	SecretsFileConfigurationLoader(api_secrets_file=secrets_path),
+	ArgsConfigurationLoader(api_url=api_url, app_name=app_name)
+]
+api_client_factory = ApiClientFactory(config_loaders=config_loaders)
+
 
 # The client must configure the authentication and authorization parameters
 # in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
 
-# Configure OAuth2 access token for authorization: oauth2
-configuration = finbourne_identity.Configuration(
-    host = "https://fbn-ci.lusid.com/identity"
-)
-configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# Enter a context with an instance of the API client
-with finbourne_identity.ApiClient(configuration) as api_client:
+
+# Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
+async with api_client_factory:
     # Create an instance of the API class
-    api_instance = finbourne_identity.ApplicationsApi(api_client)
-    
+    api_instance = api_client_factory.build(finbourne_identity.ApplicationsApi)
+
     try:
         # [EARLY ACCESS] ListApplications: List Applications
-        api_response = api_instance.list_applications()
+        api_response = await api_instance.list_applications()
+        print("The response of ApplicationsApi->list_applications:\n")
         pprint(api_response)
-    except ApiException as e:
+    except Exception as e:
         print("Exception when calling ApplicationsApi->list_applications: %s\n" % e)
 ```
+
 
 ### Parameters
 This endpoint does not need any parameter.
 
 ### Return type
 
-[**list[OAuthApplication]**](OAuthApplication.md)
+[**List[OAuthApplication]**](OAuthApplication.md)
 
 ### Authorization
 
@@ -321,39 +412,62 @@ Rotate the secrets for the specified application
 ```python
 from __future__ import print_function
 import time
+import os
 import finbourne_identity
 from finbourne_identity.rest import ApiException
+from finbourne_identity.models.o_auth_application import OAuthApplication
 from pprint import pprint
-# Defining the host is optional and defaults to https://fbn-ci.lusid.com/identity
-# See configuration.py for a list of all supported configuration parameters.
-configuration = finbourne_identity.Configuration(
-    host = "https://fbn-ci.lusid.com/identity"
+
+from finbourne_identity import (
+	  ApiClientFactory,
+	  ApplicationMetadataApi,
+	  EnvironmentVariablesConfigurationLoader,
+	  SecretsFileConfigurationLoader,
+	  ArgsConfigurationLoader
 )
+
+# Use the finbourne_identity ApiClientFactory to build Api instances with a configured api client
+# By default this will read config from environment variables
+# Then from a secrets.json file found in the current working directory
+api_client_factory = ApiClientFactory()
+
+# The ApiClientFactory can be passed an iterable of configuration loaders to read configuration from
+
+api_url = "https://fbn-ci.lusid.com/identity"
+# Path to a secrets.json file containing authentication credentials
+# See https://support.lusid.com/knowledgebase/article/KA-01667/en-us
+# for a detailed guide to setting up the SDK make authenticated calls to LUSID APIs
+secrets_path = os.getenv("FBN_SECRETS_PATH")
+app_name="LusidJupyterNotebook"
+
+config_loaders = [
+	EnvironmentVariablesConfigurationLoader(),
+	SecretsFileConfigurationLoader(api_secrets_file=secrets_path),
+	ArgsConfigurationLoader(api_url=api_url, app_name=app_name)
+]
+api_client_factory = ApiClientFactory(config_loaders=config_loaders)
+
 
 # The client must configure the authentication and authorization parameters
 # in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
 
-# Configure OAuth2 access token for authorization: oauth2
-configuration = finbourne_identity.Configuration(
-    host = "https://fbn-ci.lusid.com/identity"
-)
-configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# Enter a context with an instance of the API client
-with finbourne_identity.ApiClient(configuration) as api_client:
+
+# Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
+async with api_client_factory:
     # Create an instance of the API class
-    api_instance = finbourne_identity.ApplicationsApi(api_client)
+    api_instance = api_client_factory.build(finbourne_identity.ApplicationsApi)
     id = 'id_example' # str | The unique identifier for the application
 
     try:
         # [EXPERIMENTAL] RotateApplicationSecrets: Rotate Application Secrets
-        api_response = api_instance.rotate_application_secrets(id)
+        api_response = await api_instance.rotate_application_secrets(id)
+        print("The response of ApplicationsApi->rotate_application_secrets:\n")
         pprint(api_response)
-    except ApiException as e:
+    except Exception as e:
         print("Exception when calling ApplicationsApi->rotate_application_secrets: %s\n" % e)
 ```
+
 
 ### Parameters
 

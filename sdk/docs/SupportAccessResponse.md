@@ -14,8 +14,25 @@ Name | Type | Description | Notes
 **terminated** | **bool** | Whether or not that access has been invalidated | [optional] 
 **terminated_at** | **datetime** | DateTimeOffset at which the access was invalidated | [optional] 
 **terminated_by** | **str** | Obfuscated UserId of the user who revoked the access | [optional] 
-**permitted_roles** | **list[str]** | A list of permitted roles, valid for support staff to assume, for the duration of the access request | [optional] 
+**permitted_roles** | **List[str]** | A list of permitted roles, valid for support staff to assume, for the duration of the access request | [optional] 
 
+## Example
+
+```python
+from finbourne_identity.models.support_access_response import SupportAccessResponse
+
+# TODO update the JSON string below
+json = "{}"
+# create an instance of SupportAccessResponse from a JSON string
+support_access_response_instance = SupportAccessResponse.from_json(json)
+# print the JSON string representation of the object
+print SupportAccessResponse.to_json()
+
+# convert the object into a dict
+support_access_response_dict = support_access_response_instance.to_dict()
+# create an instance of SupportAccessResponse from a dict
+support_access_response_form_dict = support_access_response.from_dict(support_access_response_dict)
+```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 

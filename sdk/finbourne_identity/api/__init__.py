@@ -1,5 +1,3 @@
-from __future__ import absolute_import
-
 # flake8: noqa
 
 # import apis into api package
@@ -12,3 +10,4 @@ from finbourne_identity.api.personal_authentication_tokens_api import PersonalAu
 from finbourne_identity.api.roles_api import RolesApi
 from finbourne_identity.api.tokens_api import TokensApi
 from finbourne_identity.api.users_api import UsersApi
+

@@ -21,40 +21,63 @@ Generates an API token to be used for SCIM
 ```python
 from __future__ import print_function
 import time
+import os
 import finbourne_identity
 from finbourne_identity.rest import ApiException
+from finbourne_identity.models.add_scim_response import AddScimResponse
 from pprint import pprint
-# Defining the host is optional and defaults to https://fbn-ci.lusid.com/identity
-# See configuration.py for a list of all supported configuration parameters.
-configuration = finbourne_identity.Configuration(
-    host = "https://fbn-ci.lusid.com/identity"
+
+from finbourne_identity import (
+	  ApiClientFactory,
+	  ApplicationMetadataApi,
+	  EnvironmentVariablesConfigurationLoader,
+	  SecretsFileConfigurationLoader,
+	  ArgsConfigurationLoader
 )
+
+# Use the finbourne_identity ApiClientFactory to build Api instances with a configured api client
+# By default this will read config from environment variables
+# Then from a secrets.json file found in the current working directory
+api_client_factory = ApiClientFactory()
+
+# The ApiClientFactory can be passed an iterable of configuration loaders to read configuration from
+
+api_url = "https://fbn-ci.lusid.com/identity"
+# Path to a secrets.json file containing authentication credentials
+# See https://support.lusid.com/knowledgebase/article/KA-01667/en-us
+# for a detailed guide to setting up the SDK make authenticated calls to LUSID APIs
+secrets_path = os.getenv("FBN_SECRETS_PATH")
+app_name="LusidJupyterNotebook"
+
+config_loaders = [
+	EnvironmentVariablesConfigurationLoader(),
+	SecretsFileConfigurationLoader(api_secrets_file=secrets_path),
+	ArgsConfigurationLoader(api_url=api_url, app_name=app_name)
+]
+api_client_factory = ApiClientFactory(config_loaders=config_loaders)
+
 
 # The client must configure the authentication and authorization parameters
 # in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
 
-# Configure OAuth2 access token for authorization: oauth2
-configuration = finbourne_identity.Configuration(
-    host = "https://fbn-ci.lusid.com/identity"
-)
-configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# Enter a context with an instance of the API client
-with finbourne_identity.ApiClient(configuration) as api_client:
+
+# Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
+async with api_client_factory:
     # Create an instance of the API class
-    api_instance = finbourne_identity.IdentityProviderApi(api_client)
+    api_instance = api_client_factory.build(finbourne_identity.IdentityProviderApi)
     api_token_action = 'api_token_action_example' # str | The action to take. For the API token. Defaults to \"ensure\" (optional)
-old_api_token_deactivation = '2013-10-20T19:20:30+01:00' # datetime | Optional deactivation date for the old API token. Only used if apiTokenAction is \"regenerate\" (optional)
+    old_api_token_deactivation = '2013-10-20T19:20:30+01:00' # datetime | Optional deactivation date for the old API token. Only used if apiTokenAction is \"regenerate\" (optional)
 
     try:
         # [EARLY ACCESS] AddScim: Add SCIM
-        api_response = api_instance.add_scim(api_token_action=api_token_action, old_api_token_deactivation=old_api_token_deactivation)
+        api_response = await api_instance.add_scim(api_token_action=api_token_action, old_api_token_deactivation=old_api_token_deactivation)
+        print("The response of IdentityProviderApi->add_scim:\n")
         pprint(api_response)
-    except ApiException as e:
+    except Exception as e:
         print("Exception when calling IdentityProviderApi->add_scim: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -98,37 +121,58 @@ Deactivates any existing SCIM API token
 ```python
 from __future__ import print_function
 import time
+import os
 import finbourne_identity
 from finbourne_identity.rest import ApiException
 from pprint import pprint
-# Defining the host is optional and defaults to https://fbn-ci.lusid.com/identity
-# See configuration.py for a list of all supported configuration parameters.
-configuration = finbourne_identity.Configuration(
-    host = "https://fbn-ci.lusid.com/identity"
+
+from finbourne_identity import (
+	  ApiClientFactory,
+	  ApplicationMetadataApi,
+	  EnvironmentVariablesConfigurationLoader,
+	  SecretsFileConfigurationLoader,
+	  ArgsConfigurationLoader
 )
+
+# Use the finbourne_identity ApiClientFactory to build Api instances with a configured api client
+# By default this will read config from environment variables
+# Then from a secrets.json file found in the current working directory
+api_client_factory = ApiClientFactory()
+
+# The ApiClientFactory can be passed an iterable of configuration loaders to read configuration from
+
+api_url = "https://fbn-ci.lusid.com/identity"
+# Path to a secrets.json file containing authentication credentials
+# See https://support.lusid.com/knowledgebase/article/KA-01667/en-us
+# for a detailed guide to setting up the SDK make authenticated calls to LUSID APIs
+secrets_path = os.getenv("FBN_SECRETS_PATH")
+app_name="LusidJupyterNotebook"
+
+config_loaders = [
+	EnvironmentVariablesConfigurationLoader(),
+	SecretsFileConfigurationLoader(api_secrets_file=secrets_path),
+	ArgsConfigurationLoader(api_url=api_url, app_name=app_name)
+]
+api_client_factory = ApiClientFactory(config_loaders=config_loaders)
+
 
 # The client must configure the authentication and authorization parameters
 # in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
 
-# Configure OAuth2 access token for authorization: oauth2
-configuration = finbourne_identity.Configuration(
-    host = "https://fbn-ci.lusid.com/identity"
-)
-configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
-# Enter a context with an instance of the API client
-with finbourne_identity.ApiClient(configuration) as api_client:
+
+# Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
+async with api_client_factory:
     # Create an instance of the API class
-    api_instance = finbourne_identity.IdentityProviderApi(api_client)
-    
+    api_instance = api_client_factory.build(finbourne_identity.IdentityProviderApi)
+
     try:
         # [EARLY ACCESS] RemoveScim: Remove SCIM
-        api_instance.remove_scim()
-    except ApiException as e:
+        await api_instance.remove_scim()
+    except Exception as e:
         print("Exception when calling IdentityProviderApi->remove_scim: %s\n" % e)
 ```
+
 
 ### Parameters
 This endpoint does not need any parameter.
