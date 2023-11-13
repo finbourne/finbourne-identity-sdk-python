@@ -68,7 +68,7 @@ class Configuration:
                  ) -> None:
         """Constructor
         """
-        self._base_path = "https://fbn-ci.lusid.com/identity" if host is None else host
+        self._base_path = "https://fbn-prd.lusid.com/identity" if host is None else host
         """Default Base url
         """
         self.server_index = 0 if server_index is None and host is None else server_index
@@ -373,7 +373,7 @@ class Configuration:
         return "Python SDK Debug Report:\n"\
                "OS: {env}\n"\
                "Python Version: {pyversion}\n"\
-               "Version of the API: 0.0.2691\n"\
+               "Version of the API: 0.0.2693\n"\
                "SDK Package Version: {package_version}".\
                format(env=sys.platform, pyversion=sys.version, package_version=package_version)
 
@@ -384,7 +384,7 @@ class Configuration:
         """
         return [
             {
-                'url': "https://fbn-ci.lusid.com/identity",
+                'url': "https://fbn-prd.lusid.com/identity",
                 'description': "No description provided",
             }
         ]
