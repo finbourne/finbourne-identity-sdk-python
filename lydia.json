@@ -8,7 +8,7 @@
       "url": "https://www.finbourne.com",
       "email": "info@finbourne.com"
     },
-    "version": "0.0.2723",
+    "version": "0.0.2725",
     "x-logo": {
       "url": "https://www.lusid.com/app/assets/logo_white.png",
       "backgroundColor": "#415464"
@@ -417,6 +417,84 @@
           }
         ],
         "x-fbn-apistatus": "Stable"
+      }
+    },
+    "/api/authentication/password-policy/{userType}": {
+      "get": {
+        "tags": [
+          "Authentication"
+        ],
+        "summary": "[EXPERIMENTAL] GetPasswordPolicy: Gets Password Policy for a user type",
+        "description": "Get the password policy for a given user type",
+        "operationId": "GetPasswordPolicy",
+        "parameters": [
+          {
+            "name": "userType",
+            "in": "path",
+            "description": "The type of user (should only be personal or service)",
+            "required": true,
+            "schema": {
+              "maxLength": 20,
+              "minLength": 1,
+              "pattern": "^[a-zA-Z]*$",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get password policy",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PasswordPolicy"
+                },
+                "example": {
+                  "conditions": {
+                    "complexity": {
+                      "minLength": 12,
+                      "excludeFirstName": true,
+                      "excludeLastName": true
+                    },
+                    "age": {
+                      "maxAgeDays": 90,
+                      "historyCount": 4
+                    },
+                    "lockout": {
+                      "maxAttempts": 10
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The details of the input related failure",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidValidationProblemDetails"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "oauth2": []
+          }
+        ],
+        "x-fbn-apistatus": "Experimental"
       }
     },
     "/api/authentication/support": {
@@ -3704,6 +3782,77 @@
           "issuer": {
             "minLength": 1,
             "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PasswordPolicy": {
+        "type": "object",
+        "properties": {
+          "conditions": {
+            "$ref": "#/components/schemas/PasswordPolicyConditions"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PasswordPolicyAge": {
+        "type": "object",
+        "properties": {
+          "maxAgeDays": {
+            "type": "integer",
+            "description": "The maximum age (in days) a password can be before expiring and needing to be changed",
+            "format": "int32"
+          },
+          "historyCount": {
+            "type": "integer",
+            "description": "The number of unique passwords that need to be used before a previous password is permitted again",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PasswordPolicyComplexity": {
+        "type": "object",
+        "properties": {
+          "minLength": {
+            "type": "integer",
+            "description": "The minimum length for a password",
+            "format": "int32"
+          },
+          "excludeFirstName": {
+            "type": "boolean",
+            "description": "Rule determining whether a user's first name should be permitted in their password"
+          },
+          "excludeLastName": {
+            "type": "boolean",
+            "description": "Rule determining whether a user's last name should be permitted in their password"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PasswordPolicyConditions": {
+        "type": "object",
+        "properties": {
+          "complexity": {
+            "$ref": "#/components/schemas/PasswordPolicyComplexity"
+          },
+          "age": {
+            "$ref": "#/components/schemas/PasswordPolicyAge"
+          },
+          "lockout": {
+            "$ref": "#/components/schemas/PasswordPolicyLockout"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Password policy conditions for a password policy"
+      },
+      "PasswordPolicyLockout": {
+        "type": "object",
+        "properties": {
+          "maxAttempts": {
+            "type": "integer",
+            "description": "The maximum number of unsuccessful attempts before the user is locked out of their account",
+            "format": "int32"
           }
         },
         "additionalProperties": false
