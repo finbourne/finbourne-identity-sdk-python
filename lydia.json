@@ -8,7 +8,7 @@
       "url": "https://www.finbourne.com",
       "email": "info@finbourne.com"
     },
-    "version": "0.0.2725",
+    "version": "0.0.2729",
     "x-logo": {
       "url": "https://www.lusid.com/app/assets/logo_white.png",
       "backgroundColor": "#415464"
@@ -1503,7 +1503,8 @@
                     },
                     "source": "LusidUser",
                     "name": "LUSID:FrontOfficeAdministrator",
-                    "description": "Front office administration role"
+                    "description": "Front office administration role",
+                    "samlName": "LUSID:FrontOfficeAdministrator"
                   }
                 ]
               }
@@ -1592,7 +1593,8 @@
                   },
                   "source": "LusidUser",
                   "name": "LUSID:FrontOfficeAdministrator",
-                  "description": "Front office administration role"
+                  "description": "Front office administration role",
+                  "samlName": "LUSID:FrontOfficeAdministrator"
                 }
               }
             }
@@ -1667,7 +1669,8 @@
                   },
                   "source": "LusidUser",
                   "name": "LUSID:FrontOfficeAdministrator",
-                  "description": "Front office administration role"
+                  "description": "Front office administration role",
+                  "samlName": "LUSID:FrontOfficeAdministrator"
                 }
               }
             }
@@ -1830,7 +1833,8 @@
                   },
                   "source": "LusidUser",
                   "name": "LUSID:FrontOfficeAdministrator",
-                  "description": "Front office administration role"
+                  "description": "Front office administration role",
+                  "samlName": "LUSID:FrontOfficeAdministrator"
                 }
               }
             }
@@ -1916,7 +1920,8 @@
                         },
                         "source": "LusidUser",
                         "name": "Front Office Administrator",
-                        "description": "Administration role for Front Office staff"
+                        "description": "Administration role for Front Office staff",
+                        "samlName": "customrole2"
                       }
                     ],
                     "type": "Personal",
@@ -2182,7 +2187,8 @@
                         },
                         "source": "LusidUser",
                         "name": "Front Office Administrator",
-                        "description": "Administration role for Front Office staff"
+                        "description": "Administration role for Front Office staff",
+                        "samlName": "customrole2"
                       }
                     ],
                     "type": "Personal",
@@ -2317,7 +2323,8 @@
                       },
                       "source": "LusidUser",
                       "name": "Front Office Administrator",
-                      "description": "Administration role for Front Office staff"
+                      "description": "Administration role for Front Office staff",
+                      "samlName": "customrole2"
                     }
                   ],
                   "type": "Personal",
@@ -2391,7 +2398,8 @@
                         },
                         "source": "LusidUser",
                         "name": "Front Office Administrator",
-                        "description": "Administration role for Front Office staff"
+                        "description": "Administration role for Front Office staff",
+                        "samlName": "customrole2"
                       }
                     ],
                     "type": "Personal",
@@ -2475,7 +2483,8 @@
                       },
                       "source": "LusidUser",
                       "name": "Front Office Administrator",
-                      "description": "Administration role for Front Office staff"
+                      "description": "Administration role for Front Office staff",
+                      "samlName": "customrole2"
                     }
                   ],
                   "type": "Personal",
@@ -2669,7 +2678,8 @@
                       },
                       "source": "LusidUser",
                       "name": "Front Office Administrator",
-                      "description": "Administration role for Front Office staff"
+                      "description": "Administration role for Front Office staff",
+                      "samlName": "customrole2"
                     }
                   ],
                   "type": "Personal",
@@ -3942,6 +3952,11 @@
           "description": {
             "type": "string",
             "description": "The description for this role",
+            "nullable": true
+          },
+          "samlName": {
+            "type": "string",
+            "description": "The name to use on the SAML request if assigning this role via SAML Just in Time (JIT)",
             "nullable": true
           }
         },
