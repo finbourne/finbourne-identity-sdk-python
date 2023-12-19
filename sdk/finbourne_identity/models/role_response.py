@@ -31,7 +31,8 @@ class RoleResponse(BaseModel):
     source: constr(strict=True, min_length=1) = Field(..., description="The source of the role")
     name: constr(strict=True, min_length=1) = Field(..., description="The role name, which must be unique within the system.")
     description: Optional[StrictStr] = Field(None, description="The description for this role")
-    __properties = ["id", "roleId", "source", "name", "description"]
+    saml_name: Optional[StrictStr] = Field(None, alias="samlName", description="The name to use on the SAML request if assigning this role via SAML Just in Time (JIT)")
+    __properties = ["id", "roleId", "source", "name", "description", "samlName"]
 
     class Config:
         """Pydantic configuration"""
@@ -65,6 +66,11 @@ class RoleResponse(BaseModel):
         if self.description is None and "description" in self.__fields_set__:
             _dict['description'] = None
 
+        # set to None if saml_name (nullable) is None
+        # and __fields_set__ contains the field
+        if self.saml_name is None and "saml_name" in self.__fields_set__:
+            _dict['samlName'] = None
+
         return _dict
 
     @classmethod
@@ -81,6 +87,7 @@ class RoleResponse(BaseModel):
             "role_id": RoleId.from_dict(obj.get("roleId")) if obj.get("roleId") is not None else None,
             "source": obj.get("source"),
             "name": obj.get("name"),
-            "description": obj.get("description")
+            "description": obj.get("description"),
+            "saml_name": obj.get("samlName")
         })
         return _obj
