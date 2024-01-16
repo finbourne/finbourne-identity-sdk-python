@@ -8,7 +8,7 @@
       "url": "https://www.finbourne.com",
       "email": "info@finbourne.com"
     },
-    "version": "0.0.2747",
+    "version": "0.0.2751",
     "x-logo": {
       "url": "https://www.lusid.com/app/assets/logo_white.png",
       "backgroundColor": "#415464"
@@ -311,7 +311,7 @@
         "tags": [
           "Applications"
         ],
-        "summary": "[EXPERIMENTAL] RotateApplicationSecrets: Rotate Application Secrets",
+        "summary": "[EARLY ACCESS] RotateApplicationSecrets: Rotate Application Secrets",
         "description": "Rotate the secrets for the specified application",
         "operationId": "RotateApplicationSecrets",
         "parameters": [
@@ -373,7 +373,7 @@
             "oauth2": []
           }
         ],
-        "x-fbn-apistatus": "Experimental"
+        "x-fbn-apistatus": "EarlyAccess"
       }
     },
     "/api/authentication/information": {
