@@ -665,7 +665,7 @@ class ApplicationsApi:
 
     @validate_arguments
     def rotate_application_secrets(self, id : Annotated[constr(strict=True, max_length=64, min_length=1), Field(..., description="The unique identifier for the application")], async_req: Optional[bool]=None, **kwargs) -> Union[OAuthApplication, Awaitable[OAuthApplication]]:  # noqa: E501
-        """[EXPERIMENTAL] RotateApplicationSecrets: Rotate Application Secrets  # noqa: E501
+        """[EARLY ACCESS] RotateApplicationSecrets: Rotate Application Secrets  # noqa: E501
 
         Rotate the secrets for the specified application  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -697,7 +697,7 @@ class ApplicationsApi:
 
     @validate_arguments
     def rotate_application_secrets_with_http_info(self, id : Annotated[constr(strict=True, max_length=64, min_length=1), Field(..., description="The unique identifier for the application")], **kwargs) -> ApiResponse:  # noqa: E501
-        """[EXPERIMENTAL] RotateApplicationSecrets: Rotate Application Secrets  # noqa: E501
+        """[EARLY ACCESS] RotateApplicationSecrets: Rotate Application Secrets  # noqa: E501
 
         Rotate the secrets for the specified application  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an

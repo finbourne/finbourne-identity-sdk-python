@@ -8,7 +8,7 @@ Method | HTTP request | Description
 [**delete_application**](ApplicationsApi.md#delete_application) | **DELETE** /api/applications/{id} | [EARLY ACCESS] DeleteApplication: Delete Application
 [**get_application**](ApplicationsApi.md#get_application) | **GET** /api/applications/{id} | [EARLY ACCESS] GetApplication: Get Application
 [**list_applications**](ApplicationsApi.md#list_applications) | **GET** /api/applications | [EARLY ACCESS] ListApplications: List Applications
-[**rotate_application_secrets**](ApplicationsApi.md#rotate_application_secrets) | **POST** /api/applications/{id}/lifecycle/$newsecret | [EXPERIMENTAL] RotateApplicationSecrets: Rotate Application Secrets
+[**rotate_application_secrets**](ApplicationsApi.md#rotate_application_secrets) | **POST** /api/applications/{id}/lifecycle/$newsecret | [EARLY ACCESS] RotateApplicationSecrets: Rotate Application Secrets
 
 
 # **create_application**
@@ -402,7 +402,7 @@ This endpoint does not need any parameter.
 # **rotate_application_secrets**
 > OAuthApplication rotate_application_secrets(id)
 
-[EXPERIMENTAL] RotateApplicationSecrets: Rotate Application Secrets
+[EARLY ACCESS] RotateApplicationSecrets: Rotate Application Secrets
 
 Rotate the secrets for the specified application
 
@@ -460,7 +460,7 @@ async with api_client_factory:
     id = 'id_example' # str | The unique identifier for the application
 
     try:
-        # [EXPERIMENTAL] RotateApplicationSecrets: Rotate Application Secrets
+        # [EARLY ACCESS] RotateApplicationSecrets: Rotate Application Secrets
         api_response = await api_instance.rotate_application_secrets(id)
         print("The response of ApplicationsApi->rotate_application_secrets:\n")
         pprint(api_response)
