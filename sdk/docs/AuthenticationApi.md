@@ -5,11 +5,12 @@ All URIs are relative to *https://fbn-ci.lusid.com/identity*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**get_authentication_information**](AuthenticationApi.md#get_authentication_information) | **GET** /api/authentication/information | GetAuthenticationInformation: Gets AuthenticationInformation
-[**get_password_policy**](AuthenticationApi.md#get_password_policy) | **GET** /api/authentication/password-policy/{userType} | [EXPERIMENTAL] GetPasswordPolicy: Gets Password Policy for a user type
+[**get_password_policy**](AuthenticationApi.md#get_password_policy) | **GET** /api/authentication/password-policy/{userType} | [EXPERIMENTAL] GetPasswordPolicy: Gets password policy for a user type
 [**get_support_access_history**](AuthenticationApi.md#get_support_access_history) | **GET** /api/authentication/support | [EARLY ACCESS] GetSupportAccessHistory: Get the history of all support access granted and any information pertaining to their termination
 [**get_support_roles**](AuthenticationApi.md#get_support_roles) | **GET** /api/authentication/support-roles | [EARLY ACCESS] GetSupportRoles: Get mapping of support roles, the internal representation to a human friendly representation
 [**grant_support_access**](AuthenticationApi.md#grant_support_access) | **POST** /api/authentication/support | [EARLY ACCESS] GrantSupportAccess: Grants FINBOURNE support access to your account
 [**invalidate_support_access**](AuthenticationApi.md#invalidate_support_access) | **DELETE** /api/authentication/support | [EARLY ACCESS] InvalidateSupportAccess: Revoke any FINBOURNE support access to your account
+[**update_password_policy**](AuthenticationApi.md#update_password_policy) | **PUT** /api/authentication/password-policy/{userType} | [EXPERIMENTAL] UpdatePasswordPolicy: Updates password policy for a user type
 
 
 # **get_authentication_information**
@@ -83,9 +84,9 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_password_policy**
-> PasswordPolicy get_password_policy(user_type)
+> PasswordPolicyDto get_password_policy(user_type)
 
-[EXPERIMENTAL] GetPasswordPolicy: Gets Password Policy for a user type
+[EXPERIMENTAL] GetPasswordPolicy: Gets password policy for a user type
 
 Get the password policy for a given user type
 
@@ -122,7 +123,7 @@ with finbourne_identity.ApiClient(configuration) as api_client:
     user_type = 'user_type_example' # str | The type of user (should only be personal or service)
 
     try:
-        # [EXPERIMENTAL] GetPasswordPolicy: Gets Password Policy for a user type
+        # [EXPERIMENTAL] GetPasswordPolicy: Gets password policy for a user type
         api_response = api_instance.get_password_policy(user_type)
         pprint(api_response)
     except ApiException as e:
@@ -137,7 +138,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PasswordPolicy**](PasswordPolicy.md)
+[**PasswordPolicyDto**](PasswordPolicyDto.md)
 
 ### Authorization
 
@@ -445,6 +446,83 @@ This endpoint does not need any parameter.
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Invalidate all currently active support requests |  -  |
+**0** | Error response |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **update_password_policy**
+> PasswordPolicyDto update_password_policy(user_type, password_policy_dto=password_policy_dto)
+
+[EXPERIMENTAL] UpdatePasswordPolicy: Updates password policy for a user type
+
+Update the password policy for a given user type
+
+### Example
+
+* OAuth Authentication (oauth2):
+```python
+from __future__ import print_function
+import time
+import finbourne_identity
+from finbourne_identity.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://fbn-ci.lusid.com/identity
+# See configuration.py for a list of all supported configuration parameters.
+configuration = finbourne_identity.Configuration(
+    host = "https://fbn-ci.lusid.com/identity"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure OAuth2 access token for authorization: oauth2
+configuration = finbourne_identity.Configuration(
+    host = "https://fbn-ci.lusid.com/identity"
+)
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
+
+# Enter a context with an instance of the API client
+with finbourne_identity.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = finbourne_identity.AuthenticationApi(api_client)
+    user_type = 'user_type_example' # str | The type of user (should only be personal or service)
+password_policy_dto = {"conditions":{"complexity":{"minLength":12,"excludeFirstName":true,"excludeLastName":true},"age":{"maxAgeDays":90,"historyCount":4},"lockout":{"maxAttempts":10}}} # PasswordPolicyDto | The password policy for the given user type (optional)
+
+    try:
+        # [EXPERIMENTAL] UpdatePasswordPolicy: Updates password policy for a user type
+        api_response = api_instance.update_password_policy(user_type, password_policy_dto=password_policy_dto)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling AuthenticationApi->update_password_policy: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **user_type** | **str**| The type of user (should only be personal or service) | 
+ **password_policy_dto** | [**PasswordPolicyDto**](PasswordPolicyDto.md)| The password policy for the given user type | [optional] 
+
+### Return type
+
+[**PasswordPolicyDto**](PasswordPolicyDto.md)
+
+### Authorization
+
+[oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Update password policy |  -  |
+**400** | The details of the input related failure |  -  |
 **0** | Error response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

@@ -8,7 +8,7 @@
       "url": "https://www.finbourne.com",
       "email": "info@finbourne.com"
     },
-    "version": "0.0.2751",
+    "version": "0.0.2755",
     "x-logo": {
       "url": "https://www.lusid.com/app/assets/logo_white.png",
       "backgroundColor": "#415464"
@@ -424,7 +424,7 @@
         "tags": [
           "Authentication"
         ],
-        "summary": "[EXPERIMENTAL] GetPasswordPolicy: Gets Password Policy for a user type",
+        "summary": "[EXPERIMENTAL] GetPasswordPolicy: Gets password policy for a user type",
         "description": "Get the password policy for a given user type",
         "operationId": "GetPasswordPolicy",
         "parameters": [
@@ -447,7 +447,172 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PasswordPolicy"
+                  "$ref": "#/components/schemas/PasswordPolicyDto"
+                },
+                "example": {
+                  "conditions": {
+                    "complexity": {
+                      "minLength": 12,
+                      "excludeFirstName": true,
+                      "excludeLastName": true
+                    },
+                    "age": {
+                      "maxAgeDays": 90,
+                      "historyCount": 4
+                    },
+                    "lockout": {
+                      "maxAttempts": 10
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The details of the input related failure",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidValidationProblemDetails"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "oauth2": []
+          }
+        ],
+        "x-fbn-apistatus": "Experimental"
+      },
+      "put": {
+        "tags": [
+          "Authentication"
+        ],
+        "summary": "[EXPERIMENTAL] UpdatePasswordPolicy: Updates password policy for a user type",
+        "description": "Update the password policy for a given user type",
+        "operationId": "UpdatePasswordPolicy",
+        "parameters": [
+          {
+            "name": "userType",
+            "in": "path",
+            "description": "The type of user (should only be personal or service)",
+            "required": true,
+            "schema": {
+              "maxLength": 20,
+              "minLength": 1,
+              "pattern": "^[a-zA-Z]*$",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The password policy for the given user type",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/PasswordPolicyDto"
+              },
+              "example": {
+                "conditions": {
+                  "complexity": {
+                    "minLength": 12,
+                    "excludeFirstName": true,
+                    "excludeLastName": true
+                  },
+                  "age": {
+                    "maxAgeDays": 90,
+                    "historyCount": 4
+                  },
+                  "lockout": {
+                    "maxAttempts": 10
+                  }
+                }
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PasswordPolicyDto"
+              },
+              "example": {
+                "conditions": {
+                  "complexity": {
+                    "minLength": 12,
+                    "excludeFirstName": true,
+                    "excludeLastName": true
+                  },
+                  "age": {
+                    "maxAgeDays": 90,
+                    "historyCount": 4
+                  },
+                  "lockout": {
+                    "maxAttempts": 10
+                  }
+                }
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PasswordPolicyDto"
+              },
+              "example": {
+                "conditions": {
+                  "complexity": {
+                    "minLength": 12,
+                    "excludeFirstName": true,
+                    "excludeLastName": true
+                  },
+                  "age": {
+                    "maxAgeDays": 90,
+                    "historyCount": 4
+                  },
+                  "lockout": {
+                    "maxAttempts": 10
+                  }
+                }
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/PasswordPolicyDto"
+              },
+              "example": {
+                "conditions": {
+                  "complexity": {
+                    "minLength": 12,
+                    "excludeFirstName": true,
+                    "excludeLastName": true
+                  },
+                  "age": {
+                    "maxAgeDays": 90,
+                    "historyCount": 4
+                  },
+                  "lockout": {
+                    "maxAttempts": 10
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Update password policy",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PasswordPolicyDto"
                 },
                 "example": {
                   "conditions": {
@@ -3796,16 +3961,11 @@
         },
         "additionalProperties": false
       },
-      "PasswordPolicy": {
-        "type": "object",
-        "properties": {
-          "conditions": {
-            "$ref": "#/components/schemas/PasswordPolicyConditions"
-          }
-        },
-        "additionalProperties": false
-      },
-      "PasswordPolicyAge": {
+      "PasswordPolicyAgeDto": {
+        "required": [
+          "historyCount",
+          "maxAgeDays"
+        ],
         "type": "object",
         "properties": {
           "maxAgeDays": {
@@ -3821,7 +3981,12 @@
         },
         "additionalProperties": false
       },
-      "PasswordPolicyComplexity": {
+      "PasswordPolicyComplexityDto": {
+        "required": [
+          "excludeFirstName",
+          "excludeLastName",
+          "minLength"
+        ],
         "type": "object",
         "properties": {
           "minLength": {
@@ -3840,23 +4005,43 @@
         },
         "additionalProperties": false
       },
-      "PasswordPolicyConditions": {
+      "PasswordPolicyConditionsDto": {
+        "required": [
+          "age",
+          "complexity",
+          "lockout"
+        ],
         "type": "object",
         "properties": {
           "complexity": {
-            "$ref": "#/components/schemas/PasswordPolicyComplexity"
+            "$ref": "#/components/schemas/PasswordPolicyComplexityDto"
           },
           "age": {
-            "$ref": "#/components/schemas/PasswordPolicyAge"
+            "$ref": "#/components/schemas/PasswordPolicyAgeDto"
           },
           "lockout": {
-            "$ref": "#/components/schemas/PasswordPolicyLockout"
+            "$ref": "#/components/schemas/PasswordPolicyLockoutDto"
           }
         },
         "additionalProperties": false,
         "description": "Password policy conditions for a password policy"
       },
-      "PasswordPolicyLockout": {
+      "PasswordPolicyDto": {
+        "required": [
+          "conditions"
+        ],
+        "type": "object",
+        "properties": {
+          "conditions": {
+            "$ref": "#/components/schemas/PasswordPolicyConditionsDto"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PasswordPolicyLockoutDto": {
+        "required": [
+          "maxAttempts"
+        ],
         "type": "object",
         "properties": {
           "maxAttempts": {
