@@ -18,14 +18,14 @@ import re  # noqa: F401
 import json
 
 
-from typing import Any, Dict, Optional
+from typing import Any, Dict
 from pydantic import BaseModel, Field, StrictInt
 
-class PasswordPolicyLockout(BaseModel):
+class PasswordPolicyLockoutDto(BaseModel):
     """
-    PasswordPolicyLockout
+    PasswordPolicyLockoutDto
     """
-    max_attempts: Optional[StrictInt] = Field(None, alias="maxAttempts", description="The maximum number of unsuccessful attempts before the user is locked out of their account")
+    max_attempts: StrictInt = Field(..., alias="maxAttempts", description="The maximum number of unsuccessful attempts before the user is locked out of their account")
     __properties = ["maxAttempts"]
 
     class Config:
@@ -42,8 +42,8 @@ class PasswordPolicyLockout(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> PasswordPolicyLockout:
-        """Create an instance of PasswordPolicyLockout from a JSON string"""
+    def from_json(cls, json_str: str) -> PasswordPolicyLockoutDto:
+        """Create an instance of PasswordPolicyLockoutDto from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self):
@@ -55,15 +55,15 @@ class PasswordPolicyLockout(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> PasswordPolicyLockout:
-        """Create an instance of PasswordPolicyLockout from a dict"""
+    def from_dict(cls, obj: dict) -> PasswordPolicyLockoutDto:
+        """Create an instance of PasswordPolicyLockoutDto from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return PasswordPolicyLockout.parse_obj(obj)
+            return PasswordPolicyLockoutDto.parse_obj(obj)
 
-        _obj = PasswordPolicyLockout.parse_obj({
+        _obj = PasswordPolicyLockoutDto.parse_obj({
             "max_attempts": obj.get("maxAttempts")
         })
         return _obj

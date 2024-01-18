@@ -18,19 +18,19 @@ import re  # noqa: F401
 import json
 
 
-from typing import Any, Dict, Optional
-from pydantic import BaseModel
-from finbourne_identity.models.password_policy_age import PasswordPolicyAge
-from finbourne_identity.models.password_policy_complexity import PasswordPolicyComplexity
-from finbourne_identity.models.password_policy_lockout import PasswordPolicyLockout
+from typing import Any, Dict
+from pydantic import BaseModel, Field
+from finbourne_identity.models.password_policy_age_dto import PasswordPolicyAgeDto
+from finbourne_identity.models.password_policy_complexity_dto import PasswordPolicyComplexityDto
+from finbourne_identity.models.password_policy_lockout_dto import PasswordPolicyLockoutDto
 
-class PasswordPolicyConditions(BaseModel):
+class PasswordPolicyConditionsDto(BaseModel):
     """
     Password policy conditions for a password policy  # noqa: E501
     """
-    complexity: Optional[PasswordPolicyComplexity] = None
-    age: Optional[PasswordPolicyAge] = None
-    lockout: Optional[PasswordPolicyLockout] = None
+    complexity: PasswordPolicyComplexityDto = Field(...)
+    age: PasswordPolicyAgeDto = Field(...)
+    lockout: PasswordPolicyLockoutDto = Field(...)
     __properties = ["complexity", "age", "lockout"]
 
     class Config:
@@ -47,8 +47,8 @@ class PasswordPolicyConditions(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> PasswordPolicyConditions:
-        """Create an instance of PasswordPolicyConditions from a JSON string"""
+    def from_json(cls, json_str: str) -> PasswordPolicyConditionsDto:
+        """Create an instance of PasswordPolicyConditionsDto from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self):
@@ -69,17 +69,17 @@ class PasswordPolicyConditions(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> PasswordPolicyConditions:
-        """Create an instance of PasswordPolicyConditions from a dict"""
+    def from_dict(cls, obj: dict) -> PasswordPolicyConditionsDto:
+        """Create an instance of PasswordPolicyConditionsDto from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return PasswordPolicyConditions.parse_obj(obj)
+            return PasswordPolicyConditionsDto.parse_obj(obj)
 
-        _obj = PasswordPolicyConditions.parse_obj({
-            "complexity": PasswordPolicyComplexity.from_dict(obj.get("complexity")) if obj.get("complexity") is not None else None,
-            "age": PasswordPolicyAge.from_dict(obj.get("age")) if obj.get("age") is not None else None,
-            "lockout": PasswordPolicyLockout.from_dict(obj.get("lockout")) if obj.get("lockout") is not None else None
+        _obj = PasswordPolicyConditionsDto.parse_obj({
+            "complexity": PasswordPolicyComplexityDto.from_dict(obj.get("complexity")) if obj.get("complexity") is not None else None,
+            "age": PasswordPolicyAgeDto.from_dict(obj.get("age")) if obj.get("age") is not None else None,
+            "lockout": PasswordPolicyLockoutDto.from_dict(obj.get("lockout")) if obj.get("lockout") is not None else None
         })
         return _obj

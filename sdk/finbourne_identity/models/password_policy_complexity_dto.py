@@ -18,16 +18,16 @@ import re  # noqa: F401
 import json
 
 
-from typing import Any, Dict, Optional
+from typing import Any, Dict
 from pydantic import BaseModel, Field, StrictBool, StrictInt
 
-class PasswordPolicyComplexity(BaseModel):
+class PasswordPolicyComplexityDto(BaseModel):
     """
-    PasswordPolicyComplexity
+    PasswordPolicyComplexityDto
     """
-    min_length: Optional[StrictInt] = Field(None, alias="minLength", description="The minimum length for a password")
-    exclude_first_name: Optional[StrictBool] = Field(None, alias="excludeFirstName", description="Rule determining whether a user's first name should be permitted in their password")
-    exclude_last_name: Optional[StrictBool] = Field(None, alias="excludeLastName", description="Rule determining whether a user's last name should be permitted in their password")
+    min_length: StrictInt = Field(..., alias="minLength", description="The minimum length for a password")
+    exclude_first_name: StrictBool = Field(..., alias="excludeFirstName", description="Rule determining whether a user's first name should be permitted in their password")
+    exclude_last_name: StrictBool = Field(..., alias="excludeLastName", description="Rule determining whether a user's last name should be permitted in their password")
     __properties = ["minLength", "excludeFirstName", "excludeLastName"]
 
     class Config:
@@ -44,8 +44,8 @@ class PasswordPolicyComplexity(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> PasswordPolicyComplexity:
-        """Create an instance of PasswordPolicyComplexity from a JSON string"""
+    def from_json(cls, json_str: str) -> PasswordPolicyComplexityDto:
+        """Create an instance of PasswordPolicyComplexityDto from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self):
@@ -57,15 +57,15 @@ class PasswordPolicyComplexity(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> PasswordPolicyComplexity:
-        """Create an instance of PasswordPolicyComplexity from a dict"""
+    def from_dict(cls, obj: dict) -> PasswordPolicyComplexityDto:
+        """Create an instance of PasswordPolicyComplexityDto from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return PasswordPolicyComplexity.parse_obj(obj)
+            return PasswordPolicyComplexityDto.parse_obj(obj)
 
-        _obj = PasswordPolicyComplexity.parse_obj({
+        _obj = PasswordPolicyComplexityDto.parse_obj({
             "min_length": obj.get("minLength"),
             "exclude_first_name": obj.get("excludeFirstName"),
             "exclude_last_name": obj.get("excludeLastName")

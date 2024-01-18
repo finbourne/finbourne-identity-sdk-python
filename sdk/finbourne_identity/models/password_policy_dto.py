@@ -18,16 +18,16 @@ import re  # noqa: F401
 import json
 
 
-from typing import Any, Dict, Optional
-from pydantic import BaseModel, Field, StrictInt
+from typing import Any, Dict
+from pydantic import BaseModel, Field
+from finbourne_identity.models.password_policy_conditions_dto import PasswordPolicyConditionsDto
 
-class PasswordPolicyAge(BaseModel):
+class PasswordPolicyDto(BaseModel):
     """
-    PasswordPolicyAge
+    PasswordPolicyDto
     """
-    max_age_days: Optional[StrictInt] = Field(None, alias="maxAgeDays", description="The maximum age (in days) a password can be before expiring and needing to be changed")
-    history_count: Optional[StrictInt] = Field(None, alias="historyCount", description="The number of unique passwords that need to be used before a previous password is permitted again")
-    __properties = ["maxAgeDays", "historyCount"]
+    conditions: PasswordPolicyConditionsDto = Field(...)
+    __properties = ["conditions"]
 
     class Config:
         """Pydantic configuration"""
@@ -43,8 +43,8 @@ class PasswordPolicyAge(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> PasswordPolicyAge:
-        """Create an instance of PasswordPolicyAge from a JSON string"""
+    def from_json(cls, json_str: str) -> PasswordPolicyDto:
+        """Create an instance of PasswordPolicyDto from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self):
@@ -53,19 +53,21 @@ class PasswordPolicyAge(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
+        # override the default output from pydantic by calling `to_dict()` of conditions
+        if self.conditions:
+            _dict['conditions'] = self.conditions.to_dict()
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> PasswordPolicyAge:
-        """Create an instance of PasswordPolicyAge from a dict"""
+    def from_dict(cls, obj: dict) -> PasswordPolicyDto:
+        """Create an instance of PasswordPolicyDto from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return PasswordPolicyAge.parse_obj(obj)
+            return PasswordPolicyDto.parse_obj(obj)
 
-        _obj = PasswordPolicyAge.parse_obj({
-            "max_age_days": obj.get("maxAgeDays"),
-            "history_count": obj.get("historyCount")
+        _obj = PasswordPolicyDto.parse_obj({
+            "conditions": PasswordPolicyConditionsDto.from_dict(obj.get("conditions")) if obj.get("conditions") is not None else None
         })
         return _obj
