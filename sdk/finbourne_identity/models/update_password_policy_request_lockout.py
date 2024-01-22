@@ -19,16 +19,14 @@ import json
 
 
 from typing import Any, Dict
-from pydantic import BaseModel, Field, StrictBool, StrictInt
+from pydantic import BaseModel, Field, StrictInt
 
-class PasswordPolicyComplexityDto(BaseModel):
+class UpdatePasswordPolicyRequestLockout(BaseModel):
     """
-    PasswordPolicyComplexityDto
+    UpdatePasswordPolicyRequestLockout
     """
-    min_length: StrictInt = Field(..., alias="minLength", description="The minimum length for a password")
-    exclude_first_name: StrictBool = Field(..., alias="excludeFirstName", description="Rule determining whether a user's first name should be permitted in their password")
-    exclude_last_name: StrictBool = Field(..., alias="excludeLastName", description="Rule determining whether a user's last name should be permitted in their password")
-    __properties = ["minLength", "excludeFirstName", "excludeLastName"]
+    max_attempts: StrictInt = Field(..., alias="maxAttempts", description="The maximum number of unsuccessful attempts before the user is locked out of their account")
+    __properties = ["maxAttempts"]
 
     class Config:
         """Pydantic configuration"""
@@ -44,8 +42,8 @@ class PasswordPolicyComplexityDto(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> PasswordPolicyComplexityDto:
-        """Create an instance of PasswordPolicyComplexityDto from a JSON string"""
+    def from_json(cls, json_str: str) -> UpdatePasswordPolicyRequestLockout:
+        """Create an instance of UpdatePasswordPolicyRequestLockout from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self):
@@ -57,17 +55,15 @@ class PasswordPolicyComplexityDto(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> PasswordPolicyComplexityDto:
-        """Create an instance of PasswordPolicyComplexityDto from a dict"""
+    def from_dict(cls, obj: dict) -> UpdatePasswordPolicyRequestLockout:
+        """Create an instance of UpdatePasswordPolicyRequestLockout from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return PasswordPolicyComplexityDto.parse_obj(obj)
+            return UpdatePasswordPolicyRequestLockout.parse_obj(obj)
 
-        _obj = PasswordPolicyComplexityDto.parse_obj({
-            "min_length": obj.get("minLength"),
-            "exclude_first_name": obj.get("excludeFirstName"),
-            "exclude_last_name": obj.get("excludeLastName")
+        _obj = UpdatePasswordPolicyRequestLockout.parse_obj({
+            "max_attempts": obj.get("maxAttempts")
         })
         return _obj

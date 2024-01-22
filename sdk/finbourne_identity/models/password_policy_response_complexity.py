@@ -19,15 +19,16 @@ import json
 
 
 from typing import Any, Dict
-from pydantic import BaseModel, Field, StrictInt
+from pydantic import BaseModel, Field, StrictBool, StrictInt
 
-class PasswordPolicyAgeDto(BaseModel):
+class PasswordPolicyResponseComplexity(BaseModel):
     """
-    PasswordPolicyAgeDto
+    PasswordPolicyResponseComplexity
     """
-    max_age_days: StrictInt = Field(..., alias="maxAgeDays", description="The maximum age (in days) a password can be before expiring and needing to be changed")
-    history_count: StrictInt = Field(..., alias="historyCount", description="The number of unique passwords that need to be used before a previous password is permitted again")
-    __properties = ["maxAgeDays", "historyCount"]
+    min_length: StrictInt = Field(..., alias="minLength", description="The minimum length for a password")
+    exclude_first_name: StrictBool = Field(..., alias="excludeFirstName", description="Rule determining whether a user's first name should be permitted in their password")
+    exclude_last_name: StrictBool = Field(..., alias="excludeLastName", description="Rule determining whether a user's last name should be permitted in their password")
+    __properties = ["minLength", "excludeFirstName", "excludeLastName"]
 
     class Config:
         """Pydantic configuration"""
@@ -43,8 +44,8 @@ class PasswordPolicyAgeDto(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> PasswordPolicyAgeDto:
-        """Create an instance of PasswordPolicyAgeDto from a JSON string"""
+    def from_json(cls, json_str: str) -> PasswordPolicyResponseComplexity:
+        """Create an instance of PasswordPolicyResponseComplexity from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self):
@@ -56,16 +57,17 @@ class PasswordPolicyAgeDto(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> PasswordPolicyAgeDto:
-        """Create an instance of PasswordPolicyAgeDto from a dict"""
+    def from_dict(cls, obj: dict) -> PasswordPolicyResponseComplexity:
+        """Create an instance of PasswordPolicyResponseComplexity from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return PasswordPolicyAgeDto.parse_obj(obj)
+            return PasswordPolicyResponseComplexity.parse_obj(obj)
 
-        _obj = PasswordPolicyAgeDto.parse_obj({
-            "max_age_days": obj.get("maxAgeDays"),
-            "history_count": obj.get("historyCount")
+        _obj = PasswordPolicyResponseComplexity.parse_obj({
+            "min_length": obj.get("minLength"),
+            "exclude_first_name": obj.get("excludeFirstName"),
+            "exclude_last_name": obj.get("excludeLastName")
         })
         return _obj

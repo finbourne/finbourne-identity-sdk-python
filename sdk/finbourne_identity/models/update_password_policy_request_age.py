@@ -21,12 +21,13 @@ import json
 from typing import Any, Dict
 from pydantic import BaseModel, Field, StrictInt
 
-class PasswordPolicyLockoutDto(BaseModel):
+class UpdatePasswordPolicyRequestAge(BaseModel):
     """
-    PasswordPolicyLockoutDto
+    UpdatePasswordPolicyRequestAge
     """
-    max_attempts: StrictInt = Field(..., alias="maxAttempts", description="The maximum number of unsuccessful attempts before the user is locked out of their account")
-    __properties = ["maxAttempts"]
+    max_age_days: StrictInt = Field(..., alias="maxAgeDays", description="The maximum age (in days) a password can be before expiring and needing to be changed")
+    history_count: StrictInt = Field(..., alias="historyCount", description="The number of unique passwords that need to be used before a previous password is permitted again")
+    __properties = ["maxAgeDays", "historyCount"]
 
     class Config:
         """Pydantic configuration"""
@@ -42,8 +43,8 @@ class PasswordPolicyLockoutDto(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> PasswordPolicyLockoutDto:
-        """Create an instance of PasswordPolicyLockoutDto from a JSON string"""
+    def from_json(cls, json_str: str) -> UpdatePasswordPolicyRequestAge:
+        """Create an instance of UpdatePasswordPolicyRequestAge from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self):
@@ -55,15 +56,16 @@ class PasswordPolicyLockoutDto(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> PasswordPolicyLockoutDto:
-        """Create an instance of PasswordPolicyLockoutDto from a dict"""
+    def from_dict(cls, obj: dict) -> UpdatePasswordPolicyRequestAge:
+        """Create an instance of UpdatePasswordPolicyRequestAge from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return PasswordPolicyLockoutDto.parse_obj(obj)
+            return UpdatePasswordPolicyRequestAge.parse_obj(obj)
 
-        _obj = PasswordPolicyLockoutDto.parse_obj({
-            "max_attempts": obj.get("maxAttempts")
+        _obj = UpdatePasswordPolicyRequestAge.parse_obj({
+            "max_age_days": obj.get("maxAgeDays"),
+            "history_count": obj.get("historyCount")
         })
         return _obj

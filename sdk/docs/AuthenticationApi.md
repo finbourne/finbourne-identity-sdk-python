@@ -107,7 +107,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_password_policy**
-> PasswordPolicyDto get_password_policy(user_type)
+> PasswordPolicyResponse get_password_policy(user_type)
 
 [EXPERIMENTAL] GetPasswordPolicy: Gets password policy for a user type
 
@@ -122,7 +122,7 @@ import time
 import os
 import finbourne_identity
 from finbourne_identity.rest import ApiException
-from finbourne_identity.models.password_policy_dto import PasswordPolicyDto
+from finbourne_identity.models.password_policy_response import PasswordPolicyResponse
 from pprint import pprint
 
 from finbourne_identity import (
@@ -184,7 +184,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PasswordPolicyDto**](PasswordPolicyDto.md)
+[**PasswordPolicyResponse**](PasswordPolicyResponse.md)
 
 ### Authorization
 
@@ -590,7 +590,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_password_policy**
-> PasswordPolicyDto update_password_policy(user_type, password_policy_dto=password_policy_dto)
+> PasswordPolicyResponse update_password_policy(user_type, update_password_policy_request=update_password_policy_request)
 
 [EXPERIMENTAL] UpdatePasswordPolicy: Updates password policy for a user type
 
@@ -605,7 +605,8 @@ import time
 import os
 import finbourne_identity
 from finbourne_identity.rest import ApiException
-from finbourne_identity.models.password_policy_dto import PasswordPolicyDto
+from finbourne_identity.models.password_policy_response import PasswordPolicyResponse
+from finbourne_identity.models.update_password_policy_request import UpdatePasswordPolicyRequest
 from pprint import pprint
 
 from finbourne_identity import (
@@ -648,11 +649,11 @@ async with api_client_factory:
     # Create an instance of the API class
     api_instance = api_client_factory.build(finbourne_identity.AuthenticationApi)
     user_type = 'user_type_example' # str | The type of user (should only be personal or service)
-    password_policy_dto = {"conditions":{"complexity":{"minLength":12,"excludeFirstName":true,"excludeLastName":true},"age":{"maxAgeDays":90,"historyCount":4},"lockout":{"maxAttempts":10}}} # PasswordPolicyDto | The password policy for the given user type (optional)
+    update_password_policy_request = {"conditions":{"complexity":{"minLength":15,"excludeFirstName":true,"excludeLastName":true},"age":{"maxAgeDays":30,"historyCount":10},"lockout":{"maxAttempts":20}}} # UpdatePasswordPolicyRequest | The password policy for the given user type (optional)
 
     try:
         # [EXPERIMENTAL] UpdatePasswordPolicy: Updates password policy for a user type
-        api_response = await api_instance.update_password_policy(user_type, password_policy_dto=password_policy_dto)
+        api_response = await api_instance.update_password_policy(user_type, update_password_policy_request=update_password_policy_request)
         print("The response of AuthenticationApi->update_password_policy:\n")
         pprint(api_response)
     except Exception as e:
@@ -665,11 +666,11 @@ async with api_client_factory:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **user_type** | **str**| The type of user (should only be personal or service) | 
- **password_policy_dto** | [**PasswordPolicyDto**](PasswordPolicyDto.md)| The password policy for the given user type | [optional] 
+ **update_password_policy_request** | [**UpdatePasswordPolicyRequest**](UpdatePasswordPolicyRequest.md)| The password policy for the given user type | [optional] 
 
 ### Return type
 
-[**PasswordPolicyDto**](PasswordPolicyDto.md)
+[**PasswordPolicyResponse**](PasswordPolicyResponse.md)
 
 ### Authorization
 

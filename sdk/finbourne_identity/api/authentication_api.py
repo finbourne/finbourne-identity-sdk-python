@@ -27,10 +27,11 @@ from pydantic import Field, constr, validator
 from typing import List, Optional
 
 from finbourne_identity.models.authentication_information import AuthenticationInformation
-from finbourne_identity.models.password_policy_dto import PasswordPolicyDto
+from finbourne_identity.models.password_policy_response import PasswordPolicyResponse
 from finbourne_identity.models.support_access_request import SupportAccessRequest
 from finbourne_identity.models.support_access_response import SupportAccessResponse
 from finbourne_identity.models.support_roles_response import SupportRolesResponse
+from finbourne_identity.models.update_password_policy_request import UpdatePasswordPolicyRequest
 
 from finbourne_identity.api_client import ApiClient
 from finbourne_identity.api_response import ApiResponse
@@ -195,15 +196,15 @@ class AuthenticationApi:
             _request_auth=_params.get('_request_auth'))
 
     @overload
-    async def get_password_policy(self, user_type : Annotated[constr(strict=True, max_length=20, min_length=1), Field(..., description="The type of user (should only be personal or service)")], **kwargs) -> PasswordPolicyDto:  # noqa: E501
+    async def get_password_policy(self, user_type : Annotated[constr(strict=True, max_length=20, min_length=1), Field(..., description="The type of user (should only be personal or service)")], **kwargs) -> PasswordPolicyResponse:  # noqa: E501
         ...
 
     @overload
-    def get_password_policy(self, user_type : Annotated[constr(strict=True, max_length=20, min_length=1), Field(..., description="The type of user (should only be personal or service)")], async_req: Optional[bool]=True, **kwargs) -> PasswordPolicyDto:  # noqa: E501
+    def get_password_policy(self, user_type : Annotated[constr(strict=True, max_length=20, min_length=1), Field(..., description="The type of user (should only be personal or service)")], async_req: Optional[bool]=True, **kwargs) -> PasswordPolicyResponse:  # noqa: E501
         ...
 
     @validate_arguments
-    def get_password_policy(self, user_type : Annotated[constr(strict=True, max_length=20, min_length=1), Field(..., description="The type of user (should only be personal or service)")], async_req: Optional[bool]=None, **kwargs) -> Union[PasswordPolicyDto, Awaitable[PasswordPolicyDto]]:  # noqa: E501
+    def get_password_policy(self, user_type : Annotated[constr(strict=True, max_length=20, min_length=1), Field(..., description="The type of user (should only be personal or service)")], async_req: Optional[bool]=None, **kwargs) -> Union[PasswordPolicyResponse, Awaitable[PasswordPolicyResponse]]:  # noqa: E501
         """[EXPERIMENTAL] GetPasswordPolicy: Gets password policy for a user type  # noqa: E501
 
         Get the password policy for a given user type  # noqa: E501
@@ -224,7 +225,7 @@ class AuthenticationApi:
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: PasswordPolicyDto
+        :rtype: PasswordPolicyResponse
         """
         kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
@@ -269,7 +270,7 @@ class AuthenticationApi:
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: tuple(PasswordPolicyDto, status_code(int), headers(HTTPHeaderDict))
+        :rtype: tuple(PasswordPolicyResponse, status_code(int), headers(HTTPHeaderDict))
         """
 
         _params = locals()
@@ -324,7 +325,7 @@ class AuthenticationApi:
         _auth_settings = ['oauth2']  # noqa: E501
 
         _response_types_map = {
-            '200': "PasswordPolicyDto",
+            '200': "PasswordPolicyResponse",
             '400': "LusidValidationProblemDetails",
         }
 
@@ -953,28 +954,28 @@ class AuthenticationApi:
             _request_auth=_params.get('_request_auth'))
 
     @overload
-    async def update_password_policy(self, user_type : Annotated[constr(strict=True, max_length=20, min_length=1), Field(..., description="The type of user (should only be personal or service)")], password_policy_dto : Annotated[Optional[PasswordPolicyDto], Field(description="The password policy for the given user type")] = None, **kwargs) -> PasswordPolicyDto:  # noqa: E501
+    async def update_password_policy(self, user_type : Annotated[constr(strict=True, max_length=20, min_length=1), Field(..., description="The type of user (should only be personal or service)")], update_password_policy_request : Annotated[Optional[UpdatePasswordPolicyRequest], Field(description="The password policy for the given user type")] = None, **kwargs) -> PasswordPolicyResponse:  # noqa: E501
         ...
 
     @overload
-    def update_password_policy(self, user_type : Annotated[constr(strict=True, max_length=20, min_length=1), Field(..., description="The type of user (should only be personal or service)")], password_policy_dto : Annotated[Optional[PasswordPolicyDto], Field(description="The password policy for the given user type")] = None, async_req: Optional[bool]=True, **kwargs) -> PasswordPolicyDto:  # noqa: E501
+    def update_password_policy(self, user_type : Annotated[constr(strict=True, max_length=20, min_length=1), Field(..., description="The type of user (should only be personal or service)")], update_password_policy_request : Annotated[Optional[UpdatePasswordPolicyRequest], Field(description="The password policy for the given user type")] = None, async_req: Optional[bool]=True, **kwargs) -> PasswordPolicyResponse:  # noqa: E501
         ...
 
     @validate_arguments
-    def update_password_policy(self, user_type : Annotated[constr(strict=True, max_length=20, min_length=1), Field(..., description="The type of user (should only be personal or service)")], password_policy_dto : Annotated[Optional[PasswordPolicyDto], Field(description="The password policy for the given user type")] = None, async_req: Optional[bool]=None, **kwargs) -> Union[PasswordPolicyDto, Awaitable[PasswordPolicyDto]]:  # noqa: E501
+    def update_password_policy(self, user_type : Annotated[constr(strict=True, max_length=20, min_length=1), Field(..., description="The type of user (should only be personal or service)")], update_password_policy_request : Annotated[Optional[UpdatePasswordPolicyRequest], Field(description="The password policy for the given user type")] = None, async_req: Optional[bool]=None, **kwargs) -> Union[PasswordPolicyResponse, Awaitable[PasswordPolicyResponse]]:  # noqa: E501
         """[EXPERIMENTAL] UpdatePasswordPolicy: Updates password policy for a user type  # noqa: E501
 
         Update the password policy for a given user type  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.update_password_policy(user_type, password_policy_dto, async_req=True)
+        >>> thread = api.update_password_policy(user_type, update_password_policy_request, async_req=True)
         >>> result = thread.get()
 
         :param user_type: The type of user (should only be personal or service) (required)
         :type user_type: str
-        :param password_policy_dto: The password policy for the given user type
-        :type password_policy_dto: PasswordPolicyDto
+        :param update_password_policy_request: The password policy for the given user type
+        :type update_password_policy_request: UpdatePasswordPolicyRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
@@ -984,7 +985,7 @@ class AuthenticationApi:
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: PasswordPolicyDto
+        :rtype: PasswordPolicyResponse
         """
         kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
@@ -992,23 +993,23 @@ class AuthenticationApi:
             raise ValueError(message)
         if async_req is not None:
             kwargs['async_req'] = async_req
-        return self.update_password_policy_with_http_info(user_type, password_policy_dto, **kwargs)  # noqa: E501
+        return self.update_password_policy_with_http_info(user_type, update_password_policy_request, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def update_password_policy_with_http_info(self, user_type : Annotated[constr(strict=True, max_length=20, min_length=1), Field(..., description="The type of user (should only be personal or service)")], password_policy_dto : Annotated[Optional[PasswordPolicyDto], Field(description="The password policy for the given user type")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def update_password_policy_with_http_info(self, user_type : Annotated[constr(strict=True, max_length=20, min_length=1), Field(..., description="The type of user (should only be personal or service)")], update_password_policy_request : Annotated[Optional[UpdatePasswordPolicyRequest], Field(description="The password policy for the given user type")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """[EXPERIMENTAL] UpdatePasswordPolicy: Updates password policy for a user type  # noqa: E501
 
         Update the password policy for a given user type  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.update_password_policy_with_http_info(user_type, password_policy_dto, async_req=True)
+        >>> thread = api.update_password_policy_with_http_info(user_type, update_password_policy_request, async_req=True)
         >>> result = thread.get()
 
         :param user_type: The type of user (should only be personal or service) (required)
         :type user_type: str
-        :param password_policy_dto: The password policy for the given user type
-        :type password_policy_dto: PasswordPolicyDto
+        :param update_password_policy_request: The password policy for the given user type
+        :type update_password_policy_request: UpdatePasswordPolicyRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
@@ -1031,14 +1032,14 @@ class AuthenticationApi:
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: tuple(PasswordPolicyDto, status_code(int), headers(HTTPHeaderDict))
+        :rtype: tuple(PasswordPolicyResponse, status_code(int), headers(HTTPHeaderDict))
         """
 
         _params = locals()
 
         _all_params = [
             'user_type',
-            'password_policy_dto'
+            'update_password_policy_request'
         ]
         _all_params.extend(
             [
@@ -1079,8 +1080,8 @@ class AuthenticationApi:
         _files = {}
         # process the body parameter
         _body_params = None
-        if _params['password_policy_dto'] is not None:
-            _body_params = _params['password_policy_dto']
+        if _params['update_password_policy_request'] is not None:
+            _body_params = _params['update_password_policy_request']
 
         # set the HTTP header `Accept`
         _header_params['Accept'] = self.api_client.select_header_accept(
@@ -1097,7 +1098,7 @@ class AuthenticationApi:
         _auth_settings = ['oauth2']  # noqa: E501
 
         _response_types_map = {
-            '200': "PasswordPolicyDto",
+            '200': "PasswordPolicyResponse",
             '400': "LusidValidationProblemDetails",
         }
 

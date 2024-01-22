@@ -1,4 +1,4 @@
-# PasswordPolicyAgeDto
+# UpdatePasswordPolicyRequestAge
 
 
 ## Properties
@@ -10,19 +10,19 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from finbourne_identity.models.password_policy_age_dto import PasswordPolicyAgeDto
+from finbourne_identity.models.update_password_policy_request_age import UpdatePasswordPolicyRequestAge
 
 # TODO update the JSON string below
 json = "{}"
-# create an instance of PasswordPolicyAgeDto from a JSON string
-password_policy_age_dto_instance = PasswordPolicyAgeDto.from_json(json)
+# create an instance of UpdatePasswordPolicyRequestAge from a JSON string
+update_password_policy_request_age_instance = UpdatePasswordPolicyRequestAge.from_json(json)
 # print the JSON string representation of the object
-print PasswordPolicyAgeDto.to_json()
+print UpdatePasswordPolicyRequestAge.to_json()
 
 # convert the object into a dict
-password_policy_age_dto_dict = password_policy_age_dto_instance.to_dict()
-# create an instance of PasswordPolicyAgeDto from a dict
-password_policy_age_dto_form_dict = password_policy_age_dto.from_dict(password_policy_age_dto_dict)
+update_password_policy_request_age_dict = update_password_policy_request_age_instance.to_dict()
+# create an instance of UpdatePasswordPolicyRequestAge from a dict
+update_password_policy_request_age_form_dict = update_password_policy_request_age.from_dict(update_password_policy_request_age_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
