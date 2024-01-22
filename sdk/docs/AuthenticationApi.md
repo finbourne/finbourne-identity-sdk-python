@@ -84,7 +84,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_password_policy**
-> PasswordPolicyDto get_password_policy(user_type)
+> PasswordPolicyResponse get_password_policy(user_type)
 
 [EXPERIMENTAL] GetPasswordPolicy: Gets password policy for a user type
 
@@ -138,7 +138,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PasswordPolicyDto**](PasswordPolicyDto.md)
+[**PasswordPolicyResponse**](PasswordPolicyResponse.md)
 
 ### Authorization
 
@@ -451,7 +451,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_password_policy**
-> PasswordPolicyDto update_password_policy(user_type, password_policy_dto=password_policy_dto)
+> PasswordPolicyResponse update_password_policy(user_type, update_password_policy_request=update_password_policy_request)
 
 [EXPERIMENTAL] UpdatePasswordPolicy: Updates password policy for a user type
 
@@ -488,11 +488,11 @@ with finbourne_identity.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = finbourne_identity.AuthenticationApi(api_client)
     user_type = 'user_type_example' # str | The type of user (should only be personal or service)
-password_policy_dto = {"conditions":{"complexity":{"minLength":12,"excludeFirstName":true,"excludeLastName":true},"age":{"maxAgeDays":90,"historyCount":4},"lockout":{"maxAttempts":10}}} # PasswordPolicyDto | The password policy for the given user type (optional)
+update_password_policy_request = {"conditions":{"complexity":{"minLength":15,"excludeFirstName":true,"excludeLastName":true},"age":{"maxAgeDays":30,"historyCount":10},"lockout":{"maxAttempts":20}}} # UpdatePasswordPolicyRequest | The password policy for the given user type (optional)
 
     try:
         # [EXPERIMENTAL] UpdatePasswordPolicy: Updates password policy for a user type
-        api_response = api_instance.update_password_policy(user_type, password_policy_dto=password_policy_dto)
+        api_response = api_instance.update_password_policy(user_type, update_password_policy_request=update_password_policy_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling AuthenticationApi->update_password_policy: %s\n" % e)
@@ -503,11 +503,11 @@ password_policy_dto = {"conditions":{"complexity":{"minLength":12,"excludeFirstN
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **user_type** | **str**| The type of user (should only be personal or service) | 
- **password_policy_dto** | [**PasswordPolicyDto**](PasswordPolicyDto.md)| The password policy for the given user type | [optional] 
+ **update_password_policy_request** | [**UpdatePasswordPolicyRequest**](UpdatePasswordPolicyRequest.md)| The password policy for the given user type | [optional] 
 
 ### Return type
 
-[**PasswordPolicyDto**](PasswordPolicyDto.md)
+[**PasswordPolicyResponse**](PasswordPolicyResponse.md)
 
 ### Authorization
 
