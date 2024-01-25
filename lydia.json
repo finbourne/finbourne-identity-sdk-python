@@ -8,7 +8,7 @@
       "url": "https://www.finbourne.com",
       "email": "info@finbourne.com"
     },
-    "version": "0.0.2763",
+    "version": "0.0.2765",
     "x-logo": {
       "url": "https://www.lusid.com/app/assets/logo_white.png",
       "backgroundColor": "#415464"
@@ -4396,13 +4396,17 @@
         "type": "object",
         "properties": {
           "maxAgeDays": {
+            "maximum": 999,
+            "minimum": 0,
             "type": "integer",
-            "description": "The maximum age (in days) a password can be before expiring and needing to be changed",
+            "description": "The maximum age (in days) a password can be before expiring and needing to be changed.\r\n0 indicates no limit",
             "format": "int32"
           },
           "historyCount": {
+            "maximum": 30,
+            "minimum": 0,
             "type": "integer",
-            "description": "The number of unique passwords that need to be used before a previous password is permitted again",
+            "description": "The number of unique passwords that need to be used before a previous password is permitted again.\r\n0 indicates none",
             "format": "int32"
           }
         },
@@ -4417,6 +4421,8 @@
         "type": "object",
         "properties": {
           "minLength": {
+            "maximum": 30,
+            "minimum": 12,
             "type": "integer",
             "description": "The minimum length for a password",
             "format": "int32"
@@ -4460,8 +4466,10 @@
         "type": "object",
         "properties": {
           "maxAttempts": {
+            "maximum": 100,
+            "minimum": 0,
             "type": "integer",
-            "description": "The maximum number of unsuccessful attempts before the user is locked out of their account",
+            "description": "The maximum number of unsuccessful attempts before the user is locked out of their account.\r\n0 indicates no limit",
             "format": "int32"
           }
         },
