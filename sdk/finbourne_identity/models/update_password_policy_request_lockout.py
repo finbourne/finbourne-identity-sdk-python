@@ -19,13 +19,13 @@ import json
 
 
 from typing import Any, Dict
-from pydantic import BaseModel, Field, StrictInt
+from pydantic import BaseModel, Field, conint
 
 class UpdatePasswordPolicyRequestLockout(BaseModel):
     """
     UpdatePasswordPolicyRequestLockout
     """
-    max_attempts: StrictInt = Field(..., alias="maxAttempts", description="The maximum number of unsuccessful attempts before the user is locked out of their account")
+    max_attempts: conint(strict=True, le=100, ge=0) = Field(..., alias="maxAttempts", description="The maximum number of unsuccessful attempts before the user is locked out of their account.  0 indicates no limit")
     __properties = ["maxAttempts"]
 
     class Config:

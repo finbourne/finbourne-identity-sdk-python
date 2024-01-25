@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**max_attempts** | **int** | The maximum number of unsuccessful attempts before the user is locked out of their account | 
+**max_attempts** | **int** | The maximum number of unsuccessful attempts before the user is locked out of their account.  0 indicates no limit | 
 
 ## Example
 

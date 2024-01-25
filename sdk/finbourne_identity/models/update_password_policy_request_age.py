@@ -19,14 +19,14 @@ import json
 
 
 from typing import Any, Dict
-from pydantic import BaseModel, Field, StrictInt
+from pydantic import BaseModel, Field, conint
 
 class UpdatePasswordPolicyRequestAge(BaseModel):
     """
     UpdatePasswordPolicyRequestAge
     """
-    max_age_days: StrictInt = Field(..., alias="maxAgeDays", description="The maximum age (in days) a password can be before expiring and needing to be changed")
-    history_count: StrictInt = Field(..., alias="historyCount", description="The number of unique passwords that need to be used before a previous password is permitted again")
+    max_age_days: conint(strict=True, le=999, ge=0) = Field(..., alias="maxAgeDays", description="The maximum age (in days) a password can be before expiring and needing to be changed.  0 indicates no limit")
+    history_count: conint(strict=True, le=30, ge=0) = Field(..., alias="historyCount", description="The number of unique passwords that need to be used before a previous password is permitted again.  0 indicates none")
     __properties = ["maxAgeDays", "historyCount"]
 
     class Config:

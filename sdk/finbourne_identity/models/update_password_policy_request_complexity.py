@@ -19,13 +19,13 @@ import json
 
 
 from typing import Any, Dict
-from pydantic import BaseModel, Field, StrictBool, StrictInt
+from pydantic import BaseModel, Field, StrictBool, conint
 
 class UpdatePasswordPolicyRequestComplexity(BaseModel):
     """
     UpdatePasswordPolicyRequestComplexity
     """
-    min_length: StrictInt = Field(..., alias="minLength", description="The minimum length for a password")
+    min_length: conint(strict=True, le=30, ge=12) = Field(..., alias="minLength", description="The minimum length for a password")
     exclude_first_name: StrictBool = Field(..., alias="excludeFirstName", description="Rule determining whether a user's first name should be permitted in their password")
     exclude_last_name: StrictBool = Field(..., alias="excludeLastName", description="Rule determining whether a user's last name should be permitted in their password")
     __properties = ["minLength", "excludeFirstName", "excludeLastName"]
