@@ -24,19 +24,19 @@ Create a new Application
 ```python
 from __future__ import print_function
 import time
-import os
 import finbourne_identity
 from finbourne_identity.rest import ApiException
 from finbourne_identity.models.create_application_request import CreateApplicationRequest
 from finbourne_identity.models.o_auth_application import OAuthApplication
 from pprint import pprint
 
+import os
 from finbourne_identity import (
-	  ApiClientFactory,
-	  ApplicationMetadataApi,
-	  EnvironmentVariablesConfigurationLoader,
-	  SecretsFileConfigurationLoader,
-	  ArgsConfigurationLoader
+    ApiClientFactory,
+    ApplicationsApi,
+    EnvironmentVariablesConfigurationLoader,
+    SecretsFileConfigurationLoader,
+    ArgsConfigurationLoader
 )
 
 # Use the finbourne_identity ApiClientFactory to build Api instances with a configured api client
@@ -123,17 +123,17 @@ Delete the specified application
 ```python
 from __future__ import print_function
 import time
-import os
 import finbourne_identity
 from finbourne_identity.rest import ApiException
 from pprint import pprint
 
+import os
 from finbourne_identity import (
-	  ApiClientFactory,
-	  ApplicationMetadataApi,
-	  EnvironmentVariablesConfigurationLoader,
-	  SecretsFileConfigurationLoader,
-	  ArgsConfigurationLoader
+    ApiClientFactory,
+    ApplicationsApi,
+    EnvironmentVariablesConfigurationLoader,
+    SecretsFileConfigurationLoader,
+    ArgsConfigurationLoader
 )
 
 # Use the finbourne_identity ApiClientFactory to build Api instances with a configured api client
@@ -218,18 +218,18 @@ get the specified application, and optionally the OIDC secret
 ```python
 from __future__ import print_function
 import time
-import os
 import finbourne_identity
 from finbourne_identity.rest import ApiException
 from finbourne_identity.models.o_auth_application import OAuthApplication
 from pprint import pprint
 
+import os
 from finbourne_identity import (
-	  ApiClientFactory,
-	  ApplicationMetadataApi,
-	  EnvironmentVariablesConfigurationLoader,
-	  SecretsFileConfigurationLoader,
-	  ArgsConfigurationLoader
+    ApiClientFactory,
+    ApplicationsApi,
+    EnvironmentVariablesConfigurationLoader,
+    SecretsFileConfigurationLoader,
+    ArgsConfigurationLoader
 )
 
 # Use the finbourne_identity ApiClientFactory to build Api instances with a configured api client
@@ -319,18 +319,18 @@ List the available applications
 ```python
 from __future__ import print_function
 import time
-import os
 import finbourne_identity
 from finbourne_identity.rest import ApiException
 from finbourne_identity.models.o_auth_application import OAuthApplication
 from pprint import pprint
 
+import os
 from finbourne_identity import (
-	  ApiClientFactory,
-	  ApplicationMetadataApi,
-	  EnvironmentVariablesConfigurationLoader,
-	  SecretsFileConfigurationLoader,
-	  ArgsConfigurationLoader
+    ApiClientFactory,
+    ApplicationsApi,
+    EnvironmentVariablesConfigurationLoader,
+    SecretsFileConfigurationLoader,
+    ArgsConfigurationLoader
 )
 
 # Use the finbourne_identity ApiClientFactory to build Api instances with a configured api client
@@ -412,18 +412,18 @@ Rotate the secrets for the specified application
 ```python
 from __future__ import print_function
 import time
-import os
 import finbourne_identity
 from finbourne_identity.rest import ApiException
 from finbourne_identity.models.o_auth_application import OAuthApplication
 from pprint import pprint
 
+import os
 from finbourne_identity import (
-	  ApiClientFactory,
-	  ApplicationMetadataApi,
-	  EnvironmentVariablesConfigurationLoader,
-	  SecretsFileConfigurationLoader,
-	  ArgsConfigurationLoader
+    ApiClientFactory,
+    ApplicationsApi,
+    EnvironmentVariablesConfigurationLoader,
+    SecretsFileConfigurationLoader,
+    ArgsConfigurationLoader
 )
 
 # Use the finbourne_identity ApiClientFactory to build Api instances with a configured api client

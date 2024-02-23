@@ -20,17 +20,17 @@ Log the current user out of all Finbourne platforms by invalidating the current 
 ```python
 from __future__ import print_function
 import time
-import os
 import finbourne_identity
 from finbourne_identity.rest import ApiException
 from pprint import pprint
 
+import os
 from finbourne_identity import (
-	  ApiClientFactory,
-	  ApplicationMetadataApi,
-	  EnvironmentVariablesConfigurationLoader,
-	  SecretsFileConfigurationLoader,
-	  ArgsConfigurationLoader
+    ApiClientFactory,
+    TokensApi,
+    EnvironmentVariablesConfigurationLoader,
+    SecretsFileConfigurationLoader,
+    ArgsConfigurationLoader
 )
 
 # Use the finbourne_identity ApiClientFactory to build Api instances with a configured api client

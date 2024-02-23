@@ -21,18 +21,18 @@ Generates an API token to be used for SCIM
 ```python
 from __future__ import print_function
 import time
-import os
 import finbourne_identity
 from finbourne_identity.rest import ApiException
 from finbourne_identity.models.add_scim_response import AddScimResponse
 from pprint import pprint
 
+import os
 from finbourne_identity import (
-	  ApiClientFactory,
-	  ApplicationMetadataApi,
-	  EnvironmentVariablesConfigurationLoader,
-	  SecretsFileConfigurationLoader,
-	  ArgsConfigurationLoader
+    ApiClientFactory,
+    IdentityProviderApi,
+    EnvironmentVariablesConfigurationLoader,
+    SecretsFileConfigurationLoader,
+    ArgsConfigurationLoader
 )
 
 # Use the finbourne_identity ApiClientFactory to build Api instances with a configured api client
@@ -121,17 +121,17 @@ Deactivates any existing SCIM API token
 ```python
 from __future__ import print_function
 import time
-import os
 import finbourne_identity
 from finbourne_identity.rest import ApiException
 from pprint import pprint
 
+import os
 from finbourne_identity import (
-	  ApiClientFactory,
-	  ApplicationMetadataApi,
-	  EnvironmentVariablesConfigurationLoader,
-	  SecretsFileConfigurationLoader,
-	  ArgsConfigurationLoader
+    ApiClientFactory,
+    IdentityProviderApi,
+    EnvironmentVariablesConfigurationLoader,
+    SecretsFileConfigurationLoader,
+    ArgsConfigurationLoader
 )
 
 # Use the finbourne_identity ApiClientFactory to build Api instances with a configured api client

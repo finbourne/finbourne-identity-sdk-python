@@ -32,19 +32,19 @@ Create a new User
 ```python
 from __future__ import print_function
 import time
-import os
 import finbourne_identity
 from finbourne_identity.rest import ApiException
 from finbourne_identity.models.create_user_request import CreateUserRequest
 from finbourne_identity.models.user_response import UserResponse
 from pprint import pprint
 
+import os
 from finbourne_identity import (
-	  ApiClientFactory,
-	  ApplicationMetadataApi,
-	  EnvironmentVariablesConfigurationLoader,
-	  SecretsFileConfigurationLoader,
-	  ArgsConfigurationLoader
+    ApiClientFactory,
+    UsersApi,
+    EnvironmentVariablesConfigurationLoader,
+    SecretsFileConfigurationLoader,
+    ArgsConfigurationLoader
 )
 
 # Use the finbourne_identity ApiClientFactory to build Api instances with a configured api client
@@ -133,17 +133,17 @@ By default the user will be de-provisioned and inactive, however their record wi
 ```python
 from __future__ import print_function
 import time
-import os
 import finbourne_identity
 from finbourne_identity.rest import ApiException
 from pprint import pprint
 
+import os
 from finbourne_identity import (
-	  ApiClientFactory,
-	  ApplicationMetadataApi,
-	  EnvironmentVariablesConfigurationLoader,
-	  SecretsFileConfigurationLoader,
-	  ArgsConfigurationLoader
+    ApiClientFactory,
+    UsersApi,
+    EnvironmentVariablesConfigurationLoader,
+    SecretsFileConfigurationLoader,
+    ArgsConfigurationLoader
 )
 
 # Use the finbourne_identity ApiClientFactory to build Api instances with a configured api client
@@ -230,18 +230,18 @@ Resets the user's password to a temporary one which is then expired
 ```python
 from __future__ import print_function
 import time
-import os
 import finbourne_identity
 from finbourne_identity.rest import ApiException
 from finbourne_identity.models.temporary_password import TemporaryPassword
 from pprint import pprint
 
+import os
 from finbourne_identity import (
-	  ApiClientFactory,
-	  ApplicationMetadataApi,
-	  EnvironmentVariablesConfigurationLoader,
-	  SecretsFileConfigurationLoader,
-	  ArgsConfigurationLoader
+    ApiClientFactory,
+    UsersApi,
+    EnvironmentVariablesConfigurationLoader,
+    SecretsFileConfigurationLoader,
+    ArgsConfigurationLoader
 )
 
 # Use the finbourne_identity ApiClientFactory to build Api instances with a configured api client
@@ -328,18 +328,18 @@ Finds a maximum of 50 users by ID
 ```python
 from __future__ import print_function
 import time
-import os
 import finbourne_identity
 from finbourne_identity.rest import ApiException
 from finbourne_identity.models.list_users_response import ListUsersResponse
 from pprint import pprint
 
+import os
 from finbourne_identity import (
-	  ApiClientFactory,
-	  ApplicationMetadataApi,
-	  EnvironmentVariablesConfigurationLoader,
-	  SecretsFileConfigurationLoader,
-	  ArgsConfigurationLoader
+    ApiClientFactory,
+    UsersApi,
+    EnvironmentVariablesConfigurationLoader,
+    SecretsFileConfigurationLoader,
+    ArgsConfigurationLoader
 )
 
 # Use the finbourne_identity ApiClientFactory to build Api instances with a configured api client
@@ -426,18 +426,18 @@ Get the specified User
 ```python
 from __future__ import print_function
 import time
-import os
 import finbourne_identity
 from finbourne_identity.rest import ApiException
 from finbourne_identity.models.user_response import UserResponse
 from pprint import pprint
 
+import os
 from finbourne_identity import (
-	  ApiClientFactory,
-	  ApplicationMetadataApi,
-	  EnvironmentVariablesConfigurationLoader,
-	  SecretsFileConfigurationLoader,
-	  ArgsConfigurationLoader
+    ApiClientFactory,
+    UsersApi,
+    EnvironmentVariablesConfigurationLoader,
+    SecretsFileConfigurationLoader,
+    ArgsConfigurationLoader
 )
 
 # Use the finbourne_identity ApiClientFactory to build Api instances with a configured api client
@@ -526,18 +526,18 @@ List the available runnable Users
 ```python
 from __future__ import print_function
 import time
-import os
 import finbourne_identity
 from finbourne_identity.rest import ApiException
 from finbourne_identity.models.user_response import UserResponse
 from pprint import pprint
 
+import os
 from finbourne_identity import (
-	  ApiClientFactory,
-	  ApplicationMetadataApi,
-	  EnvironmentVariablesConfigurationLoader,
-	  SecretsFileConfigurationLoader,
-	  ArgsConfigurationLoader
+    ApiClientFactory,
+    UsersApi,
+    EnvironmentVariablesConfigurationLoader,
+    SecretsFileConfigurationLoader,
+    ArgsConfigurationLoader
 )
 
 # Use the finbourne_identity ApiClientFactory to build Api instances with a configured api client
@@ -619,18 +619,18 @@ List the available Users
 ```python
 from __future__ import print_function
 import time
-import os
 import finbourne_identity
 from finbourne_identity.rest import ApiException
 from finbourne_identity.models.user_response import UserResponse
 from pprint import pprint
 
+import os
 from finbourne_identity import (
-	  ApiClientFactory,
-	  ApplicationMetadataApi,
-	  EnvironmentVariablesConfigurationLoader,
-	  SecretsFileConfigurationLoader,
-	  ArgsConfigurationLoader
+    ApiClientFactory,
+    UsersApi,
+    EnvironmentVariablesConfigurationLoader,
+    SecretsFileConfigurationLoader,
+    ArgsConfigurationLoader
 )
 
 # Use the finbourne_identity ApiClientFactory to build Api instances with a configured api client
@@ -719,17 +719,17 @@ Resets the MFA factors of the specified User
 ```python
 from __future__ import print_function
 import time
-import os
 import finbourne_identity
 from finbourne_identity.rest import ApiException
 from pprint import pprint
 
+import os
 from finbourne_identity import (
-	  ApiClientFactory,
-	  ApplicationMetadataApi,
-	  EnvironmentVariablesConfigurationLoader,
-	  SecretsFileConfigurationLoader,
-	  ArgsConfigurationLoader
+    ApiClientFactory,
+    UsersApi,
+    EnvironmentVariablesConfigurationLoader,
+    SecretsFileConfigurationLoader,
+    ArgsConfigurationLoader
 )
 
 # Use the finbourne_identity ApiClientFactory to build Api instances with a configured api client
@@ -814,17 +814,17 @@ Resets the password of the specified User
 ```python
 from __future__ import print_function
 import time
-import os
 import finbourne_identity
 from finbourne_identity.rest import ApiException
 from pprint import pprint
 
+import os
 from finbourne_identity import (
-	  ApiClientFactory,
-	  ApplicationMetadataApi,
-	  EnvironmentVariablesConfigurationLoader,
-	  SecretsFileConfigurationLoader,
-	  ArgsConfigurationLoader
+    ApiClientFactory,
+    UsersApi,
+    EnvironmentVariablesConfigurationLoader,
+    SecretsFileConfigurationLoader,
+    ArgsConfigurationLoader
 )
 
 # Use the finbourne_identity ApiClientFactory to build Api instances with a configured api client
@@ -909,17 +909,17 @@ Sends an activation email to the specified User
 ```python
 from __future__ import print_function
 import time
-import os
 import finbourne_identity
 from finbourne_identity.rest import ApiException
 from pprint import pprint
 
+import os
 from finbourne_identity import (
-	  ApiClientFactory,
-	  ApplicationMetadataApi,
-	  EnvironmentVariablesConfigurationLoader,
-	  SecretsFileConfigurationLoader,
-	  ArgsConfigurationLoader
+    ApiClientFactory,
+    UsersApi,
+    EnvironmentVariablesConfigurationLoader,
+    SecretsFileConfigurationLoader,
+    ArgsConfigurationLoader
 )
 
 # Use the finbourne_identity ApiClientFactory to build Api instances with a configured api client
@@ -1004,17 +1004,17 @@ Unlocks the specified User
 ```python
 from __future__ import print_function
 import time
-import os
 import finbourne_identity
 from finbourne_identity.rest import ApiException
 from pprint import pprint
 
+import os
 from finbourne_identity import (
-	  ApiClientFactory,
-	  ApplicationMetadataApi,
-	  EnvironmentVariablesConfigurationLoader,
-	  SecretsFileConfigurationLoader,
-	  ArgsConfigurationLoader
+    ApiClientFactory,
+    UsersApi,
+    EnvironmentVariablesConfigurationLoader,
+    SecretsFileConfigurationLoader,
+    ArgsConfigurationLoader
 )
 
 # Use the finbourne_identity ApiClientFactory to build Api instances with a configured api client
@@ -1099,17 +1099,17 @@ Unsuspend the user
 ```python
 from __future__ import print_function
 import time
-import os
 import finbourne_identity
 from finbourne_identity.rest import ApiException
 from pprint import pprint
 
+import os
 from finbourne_identity import (
-	  ApiClientFactory,
-	  ApplicationMetadataApi,
-	  EnvironmentVariablesConfigurationLoader,
-	  SecretsFileConfigurationLoader,
-	  ArgsConfigurationLoader
+    ApiClientFactory,
+    UsersApi,
+    EnvironmentVariablesConfigurationLoader,
+    SecretsFileConfigurationLoader,
+    ArgsConfigurationLoader
 )
 
 # Use the finbourne_identity ApiClientFactory to build Api instances with a configured api client
@@ -1194,19 +1194,19 @@ Updates the specified User
 ```python
 from __future__ import print_function
 import time
-import os
 import finbourne_identity
 from finbourne_identity.rest import ApiException
 from finbourne_identity.models.update_user_request import UpdateUserRequest
 from finbourne_identity.models.user_response import UserResponse
 from pprint import pprint
 
+import os
 from finbourne_identity import (
-	  ApiClientFactory,
-	  ApplicationMetadataApi,
-	  EnvironmentVariablesConfigurationLoader,
-	  SecretsFileConfigurationLoader,
-	  ArgsConfigurationLoader
+    ApiClientFactory,
+    UsersApi,
+    EnvironmentVariablesConfigurationLoader,
+    SecretsFileConfigurationLoader,
+    ArgsConfigurationLoader
 )
 
 # Use the finbourne_identity ApiClientFactory to build Api instances with a configured api client

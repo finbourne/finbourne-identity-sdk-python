@@ -26,18 +26,18 @@ Get the AuthenticationInformation associated with the current domain. This inclu
 ```python
 from __future__ import print_function
 import time
-import os
 import finbourne_identity
 from finbourne_identity.rest import ApiException
 from finbourne_identity.models.authentication_information import AuthenticationInformation
 from pprint import pprint
 
+import os
 from finbourne_identity import (
-	  ApiClientFactory,
-	  ApplicationMetadataApi,
-	  EnvironmentVariablesConfigurationLoader,
-	  SecretsFileConfigurationLoader,
-	  ArgsConfigurationLoader
+    ApiClientFactory,
+    AuthenticationApi,
+    EnvironmentVariablesConfigurationLoader,
+    SecretsFileConfigurationLoader,
+    ArgsConfigurationLoader
 )
 
 # Use the finbourne_identity ApiClientFactory to build Api instances with a configured api client
@@ -119,18 +119,18 @@ Get the password policy for a given user type
 ```python
 from __future__ import print_function
 import time
-import os
 import finbourne_identity
 from finbourne_identity.rest import ApiException
 from finbourne_identity.models.password_policy_response import PasswordPolicyResponse
 from pprint import pprint
 
+import os
 from finbourne_identity import (
-	  ApiClientFactory,
-	  ApplicationMetadataApi,
-	  EnvironmentVariablesConfigurationLoader,
-	  SecretsFileConfigurationLoader,
-	  ArgsConfigurationLoader
+    ApiClientFactory,
+    AuthenticationApi,
+    EnvironmentVariablesConfigurationLoader,
+    SecretsFileConfigurationLoader,
+    ArgsConfigurationLoader
 )
 
 # Use the finbourne_identity ApiClientFactory to build Api instances with a configured api client
@@ -217,18 +217,18 @@ The active and inactive support requests will be returned, inactive support requ
 ```python
 from __future__ import print_function
 import time
-import os
 import finbourne_identity
 from finbourne_identity.rest import ApiException
 from finbourne_identity.models.support_access_response import SupportAccessResponse
 from pprint import pprint
 
+import os
 from finbourne_identity import (
-	  ApiClientFactory,
-	  ApplicationMetadataApi,
-	  EnvironmentVariablesConfigurationLoader,
-	  SecretsFileConfigurationLoader,
-	  ArgsConfigurationLoader
+    ApiClientFactory,
+    AuthenticationApi,
+    EnvironmentVariablesConfigurationLoader,
+    SecretsFileConfigurationLoader,
+    ArgsConfigurationLoader
 )
 
 # Use the finbourne_identity ApiClientFactory to build Api instances with a configured api client
@@ -317,18 +317,18 @@ Get mapping of support roles, the internal representation to a human friendly re
 ```python
 from __future__ import print_function
 import time
-import os
 import finbourne_identity
 from finbourne_identity.rest import ApiException
 from finbourne_identity.models.support_roles_response import SupportRolesResponse
 from pprint import pprint
 
+import os
 from finbourne_identity import (
-	  ApiClientFactory,
-	  ApplicationMetadataApi,
-	  EnvironmentVariablesConfigurationLoader,
-	  SecretsFileConfigurationLoader,
-	  ArgsConfigurationLoader
+    ApiClientFactory,
+    AuthenticationApi,
+    EnvironmentVariablesConfigurationLoader,
+    SecretsFileConfigurationLoader,
+    ArgsConfigurationLoader
 )
 
 # Use the finbourne_identity ApiClientFactory to build Api instances with a configured api client
@@ -410,19 +410,19 @@ Granting support access will allow FINBOURNE employees full access to your data 
 ```python
 from __future__ import print_function
 import time
-import os
 import finbourne_identity
 from finbourne_identity.rest import ApiException
 from finbourne_identity.models.support_access_request import SupportAccessRequest
 from finbourne_identity.models.support_access_response import SupportAccessResponse
 from pprint import pprint
 
+import os
 from finbourne_identity import (
-	  ApiClientFactory,
-	  ApplicationMetadataApi,
-	  EnvironmentVariablesConfigurationLoader,
-	  SecretsFileConfigurationLoader,
-	  ArgsConfigurationLoader
+    ApiClientFactory,
+    AuthenticationApi,
+    EnvironmentVariablesConfigurationLoader,
+    SecretsFileConfigurationLoader,
+    ArgsConfigurationLoader
 )
 
 # Use the finbourne_identity ApiClientFactory to build Api instances with a configured api client
@@ -509,18 +509,18 @@ This will result in a loss of access to your data for all FINBOURNE support agen
 ```python
 from __future__ import print_function
 import time
-import os
 import finbourne_identity
 from finbourne_identity.rest import ApiException
 from finbourne_identity.models.support_access_response import SupportAccessResponse
 from pprint import pprint
 
+import os
 from finbourne_identity import (
-	  ApiClientFactory,
-	  ApplicationMetadataApi,
-	  EnvironmentVariablesConfigurationLoader,
-	  SecretsFileConfigurationLoader,
-	  ArgsConfigurationLoader
+    ApiClientFactory,
+    AuthenticationApi,
+    EnvironmentVariablesConfigurationLoader,
+    SecretsFileConfigurationLoader,
+    ArgsConfigurationLoader
 )
 
 # Use the finbourne_identity ApiClientFactory to build Api instances with a configured api client
@@ -602,19 +602,19 @@ Update the password policy for a given user type
 ```python
 from __future__ import print_function
 import time
-import os
 import finbourne_identity
 from finbourne_identity.rest import ApiException
 from finbourne_identity.models.password_policy_response import PasswordPolicyResponse
 from finbourne_identity.models.update_password_policy_request import UpdatePasswordPolicyRequest
 from pprint import pprint
 
+import os
 from finbourne_identity import (
-	  ApiClientFactory,
-	  ApplicationMetadataApi,
-	  EnvironmentVariablesConfigurationLoader,
-	  SecretsFileConfigurationLoader,
-	  ArgsConfigurationLoader
+    ApiClientFactory,
+    AuthenticationApi,
+    EnvironmentVariablesConfigurationLoader,
+    SecretsFileConfigurationLoader,
+    ArgsConfigurationLoader
 )
 
 # Use the finbourne_identity ApiClientFactory to build Api instances with a configured api client
