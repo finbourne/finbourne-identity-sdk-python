@@ -11,3 +11,15 @@ from finbourne_identity.api.roles_api import RolesApi
 from finbourne_identity.api.tokens_api import TokensApi
 from finbourne_identity.api.users_api import UsersApi
 
+
+__all__ = [
+    "ApplicationMetadataApi",
+    "ApplicationsApi",
+    "AuthenticationApi",
+    "IdentityProviderApi",
+    "MeApi",
+    "PersonalAuthenticationTokensApi",
+    "RolesApi",
+    "TokensApi",
+    "UsersApi"
+]
