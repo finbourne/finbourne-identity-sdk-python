@@ -19,7 +19,7 @@ import json
 
 
 from typing import Any, Dict
-from pydantic import BaseModel, Field
+from pydantic.v1 import BaseModel, Field
 from finbourne_identity.models.password_policy_response_conditions import PasswordPolicyResponseConditions
 
 class PasswordPolicyResponse(BaseModel):

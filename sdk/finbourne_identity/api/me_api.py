@@ -16,11 +16,11 @@ import re  # noqa: F401
 import io
 import warnings
 
-from pydantic import validate_arguments, ValidationError
+from pydantic.v1 import validate_arguments, ValidationError
 from typing import overload, Optional, Union, Awaitable
 
 from typing_extensions import Annotated
-from pydantic import Field
+from pydantic.v1 import Field
 
 from finbourne_identity.models.current_user_response import CurrentUserResponse
 from finbourne_identity.models.set_password import SetPassword

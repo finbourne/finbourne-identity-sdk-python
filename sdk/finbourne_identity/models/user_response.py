@@ -19,7 +19,7 @@ import json
 
 
 from typing import Any, Dict, List, Optional
-from pydantic import BaseModel, Field, StrictBool, StrictStr, conlist, constr
+from pydantic.v1 import BaseModel, Field, StrictBool, StrictStr, conlist, constr
 from finbourne_identity.models.link import Link
 from finbourne_identity.models.role_response import RoleResponse
 
