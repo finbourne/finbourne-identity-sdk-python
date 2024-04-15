@@ -58,7 +58,7 @@ class PersonalAuthenticationTokensApi:
 
     @validate_arguments
     def create_api_key(self, create_api_key : Annotated[CreateApiKey, Field(..., description="The request to create a new Personal Access Token")], async_req: Optional[bool]=None, **kwargs) -> Union[CreatedApiKey, Awaitable[CreatedApiKey]]:  # noqa: E501
-        """[EARLY ACCESS] CreateApiKey: Create a Personal Access Token  # noqa: E501
+        """CreateApiKey: Create a Personal Access Token  # noqa: E501
 
         Generates a Personal Access Token and returns the new key and its associated metadata.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -90,7 +90,7 @@ class PersonalAuthenticationTokensApi:
 
     @validate_arguments
     def create_api_key_with_http_info(self, create_api_key : Annotated[CreateApiKey, Field(..., description="The request to create a new Personal Access Token")], **kwargs) -> ApiResponse:  # noqa: E501
-        """[EARLY ACCESS] CreateApiKey: Create a Personal Access Token  # noqa: E501
+        """CreateApiKey: Create a Personal Access Token  # noqa: E501
 
         Generates a Personal Access Token and returns the new key and its associated metadata.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -216,7 +216,7 @@ class PersonalAuthenticationTokensApi:
 
     @validate_arguments
     def delete_api_key(self, id : Annotated[constr(strict=True, max_length=64, min_length=1), Field(..., description="The id of the Personal Access Token to delete")], async_req: Optional[bool]=None, **kwargs) -> Union[ApiKey, Awaitable[ApiKey]]:  # noqa: E501
-        """[EARLY ACCESS] DeleteApiKey: Invalidate a Personal Access Token  # noqa: E501
+        """DeleteApiKey: Invalidate a Personal Access Token  # noqa: E501
 
         Immediately invalidates the specified Personal Access Token  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -248,7 +248,7 @@ class PersonalAuthenticationTokensApi:
 
     @validate_arguments
     def delete_api_key_with_http_info(self, id : Annotated[constr(strict=True, max_length=64, min_length=1), Field(..., description="The id of the Personal Access Token to delete")], **kwargs) -> ApiResponse:  # noqa: E501
-        """[EARLY ACCESS] DeleteApiKey: Invalidate a Personal Access Token  # noqa: E501
+        """DeleteApiKey: Invalidate a Personal Access Token  # noqa: E501
 
         Immediately invalidates the specified Personal Access Token  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -367,7 +367,7 @@ class PersonalAuthenticationTokensApi:
 
     @validate_arguments
     def list_own_api_keys(self, async_req: Optional[bool]=None, **kwargs) -> Union[List[ApiKey], Awaitable[List[ApiKey]]]:  # noqa: E501
-        """[EARLY ACCESS] ListOwnApiKeys: Gets the meta data for all of the user's existing Personal Access Tokens.  # noqa: E501
+        """ListOwnApiKeys: Gets the meta data for all of the user's existing Personal Access Tokens.  # noqa: E501
 
         Gets the meta data for all of the user's Personal Access Tokens that have not been deleted. They may be  invalid due to the deactivation date having passed.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -397,7 +397,7 @@ class PersonalAuthenticationTokensApi:
 
     @validate_arguments
     def list_own_api_keys_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
-        """[EARLY ACCESS] ListOwnApiKeys: Gets the meta data for all of the user's existing Personal Access Tokens.  # noqa: E501
+        """ListOwnApiKeys: Gets the meta data for all of the user's existing Personal Access Tokens.  # noqa: E501
 
         Gets the meta data for all of the user's Personal Access Tokens that have not been deleted. They may be  invalid due to the deactivation date having passed.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an

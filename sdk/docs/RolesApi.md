@@ -4,20 +4,20 @@ All URIs are relative to *https://fbn-prd.lusid.com/identity*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**add_user_to_role**](RolesApi.md#add_user_to_role) | **PUT** /api/roles/{id}/users/{userId} | [EARLY ACCESS] AddUserToRole: Add User to Role
-[**create_role**](RolesApi.md#create_role) | **POST** /api/roles | [EARLY ACCESS] CreateRole: Create Role
-[**delete_role**](RolesApi.md#delete_role) | **DELETE** /api/roles/{id} | [EARLY ACCESS] DeleteRole: Delete Role
-[**get_role**](RolesApi.md#get_role) | **GET** /api/roles/{id} | [EARLY ACCESS] GetRole: Get Role
-[**list_roles**](RolesApi.md#list_roles) | **GET** /api/roles | [EARLY ACCESS] ListRoles: List Roles
-[**list_users_in_role**](RolesApi.md#list_users_in_role) | **GET** /api/roles/{id}/users | [EARLY ACCESS] ListUsersInRole: Get the users in the specified role.
-[**remove_user_from_role**](RolesApi.md#remove_user_from_role) | **DELETE** /api/roles/{id}/users/{userId} | [EARLY ACCESS] RemoveUserFromRole: Remove User from Role
-[**update_role**](RolesApi.md#update_role) | **PUT** /api/roles/{id} | [EARLY ACCESS] UpdateRole: Update Role
+[**add_user_to_role**](RolesApi.md#add_user_to_role) | **PUT** /api/roles/{id}/users/{userId} | AddUserToRole: Add User to Role
+[**create_role**](RolesApi.md#create_role) | **POST** /api/roles | CreateRole: Create Role
+[**delete_role**](RolesApi.md#delete_role) | **DELETE** /api/roles/{id} | DeleteRole: Delete Role
+[**get_role**](RolesApi.md#get_role) | **GET** /api/roles/{id} | GetRole: Get Role
+[**list_roles**](RolesApi.md#list_roles) | **GET** /api/roles | ListRoles: List Roles
+[**list_users_in_role**](RolesApi.md#list_users_in_role) | **GET** /api/roles/{id}/users | ListUsersInRole: Get the users in the specified role.
+[**remove_user_from_role**](RolesApi.md#remove_user_from_role) | **DELETE** /api/roles/{id}/users/{userId} | RemoveUserFromRole: Remove User from Role
+[**update_role**](RolesApi.md#update_role) | **PUT** /api/roles/{id} | UpdateRole: Update Role
 
 
 # **add_user_to_role**
 > add_user_to_role(id, user_id)
 
-[EARLY ACCESS] AddUserToRole: Add User to Role
+AddUserToRole: Add User to Role
 
 Adds the User to the specified Role
 
@@ -75,7 +75,7 @@ async with api_client_factory:
     user_id = 'user_id_example' # str | The unique identifier for the User
 
     try:
-        # [EARLY ACCESS] AddUserToRole: Add User to Role
+        # AddUserToRole: Add User to Role
         await api_instance.add_user_to_role(id, user_id)
     except Exception as e:
         print("Exception when calling RolesApi->add_user_to_role: %s\n" % e)
@@ -115,7 +115,7 @@ void (empty response body)
 # **create_role**
 > RoleResponse create_role(create_role_request)
 
-[EARLY ACCESS] CreateRole: Create Role
+CreateRole: Create Role
 
 Creates a new Role
 
@@ -174,7 +174,7 @@ async with api_client_factory:
     create_role_request = {"name":"LUSID:FrontOfficeAdministrator","description":"Front office administration role"} # CreateRoleRequest | Details of the role to be created
 
     try:
-        # [EARLY ACCESS] CreateRole: Create Role
+        # CreateRole: Create Role
         api_response = await api_instance.create_role(create_role_request)
         print("The response of RolesApi->create_role:\n")
         pprint(api_response)
@@ -215,7 +215,7 @@ Name | Type | Description  | Notes
 # **delete_role**
 > delete_role(id)
 
-[EARLY ACCESS] DeleteRole: Delete Role
+DeleteRole: Delete Role
 
 Delete the specified role
 
@@ -272,7 +272,7 @@ async with api_client_factory:
     id = 'id_example' # str | The unique identifier for the role
 
     try:
-        # [EARLY ACCESS] DeleteRole: Delete Role
+        # DeleteRole: Delete Role
         await api_instance.delete_role(id)
     except Exception as e:
         print("Exception when calling RolesApi->delete_role: %s\n" % e)
@@ -310,7 +310,7 @@ void (empty response body)
 # **get_role**
 > RoleResponse get_role(id)
 
-[EARLY ACCESS] GetRole: Get Role
+GetRole: Get Role
 
 Get the specified role
 
@@ -368,7 +368,7 @@ async with api_client_factory:
     id = 'id_example' # str | The unique identifier for the role
 
     try:
-        # [EARLY ACCESS] GetRole: Get Role
+        # GetRole: Get Role
         api_response = await api_instance.get_role(id)
         print("The response of RolesApi->get_role:\n")
         pprint(api_response)
@@ -409,7 +409,7 @@ Name | Type | Description  | Notes
 # **list_roles**
 > List[RoleResponse] list_roles()
 
-[EARLY ACCESS] ListRoles: List Roles
+ListRoles: List Roles
 
 List the available Roles
 
@@ -466,7 +466,7 @@ async with api_client_factory:
     api_instance = api_client_factory.build(finbourne_identity.RolesApi)
 
     try:
-        # [EARLY ACCESS] ListRoles: List Roles
+        # ListRoles: List Roles
         api_response = await api_instance.list_roles()
         print("The response of RolesApi->list_roles:\n")
         pprint(api_response)
@@ -502,7 +502,7 @@ This endpoint does not need any parameter.
 # **list_users_in_role**
 > List[UserResponse] list_users_in_role(id)
 
-[EARLY ACCESS] ListUsersInRole: Get the users in the specified role.
+ListUsersInRole: Get the users in the specified role.
 
 List all Users in the specified Role
 
@@ -560,7 +560,7 @@ async with api_client_factory:
     id = 'id_example' # str | The unique identifier for the Role
 
     try:
-        # [EARLY ACCESS] ListUsersInRole: Get the users in the specified role.
+        # ListUsersInRole: Get the users in the specified role.
         api_response = await api_instance.list_users_in_role(id)
         print("The response of RolesApi->list_users_in_role:\n")
         pprint(api_response)
@@ -600,7 +600,7 @@ Name | Type | Description  | Notes
 # **remove_user_from_role**
 > remove_user_from_role(id, user_id)
 
-[EARLY ACCESS] RemoveUserFromRole: Remove User from Role
+RemoveUserFromRole: Remove User from Role
 
 Removes the User from the specified Role
 
@@ -658,7 +658,7 @@ async with api_client_factory:
     user_id = 'user_id_example' # str | The unique identifier for the User
 
     try:
-        # [EARLY ACCESS] RemoveUserFromRole: Remove User from Role
+        # RemoveUserFromRole: Remove User from Role
         await api_instance.remove_user_from_role(id, user_id)
     except Exception as e:
         print("Exception when calling RolesApi->remove_user_from_role: %s\n" % e)
@@ -698,7 +698,7 @@ void (empty response body)
 # **update_role**
 > RoleResponse update_role(id, update_role_request=update_role_request)
 
-[EARLY ACCESS] UpdateRole: Update Role
+UpdateRole: Update Role
 
 Update the specified Role
 
@@ -758,7 +758,7 @@ async with api_client_factory:
     update_role_request = {"description":"Front office administration role"} # UpdateRoleRequest | The new definition of the role (optional)
 
     try:
-        # [EARLY ACCESS] UpdateRole: Update Role
+        # UpdateRole: Update Role
         api_response = await api_instance.update_role(id, update_role_request=update_role_request)
         print("The response of RolesApi->update_role:\n")
         pprint(api_response)

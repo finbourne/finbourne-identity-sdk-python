@@ -356,7 +356,7 @@ class AuthenticationApi:
 
     @validate_arguments
     def get_support_access_history(self, start : Annotated[Optional[datetime], Field(description="The start expiry date to query support access requests from")] = None, end : Annotated[Optional[datetime], Field(description="The end expiry date to query support access requests to")] = None, async_req: Optional[bool]=None, **kwargs) -> Union[List[SupportAccessResponse], Awaitable[List[SupportAccessResponse]]]:  # noqa: E501
-        """[EARLY ACCESS] GetSupportAccessHistory: Get the history of all support access granted and any information pertaining to their termination  # noqa: E501
+        """GetSupportAccessHistory: Get the history of all support access granted and any information pertaining to their termination  # noqa: E501
 
         The active and inactive support requests will be returned, inactive support requests will have information pertaining to their termination  including obfuscated userIds of those who created and terminated the request  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -390,7 +390,7 @@ class AuthenticationApi:
 
     @validate_arguments
     def get_support_access_history_with_http_info(self, start : Annotated[Optional[datetime], Field(description="The start expiry date to query support access requests from")] = None, end : Annotated[Optional[datetime], Field(description="The end expiry date to query support access requests to")] = None, **kwargs) -> ApiResponse:  # noqa: E501
-        """[EARLY ACCESS] GetSupportAccessHistory: Get the history of all support access granted and any information pertaining to their termination  # noqa: E501
+        """GetSupportAccessHistory: Get the history of all support access granted and any information pertaining to their termination  # noqa: E501
 
         The active and inactive support requests will be returned, inactive support requests will have information pertaining to their termination  including obfuscated userIds of those who created and terminated the request  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -521,7 +521,7 @@ class AuthenticationApi:
 
     @validate_arguments
     def get_support_roles(self, async_req: Optional[bool]=None, **kwargs) -> Union[SupportRolesResponse, Awaitable[SupportRolesResponse]]:  # noqa: E501
-        """[EARLY ACCESS] GetSupportRoles: Get mapping of support roles, the internal representation to a human friendly representation  # noqa: E501
+        """GetSupportRoles: Get mapping of support roles, the internal representation to a human friendly representation  # noqa: E501
 
         Get mapping of support roles, the internal representation to a human friendly representation  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -551,7 +551,7 @@ class AuthenticationApi:
 
     @validate_arguments
     def get_support_roles_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
-        """[EARLY ACCESS] GetSupportRoles: Get mapping of support roles, the internal representation to a human friendly representation  # noqa: E501
+        """GetSupportRoles: Get mapping of support roles, the internal representation to a human friendly representation  # noqa: E501
 
         Get mapping of support roles, the internal representation to a human friendly representation  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -663,7 +663,7 @@ class AuthenticationApi:
 
     @validate_arguments
     def grant_support_access(self, support_access_request : Annotated[SupportAccessRequest, Field(..., description="Request detailing the duration and reasons for supplying support access")], async_req: Optional[bool]=None, **kwargs) -> Union[SupportAccessResponse, Awaitable[SupportAccessResponse]]:  # noqa: E501
-        """[EARLY ACCESS] GrantSupportAccess: Grants FINBOURNE support access to your account  # noqa: E501
+        """GrantSupportAccess: Grants FINBOURNE support access to your account  # noqa: E501
 
         Granting support access will allow FINBOURNE employees full access to your data with the express intent to investigate support issues  You can revoke this (and all) access at any time using the InvalidateSupportAccess endpoint.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -695,7 +695,7 @@ class AuthenticationApi:
 
     @validate_arguments
     def grant_support_access_with_http_info(self, support_access_request : Annotated[SupportAccessRequest, Field(..., description="Request detailing the duration and reasons for supplying support access")], **kwargs) -> ApiResponse:  # noqa: E501
-        """[EARLY ACCESS] GrantSupportAccess: Grants FINBOURNE support access to your account  # noqa: E501
+        """GrantSupportAccess: Grants FINBOURNE support access to your account  # noqa: E501
 
         Granting support access will allow FINBOURNE employees full access to your data with the express intent to investigate support issues  You can revoke this (and all) access at any time using the InvalidateSupportAccess endpoint.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -821,7 +821,7 @@ class AuthenticationApi:
 
     @validate_arguments
     def invalidate_support_access(self, async_req: Optional[bool]=None, **kwargs) -> Union[List[SupportAccessResponse], Awaitable[List[SupportAccessResponse]]]:  # noqa: E501
-        """[EARLY ACCESS] InvalidateSupportAccess: Revoke any FINBOURNE support access to your account  # noqa: E501
+        """InvalidateSupportAccess: Revoke any FINBOURNE support access to your account  # noqa: E501
 
         This will result in a loss of access to your data for all FINBOURNE support agents  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -851,7 +851,7 @@ class AuthenticationApi:
 
     @validate_arguments
     def invalidate_support_access_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
-        """[EARLY ACCESS] InvalidateSupportAccess: Revoke any FINBOURNE support access to your account  # noqa: E501
+        """InvalidateSupportAccess: Revoke any FINBOURNE support access to your account  # noqa: E501
 
         This will result in a loss of access to your data for all FINBOURNE support agents  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an

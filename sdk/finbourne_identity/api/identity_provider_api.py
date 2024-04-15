@@ -58,7 +58,7 @@ class IdentityProviderApi:
 
     @validate_arguments
     def add_scim(self, api_token_action : Annotated[Optional[StrictStr], Field(description="The action to take. For the API token. Defaults to \"ensure\"")] = None, old_api_token_deactivation : Annotated[Optional[datetime], Field(description="Optional deactivation date for the old API token. Only used if apiTokenAction is \"regenerate\"")] = None, async_req: Optional[bool]=None, **kwargs) -> Union[AddScimResponse, Awaitable[AddScimResponse]]:  # noqa: E501
-        """[EARLY ACCESS] AddScim: Add SCIM  # noqa: E501
+        """AddScim: Add SCIM  # noqa: E501
 
         Generates an API token to be used for SCIM  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -92,7 +92,7 @@ class IdentityProviderApi:
 
     @validate_arguments
     def add_scim_with_http_info(self, api_token_action : Annotated[Optional[StrictStr], Field(description="The action to take. For the API token. Defaults to \"ensure\"")] = None, old_api_token_deactivation : Annotated[Optional[datetime], Field(description="Optional deactivation date for the old API token. Only used if apiTokenAction is \"regenerate\"")] = None, **kwargs) -> ApiResponse:  # noqa: E501
-        """[EARLY ACCESS] AddScim: Add SCIM  # noqa: E501
+        """AddScim: Add SCIM  # noqa: E501
 
         Generates an API token to be used for SCIM  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -220,7 +220,7 @@ class IdentityProviderApi:
 
     @validate_arguments
     def remove_scim(self, async_req: Optional[bool]=None, **kwargs) -> Union[None, Awaitable[None]]:  # noqa: E501
-        """[EARLY ACCESS] RemoveScim: Remove SCIM  # noqa: E501
+        """RemoveScim: Remove SCIM  # noqa: E501
 
         Deactivates any existing SCIM API token  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -250,7 +250,7 @@ class IdentityProviderApi:
 
     @validate_arguments
     def remove_scim_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
-        """[EARLY ACCESS] RemoveScim: Remove SCIM  # noqa: E501
+        """RemoveScim: Remove SCIM  # noqa: E501
 
         Deactivates any existing SCIM API token  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an

@@ -60,7 +60,7 @@ class UsersApi:
 
     @validate_arguments
     def create_user(self, create_user_request : Annotated[CreateUserRequest, Field(..., description="Details of the User to be created")], wait_for_reindex : Annotated[Optional[StrictBool], Field(description="Should the request wait until the newly created User is indexed (available in List) before returning")] = None, async_req: Optional[bool]=None, **kwargs) -> Union[UserResponse, Awaitable[UserResponse]]:  # noqa: E501
-        """[EARLY ACCESS] CreateUser: Create User  # noqa: E501
+        """CreateUser: Create User  # noqa: E501
 
         Create a new User  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -94,7 +94,7 @@ class UsersApi:
 
     @validate_arguments
     def create_user_with_http_info(self, create_user_request : Annotated[CreateUserRequest, Field(..., description="Details of the User to be created")], wait_for_reindex : Annotated[Optional[StrictBool], Field(description="Should the request wait until the newly created User is indexed (available in List) before returning")] = None, **kwargs) -> ApiResponse:  # noqa: E501
-        """[EARLY ACCESS] CreateUser: Create User  # noqa: E501
+        """CreateUser: Create User  # noqa: E501
 
         Create a new User  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -226,7 +226,7 @@ class UsersApi:
 
     @validate_arguments
     def delete_user(self, id : Annotated[constr(strict=True, max_length=64, min_length=1), Field(..., description="The unique identifier for the user")], purge : Annotated[Optional[StrictBool], Field(description="Whether to purge any trace of the user from the identity provider (will affect audit)")] = None, async_req: Optional[bool]=None, **kwargs) -> Union[None, Awaitable[None]]:  # noqa: E501
-        """[EARLY ACCESS] DeleteUser: Delete User  # noqa: E501
+        """DeleteUser: Delete User  # noqa: E501
 
         By default the user will be de-provisioned and inactive, however their record will remain in the identity  provider for audit purposes. If this is not desirable and removal of all trace of the user is required,  the purge parameter can be specified to indicate the details should be purged completely.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -260,7 +260,7 @@ class UsersApi:
 
     @validate_arguments
     def delete_user_with_http_info(self, id : Annotated[constr(strict=True, max_length=64, min_length=1), Field(..., description="The unique identifier for the user")], purge : Annotated[Optional[StrictBool], Field(description="Whether to purge any trace of the user from the identity provider (will affect audit)")] = None, **kwargs) -> ApiResponse:  # noqa: E501
-        """[EARLY ACCESS] DeleteUser: Delete User  # noqa: E501
+        """DeleteUser: Delete User  # noqa: E501
 
         By default the user will be de-provisioned and inactive, however their record will remain in the identity  provider for audit purposes. If this is not desirable and removal of all trace of the user is required,  the purge parameter can be specified to indicate the details should be purged completely.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -382,7 +382,7 @@ class UsersApi:
 
     @validate_arguments
     def expire_password(self, id : Annotated[constr(strict=True, max_length=64, min_length=1), Field(..., description="The unique identifier for the User having its password reset")], async_req: Optional[bool]=None, **kwargs) -> Union[TemporaryPassword, Awaitable[TemporaryPassword]]:  # noqa: E501
-        """[EARLY ACCESS] ExpirePassword: Reset the user's password to a temporary one  # noqa: E501
+        """ExpirePassword: Reset the user's password to a temporary one  # noqa: E501
 
         Resets the user's password to a temporary one which is then expired  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -414,7 +414,7 @@ class UsersApi:
 
     @validate_arguments
     def expire_password_with_http_info(self, id : Annotated[constr(strict=True, max_length=64, min_length=1), Field(..., description="The unique identifier for the User having its password reset")], **kwargs) -> ApiResponse:  # noqa: E501
-        """[EARLY ACCESS] ExpirePassword: Reset the user's password to a temporary one  # noqa: E501
+        """ExpirePassword: Reset the user's password to a temporary one  # noqa: E501
 
         Resets the user's password to a temporary one which is then expired  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -533,7 +533,7 @@ class UsersApi:
 
     @validate_arguments
     def find_users_by_id(self, id : Annotated[conlist(StrictStr), Field(..., description="A list of unique identifiers for the users")], async_req: Optional[bool]=None, **kwargs) -> Union[ListUsersResponse, Awaitable[ListUsersResponse]]:  # noqa: E501
-        """[EARLY ACCESS] FindUsersById: Find users by id endpoint  # noqa: E501
+        """FindUsersById: Find users by id endpoint  # noqa: E501
 
         Finds a maximum of 50 users by ID  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -565,7 +565,7 @@ class UsersApi:
 
     @validate_arguments
     def find_users_by_id_with_http_info(self, id : Annotated[conlist(StrictStr), Field(..., description="A list of unique identifiers for the users")], **kwargs) -> ApiResponse:  # noqa: E501
-        """[EARLY ACCESS] FindUsersById: Find users by id endpoint  # noqa: E501
+        """FindUsersById: Find users by id endpoint  # noqa: E501
 
         Finds a maximum of 50 users by ID  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -685,7 +685,7 @@ class UsersApi:
 
     @validate_arguments
     def get_user(self, id : Annotated[constr(strict=True, max_length=64, min_length=1), Field(..., description="The unique identifier for the User")], include_roles : Annotated[Optional[StrictBool], Field(description="Flag indicating that the users roles should be included in the response")] = None, async_req: Optional[bool]=None, **kwargs) -> Union[UserResponse, Awaitable[UserResponse]]:  # noqa: E501
-        """[EARLY ACCESS] GetUser: Get User  # noqa: E501
+        """GetUser: Get User  # noqa: E501
 
         Get the specified User  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -719,7 +719,7 @@ class UsersApi:
 
     @validate_arguments
     def get_user_with_http_info(self, id : Annotated[constr(strict=True, max_length=64, min_length=1), Field(..., description="The unique identifier for the User")], include_roles : Annotated[Optional[StrictBool], Field(description="Flag indicating that the users roles should be included in the response")] = None, **kwargs) -> ApiResponse:  # noqa: E501
-        """[EARLY ACCESS] GetUser: Get User  # noqa: E501
+        """GetUser: Get User  # noqa: E501
 
         Get the specified User  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -986,7 +986,7 @@ class UsersApi:
 
     @validate_arguments
     def list_users(self, include_roles : Annotated[Optional[StrictBool], Field(description="Flag indicating that the users roles should be included in the response")] = None, include_deactivated : Annotated[Optional[StrictBool], Field(description="Include previously deleted (not purged) users")] = None, async_req: Optional[bool]=None, **kwargs) -> Union[List[UserResponse], Awaitable[List[UserResponse]]]:  # noqa: E501
-        """[EARLY ACCESS] ListUsers: List Users  # noqa: E501
+        """ListUsers: List Users  # noqa: E501
 
         List the available Users  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -1020,7 +1020,7 @@ class UsersApi:
 
     @validate_arguments
     def list_users_with_http_info(self, include_roles : Annotated[Optional[StrictBool], Field(description="Flag indicating that the users roles should be included in the response")] = None, include_deactivated : Annotated[Optional[StrictBool], Field(description="Include previously deleted (not purged) users")] = None, **kwargs) -> ApiResponse:  # noqa: E501
-        """[EARLY ACCESS] ListUsers: List Users  # noqa: E501
+        """ListUsers: List Users  # noqa: E501
 
         List the available Users  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -1145,7 +1145,7 @@ class UsersApi:
 
     @validate_arguments
     def reset_factors(self, id : Annotated[constr(strict=True, max_length=64, min_length=1), Field(..., description="The unique identifier for the User having their MFA factors reset")], async_req: Optional[bool]=None, **kwargs) -> Union[None, Awaitable[None]]:  # noqa: E501
-        """[EARLY ACCESS] ResetFactors: Reset MFA factors  # noqa: E501
+        """ResetFactors: Reset MFA factors  # noqa: E501
 
         Resets the MFA factors of the specified User  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -1177,7 +1177,7 @@ class UsersApi:
 
     @validate_arguments
     def reset_factors_with_http_info(self, id : Annotated[constr(strict=True, max_length=64, min_length=1), Field(..., description="The unique identifier for the User having their MFA factors reset")], **kwargs) -> ApiResponse:  # noqa: E501
-        """[EARLY ACCESS] ResetFactors: Reset MFA factors  # noqa: E501
+        """ResetFactors: Reset MFA factors  # noqa: E501
 
         Resets the MFA factors of the specified User  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -1293,7 +1293,7 @@ class UsersApi:
 
     @validate_arguments
     def reset_password(self, id : Annotated[constr(strict=True, max_length=64, min_length=1), Field(..., description="The unique identifier for the User having their password reset")], async_req: Optional[bool]=None, **kwargs) -> Union[None, Awaitable[None]]:  # noqa: E501
-        """[EARLY ACCESS] ResetPassword: Reset Password  # noqa: E501
+        """ResetPassword: Reset Password  # noqa: E501
 
         Resets the password of the specified User  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -1325,7 +1325,7 @@ class UsersApi:
 
     @validate_arguments
     def reset_password_with_http_info(self, id : Annotated[constr(strict=True, max_length=64, min_length=1), Field(..., description="The unique identifier for the User having their password reset")], **kwargs) -> ApiResponse:  # noqa: E501
-        """[EARLY ACCESS] ResetPassword: Reset Password  # noqa: E501
+        """ResetPassword: Reset Password  # noqa: E501
 
         Resets the password of the specified User  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -1441,7 +1441,7 @@ class UsersApi:
 
     @validate_arguments
     def send_activation_email(self, id : Annotated[constr(strict=True, max_length=64, min_length=1), Field(..., description="The unique identifier for the User to be activated")], async_req: Optional[bool]=None, **kwargs) -> Union[None, Awaitable[None]]:  # noqa: E501
-        """[EARLY ACCESS] SendActivationEmail: Sends an activation email to the User  # noqa: E501
+        """SendActivationEmail: Sends an activation email to the User  # noqa: E501
 
         Sends an activation email to the specified User  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -1473,7 +1473,7 @@ class UsersApi:
 
     @validate_arguments
     def send_activation_email_with_http_info(self, id : Annotated[constr(strict=True, max_length=64, min_length=1), Field(..., description="The unique identifier for the User to be activated")], **kwargs) -> ApiResponse:  # noqa: E501
-        """[EARLY ACCESS] SendActivationEmail: Sends an activation email to the User  # noqa: E501
+        """SendActivationEmail: Sends an activation email to the User  # noqa: E501
 
         Sends an activation email to the specified User  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -1589,7 +1589,7 @@ class UsersApi:
 
     @validate_arguments
     def unlock_user(self, id : Annotated[constr(strict=True, max_length=64, min_length=1), Field(..., description="The unique identifier for the User to be unlocked")], async_req: Optional[bool]=None, **kwargs) -> Union[None, Awaitable[None]]:  # noqa: E501
-        """[EARLY ACCESS] UnlockUser: Unlock User  # noqa: E501
+        """UnlockUser: Unlock User  # noqa: E501
 
         Unlocks the specified User  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -1621,7 +1621,7 @@ class UsersApi:
 
     @validate_arguments
     def unlock_user_with_http_info(self, id : Annotated[constr(strict=True, max_length=64, min_length=1), Field(..., description="The unique identifier for the User to be unlocked")], **kwargs) -> ApiResponse:  # noqa: E501
-        """[EARLY ACCESS] UnlockUser: Unlock User  # noqa: E501
+        """UnlockUser: Unlock User  # noqa: E501
 
         Unlocks the specified User  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -1885,7 +1885,7 @@ class UsersApi:
 
     @validate_arguments
     def update_user(self, id : Annotated[constr(strict=True, max_length=64, min_length=1), Field(..., description="The unique identifier for the User to be updated")], update_user_request : Annotated[UpdateUserRequest, Field(..., description="The new definition of the User")], async_req: Optional[bool]=None, **kwargs) -> Union[UserResponse, Awaitable[UserResponse]]:  # noqa: E501
-        """[EARLY ACCESS] UpdateUser: Update User  # noqa: E501
+        """UpdateUser: Update User  # noqa: E501
 
         Updates the specified User  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -1919,7 +1919,7 @@ class UsersApi:
 
     @validate_arguments
     def update_user_with_http_info(self, id : Annotated[constr(strict=True, max_length=64, min_length=1), Field(..., description="The unique identifier for the User to be updated")], update_user_request : Annotated[UpdateUserRequest, Field(..., description="The new definition of the User")], **kwargs) -> ApiResponse:  # noqa: E501
-        """[EARLY ACCESS] UpdateUser: Update User  # noqa: E501
+        """UpdateUser: Update User  # noqa: E501
 
         Updates the specified User  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an

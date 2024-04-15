@@ -50,7 +50,7 @@ class TokensApi:
 
     @validate_arguments
     def invalidate_token(self, async_req: Optional[bool]=None, **kwargs) -> Union[None, Awaitable[None]]:  # noqa: E501
-        """[EARLY ACCESS] InvalidateToken: Invalidate current JWT token (sign out)  # noqa: E501
+        """InvalidateToken: Invalidate current JWT token (sign out)  # noqa: E501
 
         Log the current user out of all Finbourne platforms by invalidating the current token  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -80,7 +80,7 @@ class TokensApi:
 
     @validate_arguments
     def invalidate_token_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
-        """[EARLY ACCESS] InvalidateToken: Invalidate current JWT token (sign out)  # noqa: E501
+        """InvalidateToken: Invalidate current JWT token (sign out)  # noqa: E501
 
         Log the current user out of all Finbourne platforms by invalidating the current token  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an

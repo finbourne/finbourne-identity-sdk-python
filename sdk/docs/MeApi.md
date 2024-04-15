@@ -4,14 +4,14 @@ All URIs are relative to *https://fbn-prd.lusid.com/identity*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**get_user_info**](MeApi.md#get_user_info) | **GET** /api/me | [EARLY ACCESS] GetUserInfo: Get User Info
+[**get_user_info**](MeApi.md#get_user_info) | **GET** /api/me | GetUserInfo: Get User Info
 [**set_password**](MeApi.md#set_password) | **PUT** /api/me/password | SetPassword: Set password of current user
 
 
 # **get_user_info**
 > CurrentUserResponse get_user_info()
 
-[EARLY ACCESS] GetUserInfo: Get User Info
+GetUserInfo: Get User Info
 
 Get the requesting user's basic info
 
@@ -68,7 +68,7 @@ async with api_client_factory:
     api_instance = api_client_factory.build(finbourne_identity.MeApi)
 
     try:
-        # [EARLY ACCESS] GetUserInfo: Get User Info
+        # GetUserInfo: Get User Info
         api_response = await api_instance.get_user_info()
         print("The response of MeApi->get_user_info:\n")
         pprint(api_response)

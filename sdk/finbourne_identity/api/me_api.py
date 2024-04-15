@@ -56,7 +56,7 @@ class MeApi:
 
     @validate_arguments
     def get_user_info(self, async_req: Optional[bool]=None, **kwargs) -> Union[CurrentUserResponse, Awaitable[CurrentUserResponse]]:  # noqa: E501
-        """[EARLY ACCESS] GetUserInfo: Get User Info  # noqa: E501
+        """GetUserInfo: Get User Info  # noqa: E501
 
         Get the requesting user's basic info  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -86,7 +86,7 @@ class MeApi:
 
     @validate_arguments
     def get_user_info_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
-        """[EARLY ACCESS] GetUserInfo: Get User Info  # noqa: E501
+        """GetUserInfo: Get User Info  # noqa: E501
 
         Get the requesting user's basic info  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an

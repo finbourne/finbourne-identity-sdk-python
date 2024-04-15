@@ -4,13 +4,13 @@ All URIs are relative to *https://fbn-prd.lusid.com/identity*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**invalidate_token**](TokensApi.md#invalidate_token) | **DELETE** /api/tokens | [EARLY ACCESS] InvalidateToken: Invalidate current JWT token (sign out)
+[**invalidate_token**](TokensApi.md#invalidate_token) | **DELETE** /api/tokens | InvalidateToken: Invalidate current JWT token (sign out)
 
 
 # **invalidate_token**
 > invalidate_token()
 
-[EARLY ACCESS] InvalidateToken: Invalidate current JWT token (sign out)
+InvalidateToken: Invalidate current JWT token (sign out)
 
 Log the current user out of all Finbourne platforms by invalidating the current token
 
@@ -66,7 +66,7 @@ async with api_client_factory:
     api_instance = api_client_factory.build(finbourne_identity.TokensApi)
 
     try:
-        # [EARLY ACCESS] InvalidateToken: Invalidate current JWT token (sign out)
+        # InvalidateToken: Invalidate current JWT token (sign out)
         await api_instance.invalidate_token()
     except Exception as e:
         print("Exception when calling TokensApi->invalidate_token: %s\n" % e)
