@@ -6,10 +6,10 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**get_authentication_information**](AuthenticationApi.md#get_authentication_information) | **GET** /api/authentication/information | GetAuthenticationInformation: Gets AuthenticationInformation
 [**get_password_policy**](AuthenticationApi.md#get_password_policy) | **GET** /api/authentication/password-policy/{userType} | [EXPERIMENTAL] GetPasswordPolicy: Gets password policy for a user type
-[**get_support_access_history**](AuthenticationApi.md#get_support_access_history) | **GET** /api/authentication/support | [EARLY ACCESS] GetSupportAccessHistory: Get the history of all support access granted and any information pertaining to their termination
-[**get_support_roles**](AuthenticationApi.md#get_support_roles) | **GET** /api/authentication/support-roles | [EARLY ACCESS] GetSupportRoles: Get mapping of support roles, the internal representation to a human friendly representation
-[**grant_support_access**](AuthenticationApi.md#grant_support_access) | **POST** /api/authentication/support | [EARLY ACCESS] GrantSupportAccess: Grants FINBOURNE support access to your account
-[**invalidate_support_access**](AuthenticationApi.md#invalidate_support_access) | **DELETE** /api/authentication/support | [EARLY ACCESS] InvalidateSupportAccess: Revoke any FINBOURNE support access to your account
+[**get_support_access_history**](AuthenticationApi.md#get_support_access_history) | **GET** /api/authentication/support | GetSupportAccessHistory: Get the history of all support access granted and any information pertaining to their termination
+[**get_support_roles**](AuthenticationApi.md#get_support_roles) | **GET** /api/authentication/support-roles | GetSupportRoles: Get mapping of support roles, the internal representation to a human friendly representation
+[**grant_support_access**](AuthenticationApi.md#grant_support_access) | **POST** /api/authentication/support | GrantSupportAccess: Grants FINBOURNE support access to your account
+[**invalidate_support_access**](AuthenticationApi.md#invalidate_support_access) | **DELETE** /api/authentication/support | InvalidateSupportAccess: Revoke any FINBOURNE support access to your account
 [**update_password_policy**](AuthenticationApi.md#update_password_policy) | **PUT** /api/authentication/password-policy/{userType} | [EXPERIMENTAL] UpdatePasswordPolicy: Updates password policy for a user type
 
 
@@ -161,7 +161,7 @@ Name | Type | Description  | Notes
 # **get_support_access_history**
 > list[SupportAccessResponse] get_support_access_history(start=start, end=end)
 
-[EARLY ACCESS] GetSupportAccessHistory: Get the history of all support access granted and any information pertaining to their termination
+GetSupportAccessHistory: Get the history of all support access granted and any information pertaining to their termination
 
 The active and inactive support requests will be returned, inactive support requests will have information pertaining to their termination  including obfuscated userIds of those who created and terminated the request
 
@@ -199,7 +199,7 @@ with finbourne_identity.ApiClient(configuration) as api_client:
 end = '2013-10-20T19:20:30+01:00' # datetime | The end expiry date to query support access requests to (optional)
 
     try:
-        # [EARLY ACCESS] GetSupportAccessHistory: Get the history of all support access granted and any information pertaining to their termination
+        # GetSupportAccessHistory: Get the history of all support access granted and any information pertaining to their termination
         api_response = api_instance.get_support_access_history(start=start, end=end)
         pprint(api_response)
     except ApiException as e:
@@ -238,7 +238,7 @@ Name | Type | Description  | Notes
 # **get_support_roles**
 > SupportRolesResponse get_support_roles()
 
-[EARLY ACCESS] GetSupportRoles: Get mapping of support roles, the internal representation to a human friendly representation
+GetSupportRoles: Get mapping of support roles, the internal representation to a human friendly representation
 
 Get mapping of support roles, the internal representation to a human friendly representation
 
@@ -274,7 +274,7 @@ with finbourne_identity.ApiClient(configuration) as api_client:
     api_instance = finbourne_identity.AuthenticationApi(api_client)
     
     try:
-        # [EARLY ACCESS] GetSupportRoles: Get mapping of support roles, the internal representation to a human friendly representation
+        # GetSupportRoles: Get mapping of support roles, the internal representation to a human friendly representation
         api_response = api_instance.get_support_roles()
         pprint(api_response)
     except ApiException as e:
@@ -308,7 +308,7 @@ This endpoint does not need any parameter.
 # **grant_support_access**
 > SupportAccessResponse grant_support_access(support_access_request)
 
-[EARLY ACCESS] GrantSupportAccess: Grants FINBOURNE support access to your account
+GrantSupportAccess: Grants FINBOURNE support access to your account
 
 Granting support access will allow FINBOURNE employees full access to your data with the express intent to investigate support issues  You can revoke this (and all) access at any time using the InvalidateSupportAccess endpoint.
 
@@ -345,7 +345,7 @@ with finbourne_identity.ApiClient(configuration) as api_client:
     support_access_request = {"duration":"PT24H","description":"Investigate issues detailed in support ticket 0604"} # SupportAccessRequest | Request detailing the duration and reasons for supplying support access
 
     try:
-        # [EARLY ACCESS] GrantSupportAccess: Grants FINBOURNE support access to your account
+        # GrantSupportAccess: Grants FINBOURNE support access to your account
         api_response = api_instance.grant_support_access(support_access_request)
         pprint(api_response)
     except ApiException as e:
@@ -383,7 +383,7 @@ Name | Type | Description  | Notes
 # **invalidate_support_access**
 > list[SupportAccessResponse] invalidate_support_access()
 
-[EARLY ACCESS] InvalidateSupportAccess: Revoke any FINBOURNE support access to your account
+InvalidateSupportAccess: Revoke any FINBOURNE support access to your account
 
 This will result in a loss of access to your data for all FINBOURNE support agents
 
@@ -419,7 +419,7 @@ with finbourne_identity.ApiClient(configuration) as api_client:
     api_instance = finbourne_identity.AuthenticationApi(api_client)
     
     try:
-        # [EARLY ACCESS] InvalidateSupportAccess: Revoke any FINBOURNE support access to your account
+        # InvalidateSupportAccess: Revoke any FINBOURNE support access to your account
         api_response = api_instance.invalidate_support_access()
         pprint(api_response)
     except ApiException as e:

@@ -4,25 +4,25 @@ All URIs are relative to *https://fbn-ci.lusid.com/identity*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**create_user**](UsersApi.md#create_user) | **POST** /api/users | [EARLY ACCESS] CreateUser: Create User
-[**delete_user**](UsersApi.md#delete_user) | **DELETE** /api/users/{id} | [EARLY ACCESS] DeleteUser: Delete User
-[**expire_password**](UsersApi.md#expire_password) | **POST** /api/users/{id}/lifecycle/$expirepassword | [EARLY ACCESS] ExpirePassword: Reset the user&#39;s password to a temporary one
-[**find_users_by_id**](UsersApi.md#find_users_by_id) | **GET** /api/directory | [EARLY ACCESS] FindUsersById: Find users by id endpoint
-[**get_user**](UsersApi.md#get_user) | **GET** /api/users/{id} | [EARLY ACCESS] GetUser: Get User
+[**create_user**](UsersApi.md#create_user) | **POST** /api/users | CreateUser: Create User
+[**delete_user**](UsersApi.md#delete_user) | **DELETE** /api/users/{id} | DeleteUser: Delete User
+[**expire_password**](UsersApi.md#expire_password) | **POST** /api/users/{id}/lifecycle/$expirepassword | ExpirePassword: Reset the user&#39;s password to a temporary one
+[**find_users_by_id**](UsersApi.md#find_users_by_id) | **GET** /api/directory | FindUsersById: Find users by id endpoint
+[**get_user**](UsersApi.md#get_user) | **GET** /api/users/{id} | GetUser: Get User
 [**list_runnable_users**](UsersApi.md#list_runnable_users) | **GET** /api/users/$runnable | [EARLY ACCESS] ListRunnableUsers: List Runable Users
-[**list_users**](UsersApi.md#list_users) | **GET** /api/users | [EARLY ACCESS] ListUsers: List Users
-[**reset_factors**](UsersApi.md#reset_factors) | **POST** /api/users/{id}/lifecycle/$resetfactors | [EARLY ACCESS] ResetFactors: Reset MFA factors
-[**reset_password**](UsersApi.md#reset_password) | **POST** /api/users/{id}/lifecycle/$resetpassword | [EARLY ACCESS] ResetPassword: Reset Password
-[**send_activation_email**](UsersApi.md#send_activation_email) | **POST** /api/users/{id}/lifecycle/$activate | [EARLY ACCESS] SendActivationEmail: Sends an activation email to the User
-[**unlock_user**](UsersApi.md#unlock_user) | **POST** /api/users/{id}/lifecycle/$unlock | [EARLY ACCESS] UnlockUser: Unlock User
+[**list_users**](UsersApi.md#list_users) | **GET** /api/users | ListUsers: List Users
+[**reset_factors**](UsersApi.md#reset_factors) | **POST** /api/users/{id}/lifecycle/$resetfactors | ResetFactors: Reset MFA factors
+[**reset_password**](UsersApi.md#reset_password) | **POST** /api/users/{id}/lifecycle/$resetpassword | ResetPassword: Reset Password
+[**send_activation_email**](UsersApi.md#send_activation_email) | **POST** /api/users/{id}/lifecycle/$activate | SendActivationEmail: Sends an activation email to the User
+[**unlock_user**](UsersApi.md#unlock_user) | **POST** /api/users/{id}/lifecycle/$unlock | UnlockUser: Unlock User
 [**unsuspend_user**](UsersApi.md#unsuspend_user) | **POST** /api/users/{id}/lifecycle/$unsuspend | [EXPERIMENTAL] UnsuspendUser: Unsuspend user
-[**update_user**](UsersApi.md#update_user) | **PUT** /api/users/{id} | [EARLY ACCESS] UpdateUser: Update User
+[**update_user**](UsersApi.md#update_user) | **PUT** /api/users/{id} | UpdateUser: Update User
 
 
 # **create_user**
 > UserResponse create_user(create_user_request, wait_for_reindex=wait_for_reindex)
 
-[EARLY ACCESS] CreateUser: Create User
+CreateUser: Create User
 
 Create a new User
 
@@ -60,7 +60,7 @@ with finbourne_identity.ApiClient(configuration) as api_client:
 wait_for_reindex = False # bool | Should the request wait until the newly created User is indexed (available in List) before returning (optional) (default to False)
 
     try:
-        # [EARLY ACCESS] CreateUser: Create User
+        # CreateUser: Create User
         api_response = api_instance.create_user(create_user_request, wait_for_reindex=wait_for_reindex)
         pprint(api_response)
     except ApiException as e:
@@ -99,7 +99,7 @@ Name | Type | Description  | Notes
 # **delete_user**
 > delete_user(id, purge=purge)
 
-[EARLY ACCESS] DeleteUser: Delete User
+DeleteUser: Delete User
 
 By default the user will be de-provisioned and inactive, however their record will remain in the identity  provider for audit purposes. If this is not desirable and removal of all trace of the user is required,  the purge parameter can be specified to indicate the details should be purged completely.
 
@@ -137,7 +137,7 @@ with finbourne_identity.ApiClient(configuration) as api_client:
 purge = True # bool | Whether to purge any trace of the user from the identity provider (will affect audit) (optional)
 
     try:
-        # [EARLY ACCESS] DeleteUser: Delete User
+        # DeleteUser: Delete User
         api_instance.delete_user(id, purge=purge)
     except ApiException as e:
         print("Exception when calling UsersApi->delete_user: %s\n" % e)
@@ -175,7 +175,7 @@ void (empty response body)
 # **expire_password**
 > TemporaryPassword expire_password(id)
 
-[EARLY ACCESS] ExpirePassword: Reset the user's password to a temporary one
+ExpirePassword: Reset the user's password to a temporary one
 
 Resets the user's password to a temporary one which is then expired
 
@@ -212,7 +212,7 @@ with finbourne_identity.ApiClient(configuration) as api_client:
     id = 'id_example' # str | The unique identifier for the User having its password reset
 
     try:
-        # [EARLY ACCESS] ExpirePassword: Reset the user's password to a temporary one
+        # ExpirePassword: Reset the user's password to a temporary one
         api_response = api_instance.expire_password(id)
         pprint(api_response)
     except ApiException as e:
@@ -250,7 +250,7 @@ Name | Type | Description  | Notes
 # **find_users_by_id**
 > ListUsersResponse find_users_by_id(id)
 
-[EARLY ACCESS] FindUsersById: Find users by id endpoint
+FindUsersById: Find users by id endpoint
 
 Finds a maximum of 50 users by ID
 
@@ -287,7 +287,7 @@ with finbourne_identity.ApiClient(configuration) as api_client:
     id = ['id_example'] # list[str] | A list of unique identifiers for the users
 
     try:
-        # [EARLY ACCESS] FindUsersById: Find users by id endpoint
+        # FindUsersById: Find users by id endpoint
         api_response = api_instance.find_users_by_id(id)
         pprint(api_response)
     except ApiException as e:
@@ -325,7 +325,7 @@ Name | Type | Description  | Notes
 # **get_user**
 > UserResponse get_user(id, include_roles=include_roles)
 
-[EARLY ACCESS] GetUser: Get User
+GetUser: Get User
 
 Get the specified User
 
@@ -363,7 +363,7 @@ with finbourne_identity.ApiClient(configuration) as api_client:
 include_roles = True # bool | Flag indicating that the users roles should be included in the response (optional)
 
     try:
-        # [EARLY ACCESS] GetUser: Get User
+        # GetUser: Get User
         api_response = api_instance.get_user(id, include_roles=include_roles)
         pprint(api_response)
     except ApiException as e:
@@ -472,7 +472,7 @@ This endpoint does not need any parameter.
 # **list_users**
 > list[UserResponse] list_users(include_roles=include_roles, include_deactivated=include_deactivated)
 
-[EARLY ACCESS] ListUsers: List Users
+ListUsers: List Users
 
 List the available Users
 
@@ -510,7 +510,7 @@ with finbourne_identity.ApiClient(configuration) as api_client:
 include_deactivated = False # bool | Include previously deleted (not purged) users (optional) (default to False)
 
     try:
-        # [EARLY ACCESS] ListUsers: List Users
+        # ListUsers: List Users
         api_response = api_instance.list_users(include_roles=include_roles, include_deactivated=include_deactivated)
         pprint(api_response)
     except ApiException as e:
@@ -549,7 +549,7 @@ Name | Type | Description  | Notes
 # **reset_factors**
 > reset_factors(id)
 
-[EARLY ACCESS] ResetFactors: Reset MFA factors
+ResetFactors: Reset MFA factors
 
 Resets the MFA factors of the specified User
 
@@ -586,7 +586,7 @@ with finbourne_identity.ApiClient(configuration) as api_client:
     id = 'id_example' # str | The unique identifier for the User having their MFA factors reset
 
     try:
-        # [EARLY ACCESS] ResetFactors: Reset MFA factors
+        # ResetFactors: Reset MFA factors
         api_instance.reset_factors(id)
     except ApiException as e:
         print("Exception when calling UsersApi->reset_factors: %s\n" % e)
@@ -623,7 +623,7 @@ void (empty response body)
 # **reset_password**
 > reset_password(id)
 
-[EARLY ACCESS] ResetPassword: Reset Password
+ResetPassword: Reset Password
 
 Resets the password of the specified User
 
@@ -660,7 +660,7 @@ with finbourne_identity.ApiClient(configuration) as api_client:
     id = 'id_example' # str | The unique identifier for the User having their password reset
 
     try:
-        # [EARLY ACCESS] ResetPassword: Reset Password
+        # ResetPassword: Reset Password
         api_instance.reset_password(id)
     except ApiException as e:
         print("Exception when calling UsersApi->reset_password: %s\n" % e)
@@ -697,7 +697,7 @@ void (empty response body)
 # **send_activation_email**
 > send_activation_email(id)
 
-[EARLY ACCESS] SendActivationEmail: Sends an activation email to the User
+SendActivationEmail: Sends an activation email to the User
 
 Sends an activation email to the specified User
 
@@ -734,7 +734,7 @@ with finbourne_identity.ApiClient(configuration) as api_client:
     id = 'id_example' # str | The unique identifier for the User to be activated
 
     try:
-        # [EARLY ACCESS] SendActivationEmail: Sends an activation email to the User
+        # SendActivationEmail: Sends an activation email to the User
         api_instance.send_activation_email(id)
     except ApiException as e:
         print("Exception when calling UsersApi->send_activation_email: %s\n" % e)
@@ -771,7 +771,7 @@ void (empty response body)
 # **unlock_user**
 > unlock_user(id)
 
-[EARLY ACCESS] UnlockUser: Unlock User
+UnlockUser: Unlock User
 
 Unlocks the specified User
 
@@ -808,7 +808,7 @@ with finbourne_identity.ApiClient(configuration) as api_client:
     id = 'id_example' # str | The unique identifier for the User to be unlocked
 
     try:
-        # [EARLY ACCESS] UnlockUser: Unlock User
+        # UnlockUser: Unlock User
         api_instance.unlock_user(id)
     except ApiException as e:
         print("Exception when calling UsersApi->unlock_user: %s\n" % e)
@@ -919,7 +919,7 @@ void (empty response body)
 # **update_user**
 > UserResponse update_user(id, update_user_request)
 
-[EARLY ACCESS] UpdateUser: Update User
+UpdateUser: Update User
 
 Updates the specified User
 
@@ -957,7 +957,7 @@ with finbourne_identity.ApiClient(configuration) as api_client:
 update_user_request = {"firstName":"Joe","lastName":"Bloggs","emailAddress":"joe.bloggs@myco.com","login":"joe.bloggs@myco.com"} # UpdateUserRequest | The new definition of the User
 
     try:
-        # [EARLY ACCESS] UpdateUser: Update User
+        # UpdateUser: Update User
         api_response = api_instance.update_user(id, update_user_request)
         pprint(api_response)
     except ApiException as e:

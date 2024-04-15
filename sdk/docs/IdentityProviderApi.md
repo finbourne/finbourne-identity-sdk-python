@@ -4,14 +4,14 @@ All URIs are relative to *https://fbn-ci.lusid.com/identity*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**add_scim**](IdentityProviderApi.md#add_scim) | **PUT** /api/identityprovider/scim | [EARLY ACCESS] AddScim: Add SCIM
-[**remove_scim**](IdentityProviderApi.md#remove_scim) | **DELETE** /api/identityprovider/scim | [EARLY ACCESS] RemoveScim: Remove SCIM
+[**add_scim**](IdentityProviderApi.md#add_scim) | **PUT** /api/identityprovider/scim | AddScim: Add SCIM
+[**remove_scim**](IdentityProviderApi.md#remove_scim) | **DELETE** /api/identityprovider/scim | RemoveScim: Remove SCIM
 
 
 # **add_scim**
 > AddScimResponse add_scim(api_token_action=api_token_action, old_api_token_deactivation=old_api_token_deactivation)
 
-[EARLY ACCESS] AddScim: Add SCIM
+AddScim: Add SCIM
 
 Generates an API token to be used for SCIM
 
@@ -49,7 +49,7 @@ with finbourne_identity.ApiClient(configuration) as api_client:
 old_api_token_deactivation = '2013-10-20T19:20:30+01:00' # datetime | Optional deactivation date for the old API token. Only used if apiTokenAction is \"regenerate\" (optional)
 
     try:
-        # [EARLY ACCESS] AddScim: Add SCIM
+        # AddScim: Add SCIM
         api_response = api_instance.add_scim(api_token_action=api_token_action, old_api_token_deactivation=old_api_token_deactivation)
         pprint(api_response)
     except ApiException as e:
@@ -88,7 +88,7 @@ Name | Type | Description  | Notes
 # **remove_scim**
 > remove_scim()
 
-[EARLY ACCESS] RemoveScim: Remove SCIM
+RemoveScim: Remove SCIM
 
 Deactivates any existing SCIM API token
 
@@ -124,7 +124,7 @@ with finbourne_identity.ApiClient(configuration) as api_client:
     api_instance = finbourne_identity.IdentityProviderApi(api_client)
     
     try:
-        # [EARLY ACCESS] RemoveScim: Remove SCIM
+        # RemoveScim: Remove SCIM
         api_instance.remove_scim()
     except ApiException as e:
         print("Exception when calling IdentityProviderApi->remove_scim: %s\n" % e)

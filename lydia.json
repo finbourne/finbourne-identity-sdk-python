@@ -8,7 +8,7 @@
       "url": "https://www.finbourne.com",
       "email": "info@finbourne.com"
     },
-    "version": "0.0.2862",
+    "version": "0.0.2866",
     "x-logo": {
       "url": "https://www.lusid.com/app/assets/logo_white.png",
       "backgroundColor": "#415464"
@@ -667,7 +667,7 @@
         "tags": [
           "Authentication"
         ],
-        "summary": "[EARLY ACCESS] GrantSupportAccess: Grants FINBOURNE support access to your account",
+        "summary": "GrantSupportAccess: Grants FINBOURNE support access to your account",
         "description": "Granting support access will allow FINBOURNE employees full access to your data with the express intent to investigate support issues\r\nYou can revoke this (and all) access at any time using the InvalidateSupportAccess endpoint.",
         "operationId": "GrantSupportAccess",
         "requestBody": {
@@ -761,13 +761,13 @@
             "oauth2": []
           }
         ],
-        "x-fbn-apistatus": "EarlyAccess"
+        "x-fbn-apistatus": "Stable"
       },
       "delete": {
         "tags": [
           "Authentication"
         ],
-        "summary": "[EARLY ACCESS] InvalidateSupportAccess: Revoke any FINBOURNE support access to your account",
+        "summary": "InvalidateSupportAccess: Revoke any FINBOURNE support access to your account",
         "description": "This will result in a loss of access to your data for all FINBOURNE support agents",
         "operationId": "InvalidateSupportAccess",
         "responses": {
@@ -828,13 +828,13 @@
             "oauth2": []
           }
         ],
-        "x-fbn-apistatus": "EarlyAccess"
+        "x-fbn-apistatus": "Stable"
       },
       "get": {
         "tags": [
           "Authentication"
         ],
-        "summary": "[EARLY ACCESS] GetSupportAccessHistory: Get the history of all support access granted and any information pertaining to their termination",
+        "summary": "GetSupportAccessHistory: Get the history of all support access granted and any information pertaining to their termination",
         "description": "The active and inactive support requests will be returned, inactive support requests will have information pertaining to their termination\r\nincluding obfuscated userIds of those who created and terminated the request",
         "operationId": "GetSupportAccessHistory",
         "parameters": [
@@ -927,7 +927,7 @@
             "oauth2": []
           }
         ],
-        "x-fbn-apistatus": "EarlyAccess"
+        "x-fbn-apistatus": "Stable"
       }
     },
     "/api/authentication/support-roles": {
@@ -935,7 +935,7 @@
         "tags": [
           "Authentication"
         ],
-        "summary": "[EARLY ACCESS] GetSupportRoles: Get mapping of support roles, the internal representation to a human friendly representation",
+        "summary": "GetSupportRoles: Get mapping of support roles, the internal representation to a human friendly representation",
         "description": "Get mapping of support roles, the internal representation to a human friendly representation",
         "operationId": "GetSupportRoles",
         "responses": {
@@ -978,7 +978,7 @@
             "oauth2": []
           }
         ],
-        "x-fbn-apistatus": "EarlyAccess"
+        "x-fbn-apistatus": "Stable"
       }
     },
     "/api/directory": {
@@ -986,7 +986,7 @@
         "tags": [
           "Users"
         ],
-        "summary": "[EARLY ACCESS] FindUsersById: Find users by id endpoint",
+        "summary": "FindUsersById: Find users by id endpoint",
         "description": "Finds a maximum of 50 users by ID",
         "operationId": "FindUsersById",
         "parameters": [
@@ -1104,7 +1104,7 @@
             "oauth2": []
           }
         ],
-        "x-fbn-apistatus": "EarlyAccess"
+        "x-fbn-apistatus": "Stable"
       }
     },
     "/api/identityprovider/scim": {
@@ -1112,7 +1112,7 @@
         "tags": [
           "Identity Provider"
         ],
-        "summary": "[EARLY ACCESS] AddScim: Add SCIM",
+        "summary": "AddScim: Add SCIM",
         "description": "Generates an API token to be used for SCIM",
         "operationId": "AddScim",
         "parameters": [
@@ -1204,13 +1204,13 @@
             "oauth2": []
           }
         ],
-        "x-fbn-apistatus": "EarlyAccess"
+        "x-fbn-apistatus": "Stable"
       },
       "delete": {
         "tags": [
           "Identity Provider"
         ],
-        "summary": "[EARLY ACCESS] RemoveScim: Remove SCIM",
+        "summary": "RemoveScim: Remove SCIM",
         "description": "Deactivates any existing SCIM API token",
         "operationId": "RemoveScim",
         "responses": {
@@ -1233,7 +1233,7 @@
             "oauth2": []
           }
         ],
-        "x-fbn-apistatus": "EarlyAccess"
+        "x-fbn-apistatus": "Stable"
       }
     },
     "/api/keys": {
@@ -1241,7 +1241,7 @@
         "tags": [
           "Personal Authentication Tokens"
         ],
-        "summary": "[EARLY ACCESS] CreateApiKey: Create a Personal Access Token",
+        "summary": "CreateApiKey: Create a Personal Access Token",
         "description": "Generates a Personal Access Token and returns the new key and its associated metadata.",
         "operationId": "CreateApiKey",
         "requestBody": {
@@ -1330,13 +1330,13 @@
             "oauth2": []
           }
         ],
-        "x-fbn-apistatus": "EarlyAccess"
+        "x-fbn-apistatus": "Stable"
       },
       "get": {
         "tags": [
           "Personal Authentication Tokens"
         ],
-        "summary": "[EARLY ACCESS] ListOwnApiKeys: Gets the meta data for all of the user's existing Personal Access Tokens.",
+        "summary": "ListOwnApiKeys: Gets the meta data for all of the user's existing Personal Access Tokens.",
         "description": "Gets the meta data for all of the user's Personal Access Tokens that have not been deleted. They may be\r\ninvalid due to the deactivation date having passed.",
         "operationId": "ListOwnApiKeys",
         "responses": {
@@ -1389,7 +1389,7 @@
             "oauth2": []
           }
         ],
-        "x-fbn-apistatus": "EarlyAccess"
+        "x-fbn-apistatus": "Stable"
       }
     },
     "/api/keys/{id}": {
@@ -1397,7 +1397,7 @@
         "tags": [
           "Personal Authentication Tokens"
         ],
-        "summary": "[EARLY ACCESS] DeleteApiKey: Invalidate a Personal Access Token",
+        "summary": "DeleteApiKey: Invalidate a Personal Access Token",
         "description": "Immediately invalidates the specified Personal Access Token",
         "operationId": "DeleteApiKey",
         "parameters": [
@@ -1457,7 +1457,7 @@
             "oauth2": []
           }
         ],
-        "x-fbn-apistatus": "EarlyAccess"
+        "x-fbn-apistatus": "Stable"
       }
     },
     "/api/me": {
@@ -1465,7 +1465,7 @@
         "tags": [
           "Me"
         ],
-        "summary": "[EARLY ACCESS] GetUserInfo: Get User Info",
+        "summary": "GetUserInfo: Get User Info",
         "description": "Get the requesting user's basic info",
         "operationId": "GetUserInfo",
         "responses": {
@@ -1500,7 +1500,7 @@
             "oauth2": []
           }
         ],
-        "x-fbn-apistatus": "EarlyAccess"
+        "x-fbn-apistatus": "Stable"
       }
     },
     "/api/me/password": {
@@ -1597,7 +1597,7 @@
         "tags": [
           "Application Metadata"
         ],
-        "summary": "[EARLY ACCESS] ListAccessControlledResources: Get resources available for access control",
+        "summary": "ListAccessControlledResources: Get resources available for access control",
         "description": "Get the comprehensive set of resources that are available for access control",
         "operationId": "ListAccessControlledResources",
         "responses": {
@@ -1637,7 +1637,7 @@
             "oauth2": []
           }
         ],
-        "x-fbn-apistatus": "EarlyAccess"
+        "x-fbn-apistatus": "Stable"
       }
     },
     "/api/roles": {
@@ -1645,7 +1645,7 @@
         "tags": [
           "Roles"
         ],
-        "summary": "[EARLY ACCESS] ListRoles: List Roles",
+        "summary": "ListRoles: List Roles",
         "description": "List the available Roles",
         "operationId": "ListRoles",
         "responses": {
@@ -1691,13 +1691,13 @@
             "oauth2": []
           }
         ],
-        "x-fbn-apistatus": "EarlyAccess"
+        "x-fbn-apistatus": "Stable"
       },
       "post": {
         "tags": [
           "Roles"
         ],
-        "summary": "[EARLY ACCESS] CreateRole: Create Role",
+        "summary": "CreateRole: Create Role",
         "description": "Creates a new Role",
         "operationId": "CreateRole",
         "requestBody": {
@@ -1793,7 +1793,7 @@
             "oauth2": []
           }
         ],
-        "x-fbn-apistatus": "EarlyAccess"
+        "x-fbn-apistatus": "Stable"
       }
     },
     "/api/roles/{id}": {
@@ -1801,7 +1801,7 @@
         "tags": [
           "Roles"
         ],
-        "summary": "[EARLY ACCESS] GetRole: Get Role",
+        "summary": "GetRole: Get Role",
         "description": "Get the specified role",
         "operationId": "GetRole",
         "parameters": [
@@ -1869,13 +1869,13 @@
             "oauth2": []
           }
         ],
-        "x-fbn-apistatus": "EarlyAccess"
+        "x-fbn-apistatus": "Stable"
       },
       "delete": {
         "tags": [
           "Roles"
         ],
-        "summary": "[EARLY ACCESS] DeleteRole: Delete Role",
+        "summary": "DeleteRole: Delete Role",
         "description": "Delete the specified role",
         "operationId": "DeleteRole",
         "parameters": [
@@ -1922,13 +1922,13 @@
             "oauth2": []
           }
         ],
-        "x-fbn-apistatus": "EarlyAccess"
+        "x-fbn-apistatus": "Stable"
       },
       "put": {
         "tags": [
           "Roles"
         ],
-        "summary": "[EARLY ACCESS] UpdateRole: Update Role",
+        "summary": "UpdateRole: Update Role",
         "description": "Update the specified Role",
         "operationId": "UpdateRole",
         "parameters": [
@@ -2033,7 +2033,7 @@
             "oauth2": []
           }
         ],
-        "x-fbn-apistatus": "EarlyAccess"
+        "x-fbn-apistatus": "Stable"
       }
     },
     "/api/roles/{id}/users": {
@@ -2041,7 +2041,7 @@
         "tags": [
           "Roles"
         ],
-        "summary": "[EARLY ACCESS] ListUsersInRole: Get the users in the specified role.",
+        "summary": "ListUsersInRole: Get the users in the specified role.",
         "description": "List all Users in the specified Role",
         "operationId": "ListUsersInRole",
         "parameters": [
@@ -2123,7 +2123,7 @@
             "oauth2": []
           }
         ],
-        "x-fbn-apistatus": "EarlyAccess"
+        "x-fbn-apistatus": "Stable"
       }
     },
     "/api/roles/{id}/users/{userId}": {
@@ -2131,7 +2131,7 @@
         "tags": [
           "Roles"
         ],
-        "summary": "[EARLY ACCESS] AddUserToRole: Add User to Role",
+        "summary": "AddUserToRole: Add User to Role",
         "description": "Adds the User to the specified Role",
         "operationId": "AddUserToRole",
         "parameters": [
@@ -2193,13 +2193,13 @@
             "oauth2": []
           }
         ],
-        "x-fbn-apistatus": "EarlyAccess"
+        "x-fbn-apistatus": "Stable"
       },
       "delete": {
         "tags": [
           "Roles"
         ],
-        "summary": "[EARLY ACCESS] RemoveUserFromRole: Remove User from Role",
+        "summary": "RemoveUserFromRole: Remove User from Role",
         "description": "Removes the User from the specified Role",
         "operationId": "RemoveUserFromRole",
         "parameters": [
@@ -2261,7 +2261,7 @@
             "oauth2": []
           }
         ],
-        "x-fbn-apistatus": "EarlyAccess"
+        "x-fbn-apistatus": "Stable"
       }
     },
     "/api/tokens": {
@@ -2269,7 +2269,7 @@
         "tags": [
           "Tokens"
         ],
-        "summary": "[EARLY ACCESS] InvalidateToken: Invalidate current JWT token (sign out)",
+        "summary": "InvalidateToken: Invalidate current JWT token (sign out)",
         "description": "Log the current user out of all Finbourne platforms by invalidating the current token",
         "operationId": "InvalidateToken",
         "responses": {
@@ -2292,7 +2292,7 @@
             "oauth2": []
           }
         ],
-        "x-fbn-apistatus": "EarlyAccess"
+        "x-fbn-apistatus": "Stable"
       }
     },
     "/api/users": {
@@ -2300,7 +2300,7 @@
         "tags": [
           "Users"
         ],
-        "summary": "[EARLY ACCESS] ListUsers: List Users",
+        "summary": "ListUsers: List Users",
         "description": "List the available Users",
         "operationId": "ListUsers",
         "parameters": [
@@ -2390,13 +2390,13 @@
             "oauth2": []
           }
         ],
-        "x-fbn-apistatus": "EarlyAccess"
+        "x-fbn-apistatus": "Stable"
       },
       "post": {
         "tags": [
           "Users"
         ],
-        "summary": "[EARLY ACCESS] CreateUser: Create User",
+        "summary": "CreateUser: Create User",
         "description": "Create a new User",
         "operationId": "CreateUser",
         "parameters": [
@@ -2525,7 +2525,7 @@
             "oauth2": []
           }
         ],
-        "x-fbn-apistatus": "EarlyAccess"
+        "x-fbn-apistatus": "Stable"
       }
     },
     "/api/users/$runnable": {
@@ -2599,7 +2599,7 @@
         "tags": [
           "Users"
         ],
-        "summary": "[EARLY ACCESS] GetUser: Get User",
+        "summary": "GetUser: Get User",
         "description": "Get the specified User",
         "operationId": "GetUser",
         "parameters": [
@@ -2685,13 +2685,13 @@
             "oauth2": []
           }
         ],
-        "x-fbn-apistatus": "EarlyAccess"
+        "x-fbn-apistatus": "Stable"
       },
       "delete": {
         "tags": [
           "Users"
         ],
-        "summary": "[EARLY ACCESS] DeleteUser: Delete User",
+        "summary": "DeleteUser: Delete User",
         "description": "By default the user will be de-provisioned and inactive, however their record will remain in the identity\r\nprovider for audit purposes. If this is not desirable and removal of all trace of the user is required,\r\nthe purge parameter can be specified to indicate the details should be purged completely.",
         "operationId": "DeleteUser",
         "parameters": [
@@ -2747,13 +2747,13 @@
             "oauth2": []
           }
         ],
-        "x-fbn-apistatus": "EarlyAccess"
+        "x-fbn-apistatus": "Stable"
       },
       "put": {
         "tags": [
           "Users"
         ],
-        "summary": "[EARLY ACCESS] UpdateUser: Update User",
+        "summary": "UpdateUser: Update User",
         "description": "Updates the specified User",
         "operationId": "UpdateUser",
         "parameters": [
@@ -2880,7 +2880,7 @@
             "oauth2": []
           }
         ],
-        "x-fbn-apistatus": "EarlyAccess"
+        "x-fbn-apistatus": "Stable"
       }
     },
     "/api/users/{id}/lifecycle/$activate": {
@@ -2888,7 +2888,7 @@
         "tags": [
           "Users"
         ],
-        "summary": "[EARLY ACCESS] SendActivationEmail: Sends an activation email to the User",
+        "summary": "SendActivationEmail: Sends an activation email to the User",
         "description": "Sends an activation email to the specified User",
         "operationId": "SendActivationEmail",
         "parameters": [
@@ -2935,7 +2935,7 @@
             "oauth2": []
           }
         ],
-        "x-fbn-apistatus": "EarlyAccess"
+        "x-fbn-apistatus": "Stable"
       }
     },
     "/api/users/{id}/lifecycle/$expirepassword": {
@@ -2943,7 +2943,7 @@
         "tags": [
           "Users"
         ],
-        "summary": "[EARLY ACCESS] ExpirePassword: Reset the user's password to a temporary one",
+        "summary": "ExpirePassword: Reset the user's password to a temporary one",
         "description": "Resets the user's password to a temporary one which is then expired",
         "operationId": "ExpirePassword",
         "parameters": [
@@ -2997,7 +2997,7 @@
             "oauth2": []
           }
         ],
-        "x-fbn-apistatus": "EarlyAccess"
+        "x-fbn-apistatus": "Stable"
       }
     },
     "/api/users/{id}/lifecycle/$resetfactors": {
@@ -3005,7 +3005,7 @@
         "tags": [
           "Users"
         ],
-        "summary": "[EARLY ACCESS] ResetFactors: Reset MFA factors",
+        "summary": "ResetFactors: Reset MFA factors",
         "description": "Resets the MFA factors of the specified User",
         "operationId": "ResetFactors",
         "parameters": [
@@ -3052,7 +3052,7 @@
             "oauth2": []
           }
         ],
-        "x-fbn-apistatus": "EarlyAccess"
+        "x-fbn-apistatus": "Stable"
       }
     },
     "/api/users/{id}/lifecycle/$resetpassword": {
@@ -3060,7 +3060,7 @@
         "tags": [
           "Users"
         ],
-        "summary": "[EARLY ACCESS] ResetPassword: Reset Password",
+        "summary": "ResetPassword: Reset Password",
         "description": "Resets the password of the specified User",
         "operationId": "ResetPassword",
         "parameters": [
@@ -3107,7 +3107,7 @@
             "oauth2": []
           }
         ],
-        "x-fbn-apistatus": "EarlyAccess"
+        "x-fbn-apistatus": "Stable"
       }
     },
     "/api/users/{id}/lifecycle/$unlock": {
@@ -3115,7 +3115,7 @@
         "tags": [
           "Users"
         ],
-        "summary": "[EARLY ACCESS] UnlockUser: Unlock User",
+        "summary": "UnlockUser: Unlock User",
         "description": "Unlocks the specified User",
         "operationId": "UnlockUser",
         "parameters": [
@@ -3162,7 +3162,7 @@
             "oauth2": []
           }
         ],
-        "x-fbn-apistatus": "EarlyAccess"
+        "x-fbn-apistatus": "Stable"
       }
     },
     "/api/users/{id}/lifecycle/$unsuspend": {
