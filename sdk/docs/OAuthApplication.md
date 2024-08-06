@@ -28,6 +28,6 @@ o_auth_application_dict = o_auth_application_instance.to_dict()
 # create an instance of OAuthApplication from a dict
 o_auth_application_form_dict = o_auth_application.from_dict(o_auth_application_dict)
 ```
-[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+[Back to Model list](../README.md#documentation-for-models) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to README](../README.md)
 
 

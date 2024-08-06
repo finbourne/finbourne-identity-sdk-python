@@ -18,67 +18,57 @@ Generates a Personal Access Token and returns the new key and its associated met
 
 ### Example
 
-* OAuth Authentication (oauth2):
 ```python
-from __future__ import print_function
-import time
-import finbourne_identity
-from finbourne_identity.rest import ApiException
-from finbourne_identity.models.create_api_key import CreateApiKey
-from finbourne_identity.models.created_api_key import CreatedApiKey
+import asyncio
+from finbourne_identity.exceptions import ApiException
+from finbourne_identity.models import *
 from pprint import pprint
-
-import os
 from finbourne_identity import (
     ApiClientFactory,
-    PersonalAuthenticationTokensApi,
-    EnvironmentVariablesConfigurationLoader,
-    SecretsFileConfigurationLoader,
-    ArgsConfigurationLoader
+    PersonalAuthenticationTokensApi
 )
 
-# Use the finbourne_identity ApiClientFactory to build Api instances with a configured api client
-# By default this will read config from environment variables
-# Then from a secrets.json file found in the current working directory
-api_client_factory = ApiClientFactory()
+async def main():
 
-# The ApiClientFactory can be passed an iterable of configuration loaders to read configuration from
+    with open("secrets.json", "w") as file:
+        file.write('''
+{
+    "api":
+    {
+        "tokenUrl":"<your-token-url>",
+        "identityUrl":"https://<your-domain>.lusid.com/identity",
+        "username":"<your-username>",
+        "password":"<your-password>",
+        "clientId":"<your-client-id>",
+        "clientSecret":"<your-client-secret>"
+    }
+}''')
 
-api_url = "https://fbn-prd.lusid.com/identity"
-# Path to a secrets.json file containing authentication credentials
-# See https://support.lusid.com/knowledgebase/article/KA-01667/en-us
-# for a detailed guide to setting up the SDK make authenticated calls to LUSID APIs
-secrets_path = os.getenv("FBN_SECRETS_PATH")
-app_name="LusidJupyterNotebook"
+    # Use the finbourne_identity ApiClientFactory to build Api instances with a configured api client
+    # By default this will read config from environment variables
+    # Then from a secrets.json file found in the current working directory
+    api_client_factory = ApiClientFactory()
 
-config_loaders = [
-	EnvironmentVariablesConfigurationLoader(),
-	SecretsFileConfigurationLoader(api_secrets_file=secrets_path),
-	ArgsConfigurationLoader(api_url=api_url, app_name=app_name)
-]
-api_client_factory = ApiClientFactory(config_loaders=config_loaders)
+    # Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
+    async with api_client_factory:
+        # Create an instance of the API class
+        api_instance = api_client_factory.build(PersonalAuthenticationTokensApi)
 
+        # Objects can be created either via the class constructor, or using the 'from_dict' or 'from_json' methods
+        # Change the lines below to switch approach
+        # create_api_key = CreateApiKey()
+        # create_api_key = CreateApiKey.from_json("")
+        create_api_key = CreateApiKey.from_dict({"displayName":"My API Key","deactivationDate":"2022-12-08T13:30:12.0000000+00:00"}) # CreateApiKey | The request to create a new Personal Access Token
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
+        try:
+            # CreateApiKey: Create a Personal Access Token
+            api_response = await api_instance.create_api_key(create_api_key)
+            pprint(api_response)
+        except ApiException as e:
+            print("Exception when calling PersonalAuthenticationTokensApi->create_api_key: %s\n" % e)
 
-
-
-# Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
-async with api_client_factory:
-    # Create an instance of the API class
-    api_instance = api_client_factory.build(finbourne_identity.PersonalAuthenticationTokensApi)
-    create_api_key = {"displayName":"My API Key","deactivationDate":"2022-12-08T13:30:12.0000000+00:00"} # CreateApiKey | The request to create a new Personal Access Token
-
-    try:
-        # CreateApiKey: Create a Personal Access Token
-        api_response = await api_instance.create_api_key(create_api_key)
-        print("The response of PersonalAuthenticationTokensApi->create_api_key:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling PersonalAuthenticationTokensApi->create_api_key: %s\n" % e)
+asyncio.run(main())
 ```
-
 
 ### Parameters
 
@@ -89,10 +79,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**CreatedApiKey**](CreatedApiKey.md)
-
-### Authorization
-
-[oauth2](../README.md#oauth2)
 
 ### HTTP request headers
 
@@ -106,7 +92,7 @@ Name | Type | Description  | Notes
 **400** | The details of the input related failure |  -  |
 **0** | Error response |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[Back to top](#) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to Model list](../README.md#documentation-for-models) &#8226; [Back to README](../README.md)
 
 # **delete_api_key**
 > ApiKey delete_api_key(id)
@@ -117,66 +103,52 @@ Immediately invalidates the specified Personal Access Token
 
 ### Example
 
-* OAuth Authentication (oauth2):
 ```python
-from __future__ import print_function
-import time
-import finbourne_identity
-from finbourne_identity.rest import ApiException
-from finbourne_identity.models.api_key import ApiKey
+import asyncio
+from finbourne_identity.exceptions import ApiException
+from finbourne_identity.models import *
 from pprint import pprint
-
-import os
 from finbourne_identity import (
     ApiClientFactory,
-    PersonalAuthenticationTokensApi,
-    EnvironmentVariablesConfigurationLoader,
-    SecretsFileConfigurationLoader,
-    ArgsConfigurationLoader
+    PersonalAuthenticationTokensApi
 )
 
-# Use the finbourne_identity ApiClientFactory to build Api instances with a configured api client
-# By default this will read config from environment variables
-# Then from a secrets.json file found in the current working directory
-api_client_factory = ApiClientFactory()
+async def main():
 
-# The ApiClientFactory can be passed an iterable of configuration loaders to read configuration from
+    with open("secrets.json", "w") as file:
+        file.write('''
+{
+    "api":
+    {
+        "tokenUrl":"<your-token-url>",
+        "identityUrl":"https://<your-domain>.lusid.com/identity",
+        "username":"<your-username>",
+        "password":"<your-password>",
+        "clientId":"<your-client-id>",
+        "clientSecret":"<your-client-secret>"
+    }
+}''')
 
-api_url = "https://fbn-prd.lusid.com/identity"
-# Path to a secrets.json file containing authentication credentials
-# See https://support.lusid.com/knowledgebase/article/KA-01667/en-us
-# for a detailed guide to setting up the SDK make authenticated calls to LUSID APIs
-secrets_path = os.getenv("FBN_SECRETS_PATH")
-app_name="LusidJupyterNotebook"
+    # Use the finbourne_identity ApiClientFactory to build Api instances with a configured api client
+    # By default this will read config from environment variables
+    # Then from a secrets.json file found in the current working directory
+    api_client_factory = ApiClientFactory()
 
-config_loaders = [
-	EnvironmentVariablesConfigurationLoader(),
-	SecretsFileConfigurationLoader(api_secrets_file=secrets_path),
-	ArgsConfigurationLoader(api_url=api_url, app_name=app_name)
-]
-api_client_factory = ApiClientFactory(config_loaders=config_loaders)
+    # Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
+    async with api_client_factory:
+        # Create an instance of the API class
+        api_instance = api_client_factory.build(PersonalAuthenticationTokensApi)
+        id = 'id_example' # str | The id of the Personal Access Token to delete
 
+        try:
+            # DeleteApiKey: Invalidate a Personal Access Token
+            api_response = await api_instance.delete_api_key(id)
+            pprint(api_response)
+        except ApiException as e:
+            print("Exception when calling PersonalAuthenticationTokensApi->delete_api_key: %s\n" % e)
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-
-
-
-# Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
-async with api_client_factory:
-    # Create an instance of the API class
-    api_instance = api_client_factory.build(finbourne_identity.PersonalAuthenticationTokensApi)
-    id = 'id_example' # str | The id of the Personal Access Token to delete
-
-    try:
-        # DeleteApiKey: Invalidate a Personal Access Token
-        api_response = await api_instance.delete_api_key(id)
-        print("The response of PersonalAuthenticationTokensApi->delete_api_key:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling PersonalAuthenticationTokensApi->delete_api_key: %s\n" % e)
+asyncio.run(main())
 ```
-
 
 ### Parameters
 
@@ -187,10 +159,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**ApiKey**](ApiKey.md)
-
-### Authorization
-
-[oauth2](../README.md#oauth2)
 
 ### HTTP request headers
 
@@ -204,7 +172,7 @@ Name | Type | Description  | Notes
 **400** | The details of the input related failure |  -  |
 **0** | Error response |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[Back to top](#) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to Model list](../README.md#documentation-for-models) &#8226; [Back to README](../README.md)
 
 # **list_own_api_keys**
 > List[ApiKey] list_own_api_keys()
@@ -215,65 +183,51 @@ Gets the meta data for all of the user's Personal Access Tokens that have not be
 
 ### Example
 
-* OAuth Authentication (oauth2):
 ```python
-from __future__ import print_function
-import time
-import finbourne_identity
-from finbourne_identity.rest import ApiException
-from finbourne_identity.models.api_key import ApiKey
+import asyncio
+from finbourne_identity.exceptions import ApiException
+from finbourne_identity.models import *
 from pprint import pprint
-
-import os
 from finbourne_identity import (
     ApiClientFactory,
-    PersonalAuthenticationTokensApi,
-    EnvironmentVariablesConfigurationLoader,
-    SecretsFileConfigurationLoader,
-    ArgsConfigurationLoader
+    PersonalAuthenticationTokensApi
 )
 
-# Use the finbourne_identity ApiClientFactory to build Api instances with a configured api client
-# By default this will read config from environment variables
-# Then from a secrets.json file found in the current working directory
-api_client_factory = ApiClientFactory()
+async def main():
 
-# The ApiClientFactory can be passed an iterable of configuration loaders to read configuration from
+    with open("secrets.json", "w") as file:
+        file.write('''
+{
+    "api":
+    {
+        "tokenUrl":"<your-token-url>",
+        "identityUrl":"https://<your-domain>.lusid.com/identity",
+        "username":"<your-username>",
+        "password":"<your-password>",
+        "clientId":"<your-client-id>",
+        "clientSecret":"<your-client-secret>"
+    }
+}''')
 
-api_url = "https://fbn-prd.lusid.com/identity"
-# Path to a secrets.json file containing authentication credentials
-# See https://support.lusid.com/knowledgebase/article/KA-01667/en-us
-# for a detailed guide to setting up the SDK make authenticated calls to LUSID APIs
-secrets_path = os.getenv("FBN_SECRETS_PATH")
-app_name="LusidJupyterNotebook"
+    # Use the finbourne_identity ApiClientFactory to build Api instances with a configured api client
+    # By default this will read config from environment variables
+    # Then from a secrets.json file found in the current working directory
+    api_client_factory = ApiClientFactory()
 
-config_loaders = [
-	EnvironmentVariablesConfigurationLoader(),
-	SecretsFileConfigurationLoader(api_secrets_file=secrets_path),
-	ArgsConfigurationLoader(api_url=api_url, app_name=app_name)
-]
-api_client_factory = ApiClientFactory(config_loaders=config_loaders)
+    # Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
+    async with api_client_factory:
+        # Create an instance of the API class
+        api_instance = api_client_factory.build(PersonalAuthenticationTokensApi)
 
+        try:
+            # ListOwnApiKeys: Gets the meta data for all of the user's existing Personal Access Tokens.
+            api_response = await api_instance.list_own_api_keys()
+            pprint(api_response)
+        except ApiException as e:
+            print("Exception when calling PersonalAuthenticationTokensApi->list_own_api_keys: %s\n" % e)
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-
-
-
-# Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
-async with api_client_factory:
-    # Create an instance of the API class
-    api_instance = api_client_factory.build(finbourne_identity.PersonalAuthenticationTokensApi)
-
-    try:
-        # ListOwnApiKeys: Gets the meta data for all of the user's existing Personal Access Tokens.
-        api_response = await api_instance.list_own_api_keys()
-        print("The response of PersonalAuthenticationTokensApi->list_own_api_keys:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling PersonalAuthenticationTokensApi->list_own_api_keys: %s\n" % e)
+asyncio.run(main())
 ```
-
 
 ### Parameters
 This endpoint does not need any parameter.
@@ -281,10 +235,6 @@ This endpoint does not need any parameter.
 ### Return type
 
 [**List[ApiKey]**](ApiKey.md)
-
-### Authorization
-
-[oauth2](../README.md#oauth2)
 
 ### HTTP request headers
 
@@ -297,5 +247,5 @@ This endpoint does not need any parameter.
 **200** | List of user&#39;s existing Personal Access Tokens |  -  |
 **0** | Error response |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[Back to top](#) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to Model list](../README.md#documentation-for-models) &#8226; [Back to README](../README.md)
 

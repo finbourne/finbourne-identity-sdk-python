@@ -26,6 +26,6 @@ password_policy_response_conditions_dict = password_policy_response_conditions_i
 # create an instance of PasswordPolicyResponseConditions from a dict
 password_policy_response_conditions_form_dict = password_policy_response_conditions.from_dict(password_policy_response_conditions_dict)
 ```
-[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+[Back to Model list](../README.md#documentation-for-models) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to README](../README.md)
 
 

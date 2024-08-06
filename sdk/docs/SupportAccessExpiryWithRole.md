@@ -25,6 +25,6 @@ support_access_expiry_with_role_dict = support_access_expiry_with_role_instance.
 # create an instance of SupportAccessExpiryWithRole from a dict
 support_access_expiry_with_role_form_dict = support_access_expiry_with_role.from_dict(support_access_expiry_with_role_dict)
 ```
-[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+[Back to Model list](../README.md#documentation-for-models) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to README](../README.md)
 
 

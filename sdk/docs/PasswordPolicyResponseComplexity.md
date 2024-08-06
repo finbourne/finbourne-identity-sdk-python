@@ -25,6 +25,6 @@ password_policy_response_complexity_dict = password_policy_response_complexity_i
 # create an instance of PasswordPolicyResponseComplexity from a dict
 password_policy_response_complexity_form_dict = password_policy_response_complexity.from_dict(password_policy_response_complexity_dict)
 ```
-[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+[Back to Model list](../README.md#documentation-for-models) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to README](../README.md)
 
 

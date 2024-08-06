@@ -23,6 +23,6 @@ password_policy_response_lockout_dict = password_policy_response_lockout_instanc
 # create an instance of PasswordPolicyResponseLockout from a dict
 password_policy_response_lockout_form_dict = password_policy_response_lockout.from_dict(password_policy_response_lockout_dict)
 ```
-[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+[Back to Model list](../README.md#documentation-for-models) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to README](../README.md)
 
 

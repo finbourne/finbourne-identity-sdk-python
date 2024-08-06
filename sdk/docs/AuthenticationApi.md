@@ -22,65 +22,51 @@ Get the AuthenticationInformation associated with the current domain. This inclu
 
 ### Example
 
-* OAuth Authentication (oauth2):
 ```python
-from __future__ import print_function
-import time
-import finbourne_identity
-from finbourne_identity.rest import ApiException
-from finbourne_identity.models.authentication_information import AuthenticationInformation
+import asyncio
+from finbourne_identity.exceptions import ApiException
+from finbourne_identity.models import *
 from pprint import pprint
-
-import os
 from finbourne_identity import (
     ApiClientFactory,
-    AuthenticationApi,
-    EnvironmentVariablesConfigurationLoader,
-    SecretsFileConfigurationLoader,
-    ArgsConfigurationLoader
+    AuthenticationApi
 )
 
-# Use the finbourne_identity ApiClientFactory to build Api instances with a configured api client
-# By default this will read config from environment variables
-# Then from a secrets.json file found in the current working directory
-api_client_factory = ApiClientFactory()
+async def main():
 
-# The ApiClientFactory can be passed an iterable of configuration loaders to read configuration from
+    with open("secrets.json", "w") as file:
+        file.write('''
+{
+    "api":
+    {
+        "tokenUrl":"<your-token-url>",
+        "identityUrl":"https://<your-domain>.lusid.com/identity",
+        "username":"<your-username>",
+        "password":"<your-password>",
+        "clientId":"<your-client-id>",
+        "clientSecret":"<your-client-secret>"
+    }
+}''')
 
-api_url = "https://fbn-prd.lusid.com/identity"
-# Path to a secrets.json file containing authentication credentials
-# See https://support.lusid.com/knowledgebase/article/KA-01667/en-us
-# for a detailed guide to setting up the SDK make authenticated calls to LUSID APIs
-secrets_path = os.getenv("FBN_SECRETS_PATH")
-app_name="LusidJupyterNotebook"
+    # Use the finbourne_identity ApiClientFactory to build Api instances with a configured api client
+    # By default this will read config from environment variables
+    # Then from a secrets.json file found in the current working directory
+    api_client_factory = ApiClientFactory()
 
-config_loaders = [
-	EnvironmentVariablesConfigurationLoader(),
-	SecretsFileConfigurationLoader(api_secrets_file=secrets_path),
-	ArgsConfigurationLoader(api_url=api_url, app_name=app_name)
-]
-api_client_factory = ApiClientFactory(config_loaders=config_loaders)
+    # Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
+    async with api_client_factory:
+        # Create an instance of the API class
+        api_instance = api_client_factory.build(AuthenticationApi)
 
+        try:
+            # GetAuthenticationInformation: Gets AuthenticationInformation
+            api_response = await api_instance.get_authentication_information()
+            pprint(api_response)
+        except ApiException as e:
+            print("Exception when calling AuthenticationApi->get_authentication_information: %s\n" % e)
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-
-
-
-# Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
-async with api_client_factory:
-    # Create an instance of the API class
-    api_instance = api_client_factory.build(finbourne_identity.AuthenticationApi)
-
-    try:
-        # GetAuthenticationInformation: Gets AuthenticationInformation
-        api_response = await api_instance.get_authentication_information()
-        print("The response of AuthenticationApi->get_authentication_information:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling AuthenticationApi->get_authentication_information: %s\n" % e)
+asyncio.run(main())
 ```
-
 
 ### Parameters
 This endpoint does not need any parameter.
@@ -88,10 +74,6 @@ This endpoint does not need any parameter.
 ### Return type
 
 [**AuthenticationInformation**](AuthenticationInformation.md)
-
-### Authorization
-
-[oauth2](../README.md#oauth2)
 
 ### HTTP request headers
 
@@ -104,7 +86,7 @@ This endpoint does not need any parameter.
 **200** | Get authentication information |  -  |
 **0** | Error response |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[Back to top](#) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to Model list](../README.md#documentation-for-models) &#8226; [Back to README](../README.md)
 
 # **get_password_policy**
 > PasswordPolicyResponse get_password_policy(user_type)
@@ -115,66 +97,52 @@ Get the password policy for a given user type
 
 ### Example
 
-* OAuth Authentication (oauth2):
 ```python
-from __future__ import print_function
-import time
-import finbourne_identity
-from finbourne_identity.rest import ApiException
-from finbourne_identity.models.password_policy_response import PasswordPolicyResponse
+import asyncio
+from finbourne_identity.exceptions import ApiException
+from finbourne_identity.models import *
 from pprint import pprint
-
-import os
 from finbourne_identity import (
     ApiClientFactory,
-    AuthenticationApi,
-    EnvironmentVariablesConfigurationLoader,
-    SecretsFileConfigurationLoader,
-    ArgsConfigurationLoader
+    AuthenticationApi
 )
 
-# Use the finbourne_identity ApiClientFactory to build Api instances with a configured api client
-# By default this will read config from environment variables
-# Then from a secrets.json file found in the current working directory
-api_client_factory = ApiClientFactory()
+async def main():
 
-# The ApiClientFactory can be passed an iterable of configuration loaders to read configuration from
+    with open("secrets.json", "w") as file:
+        file.write('''
+{
+    "api":
+    {
+        "tokenUrl":"<your-token-url>",
+        "identityUrl":"https://<your-domain>.lusid.com/identity",
+        "username":"<your-username>",
+        "password":"<your-password>",
+        "clientId":"<your-client-id>",
+        "clientSecret":"<your-client-secret>"
+    }
+}''')
 
-api_url = "https://fbn-prd.lusid.com/identity"
-# Path to a secrets.json file containing authentication credentials
-# See https://support.lusid.com/knowledgebase/article/KA-01667/en-us
-# for a detailed guide to setting up the SDK make authenticated calls to LUSID APIs
-secrets_path = os.getenv("FBN_SECRETS_PATH")
-app_name="LusidJupyterNotebook"
+    # Use the finbourne_identity ApiClientFactory to build Api instances with a configured api client
+    # By default this will read config from environment variables
+    # Then from a secrets.json file found in the current working directory
+    api_client_factory = ApiClientFactory()
 
-config_loaders = [
-	EnvironmentVariablesConfigurationLoader(),
-	SecretsFileConfigurationLoader(api_secrets_file=secrets_path),
-	ArgsConfigurationLoader(api_url=api_url, app_name=app_name)
-]
-api_client_factory = ApiClientFactory(config_loaders=config_loaders)
+    # Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
+    async with api_client_factory:
+        # Create an instance of the API class
+        api_instance = api_client_factory.build(AuthenticationApi)
+        user_type = 'user_type_example' # str | The type of user (should only be personal or service)
 
+        try:
+            # [EXPERIMENTAL] GetPasswordPolicy: Gets password policy for a user type
+            api_response = await api_instance.get_password_policy(user_type)
+            pprint(api_response)
+        except ApiException as e:
+            print("Exception when calling AuthenticationApi->get_password_policy: %s\n" % e)
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-
-
-
-# Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
-async with api_client_factory:
-    # Create an instance of the API class
-    api_instance = api_client_factory.build(finbourne_identity.AuthenticationApi)
-    user_type = 'user_type_example' # str | The type of user (should only be personal or service)
-
-    try:
-        # [EXPERIMENTAL] GetPasswordPolicy: Gets password policy for a user type
-        api_response = await api_instance.get_password_policy(user_type)
-        print("The response of AuthenticationApi->get_password_policy:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling AuthenticationApi->get_password_policy: %s\n" % e)
+asyncio.run(main())
 ```
-
 
 ### Parameters
 
@@ -185,10 +153,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**PasswordPolicyResponse**](PasswordPolicyResponse.md)
-
-### Authorization
-
-[oauth2](../README.md#oauth2)
 
 ### HTTP request headers
 
@@ -202,7 +166,7 @@ Name | Type | Description  | Notes
 **400** | The details of the input related failure |  -  |
 **0** | Error response |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[Back to top](#) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to Model list](../README.md#documentation-for-models) &#8226; [Back to README](../README.md)
 
 # **get_support_access_history**
 > List[SupportAccessResponse] get_support_access_history(start=start, end=end)
@@ -213,67 +177,53 @@ The active and inactive support requests will be returned, inactive support requ
 
 ### Example
 
-* OAuth Authentication (oauth2):
 ```python
-from __future__ import print_function
-import time
-import finbourne_identity
-from finbourne_identity.rest import ApiException
-from finbourne_identity.models.support_access_response import SupportAccessResponse
+import asyncio
+from finbourne_identity.exceptions import ApiException
+from finbourne_identity.models import *
 from pprint import pprint
-
-import os
 from finbourne_identity import (
     ApiClientFactory,
-    AuthenticationApi,
-    EnvironmentVariablesConfigurationLoader,
-    SecretsFileConfigurationLoader,
-    ArgsConfigurationLoader
+    AuthenticationApi
 )
 
-# Use the finbourne_identity ApiClientFactory to build Api instances with a configured api client
-# By default this will read config from environment variables
-# Then from a secrets.json file found in the current working directory
-api_client_factory = ApiClientFactory()
+async def main():
 
-# The ApiClientFactory can be passed an iterable of configuration loaders to read configuration from
+    with open("secrets.json", "w") as file:
+        file.write('''
+{
+    "api":
+    {
+        "tokenUrl":"<your-token-url>",
+        "identityUrl":"https://<your-domain>.lusid.com/identity",
+        "username":"<your-username>",
+        "password":"<your-password>",
+        "clientId":"<your-client-id>",
+        "clientSecret":"<your-client-secret>"
+    }
+}''')
 
-api_url = "https://fbn-prd.lusid.com/identity"
-# Path to a secrets.json file containing authentication credentials
-# See https://support.lusid.com/knowledgebase/article/KA-01667/en-us
-# for a detailed guide to setting up the SDK make authenticated calls to LUSID APIs
-secrets_path = os.getenv("FBN_SECRETS_PATH")
-app_name="LusidJupyterNotebook"
+    # Use the finbourne_identity ApiClientFactory to build Api instances with a configured api client
+    # By default this will read config from environment variables
+    # Then from a secrets.json file found in the current working directory
+    api_client_factory = ApiClientFactory()
 
-config_loaders = [
-	EnvironmentVariablesConfigurationLoader(),
-	SecretsFileConfigurationLoader(api_secrets_file=secrets_path),
-	ArgsConfigurationLoader(api_url=api_url, app_name=app_name)
-]
-api_client_factory = ApiClientFactory(config_loaders=config_loaders)
+    # Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
+    async with api_client_factory:
+        # Create an instance of the API class
+        api_instance = api_client_factory.build(AuthenticationApi)
+        start = '2013-10-20T19:20:30+01:00' # datetime | The start expiry date to query support access requests from (optional)
+        end = '2013-10-20T19:20:30+01:00' # datetime | The end expiry date to query support access requests to (optional)
 
+        try:
+            # GetSupportAccessHistory: Get the history of all support access granted and any information pertaining to their termination
+            api_response = await api_instance.get_support_access_history(start=start, end=end)
+            pprint(api_response)
+        except ApiException as e:
+            print("Exception when calling AuthenticationApi->get_support_access_history: %s\n" % e)
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-
-
-
-# Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
-async with api_client_factory:
-    # Create an instance of the API class
-    api_instance = api_client_factory.build(finbourne_identity.AuthenticationApi)
-    start = '2013-10-20T19:20:30+01:00' # datetime | The start expiry date to query support access requests from (optional)
-    end = '2013-10-20T19:20:30+01:00' # datetime | The end expiry date to query support access requests to (optional)
-
-    try:
-        # GetSupportAccessHistory: Get the history of all support access granted and any information pertaining to their termination
-        api_response = await api_instance.get_support_access_history(start=start, end=end)
-        print("The response of AuthenticationApi->get_support_access_history:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling AuthenticationApi->get_support_access_history: %s\n" % e)
+asyncio.run(main())
 ```
-
 
 ### Parameters
 
@@ -285,10 +235,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**List[SupportAccessResponse]**](SupportAccessResponse.md)
-
-### Authorization
-
-[oauth2](../README.md#oauth2)
 
 ### HTTP request headers
 
@@ -302,7 +248,7 @@ Name | Type | Description  | Notes
 **400** | The details of the input related failure |  -  |
 **0** | Error response |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[Back to top](#) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to Model list](../README.md#documentation-for-models) &#8226; [Back to README](../README.md)
 
 # **get_support_roles**
 > SupportRolesResponse get_support_roles()
@@ -313,65 +259,51 @@ Get mapping of support roles, the internal representation to a human friendly re
 
 ### Example
 
-* OAuth Authentication (oauth2):
 ```python
-from __future__ import print_function
-import time
-import finbourne_identity
-from finbourne_identity.rest import ApiException
-from finbourne_identity.models.support_roles_response import SupportRolesResponse
+import asyncio
+from finbourne_identity.exceptions import ApiException
+from finbourne_identity.models import *
 from pprint import pprint
-
-import os
 from finbourne_identity import (
     ApiClientFactory,
-    AuthenticationApi,
-    EnvironmentVariablesConfigurationLoader,
-    SecretsFileConfigurationLoader,
-    ArgsConfigurationLoader
+    AuthenticationApi
 )
 
-# Use the finbourne_identity ApiClientFactory to build Api instances with a configured api client
-# By default this will read config from environment variables
-# Then from a secrets.json file found in the current working directory
-api_client_factory = ApiClientFactory()
+async def main():
 
-# The ApiClientFactory can be passed an iterable of configuration loaders to read configuration from
+    with open("secrets.json", "w") as file:
+        file.write('''
+{
+    "api":
+    {
+        "tokenUrl":"<your-token-url>",
+        "identityUrl":"https://<your-domain>.lusid.com/identity",
+        "username":"<your-username>",
+        "password":"<your-password>",
+        "clientId":"<your-client-id>",
+        "clientSecret":"<your-client-secret>"
+    }
+}''')
 
-api_url = "https://fbn-prd.lusid.com/identity"
-# Path to a secrets.json file containing authentication credentials
-# See https://support.lusid.com/knowledgebase/article/KA-01667/en-us
-# for a detailed guide to setting up the SDK make authenticated calls to LUSID APIs
-secrets_path = os.getenv("FBN_SECRETS_PATH")
-app_name="LusidJupyterNotebook"
+    # Use the finbourne_identity ApiClientFactory to build Api instances with a configured api client
+    # By default this will read config from environment variables
+    # Then from a secrets.json file found in the current working directory
+    api_client_factory = ApiClientFactory()
 
-config_loaders = [
-	EnvironmentVariablesConfigurationLoader(),
-	SecretsFileConfigurationLoader(api_secrets_file=secrets_path),
-	ArgsConfigurationLoader(api_url=api_url, app_name=app_name)
-]
-api_client_factory = ApiClientFactory(config_loaders=config_loaders)
+    # Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
+    async with api_client_factory:
+        # Create an instance of the API class
+        api_instance = api_client_factory.build(AuthenticationApi)
 
+        try:
+            # GetSupportRoles: Get mapping of support roles, the internal representation to a human friendly representation
+            api_response = await api_instance.get_support_roles()
+            pprint(api_response)
+        except ApiException as e:
+            print("Exception when calling AuthenticationApi->get_support_roles: %s\n" % e)
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-
-
-
-# Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
-async with api_client_factory:
-    # Create an instance of the API class
-    api_instance = api_client_factory.build(finbourne_identity.AuthenticationApi)
-
-    try:
-        # GetSupportRoles: Get mapping of support roles, the internal representation to a human friendly representation
-        api_response = await api_instance.get_support_roles()
-        print("The response of AuthenticationApi->get_support_roles:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling AuthenticationApi->get_support_roles: %s\n" % e)
+asyncio.run(main())
 ```
-
 
 ### Parameters
 This endpoint does not need any parameter.
@@ -379,10 +311,6 @@ This endpoint does not need any parameter.
 ### Return type
 
 [**SupportRolesResponse**](SupportRolesResponse.md)
-
-### Authorization
-
-[oauth2](../README.md#oauth2)
 
 ### HTTP request headers
 
@@ -395,7 +323,7 @@ This endpoint does not need any parameter.
 **200** | Get support roles |  -  |
 **0** | Error response |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[Back to top](#) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to Model list](../README.md#documentation-for-models) &#8226; [Back to README](../README.md)
 
 # **grant_support_access**
 > SupportAccessResponse grant_support_access(support_access_request)
@@ -406,67 +334,57 @@ Granting support access will allow FINBOURNE employees full access to your data 
 
 ### Example
 
-* OAuth Authentication (oauth2):
 ```python
-from __future__ import print_function
-import time
-import finbourne_identity
-from finbourne_identity.rest import ApiException
-from finbourne_identity.models.support_access_request import SupportAccessRequest
-from finbourne_identity.models.support_access_response import SupportAccessResponse
+import asyncio
+from finbourne_identity.exceptions import ApiException
+from finbourne_identity.models import *
 from pprint import pprint
-
-import os
 from finbourne_identity import (
     ApiClientFactory,
-    AuthenticationApi,
-    EnvironmentVariablesConfigurationLoader,
-    SecretsFileConfigurationLoader,
-    ArgsConfigurationLoader
+    AuthenticationApi
 )
 
-# Use the finbourne_identity ApiClientFactory to build Api instances with a configured api client
-# By default this will read config from environment variables
-# Then from a secrets.json file found in the current working directory
-api_client_factory = ApiClientFactory()
+async def main():
 
-# The ApiClientFactory can be passed an iterable of configuration loaders to read configuration from
+    with open("secrets.json", "w") as file:
+        file.write('''
+{
+    "api":
+    {
+        "tokenUrl":"<your-token-url>",
+        "identityUrl":"https://<your-domain>.lusid.com/identity",
+        "username":"<your-username>",
+        "password":"<your-password>",
+        "clientId":"<your-client-id>",
+        "clientSecret":"<your-client-secret>"
+    }
+}''')
 
-api_url = "https://fbn-prd.lusid.com/identity"
-# Path to a secrets.json file containing authentication credentials
-# See https://support.lusid.com/knowledgebase/article/KA-01667/en-us
-# for a detailed guide to setting up the SDK make authenticated calls to LUSID APIs
-secrets_path = os.getenv("FBN_SECRETS_PATH")
-app_name="LusidJupyterNotebook"
+    # Use the finbourne_identity ApiClientFactory to build Api instances with a configured api client
+    # By default this will read config from environment variables
+    # Then from a secrets.json file found in the current working directory
+    api_client_factory = ApiClientFactory()
 
-config_loaders = [
-	EnvironmentVariablesConfigurationLoader(),
-	SecretsFileConfigurationLoader(api_secrets_file=secrets_path),
-	ArgsConfigurationLoader(api_url=api_url, app_name=app_name)
-]
-api_client_factory = ApiClientFactory(config_loaders=config_loaders)
+    # Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
+    async with api_client_factory:
+        # Create an instance of the API class
+        api_instance = api_client_factory.build(AuthenticationApi)
 
+        # Objects can be created either via the class constructor, or using the 'from_dict' or 'from_json' methods
+        # Change the lines below to switch approach
+        # support_access_request = SupportAccessRequest()
+        # support_access_request = SupportAccessRequest.from_json("")
+        support_access_request = SupportAccessRequest.from_dict({"duration":"PT24H","description":"Investigate issues detailed in support ticket 0604"}) # SupportAccessRequest | Request detailing the duration and reasons for supplying support access
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
+        try:
+            # GrantSupportAccess: Grants FINBOURNE support access to your account
+            api_response = await api_instance.grant_support_access(support_access_request)
+            pprint(api_response)
+        except ApiException as e:
+            print("Exception when calling AuthenticationApi->grant_support_access: %s\n" % e)
 
-
-
-# Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
-async with api_client_factory:
-    # Create an instance of the API class
-    api_instance = api_client_factory.build(finbourne_identity.AuthenticationApi)
-    support_access_request = {"duration":"PT24H","description":"Investigate issues detailed in support ticket 0604"} # SupportAccessRequest | Request detailing the duration and reasons for supplying support access
-
-    try:
-        # GrantSupportAccess: Grants FINBOURNE support access to your account
-        api_response = await api_instance.grant_support_access(support_access_request)
-        print("The response of AuthenticationApi->grant_support_access:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling AuthenticationApi->grant_support_access: %s\n" % e)
+asyncio.run(main())
 ```
-
 
 ### Parameters
 
@@ -477,10 +395,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**SupportAccessResponse**](SupportAccessResponse.md)
-
-### Authorization
-
-[oauth2](../README.md#oauth2)
 
 ### HTTP request headers
 
@@ -494,7 +408,7 @@ Name | Type | Description  | Notes
 **400** | The details of the input related failure |  -  |
 **0** | Error response |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[Back to top](#) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to Model list](../README.md#documentation-for-models) &#8226; [Back to README](../README.md)
 
 # **invalidate_support_access**
 > List[SupportAccessResponse] invalidate_support_access()
@@ -505,65 +419,51 @@ This will result in a loss of access to your data for all FINBOURNE support agen
 
 ### Example
 
-* OAuth Authentication (oauth2):
 ```python
-from __future__ import print_function
-import time
-import finbourne_identity
-from finbourne_identity.rest import ApiException
-from finbourne_identity.models.support_access_response import SupportAccessResponse
+import asyncio
+from finbourne_identity.exceptions import ApiException
+from finbourne_identity.models import *
 from pprint import pprint
-
-import os
 from finbourne_identity import (
     ApiClientFactory,
-    AuthenticationApi,
-    EnvironmentVariablesConfigurationLoader,
-    SecretsFileConfigurationLoader,
-    ArgsConfigurationLoader
+    AuthenticationApi
 )
 
-# Use the finbourne_identity ApiClientFactory to build Api instances with a configured api client
-# By default this will read config from environment variables
-# Then from a secrets.json file found in the current working directory
-api_client_factory = ApiClientFactory()
+async def main():
 
-# The ApiClientFactory can be passed an iterable of configuration loaders to read configuration from
+    with open("secrets.json", "w") as file:
+        file.write('''
+{
+    "api":
+    {
+        "tokenUrl":"<your-token-url>",
+        "identityUrl":"https://<your-domain>.lusid.com/identity",
+        "username":"<your-username>",
+        "password":"<your-password>",
+        "clientId":"<your-client-id>",
+        "clientSecret":"<your-client-secret>"
+    }
+}''')
 
-api_url = "https://fbn-prd.lusid.com/identity"
-# Path to a secrets.json file containing authentication credentials
-# See https://support.lusid.com/knowledgebase/article/KA-01667/en-us
-# for a detailed guide to setting up the SDK make authenticated calls to LUSID APIs
-secrets_path = os.getenv("FBN_SECRETS_PATH")
-app_name="LusidJupyterNotebook"
+    # Use the finbourne_identity ApiClientFactory to build Api instances with a configured api client
+    # By default this will read config from environment variables
+    # Then from a secrets.json file found in the current working directory
+    api_client_factory = ApiClientFactory()
 
-config_loaders = [
-	EnvironmentVariablesConfigurationLoader(),
-	SecretsFileConfigurationLoader(api_secrets_file=secrets_path),
-	ArgsConfigurationLoader(api_url=api_url, app_name=app_name)
-]
-api_client_factory = ApiClientFactory(config_loaders=config_loaders)
+    # Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
+    async with api_client_factory:
+        # Create an instance of the API class
+        api_instance = api_client_factory.build(AuthenticationApi)
 
+        try:
+            # InvalidateSupportAccess: Revoke any FINBOURNE support access to your account
+            api_response = await api_instance.invalidate_support_access()
+            pprint(api_response)
+        except ApiException as e:
+            print("Exception when calling AuthenticationApi->invalidate_support_access: %s\n" % e)
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-
-
-
-# Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
-async with api_client_factory:
-    # Create an instance of the API class
-    api_instance = api_client_factory.build(finbourne_identity.AuthenticationApi)
-
-    try:
-        # InvalidateSupportAccess: Revoke any FINBOURNE support access to your account
-        api_response = await api_instance.invalidate_support_access()
-        print("The response of AuthenticationApi->invalidate_support_access:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling AuthenticationApi->invalidate_support_access: %s\n" % e)
+asyncio.run(main())
 ```
-
 
 ### Parameters
 This endpoint does not need any parameter.
@@ -571,10 +471,6 @@ This endpoint does not need any parameter.
 ### Return type
 
 [**List[SupportAccessResponse]**](SupportAccessResponse.md)
-
-### Authorization
-
-[oauth2](../README.md#oauth2)
 
 ### HTTP request headers
 
@@ -587,7 +483,7 @@ This endpoint does not need any parameter.
 **200** | Invalidate all currently active support requests |  -  |
 **0** | Error response |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[Back to top](#) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to Model list](../README.md#documentation-for-models) &#8226; [Back to README](../README.md)
 
 # **update_password_policy**
 > PasswordPolicyResponse update_password_policy(user_type, update_password_policy_request=update_password_policy_request)
@@ -598,68 +494,58 @@ Update the password policy for a given user type
 
 ### Example
 
-* OAuth Authentication (oauth2):
 ```python
-from __future__ import print_function
-import time
-import finbourne_identity
-from finbourne_identity.rest import ApiException
-from finbourne_identity.models.password_policy_response import PasswordPolicyResponse
-from finbourne_identity.models.update_password_policy_request import UpdatePasswordPolicyRequest
+import asyncio
+from finbourne_identity.exceptions import ApiException
+from finbourne_identity.models import *
 from pprint import pprint
-
-import os
 from finbourne_identity import (
     ApiClientFactory,
-    AuthenticationApi,
-    EnvironmentVariablesConfigurationLoader,
-    SecretsFileConfigurationLoader,
-    ArgsConfigurationLoader
+    AuthenticationApi
 )
 
-# Use the finbourne_identity ApiClientFactory to build Api instances with a configured api client
-# By default this will read config from environment variables
-# Then from a secrets.json file found in the current working directory
-api_client_factory = ApiClientFactory()
+async def main():
 
-# The ApiClientFactory can be passed an iterable of configuration loaders to read configuration from
+    with open("secrets.json", "w") as file:
+        file.write('''
+{
+    "api":
+    {
+        "tokenUrl":"<your-token-url>",
+        "identityUrl":"https://<your-domain>.lusid.com/identity",
+        "username":"<your-username>",
+        "password":"<your-password>",
+        "clientId":"<your-client-id>",
+        "clientSecret":"<your-client-secret>"
+    }
+}''')
 
-api_url = "https://fbn-prd.lusid.com/identity"
-# Path to a secrets.json file containing authentication credentials
-# See https://support.lusid.com/knowledgebase/article/KA-01667/en-us
-# for a detailed guide to setting up the SDK make authenticated calls to LUSID APIs
-secrets_path = os.getenv("FBN_SECRETS_PATH")
-app_name="LusidJupyterNotebook"
+    # Use the finbourne_identity ApiClientFactory to build Api instances with a configured api client
+    # By default this will read config from environment variables
+    # Then from a secrets.json file found in the current working directory
+    api_client_factory = ApiClientFactory()
 
-config_loaders = [
-	EnvironmentVariablesConfigurationLoader(),
-	SecretsFileConfigurationLoader(api_secrets_file=secrets_path),
-	ArgsConfigurationLoader(api_url=api_url, app_name=app_name)
-]
-api_client_factory = ApiClientFactory(config_loaders=config_loaders)
+    # Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
+    async with api_client_factory:
+        # Create an instance of the API class
+        api_instance = api_client_factory.build(AuthenticationApi)
+        user_type = 'user_type_example' # str | The type of user (should only be personal or service)
 
+        # Objects can be created either via the class constructor, or using the 'from_dict' or 'from_json' methods
+        # Change the lines below to switch approach
+        # update_password_policy_request = UpdatePasswordPolicyRequest()
+        # update_password_policy_request = UpdatePasswordPolicyRequest.from_json("")
+        update_password_policy_request = UpdatePasswordPolicyRequest.from_dict({"conditions":{"complexity":{"minLength":15,"excludeFirstName":true,"excludeLastName":true},"age":{"maxAgeDays":30,"historyCount":10},"lockout":{"maxAttempts":20}}}) # UpdatePasswordPolicyRequest | The password policy for the given user type (optional)
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
+        try:
+            # [EXPERIMENTAL] UpdatePasswordPolicy: Updates password policy for a user type
+            api_response = await api_instance.update_password_policy(user_type, update_password_policy_request=update_password_policy_request)
+            pprint(api_response)
+        except ApiException as e:
+            print("Exception when calling AuthenticationApi->update_password_policy: %s\n" % e)
 
-
-
-# Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
-async with api_client_factory:
-    # Create an instance of the API class
-    api_instance = api_client_factory.build(finbourne_identity.AuthenticationApi)
-    user_type = 'user_type_example' # str | The type of user (should only be personal or service)
-    update_password_policy_request = {"conditions":{"complexity":{"minLength":15,"excludeFirstName":true,"excludeLastName":true},"age":{"maxAgeDays":30,"historyCount":10},"lockout":{"maxAttempts":20}}} # UpdatePasswordPolicyRequest | The password policy for the given user type (optional)
-
-    try:
-        # [EXPERIMENTAL] UpdatePasswordPolicy: Updates password policy for a user type
-        api_response = await api_instance.update_password_policy(user_type, update_password_policy_request=update_password_policy_request)
-        print("The response of AuthenticationApi->update_password_policy:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling AuthenticationApi->update_password_policy: %s\n" % e)
+asyncio.run(main())
 ```
-
 
 ### Parameters
 
@@ -671,10 +557,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**PasswordPolicyResponse**](PasswordPolicyResponse.md)
-
-### Authorization
-
-[oauth2](../README.md#oauth2)
 
 ### HTTP request headers
 
@@ -688,5 +570,5 @@ Name | Type | Description  | Notes
 **400** | The details of the input related failure |  -  |
 **0** | Error response |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[Back to top](#) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to Model list](../README.md#documentation-for-models) &#8226; [Back to README](../README.md)
 

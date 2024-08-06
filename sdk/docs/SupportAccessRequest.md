@@ -26,6 +26,6 @@ support_access_request_dict = support_access_request_instance.to_dict()
 # create an instance of SupportAccessRequest from a dict
 support_access_request_form_dict = support_access_request.from_dict(support_access_request_dict)
 ```
-[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+[Back to Model list](../README.md#documentation-for-models) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to README](../README.md)
 
 
