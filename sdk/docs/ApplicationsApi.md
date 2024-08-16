@@ -6,8 +6,8 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**create_application**](ApplicationsApi.md#create_application) | **POST** /api/applications | [EARLY ACCESS] CreateApplication: Create Application
 [**delete_application**](ApplicationsApi.md#delete_application) | **DELETE** /api/applications/{id} | [EARLY ACCESS] DeleteApplication: Delete Application
-[**get_application**](ApplicationsApi.md#get_application) | **GET** /api/applications/{id} | [EARLY ACCESS] GetApplication: Get Application
-[**list_applications**](ApplicationsApi.md#list_applications) | **GET** /api/applications | [EARLY ACCESS] ListApplications: List Applications
+[**get_application**](ApplicationsApi.md#get_application) | **GET** /api/applications/{id} | GetApplication: Get Application
+[**list_applications**](ApplicationsApi.md#list_applications) | **GET** /api/applications | ListApplications: List Applications
 [**rotate_application_secrets**](ApplicationsApi.md#rotate_application_secrets) | **POST** /api/applications/{id}/lifecycle/$newsecret | [EARLY ACCESS] RotateApplicationSecrets: Rotate Application Secrets
 
 
@@ -163,7 +163,7 @@ void (empty response body)
 # **get_application**
 > OAuthApplication get_application(id, include_secret=include_secret)
 
-[EARLY ACCESS] GetApplication: Get Application
+GetApplication: Get Application
 
 get the specified application, and optionally the OIDC secret
 
@@ -201,7 +201,7 @@ with finbourne_identity.ApiClient(configuration) as api_client:
 include_secret = True # bool | Optional. If set to true, the application secrets will be returned in plain text (optional)
 
     try:
-        # [EARLY ACCESS] GetApplication: Get Application
+        # GetApplication: Get Application
         api_response = api_instance.get_application(id, include_secret=include_secret)
         pprint(api_response)
     except ApiException as e:
@@ -241,7 +241,7 @@ Name | Type | Description  | Notes
 # **list_applications**
 > list[OAuthApplication] list_applications()
 
-[EARLY ACCESS] ListApplications: List Applications
+ListApplications: List Applications
 
 List the available applications
 
@@ -277,7 +277,7 @@ with finbourne_identity.ApiClient(configuration) as api_client:
     api_instance = finbourne_identity.ApplicationsApi(api_client)
     
     try:
-        # [EARLY ACCESS] ListApplications: List Applications
+        # ListApplications: List Applications
         api_response = api_instance.list_applications()
         pprint(api_response)
     except ApiException as e:

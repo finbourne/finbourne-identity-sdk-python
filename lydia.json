@@ -8,7 +8,7 @@
       "url": "https://www.finbourne.com",
       "email": "info@finbourne.com"
     },
-    "version": "0.0.3000",
+    "version": "0.0.3002",
     "x-logo": {
       "url": "https://www.lusid.com/app/assets/logo_white.png",
       "backgroundColor": "#415464"
@@ -26,7 +26,7 @@
         "tags": [
           "Applications"
         ],
-        "summary": "[EARLY ACCESS] ListApplications: List Applications",
+        "summary": "ListApplications: List Applications",
         "description": "List the available applications",
         "operationId": "ListApplications",
         "responses": {
@@ -69,7 +69,7 @@
             "oauth2": []
           }
         ],
-        "x-fbn-apistatus": "EarlyAccess"
+        "x-fbn-apistatus": "Stable"
       },
       "post": {
         "tags": [
@@ -176,7 +176,7 @@
         "tags": [
           "Applications"
         ],
-        "summary": "[EARLY ACCESS] GetApplication: Get Application",
+        "summary": "GetApplication: Get Application",
         "description": "get the specified application, and optionally the OIDC secret",
         "operationId": "GetApplication",
         "parameters": [
@@ -250,7 +250,7 @@
             "oauth2": []
           }
         ],
-        "x-fbn-apistatus": "EarlyAccess"
+        "x-fbn-apistatus": "Stable"
       },
       "delete": {
         "tags": [
