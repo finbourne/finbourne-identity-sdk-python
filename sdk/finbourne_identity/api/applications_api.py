@@ -363,7 +363,7 @@ class ApplicationsApi:
 
     @validate_arguments
     def get_application(self, id : Annotated[constr(strict=True, max_length=64, min_length=1), Field(..., description="The unique identifier for the application")], include_secret : Annotated[Optional[StrictBool], Field(description="Optional. If set to true, the application secrets will be returned in plain text")] = None, async_req: Optional[bool]=None, **kwargs) -> Union[OAuthApplication, Awaitable[OAuthApplication]]:  # noqa: E501
-        """[EARLY ACCESS] GetApplication: Get Application  # noqa: E501
+        """GetApplication: Get Application  # noqa: E501
 
         get the specified application, and optionally the OIDC secret  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -397,7 +397,7 @@ class ApplicationsApi:
 
     @validate_arguments
     def get_application_with_http_info(self, id : Annotated[constr(strict=True, max_length=64, min_length=1), Field(..., description="The unique identifier for the application")], include_secret : Annotated[Optional[StrictBool], Field(description="Optional. If set to true, the application secrets will be returned in plain text")] = None, **kwargs) -> ApiResponse:  # noqa: E501
-        """[EARLY ACCESS] GetApplication: Get Application  # noqa: E501
+        """GetApplication: Get Application  # noqa: E501
 
         get the specified application, and optionally the OIDC secret  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -523,7 +523,7 @@ class ApplicationsApi:
 
     @validate_arguments
     def list_applications(self, async_req: Optional[bool]=None, **kwargs) -> Union[List[OAuthApplication], Awaitable[List[OAuthApplication]]]:  # noqa: E501
-        """[EARLY ACCESS] ListApplications: List Applications  # noqa: E501
+        """ListApplications: List Applications  # noqa: E501
 
         List the available applications  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -553,7 +553,7 @@ class ApplicationsApi:
 
     @validate_arguments
     def list_applications_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
-        """[EARLY ACCESS] ListApplications: List Applications  # noqa: E501
+        """ListApplications: List Applications  # noqa: E501
 
         List the available applications  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
