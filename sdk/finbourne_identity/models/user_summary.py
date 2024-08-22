@@ -33,8 +33,9 @@ class UserSummary(BaseModel):
     first_name: Optional[StrictStr] = Field(None, alias="firstName", description="User's first name")
     last_name: Optional[StrictStr] = Field(None, alias="lastName", description="User's last name")
     type: Optional[StrictStr] = Field(None, description="User's type (Personal, Service...)")
+    alternative_user_ids: Optional[Dict[str, StrictStr]] = Field(None, alias="alternativeUserIds", description="User's alternative user IDs. Only returned for the current user")
     links: Optional[conlist(Link)] = None
-    __properties = ["id", "login", "email", "secondEmail", "firstName", "lastName", "type", "links"]
+    __properties = ["id", "login", "email", "secondEmail", "firstName", "lastName", "type", "alternativeUserIds", "links"]
 
     class Config:
         """Pydantic configuration"""
@@ -102,6 +103,11 @@ class UserSummary(BaseModel):
         if self.type is None and "type" in self.__fields_set__:
             _dict['type'] = None
 
+        # set to None if alternative_user_ids (nullable) is None
+        # and __fields_set__ contains the field
+        if self.alternative_user_ids is None and "alternative_user_ids" in self.__fields_set__:
+            _dict['alternativeUserIds'] = None
+
         # set to None if links (nullable) is None
         # and __fields_set__ contains the field
         if self.links is None and "links" in self.__fields_set__:
@@ -126,6 +132,7 @@ class UserSummary(BaseModel):
             "first_name": obj.get("firstName"),
             "last_name": obj.get("lastName"),
             "type": obj.get("type"),
+            "alternative_user_ids": obj.get("alternativeUserIds"),
             "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
         })
         return _obj

@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **first_name** | **str** | User&#39;s first name | [optional] 
 **last_name** | **str** | User&#39;s last name | [optional] 
 **type** | **str** | User&#39;s type (Personal, Service...) | [optional] 
+**alternative_user_ids** | **Dict[str, str]** | User&#39;s alternative user IDs. Only returned for the current user | [optional] 
 **links** | [**List[Link]**](Link.md) |  | [optional] 
 
 ## Example
