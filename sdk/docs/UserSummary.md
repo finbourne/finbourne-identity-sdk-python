@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **first_name** | **str** | User&#39;s first name | [optional] 
 **last_name** | **str** | User&#39;s last name | [optional] 
 **type** | **str** | User&#39;s type (Personal, Service...) | [optional] 
+**alternative_user_ids** | **dict(str, str)** | User&#39;s alternative user IDs. Only returned for the current user | [optional] 
 **links** | [**list[Link]**](Link.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
