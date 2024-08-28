@@ -1025,7 +1025,7 @@ async def main():
         # Change the lines below to switch approach
         # update_user_request = UpdateUserRequest()
         # update_user_request = UpdateUserRequest.from_json("")
-        update_user_request = UpdateUserRequest.from_dict({"firstName":"Joe","lastName":"Bloggs","emailAddress":"joe.bloggs@myco.com","login":"joe.bloggs@myco.com"}) # UpdateUserRequest | The new definition of the User
+        update_user_request = UpdateUserRequest.from_dict({"firstName":"Joe","lastName":"Bloggs","emailAddress":"joe.bloggs@myco.com","login":"joe.bloggs@myco.com","alternativeUserIds":{}}) # UpdateUserRequest | The new definition of the User
 
         try:
             # UpdateUser: Update User

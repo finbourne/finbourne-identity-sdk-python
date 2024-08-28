@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **email_address** | **str** |  | 
 **second_email_address** | **str** |  | [optional] 
 **login** | **str** | The user&#39;s login username, in the form of an email address, which must be unique within the system.  For user accounts this should exactly match the user&#39;s email address. | 
+**alternative_user_ids** | **Dict[str, str]** |  | [optional] 
 **roles** | [**List[RoleId]**](RoleId.md) | Deprecated. To update a user&#39;s roles use the AddUserToRole and RemoveUserFromRole endpoints | [optional] 
 
 ## Example

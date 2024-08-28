@@ -19,7 +19,7 @@ import json
 
 
 from typing import Any, Dict, List, Optional
-from pydantic.v1 import BaseModel, Field, conlist, constr, validator
+from pydantic.v1 import BaseModel, Field, StrictStr, conlist, constr, validator
 from finbourne_identity.models.role_id import RoleId
 
 class UpdateUserRequest(BaseModel):
@@ -31,8 +31,9 @@ class UpdateUserRequest(BaseModel):
     email_address: constr(strict=True, max_length=80, min_length=5) = Field(..., alias="emailAddress")
     second_email_address: Optional[constr(strict=True, max_length=80, min_length=5)] = Field(None, alias="secondEmailAddress")
     login: constr(strict=True, max_length=80, min_length=5) = Field(..., description="The user's login username, in the form of an email address, which must be unique within the system.  For user accounts this should exactly match the user's email address.")
+    alternative_user_ids: Optional[Dict[str, StrictStr]] = Field(None, alias="alternativeUserIds")
     roles: Optional[conlist(RoleId)] = Field(None, description="Deprecated. To update a user's roles use the AddUserToRole and RemoveUserFromRole endpoints")
-    __properties = ["firstName", "lastName", "emailAddress", "secondEmailAddress", "login", "roles"]
+    __properties = ["firstName", "lastName", "emailAddress", "secondEmailAddress", "login", "alternativeUserIds", "roles"]
 
     @validator('first_name')
     def first_name_validate_regular_expression(cls, value):
@@ -91,6 +92,11 @@ class UpdateUserRequest(BaseModel):
         if self.second_email_address is None and "second_email_address" in self.__fields_set__:
             _dict['secondEmailAddress'] = None
 
+        # set to None if alternative_user_ids (nullable) is None
+        # and __fields_set__ contains the field
+        if self.alternative_user_ids is None and "alternative_user_ids" in self.__fields_set__:
+            _dict['alternativeUserIds'] = None
+
         # set to None if roles (nullable) is None
         # and __fields_set__ contains the field
         if self.roles is None and "roles" in self.__fields_set__:
@@ -113,6 +119,7 @@ class UpdateUserRequest(BaseModel):
             "email_address": obj.get("emailAddress"),
             "second_email_address": obj.get("secondEmailAddress"),
             "login": obj.get("login"),
+            "alternative_user_ids": obj.get("alternativeUserIds"),
             "roles": [RoleId.from_dict(_item) for _item in obj.get("roles")] if obj.get("roles") is not None else None
         })
         return _obj

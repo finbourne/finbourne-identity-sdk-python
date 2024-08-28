@@ -28,6 +28,7 @@ class UserResponse(BaseModel):
     UserResponse
     """
     id: constr(strict=True, min_length=1) = Field(..., description="The user's system supplied unique identifier")
+    alternative_user_ids: Optional[Dict[str, StrictStr]] = Field(None, alias="alternativeUserIds", description="The user's alternative IDs")
     email_address: constr(strict=True, min_length=1) = Field(..., alias="emailAddress", description="The user's emailAddress address, which must be unique within the system")
     second_email_address: Optional[StrictStr] = Field(None, alias="secondEmailAddress", description="The user's second email address. Only allowed for service users.")
     login: constr(strict=True, min_length=1) = Field(...)
@@ -38,7 +39,7 @@ class UserResponse(BaseModel):
     status: constr(strict=True, min_length=1) = Field(..., description="The status of the user")
     external: StrictBool = Field(..., description="Whether or not the user originates from an external identity system")
     links: Optional[conlist(Link)] = None
-    __properties = ["id", "emailAddress", "secondEmailAddress", "login", "firstName", "lastName", "roles", "type", "status", "external", "links"]
+    __properties = ["id", "alternativeUserIds", "emailAddress", "secondEmailAddress", "login", "firstName", "lastName", "roles", "type", "status", "external", "links"]
 
     class Config:
         """Pydantic configuration"""
@@ -78,6 +79,11 @@ class UserResponse(BaseModel):
                 if _item:
                     _items.append(_item.to_dict())
             _dict['links'] = _items
+        # set to None if alternative_user_ids (nullable) is None
+        # and __fields_set__ contains the field
+        if self.alternative_user_ids is None and "alternative_user_ids" in self.__fields_set__:
+            _dict['alternativeUserIds'] = None
+
         # set to None if second_email_address (nullable) is None
         # and __fields_set__ contains the field
         if self.second_email_address is None and "second_email_address" in self.__fields_set__:
@@ -106,6 +112,7 @@ class UserResponse(BaseModel):
 
         _obj = UserResponse.parse_obj({
             "id": obj.get("id"),
+            "alternative_user_ids": obj.get("alternativeUserIds"),
             "email_address": obj.get("emailAddress"),
             "second_email_address": obj.get("secondEmailAddress"),
             "login": obj.get("login"),

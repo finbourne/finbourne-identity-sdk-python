@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **str** | The user&#39;s system supplied unique identifier | 
+**alternative_user_ids** | **Dict[str, str]** | The user&#39;s alternative IDs | [optional] 
 **email_address** | **str** | The user&#39;s emailAddress address, which must be unique within the system | 
 **second_email_address** | **str** | The user&#39;s second email address. Only allowed for service users. | [optional] 
 **login** | **str** |  | 
