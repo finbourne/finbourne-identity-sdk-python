@@ -954,7 +954,7 @@ with finbourne_identity.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = finbourne_identity.UsersApi(api_client)
     id = 'id_example' # str | The unique identifier for the User to be updated
-update_user_request = {"firstName":"Joe","lastName":"Bloggs","emailAddress":"joe.bloggs@myco.com","login":"joe.bloggs@myco.com"} # UpdateUserRequest | The new definition of the User
+update_user_request = {"firstName":"Joe","lastName":"Bloggs","emailAddress":"joe.bloggs@myco.com","login":"joe.bloggs@myco.com","alternativeUserIds":{}} # UpdateUserRequest | The new definition of the User
 
     try:
         # UpdateUser: Update User

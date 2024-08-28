@@ -8,7 +8,7 @@
       "url": "https://www.finbourne.com",
       "email": "info@finbourne.com"
     },
-    "version": "0.0.3018",
+    "version": "0.0.3020",
     "x-logo": {
       "url": "https://www.lusid.com/app/assets/logo_white.png",
       "backgroundColor": "#415464"
@@ -2781,7 +2781,8 @@
                 "firstName": "Joe",
                 "lastName": "Bloggs",
                 "emailAddress": "joe.bloggs@myco.com",
-                "login": "joe.bloggs@myco.com"
+                "login": "joe.bloggs@myco.com",
+                "alternativeUserIds": {}
               }
             },
             "application/json": {
@@ -2792,7 +2793,8 @@
                 "firstName": "Joe",
                 "lastName": "Bloggs",
                 "emailAddress": "joe.bloggs@myco.com",
-                "login": "joe.bloggs@myco.com"
+                "login": "joe.bloggs@myco.com",
+                "alternativeUserIds": {}
               }
             },
             "text/json": {
@@ -2803,7 +2805,8 @@
                 "firstName": "Joe",
                 "lastName": "Bloggs",
                 "emailAddress": "joe.bloggs@myco.com",
-                "login": "joe.bloggs@myco.com"
+                "login": "joe.bloggs@myco.com",
+                "alternativeUserIds": {}
               }
             },
             "application/*+json": {
@@ -2814,7 +2817,8 @@
                 "firstName": "Joe",
                 "lastName": "Bloggs",
                 "emailAddress": "joe.bloggs@myco.com",
-                "login": "joe.bloggs@myco.com"
+                "login": "joe.bloggs@myco.com",
+                "alternativeUserIds": {}
               }
             }
           },
@@ -4528,6 +4532,14 @@
             "type": "string",
             "description": "The user's login username, in the form of an email address, which must be unique within the system.\r\nFor user accounts this should exactly match the user's email address."
           },
+          "alternativeUserIds": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string",
+              "nullable": true
+            },
+            "nullable": true
+          },
           "roles": {
             "type": "array",
             "items": {
@@ -4556,6 +4568,14 @@
             "minLength": 1,
             "type": "string",
             "description": "The user's system supplied unique identifier"
+          },
+          "alternativeUserIds": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "The user's alternative IDs",
+            "nullable": true
           },
           "emailAddress": {
             "minLength": 1,
