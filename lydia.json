@@ -2,18 +2,18 @@
   "openapi": "3.0.1",
   "info": {
     "title": "FINBOURNE Identity Service API",
+    "description": "FINBOURNE Technology",
     "termsOfService": "https://www.finbourne.com/legal/terms-conditions",
     "contact": {
       "name": "FINBOURNE Technology",
       "url": "https://www.finbourne.com",
       "email": "info@finbourne.com"
     },
-    "version": "0.0.3020",
+    "version": "0.0.3022",
     "x-logo": {
       "url": "https://www.lusid.com/app/assets/logo_white.png",
       "backgroundColor": "#415464"
-    },
-    "description": "FINBOURNE Technology"
+    }
   },
   "servers": [
     {
