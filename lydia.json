@@ -9,7 +9,7 @@
       "url": "https://www.finbourne.com",
       "email": "info@finbourne.com"
     },
-    "version": "0.0.3024",
+    "version": "0.0.3032",
     "x-logo": {
       "url": "https://www.lusid.com/app/assets/logo_white.png",
       "backgroundColor": "#415464"
@@ -2423,6 +2423,7 @@
                 "lastName": "Bloggs",
                 "emailAddress": "joe.bloggs@myco.com",
                 "login": "joe.bloggs@myco.com",
+                "alternativeUserIds": {},
                 "type": "Personal"
               }
             },
@@ -2435,6 +2436,7 @@
                 "lastName": "Bloggs",
                 "emailAddress": "joe.bloggs@myco.com",
                 "login": "joe.bloggs@myco.com",
+                "alternativeUserIds": {},
                 "type": "Personal"
               }
             },
@@ -2447,6 +2449,7 @@
                 "lastName": "Bloggs",
                 "emailAddress": "joe.bloggs@myco.com",
                 "login": "joe.bloggs@myco.com",
+                "alternativeUserIds": {},
                 "type": "Personal"
               }
             },
@@ -2459,6 +2462,7 @@
                 "lastName": "Bloggs",
                 "emailAddress": "joe.bloggs@myco.com",
                 "login": "joe.bloggs@myco.com",
+                "alternativeUserIds": {},
                 "type": "Personal"
               }
             }
@@ -2592,6 +2596,164 @@
           }
         ],
         "x-fbn-apistatus": "EarlyAccess"
+      }
+    },
+    "/api/users/schema": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "[EXPERIMENTAL] GetUserSchema: Get User Schema",
+        "description": "Get the User Schema",
+        "operationId": "GetUserSchema",
+        "responses": {
+          "200": {
+            "description": "Update the User Schema",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserSchemaResponse"
+                },
+                "example": {
+                  "alternativeUserIds": [
+                    {
+                      "name": "Alternative_User_Id",
+                      "description": "Description of Alternative User ID"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "oauth2": []
+          }
+        ],
+        "x-fbn-apistatus": "Experimental"
+      },
+      "put": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "[EXPERIMENTAL] UpdateUserSchema: Update User Schema",
+        "description": "Update the User Schema",
+        "operationId": "UpdateUserSchema",
+        "requestBody": {
+          "description": "The new User Schema",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateUserSchemaRequest"
+              },
+              "example": {
+                "alternativeUserIds": [
+                  {
+                    "name": "Alternative_User_Id",
+                    "description": "Description of Alternative User ID"
+                  }
+                ]
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateUserSchemaRequest"
+              },
+              "example": {
+                "alternativeUserIds": [
+                  {
+                    "name": "Alternative_User_Id",
+                    "description": "Description of Alternative User ID"
+                  }
+                ]
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateUserSchemaRequest"
+              },
+              "example": {
+                "alternativeUserIds": [
+                  {
+                    "name": "Alternative_User_Id",
+                    "description": "Description of Alternative User ID"
+                  }
+                ]
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateUserSchemaRequest"
+              },
+              "example": {
+                "alternativeUserIds": [
+                  {
+                    "name": "Alternative_User_Id",
+                    "description": "Description of Alternative User ID"
+                  }
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Update the User Schema",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserSchemaResponse"
+                },
+                "example": {
+                  "alternativeUserIds": [
+                    {
+                      "name": "Alternative_User_Id",
+                      "description": "Description of Alternative User ID"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The details of the input related failure",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidValidationProblemDetails"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "oauth2": []
+          }
+        ],
+        "x-fbn-apistatus": "Experimental"
       }
     },
     "/api/users/{id}": {
@@ -3319,7 +3481,7 @@
             "type": "string"
           },
           "entity": {
-            "maxLength": 25,
+            "maxLength": 40,
             "minLength": 3,
             "type": "string"
           }
@@ -3601,6 +3763,14 @@
             "minLength": 5,
             "type": "string",
             "description": "The user's login username, in the form of an email address, which must be unique within the system.\r\nFor user accounts this should exactly match the user's email address."
+          },
+          "alternativeUserIds": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string",
+              "nullable": true
+            },
+            "nullable": true
           },
           "roles": {
             "maxItems": 20,
@@ -4551,6 +4721,22 @@
         },
         "additionalProperties": false
       },
+      "UpdateUserSchemaRequest": {
+        "required": [
+          "alternativeUserIds"
+        ],
+        "type": "object",
+        "properties": {
+          "alternativeUserIds": {
+            "maxItems": 10,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UserSchemaProperty"
+            }
+          }
+        },
+        "additionalProperties": false
+      },
       "UserResponse": {
         "required": [
           "emailAddress",
@@ -4627,6 +4813,40 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/Link"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UserSchemaProperty": {
+        "required": [
+          "description",
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "maxLength": 50,
+            "minLength": 1,
+            "pattern": "^[a-zA-Z0-9_]+$",
+            "type": "string"
+          },
+          "description": {
+            "maxLength": 80,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "UserSchemaResponse": {
+        "type": "object",
+        "properties": {
+          "alternativeUserIds": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UserSchemaProperty"
             },
             "nullable": true
           }
