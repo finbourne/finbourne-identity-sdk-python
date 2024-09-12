@@ -80,7 +80,10 @@ from finbourne_identity.models.update_password_policy_request_conditions import 
 from finbourne_identity.models.update_password_policy_request_lockout import UpdatePasswordPolicyRequestLockout
 from finbourne_identity.models.update_role_request import UpdateRoleRequest
 from finbourne_identity.models.update_user_request import UpdateUserRequest
+from finbourne_identity.models.update_user_schema_request import UpdateUserSchemaRequest
 from finbourne_identity.models.user_response import UserResponse
+from finbourne_identity.models.user_schema_property import UserSchemaProperty
+from finbourne_identity.models.user_schema_response import UserSchemaResponse
 from finbourne_identity.models.user_summary import UserSummary
 
 # import extensions into sdk package
@@ -150,7 +153,10 @@ __all__ = [
     "UpdatePasswordPolicyRequestLockout",
     "UpdateRoleRequest",
     "UpdateUserRequest",
+    "UpdateUserSchemaRequest",
     "UserResponse",
+    "UserSchemaProperty",
+    "UserSchemaResponse",
     "UserSummary",
     "ApiClient",
     "Configuration",

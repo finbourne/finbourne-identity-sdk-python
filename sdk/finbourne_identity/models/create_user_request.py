@@ -19,7 +19,7 @@ import json
 
 
 from typing import Any, Dict, List, Optional
-from pydantic.v1 import BaseModel, Field, conlist, constr, validator
+from pydantic.v1 import BaseModel, Field, StrictStr, conlist, constr, validator
 from finbourne_identity.models.role_id import RoleId
 
 class CreateUserRequest(BaseModel):
@@ -31,9 +31,10 @@ class CreateUserRequest(BaseModel):
     email_address: constr(strict=True, max_length=80, min_length=5) = Field(..., alias="emailAddress", description="The user's email address - to which the account validation email will be sent. For user accounts  this should exactly match the Login.")
     second_email_address: Optional[constr(strict=True, max_length=80, min_length=5)] = Field(None, alias="secondEmailAddress", description="The user's second email address. Only allowed for Service users")
     login: constr(strict=True, max_length=80, min_length=5) = Field(..., description="The user's login username, in the form of an email address, which must be unique within the system.  For user accounts this should exactly match the user's email address.")
+    alternative_user_ids: Optional[Dict[str, StrictStr]] = Field(None, alias="alternativeUserIds")
     roles: Optional[conlist(RoleId, max_items=20)] = Field(None, description="Optional. Any known roles the user should be created with.")
     type: constr(strict=True, max_length=20, min_length=1) = Field(..., description="The type of user (e.g. Personal or Service)")
-    __properties = ["firstName", "lastName", "emailAddress", "secondEmailAddress", "login", "roles", "type"]
+    __properties = ["firstName", "lastName", "emailAddress", "secondEmailAddress", "login", "alternativeUserIds", "roles", "type"]
 
     @validator('first_name')
     def first_name_validate_regular_expression(cls, value):
@@ -92,6 +93,11 @@ class CreateUserRequest(BaseModel):
         if self.second_email_address is None and "second_email_address" in self.__fields_set__:
             _dict['secondEmailAddress'] = None
 
+        # set to None if alternative_user_ids (nullable) is None
+        # and __fields_set__ contains the field
+        if self.alternative_user_ids is None and "alternative_user_ids" in self.__fields_set__:
+            _dict['alternativeUserIds'] = None
+
         # set to None if roles (nullable) is None
         # and __fields_set__ contains the field
         if self.roles is None and "roles" in self.__fields_set__:
@@ -114,6 +120,7 @@ class CreateUserRequest(BaseModel):
             "email_address": obj.get("emailAddress"),
             "second_email_address": obj.get("secondEmailAddress"),
             "login": obj.get("login"),
+            "alternative_user_ids": obj.get("alternativeUserIds"),
             "roles": [RoleId.from_dict(_item) for _item in obj.get("roles")] if obj.get("roles") is not None else None,
             "type": obj.get("type")
         })

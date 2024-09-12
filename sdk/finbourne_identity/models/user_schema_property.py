@@ -19,16 +19,22 @@ import json
 
 
 from typing import Any, Dict
-from pydantic.v1 import BaseModel, Field, constr
+from pydantic.v1 import BaseModel, Field, constr, validator
 
-class ActionId(BaseModel):
+class UserSchemaProperty(BaseModel):
     """
-    ActionId
+    UserSchemaProperty
     """
-    scope: constr(strict=True, max_length=100, min_length=3) = Field(...)
-    activity: constr(strict=True, max_length=25, min_length=3) = Field(...)
-    entity: constr(strict=True, max_length=40, min_length=3) = Field(...)
-    __properties = ["scope", "activity", "entity"]
+    name: constr(strict=True, max_length=50, min_length=1) = Field(...)
+    description: constr(strict=True, max_length=80, min_length=0) = Field(...)
+    __properties = ["name", "description"]
+
+    @validator('name')
+    def name_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if not re.match(r"^[a-zA-Z0-9_]+$", value):
+            raise ValueError(r"must validate the regular expression /^[a-zA-Z0-9_]+$/")
+        return value
 
     class Config:
         """Pydantic configuration"""
@@ -44,8 +50,8 @@ class ActionId(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> ActionId:
-        """Create an instance of ActionId from a JSON string"""
+    def from_json(cls, json_str: str) -> UserSchemaProperty:
+        """Create an instance of UserSchemaProperty from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self):
@@ -57,17 +63,16 @@ class ActionId(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> ActionId:
-        """Create an instance of ActionId from a dict"""
+    def from_dict(cls, obj: dict) -> UserSchemaProperty:
+        """Create an instance of UserSchemaProperty from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return ActionId.parse_obj(obj)
+            return UserSchemaProperty.parse_obj(obj)
 
-        _obj = ActionId.parse_obj({
-            "scope": obj.get("scope"),
-            "activity": obj.get("activity"),
-            "entity": obj.get("entity")
+        _obj = UserSchemaProperty.parse_obj({
+            "name": obj.get("name"),
+            "description": obj.get("description")
         })
         return _obj

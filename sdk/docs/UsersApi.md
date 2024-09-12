@@ -9,6 +9,7 @@ Method | HTTP request | Description
 [**expire_password**](UsersApi.md#expire_password) | **POST** /api/users/{id}/lifecycle/$expirepassword | ExpirePassword: Reset the user&#39;s password to a temporary one
 [**find_users_by_id**](UsersApi.md#find_users_by_id) | **GET** /api/directory | FindUsersById: Find users by id endpoint
 [**get_user**](UsersApi.md#get_user) | **GET** /api/users/{id} | GetUser: Get User
+[**get_user_schema**](UsersApi.md#get_user_schema) | **GET** /api/users/schema | [EXPERIMENTAL] GetUserSchema: Get User Schema
 [**list_runnable_users**](UsersApi.md#list_runnable_users) | **GET** /api/users/$runnable | [EARLY ACCESS] ListRunnableUsers: List Runable Users
 [**list_users**](UsersApi.md#list_users) | **GET** /api/users | ListUsers: List Users
 [**reset_factors**](UsersApi.md#reset_factors) | **POST** /api/users/{id}/lifecycle/$resetfactors | ResetFactors: Reset MFA factors
@@ -17,6 +18,7 @@ Method | HTTP request | Description
 [**unlock_user**](UsersApi.md#unlock_user) | **POST** /api/users/{id}/lifecycle/$unlock | UnlockUser: Unlock User
 [**unsuspend_user**](UsersApi.md#unsuspend_user) | **POST** /api/users/{id}/lifecycle/$unsuspend | [EXPERIMENTAL] UnsuspendUser: Unsuspend user
 [**update_user**](UsersApi.md#update_user) | **PUT** /api/users/{id} | UpdateUser: Update User
+[**update_user_schema**](UsersApi.md#update_user_schema) | **PUT** /api/users/schema | [EXPERIMENTAL] UpdateUserSchema: Update User Schema
 
 
 # **create_user**
@@ -68,7 +70,7 @@ async def main():
         # Change the lines below to switch approach
         # create_user_request = CreateUserRequest()
         # create_user_request = CreateUserRequest.from_json("")
-        create_user_request = CreateUserRequest.from_dict({"firstName":"Joe","lastName":"Bloggs","emailAddress":"joe.bloggs@myco.com","login":"joe.bloggs@myco.com","type":"Personal"}) # CreateUserRequest | Details of the User to be created
+        create_user_request = CreateUserRequest.from_dict({"firstName":"Joe","lastName":"Bloggs","emailAddress":"joe.bloggs@myco.com","login":"joe.bloggs@myco.com","alternativeUserIds":{},"type":"Personal"}) # CreateUserRequest | Details of the User to be created
         wait_for_reindex = False # bool | Should the request wait until the newly created User is indexed (available in List) before returning (optional) (default to False)
 
         try:
@@ -424,6 +426,81 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | Get the specified user |  -  |
 **400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to Model list](../README.md#documentation-for-models) &#8226; [Back to README](../README.md)
+
+# **get_user_schema**
+> UserSchemaResponse get_user_schema()
+
+[EXPERIMENTAL] GetUserSchema: Get User Schema
+
+Get the User Schema
+
+### Example
+
+```python
+import asyncio
+from finbourne_identity.exceptions import ApiException
+from finbourne_identity.models import *
+from pprint import pprint
+from finbourne_identity import (
+    ApiClientFactory,
+    UsersApi
+)
+
+async def main():
+
+    with open("secrets.json", "w") as file:
+        file.write('''
+{
+    "api":
+    {
+        "tokenUrl":"<your-token-url>",
+        "identityUrl":"https://<your-domain>.lusid.com/identity",
+        "username":"<your-username>",
+        "password":"<your-password>",
+        "clientId":"<your-client-id>",
+        "clientSecret":"<your-client-secret>"
+    }
+}''')
+
+    # Use the finbourne_identity ApiClientFactory to build Api instances with a configured api client
+    # By default this will read config from environment variables
+    # Then from a secrets.json file found in the current working directory
+    api_client_factory = ApiClientFactory()
+
+    # Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
+    async with api_client_factory:
+        # Create an instance of the API class
+        api_instance = api_client_factory.build(UsersApi)
+
+        try:
+            # [EXPERIMENTAL] GetUserSchema: Get User Schema
+            api_response = await api_instance.get_user_schema()
+            pprint(api_response)
+        except ApiException as e:
+            print("Exception when calling UsersApi->get_user_schema: %s\n" % e)
+
+asyncio.run(main())
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**UserSchemaResponse**](UserSchemaResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Update the User Schema |  -  |
 **0** | Error response |  -  |
 
 [Back to top](#) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to Model list](../README.md#documentation-for-models) &#8226; [Back to README](../README.md)
@@ -1057,6 +1134,91 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Update a user |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to Model list](../README.md#documentation-for-models) &#8226; [Back to README](../README.md)
+
+# **update_user_schema**
+> UserSchemaResponse update_user_schema(update_user_schema_request)
+
+[EXPERIMENTAL] UpdateUserSchema: Update User Schema
+
+Update the User Schema
+
+### Example
+
+```python
+import asyncio
+from finbourne_identity.exceptions import ApiException
+from finbourne_identity.models import *
+from pprint import pprint
+from finbourne_identity import (
+    ApiClientFactory,
+    UsersApi
+)
+
+async def main():
+
+    with open("secrets.json", "w") as file:
+        file.write('''
+{
+    "api":
+    {
+        "tokenUrl":"<your-token-url>",
+        "identityUrl":"https://<your-domain>.lusid.com/identity",
+        "username":"<your-username>",
+        "password":"<your-password>",
+        "clientId":"<your-client-id>",
+        "clientSecret":"<your-client-secret>"
+    }
+}''')
+
+    # Use the finbourne_identity ApiClientFactory to build Api instances with a configured api client
+    # By default this will read config from environment variables
+    # Then from a secrets.json file found in the current working directory
+    api_client_factory = ApiClientFactory()
+
+    # Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
+    async with api_client_factory:
+        # Create an instance of the API class
+        api_instance = api_client_factory.build(UsersApi)
+
+        # Objects can be created either via the class constructor, or using the 'from_dict' or 'from_json' methods
+        # Change the lines below to switch approach
+        # update_user_schema_request = UpdateUserSchemaRequest()
+        # update_user_schema_request = UpdateUserSchemaRequest.from_json("")
+        update_user_schema_request = UpdateUserSchemaRequest.from_dict({"alternativeUserIds":[{"name":"Alternative_User_Id","description":"Description of Alternative User ID"}]}) # UpdateUserSchemaRequest | The new User Schema
+
+        try:
+            # [EXPERIMENTAL] UpdateUserSchema: Update User Schema
+            api_response = await api_instance.update_user_schema(update_user_schema_request)
+            pprint(api_response)
+        except ApiException as e:
+            print("Exception when calling UsersApi->update_user_schema: %s\n" % e)
+
+asyncio.run(main())
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **update_user_schema_request** | [**UpdateUserSchemaRequest**](UpdateUserSchemaRequest.md)| The new User Schema | 
+
+### Return type
+
+[**UserSchemaResponse**](UserSchemaResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Update the User Schema |  -  |
 **400** | The details of the input related failure |  -  |
 **0** | Error response |  -  |
 
