@@ -25,6 +25,7 @@ Get the AuthenticationInformation associated with the current domain. This inclu
 ```python
 import asyncio
 from finbourne_identity.exceptions import ApiException
+from finbourne_identity.extensions.configuration_options import ConfigurationOptions
 from finbourne_identity.models import *
 from pprint import pprint
 from finbourne_identity import (
@@ -51,6 +52,14 @@ async def main():
     # Use the finbourne_identity ApiClientFactory to build Api instances with a configured api client
     # By default this will read config from environment variables
     # Then from a secrets.json file found in the current working directory
+
+    # uncomment the below to use configuration overrides
+    # opts = ConfigurationOptions();
+    # opts.total_timeout_ms = 30_000
+
+    # uncomment the below to use an api client factory with overrides
+    # api_client_factory = ApiClientFactory(opts=opts)
+
     api_client_factory = ApiClientFactory()
 
     # Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
@@ -59,6 +68,9 @@ async def main():
         api_instance = api_client_factory.build(AuthenticationApi)
 
         try:
+            # uncomment the below to set overrides at the request level
+            # api_response = await api_instance.get_authentication_information(opts=opts)
+
             # GetAuthenticationInformation: Gets AuthenticationInformation
             api_response = await api_instance.get_authentication_information()
             pprint(api_response)
@@ -100,6 +112,7 @@ Get the password policy for a given user type
 ```python
 import asyncio
 from finbourne_identity.exceptions import ApiException
+from finbourne_identity.extensions.configuration_options import ConfigurationOptions
 from finbourne_identity.models import *
 from pprint import pprint
 from finbourne_identity import (
@@ -126,6 +139,14 @@ async def main():
     # Use the finbourne_identity ApiClientFactory to build Api instances with a configured api client
     # By default this will read config from environment variables
     # Then from a secrets.json file found in the current working directory
+
+    # uncomment the below to use configuration overrides
+    # opts = ConfigurationOptions();
+    # opts.total_timeout_ms = 30_000
+
+    # uncomment the below to use an api client factory with overrides
+    # api_client_factory = ApiClientFactory(opts=opts)
+
     api_client_factory = ApiClientFactory()
 
     # Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
@@ -135,6 +156,9 @@ async def main():
         user_type = 'user_type_example' # str | The type of user (should only be personal or service)
 
         try:
+            # uncomment the below to set overrides at the request level
+            # api_response = await api_instance.get_password_policy(user_type, opts=opts)
+
             # [EXPERIMENTAL] GetPasswordPolicy: Gets password policy for a user type
             api_response = await api_instance.get_password_policy(user_type)
             pprint(api_response)
@@ -180,6 +204,7 @@ The active and inactive support requests will be returned, inactive support requ
 ```python
 import asyncio
 from finbourne_identity.exceptions import ApiException
+from finbourne_identity.extensions.configuration_options import ConfigurationOptions
 from finbourne_identity.models import *
 from pprint import pprint
 from finbourne_identity import (
@@ -206,6 +231,14 @@ async def main():
     # Use the finbourne_identity ApiClientFactory to build Api instances with a configured api client
     # By default this will read config from environment variables
     # Then from a secrets.json file found in the current working directory
+
+    # uncomment the below to use configuration overrides
+    # opts = ConfigurationOptions();
+    # opts.total_timeout_ms = 30_000
+
+    # uncomment the below to use an api client factory with overrides
+    # api_client_factory = ApiClientFactory(opts=opts)
+
     api_client_factory = ApiClientFactory()
 
     # Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
@@ -216,6 +249,9 @@ async def main():
         end = '2013-10-20T19:20:30+01:00' # datetime | The end expiry date to query support access requests to (optional)
 
         try:
+            # uncomment the below to set overrides at the request level
+            # api_response = await api_instance.get_support_access_history(start=start, end=end, opts=opts)
+
             # GetSupportAccessHistory: Get the history of all support access granted and any information pertaining to their termination
             api_response = await api_instance.get_support_access_history(start=start, end=end)
             pprint(api_response)
@@ -262,6 +298,7 @@ Get mapping of support roles, the internal representation to a human friendly re
 ```python
 import asyncio
 from finbourne_identity.exceptions import ApiException
+from finbourne_identity.extensions.configuration_options import ConfigurationOptions
 from finbourne_identity.models import *
 from pprint import pprint
 from finbourne_identity import (
@@ -288,6 +325,14 @@ async def main():
     # Use the finbourne_identity ApiClientFactory to build Api instances with a configured api client
     # By default this will read config from environment variables
     # Then from a secrets.json file found in the current working directory
+
+    # uncomment the below to use configuration overrides
+    # opts = ConfigurationOptions();
+    # opts.total_timeout_ms = 30_000
+
+    # uncomment the below to use an api client factory with overrides
+    # api_client_factory = ApiClientFactory(opts=opts)
+
     api_client_factory = ApiClientFactory()
 
     # Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
@@ -296,6 +341,9 @@ async def main():
         api_instance = api_client_factory.build(AuthenticationApi)
 
         try:
+            # uncomment the below to set overrides at the request level
+            # api_response = await api_instance.get_support_roles(opts=opts)
+
             # GetSupportRoles: Get mapping of support roles, the internal representation to a human friendly representation
             api_response = await api_instance.get_support_roles()
             pprint(api_response)
@@ -337,6 +385,7 @@ Granting support access will allow FINBOURNE employees full access to your data 
 ```python
 import asyncio
 from finbourne_identity.exceptions import ApiException
+from finbourne_identity.extensions.configuration_options import ConfigurationOptions
 from finbourne_identity.models import *
 from pprint import pprint
 from finbourne_identity import (
@@ -363,6 +412,14 @@ async def main():
     # Use the finbourne_identity ApiClientFactory to build Api instances with a configured api client
     # By default this will read config from environment variables
     # Then from a secrets.json file found in the current working directory
+
+    # uncomment the below to use configuration overrides
+    # opts = ConfigurationOptions();
+    # opts.total_timeout_ms = 30_000
+
+    # uncomment the below to use an api client factory with overrides
+    # api_client_factory = ApiClientFactory(opts=opts)
+
     api_client_factory = ApiClientFactory()
 
     # Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
@@ -377,6 +434,9 @@ async def main():
         support_access_request = SupportAccessRequest.from_dict({"duration":"PT24H","description":"Investigate issues detailed in support ticket 0604"}) # SupportAccessRequest | Request detailing the duration and reasons for supplying support access
 
         try:
+            # uncomment the below to set overrides at the request level
+            # api_response = await api_instance.grant_support_access(support_access_request, opts=opts)
+
             # GrantSupportAccess: Grants FINBOURNE support access to your account
             api_response = await api_instance.grant_support_access(support_access_request)
             pprint(api_response)
@@ -422,6 +482,7 @@ This will result in a loss of access to your data for all FINBOURNE support agen
 ```python
 import asyncio
 from finbourne_identity.exceptions import ApiException
+from finbourne_identity.extensions.configuration_options import ConfigurationOptions
 from finbourne_identity.models import *
 from pprint import pprint
 from finbourne_identity import (
@@ -448,6 +509,14 @@ async def main():
     # Use the finbourne_identity ApiClientFactory to build Api instances with a configured api client
     # By default this will read config from environment variables
     # Then from a secrets.json file found in the current working directory
+
+    # uncomment the below to use configuration overrides
+    # opts = ConfigurationOptions();
+    # opts.total_timeout_ms = 30_000
+
+    # uncomment the below to use an api client factory with overrides
+    # api_client_factory = ApiClientFactory(opts=opts)
+
     api_client_factory = ApiClientFactory()
 
     # Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
@@ -456,6 +525,9 @@ async def main():
         api_instance = api_client_factory.build(AuthenticationApi)
 
         try:
+            # uncomment the below to set overrides at the request level
+            # api_response = await api_instance.invalidate_support_access(opts=opts)
+
             # InvalidateSupportAccess: Revoke any FINBOURNE support access to your account
             api_response = await api_instance.invalidate_support_access()
             pprint(api_response)
@@ -497,6 +569,7 @@ Update the password policy for a given user type
 ```python
 import asyncio
 from finbourne_identity.exceptions import ApiException
+from finbourne_identity.extensions.configuration_options import ConfigurationOptions
 from finbourne_identity.models import *
 from pprint import pprint
 from finbourne_identity import (
@@ -523,6 +596,14 @@ async def main():
     # Use the finbourne_identity ApiClientFactory to build Api instances with a configured api client
     # By default this will read config from environment variables
     # Then from a secrets.json file found in the current working directory
+
+    # uncomment the below to use configuration overrides
+    # opts = ConfigurationOptions();
+    # opts.total_timeout_ms = 30_000
+
+    # uncomment the below to use an api client factory with overrides
+    # api_client_factory = ApiClientFactory(opts=opts)
+
     api_client_factory = ApiClientFactory()
 
     # Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
@@ -538,6 +619,9 @@ async def main():
         update_password_policy_request = UpdatePasswordPolicyRequest.from_dict({"conditions":{"complexity":{"minLength":15,"excludeFirstName":true,"excludeLastName":true},"age":{"maxAgeDays":30,"historyCount":10},"lockout":{"maxAttempts":20}}}) # UpdatePasswordPolicyRequest | The password policy for the given user type (optional)
 
         try:
+            # uncomment the below to set overrides at the request level
+            # api_response = await api_instance.update_password_policy(user_type, update_password_policy_request=update_password_policy_request, opts=opts)
+
             # [EXPERIMENTAL] UpdatePasswordPolicy: Updates password policy for a user type
             api_response = await api_instance.update_password_policy(user_type, update_password_policy_request=update_password_policy_request)
             pprint(api_response)

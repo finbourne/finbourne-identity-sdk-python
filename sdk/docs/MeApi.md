@@ -20,6 +20,7 @@ Get the requesting user's basic info
 ```python
 import asyncio
 from finbourne_identity.exceptions import ApiException
+from finbourne_identity.extensions.configuration_options import ConfigurationOptions
 from finbourne_identity.models import *
 from pprint import pprint
 from finbourne_identity import (
@@ -46,6 +47,14 @@ async def main():
     # Use the finbourne_identity ApiClientFactory to build Api instances with a configured api client
     # By default this will read config from environment variables
     # Then from a secrets.json file found in the current working directory
+
+    # uncomment the below to use configuration overrides
+    # opts = ConfigurationOptions();
+    # opts.total_timeout_ms = 30_000
+
+    # uncomment the below to use an api client factory with overrides
+    # api_client_factory = ApiClientFactory(opts=opts)
+
     api_client_factory = ApiClientFactory()
 
     # Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
@@ -54,6 +63,9 @@ async def main():
         api_instance = api_client_factory.build(MeApi)
 
         try:
+            # uncomment the below to set overrides at the request level
+            # api_response = await api_instance.get_user_info(opts=opts)
+
             # GetUserInfo: Get User Info
             api_response = await api_instance.get_user_info()
             pprint(api_response)
@@ -95,6 +107,7 @@ Set the password of the current user to the specified value.                Note
 ```python
 import asyncio
 from finbourne_identity.exceptions import ApiException
+from finbourne_identity.extensions.configuration_options import ConfigurationOptions
 from finbourne_identity.models import *
 from pprint import pprint
 from finbourne_identity import (
@@ -121,6 +134,14 @@ async def main():
     # Use the finbourne_identity ApiClientFactory to build Api instances with a configured api client
     # By default this will read config from environment variables
     # Then from a secrets.json file found in the current working directory
+
+    # uncomment the below to use configuration overrides
+    # opts = ConfigurationOptions();
+    # opts.total_timeout_ms = 30_000
+
+    # uncomment the below to use an api client factory with overrides
+    # api_client_factory = ApiClientFactory(opts=opts)
+
     api_client_factory = ApiClientFactory()
 
     # Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
@@ -135,6 +156,9 @@ async def main():
         set_password = SetPassword.from_dict({"value":""}) # SetPassword | The request containing the new password value
 
         try:
+            # uncomment the below to set overrides at the request level
+            # api_response = await api_instance.set_password(set_password, opts=opts)
+
             # SetPassword: Set password of current user
             api_response = await api_instance.set_password(set_password)
             pprint(api_response)

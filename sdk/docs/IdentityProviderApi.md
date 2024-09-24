@@ -20,6 +20,7 @@ Generates an API token to be used for SCIM
 ```python
 import asyncio
 from finbourne_identity.exceptions import ApiException
+from finbourne_identity.extensions.configuration_options import ConfigurationOptions
 from finbourne_identity.models import *
 from pprint import pprint
 from finbourne_identity import (
@@ -46,6 +47,14 @@ async def main():
     # Use the finbourne_identity ApiClientFactory to build Api instances with a configured api client
     # By default this will read config from environment variables
     # Then from a secrets.json file found in the current working directory
+
+    # uncomment the below to use configuration overrides
+    # opts = ConfigurationOptions();
+    # opts.total_timeout_ms = 30_000
+
+    # uncomment the below to use an api client factory with overrides
+    # api_client_factory = ApiClientFactory(opts=opts)
+
     api_client_factory = ApiClientFactory()
 
     # Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
@@ -56,6 +65,9 @@ async def main():
         old_api_token_deactivation = '2013-10-20T19:20:30+01:00' # datetime | Optional deactivation date for the old API token. Only used if apiTokenAction is \"regenerate\" (optional)
 
         try:
+            # uncomment the below to set overrides at the request level
+            # api_response = await api_instance.add_scim(api_token_action=api_token_action, old_api_token_deactivation=old_api_token_deactivation, opts=opts)
+
             # AddScim: Add SCIM
             api_response = await api_instance.add_scim(api_token_action=api_token_action, old_api_token_deactivation=old_api_token_deactivation)
             pprint(api_response)
@@ -102,6 +114,7 @@ Deactivates any existing SCIM API token
 ```python
 import asyncio
 from finbourne_identity.exceptions import ApiException
+from finbourne_identity.extensions.configuration_options import ConfigurationOptions
 from finbourne_identity.models import *
 from pprint import pprint
 from finbourne_identity import (
@@ -128,6 +141,14 @@ async def main():
     # Use the finbourne_identity ApiClientFactory to build Api instances with a configured api client
     # By default this will read config from environment variables
     # Then from a secrets.json file found in the current working directory
+
+    # uncomment the below to use configuration overrides
+    # opts = ConfigurationOptions();
+    # opts.total_timeout_ms = 30_000
+
+    # uncomment the below to use an api client factory with overrides
+    # api_client_factory = ApiClientFactory(opts=opts)
+
     api_client_factory = ApiClientFactory()
 
     # Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
@@ -136,6 +157,9 @@ async def main():
         api_instance = api_client_factory.build(IdentityProviderApi)
 
         try:
+            # uncomment the below to set overrides at the request level
+            # await api_instance.remove_scim(opts=opts)
+
             # RemoveScim: Remove SCIM
             await api_instance.remove_scim()        except ApiException as e:
             print("Exception when calling IdentityProviderApi->remove_scim: %s\n" % e)

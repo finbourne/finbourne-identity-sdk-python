@@ -23,6 +23,7 @@ Create a new Application
 ```python
 import asyncio
 from finbourne_identity.exceptions import ApiException
+from finbourne_identity.extensions.configuration_options import ConfigurationOptions
 from finbourne_identity.models import *
 from pprint import pprint
 from finbourne_identity import (
@@ -49,6 +50,14 @@ async def main():
     # Use the finbourne_identity ApiClientFactory to build Api instances with a configured api client
     # By default this will read config from environment variables
     # Then from a secrets.json file found in the current working directory
+
+    # uncomment the below to use configuration overrides
+    # opts = ConfigurationOptions();
+    # opts.total_timeout_ms = 30_000
+
+    # uncomment the below to use an api client factory with overrides
+    # api_client_factory = ApiClientFactory(opts=opts)
+
     api_client_factory = ApiClientFactory()
 
     # Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
@@ -63,6 +72,9 @@ async def main():
         create_application_request = CreateApplicationRequest.from_dict({"displayName":"My First Application","clientId":"my-first-application","type":"Native"}) # CreateApplicationRequest | Details of the application to be created (optional)
 
         try:
+            # uncomment the below to set overrides at the request level
+            # api_response = await api_instance.create_application(create_application_request=create_application_request, opts=opts)
+
             # [EARLY ACCESS] CreateApplication: Create Application
             api_response = await api_instance.create_application(create_application_request=create_application_request)
             pprint(api_response)
@@ -108,6 +120,7 @@ Delete the specified application
 ```python
 import asyncio
 from finbourne_identity.exceptions import ApiException
+from finbourne_identity.extensions.configuration_options import ConfigurationOptions
 from finbourne_identity.models import *
 from pprint import pprint
 from finbourne_identity import (
@@ -134,6 +147,14 @@ async def main():
     # Use the finbourne_identity ApiClientFactory to build Api instances with a configured api client
     # By default this will read config from environment variables
     # Then from a secrets.json file found in the current working directory
+
+    # uncomment the below to use configuration overrides
+    # opts = ConfigurationOptions();
+    # opts.total_timeout_ms = 30_000
+
+    # uncomment the below to use an api client factory with overrides
+    # api_client_factory = ApiClientFactory(opts=opts)
+
     api_client_factory = ApiClientFactory()
 
     # Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
@@ -143,6 +164,9 @@ async def main():
         id = 'id_example' # str | The unique identifier for the application
 
         try:
+            # uncomment the below to set overrides at the request level
+            # await api_instance.delete_application(id, opts=opts)
+
             # [EARLY ACCESS] DeleteApplication: Delete Application
             await api_instance.delete_application(id)        except ApiException as e:
             print("Exception when calling ApplicationsApi->delete_application: %s\n" % e)
@@ -186,6 +210,7 @@ get the specified application, and optionally the OIDC secret
 ```python
 import asyncio
 from finbourne_identity.exceptions import ApiException
+from finbourne_identity.extensions.configuration_options import ConfigurationOptions
 from finbourne_identity.models import *
 from pprint import pprint
 from finbourne_identity import (
@@ -212,6 +237,14 @@ async def main():
     # Use the finbourne_identity ApiClientFactory to build Api instances with a configured api client
     # By default this will read config from environment variables
     # Then from a secrets.json file found in the current working directory
+
+    # uncomment the below to use configuration overrides
+    # opts = ConfigurationOptions();
+    # opts.total_timeout_ms = 30_000
+
+    # uncomment the below to use an api client factory with overrides
+    # api_client_factory = ApiClientFactory(opts=opts)
+
     api_client_factory = ApiClientFactory()
 
     # Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
@@ -222,6 +255,9 @@ async def main():
         include_secret = True # bool | Optional. If set to true, the application secrets will be returned in plain text (optional)
 
         try:
+            # uncomment the below to set overrides at the request level
+            # api_response = await api_instance.get_application(id, include_secret=include_secret, opts=opts)
+
             # GetApplication: Get Application
             api_response = await api_instance.get_application(id, include_secret=include_secret)
             pprint(api_response)
@@ -269,6 +305,7 @@ List the available applications
 ```python
 import asyncio
 from finbourne_identity.exceptions import ApiException
+from finbourne_identity.extensions.configuration_options import ConfigurationOptions
 from finbourne_identity.models import *
 from pprint import pprint
 from finbourne_identity import (
@@ -295,6 +332,14 @@ async def main():
     # Use the finbourne_identity ApiClientFactory to build Api instances with a configured api client
     # By default this will read config from environment variables
     # Then from a secrets.json file found in the current working directory
+
+    # uncomment the below to use configuration overrides
+    # opts = ConfigurationOptions();
+    # opts.total_timeout_ms = 30_000
+
+    # uncomment the below to use an api client factory with overrides
+    # api_client_factory = ApiClientFactory(opts=opts)
+
     api_client_factory = ApiClientFactory()
 
     # Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
@@ -303,6 +348,9 @@ async def main():
         api_instance = api_client_factory.build(ApplicationsApi)
 
         try:
+            # uncomment the below to set overrides at the request level
+            # api_response = await api_instance.list_applications(opts=opts)
+
             # ListApplications: List Applications
             api_response = await api_instance.list_applications()
             pprint(api_response)
@@ -344,6 +392,7 @@ Rotate the secrets for the specified application
 ```python
 import asyncio
 from finbourne_identity.exceptions import ApiException
+from finbourne_identity.extensions.configuration_options import ConfigurationOptions
 from finbourne_identity.models import *
 from pprint import pprint
 from finbourne_identity import (
@@ -370,6 +419,14 @@ async def main():
     # Use the finbourne_identity ApiClientFactory to build Api instances with a configured api client
     # By default this will read config from environment variables
     # Then from a secrets.json file found in the current working directory
+
+    # uncomment the below to use configuration overrides
+    # opts = ConfigurationOptions();
+    # opts.total_timeout_ms = 30_000
+
+    # uncomment the below to use an api client factory with overrides
+    # api_client_factory = ApiClientFactory(opts=opts)
+
     api_client_factory = ApiClientFactory()
 
     # Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
@@ -379,6 +436,9 @@ async def main():
         id = 'id_example' # str | The unique identifier for the application
 
         try:
+            # uncomment the below to set overrides at the request level
+            # api_response = await api_instance.rotate_application_secrets(id, opts=opts)
+
             # [EARLY ACCESS] RotateApplicationSecrets: Rotate Application Secrets
             api_response = await api_instance.rotate_application_secrets(id)
             pprint(api_response)

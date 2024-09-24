@@ -21,6 +21,7 @@ Generates a Personal Access Token and returns the new key and its associated met
 ```python
 import asyncio
 from finbourne_identity.exceptions import ApiException
+from finbourne_identity.extensions.configuration_options import ConfigurationOptions
 from finbourne_identity.models import *
 from pprint import pprint
 from finbourne_identity import (
@@ -47,6 +48,14 @@ async def main():
     # Use the finbourne_identity ApiClientFactory to build Api instances with a configured api client
     # By default this will read config from environment variables
     # Then from a secrets.json file found in the current working directory
+
+    # uncomment the below to use configuration overrides
+    # opts = ConfigurationOptions();
+    # opts.total_timeout_ms = 30_000
+
+    # uncomment the below to use an api client factory with overrides
+    # api_client_factory = ApiClientFactory(opts=opts)
+
     api_client_factory = ApiClientFactory()
 
     # Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
@@ -61,6 +70,9 @@ async def main():
         create_api_key = CreateApiKey.from_dict({"displayName":"My API Key","deactivationDate":"2022-12-08T13:30:12.0000000+00:00"}) # CreateApiKey | The request to create a new Personal Access Token
 
         try:
+            # uncomment the below to set overrides at the request level
+            # api_response = await api_instance.create_api_key(create_api_key, opts=opts)
+
             # CreateApiKey: Create a Personal Access Token
             api_response = await api_instance.create_api_key(create_api_key)
             pprint(api_response)
@@ -106,6 +118,7 @@ Immediately invalidates the specified Personal Access Token
 ```python
 import asyncio
 from finbourne_identity.exceptions import ApiException
+from finbourne_identity.extensions.configuration_options import ConfigurationOptions
 from finbourne_identity.models import *
 from pprint import pprint
 from finbourne_identity import (
@@ -132,6 +145,14 @@ async def main():
     # Use the finbourne_identity ApiClientFactory to build Api instances with a configured api client
     # By default this will read config from environment variables
     # Then from a secrets.json file found in the current working directory
+
+    # uncomment the below to use configuration overrides
+    # opts = ConfigurationOptions();
+    # opts.total_timeout_ms = 30_000
+
+    # uncomment the below to use an api client factory with overrides
+    # api_client_factory = ApiClientFactory(opts=opts)
+
     api_client_factory = ApiClientFactory()
 
     # Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
@@ -141,6 +162,9 @@ async def main():
         id = 'id_example' # str | The id of the Personal Access Token to delete
 
         try:
+            # uncomment the below to set overrides at the request level
+            # api_response = await api_instance.delete_api_key(id, opts=opts)
+
             # DeleteApiKey: Invalidate a Personal Access Token
             api_response = await api_instance.delete_api_key(id)
             pprint(api_response)
@@ -186,6 +210,7 @@ Gets the meta data for all of the user's Personal Access Tokens that have not be
 ```python
 import asyncio
 from finbourne_identity.exceptions import ApiException
+from finbourne_identity.extensions.configuration_options import ConfigurationOptions
 from finbourne_identity.models import *
 from pprint import pprint
 from finbourne_identity import (
@@ -212,6 +237,14 @@ async def main():
     # Use the finbourne_identity ApiClientFactory to build Api instances with a configured api client
     # By default this will read config from environment variables
     # Then from a secrets.json file found in the current working directory
+
+    # uncomment the below to use configuration overrides
+    # opts = ConfigurationOptions();
+    # opts.total_timeout_ms = 30_000
+
+    # uncomment the below to use an api client factory with overrides
+    # api_client_factory = ApiClientFactory(opts=opts)
+
     api_client_factory = ApiClientFactory()
 
     # Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
@@ -220,6 +253,9 @@ async def main():
         api_instance = api_client_factory.build(PersonalAuthenticationTokensApi)
 
         try:
+            # uncomment the below to set overrides at the request level
+            # api_response = await api_instance.list_own_api_keys(opts=opts)
+
             # ListOwnApiKeys: Gets the meta data for all of the user's existing Personal Access Tokens.
             api_response = await api_instance.list_own_api_keys()
             pprint(api_response)
