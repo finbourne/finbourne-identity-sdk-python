@@ -9,7 +9,7 @@
       "url": "https://www.finbourne.com",
       "email": "info@finbourne.com"
     },
-    "version": "0.0.3048",
+    "version": "0.0.3055",
     "x-logo": {
       "url": "https://www.lusid.com/app/assets/logo_white.png",
       "backgroundColor": "#415464"
@@ -3796,7 +3796,8 @@
         "required": [
           "emailAddress",
           "id",
-          "type"
+          "type",
+          "userExpiry"
         ],
         "type": "object",
         "properties": {
@@ -3819,6 +3820,11 @@
             "type": "string",
             "description": "The type of domain in which the user exists",
             "nullable": true
+          },
+          "userExpiry": {
+            "type": "string",
+            "description": "The user's user expiry datetime",
+            "format": "date-time"
           },
           "links": {
             "type": "array",
