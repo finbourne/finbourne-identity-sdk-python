@@ -163,9 +163,9 @@ async def main():
 
         # Objects can be created either via the class constructor, or using the 'from_dict' or 'from_json' methods
         # Change the lines below to switch approach
-        # create_role_request = CreateRoleRequest()
         # create_role_request = CreateRoleRequest.from_json("")
-        create_role_request = CreateRoleRequest.from_dict({"name":"LUSID:FrontOfficeAdministrator","description":"Front office administration role"}) # CreateRoleRequest | Details of the role to be created
+        # create_role_request = CreateRoleRequest.from_dict({})
+        create_role_request = CreateRoleRequest()
 
         try:
             # uncomment the below to set overrides at the request level
@@ -717,9 +717,9 @@ async def main():
 
         # Objects can be created either via the class constructor, or using the 'from_dict' or 'from_json' methods
         # Change the lines below to switch approach
-        # update_role_request = UpdateRoleRequest()
         # update_role_request = UpdateRoleRequest.from_json("")
-        update_role_request = UpdateRoleRequest.from_dict({"description":"Front office administration role"}) # UpdateRoleRequest | The new definition of the role (optional)
+        # update_role_request = UpdateRoleRequest.from_dict({})
+        update_role_request = UpdateRoleRequest()
 
         try:
             # uncomment the below to set overrides at the request level

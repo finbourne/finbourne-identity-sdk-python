@@ -151,9 +151,9 @@ async def main():
 
         # Objects can be created either via the class constructor, or using the 'from_dict' or 'from_json' methods
         # Change the lines below to switch approach
-        # set_password = SetPassword()
         # set_password = SetPassword.from_json("")
-        set_password = SetPassword.from_dict({"value":""}) # SetPassword | The request containing the new password value
+        # set_password = SetPassword.from_dict({})
+        set_password = SetPassword()
 
         try:
             # uncomment the below to set overrides at the request level

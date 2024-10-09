@@ -67,9 +67,9 @@ async def main():
 
         # Objects can be created either via the class constructor, or using the 'from_dict' or 'from_json' methods
         # Change the lines below to switch approach
-        # create_application_request = CreateApplicationRequest()
         # create_application_request = CreateApplicationRequest.from_json("")
-        create_application_request = CreateApplicationRequest.from_dict({"displayName":"My First Application","clientId":"my-first-application","type":"Native"}) # CreateApplicationRequest | Details of the application to be created (optional)
+        # create_application_request = CreateApplicationRequest.from_dict({})
+        create_application_request = CreateApplicationRequest()
 
         try:
             # uncomment the below to set overrides at the request level

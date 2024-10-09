@@ -429,9 +429,9 @@ async def main():
 
         # Objects can be created either via the class constructor, or using the 'from_dict' or 'from_json' methods
         # Change the lines below to switch approach
-        # support_access_request = SupportAccessRequest()
         # support_access_request = SupportAccessRequest.from_json("")
-        support_access_request = SupportAccessRequest.from_dict({"duration":"PT24H","description":"Investigate issues detailed in support ticket 0604"}) # SupportAccessRequest | Request detailing the duration and reasons for supplying support access
+        # support_access_request = SupportAccessRequest.from_dict({})
+        support_access_request = SupportAccessRequest()
 
         try:
             # uncomment the below to set overrides at the request level
@@ -614,9 +614,9 @@ async def main():
 
         # Objects can be created either via the class constructor, or using the 'from_dict' or 'from_json' methods
         # Change the lines below to switch approach
-        # update_password_policy_request = UpdatePasswordPolicyRequest()
         # update_password_policy_request = UpdatePasswordPolicyRequest.from_json("")
-        update_password_policy_request = UpdatePasswordPolicyRequest.from_dict({"conditions":{"complexity":{"minLength":15,"excludeFirstName":true,"excludeLastName":true},"age":{"maxAgeDays":30,"historyCount":10},"lockout":{"maxAttempts":20}}}) # UpdatePasswordPolicyRequest | The password policy for the given user type (optional)
+        # update_password_policy_request = UpdatePasswordPolicyRequest.from_dict({})
+        update_password_policy_request = UpdatePasswordPolicyRequest()
 
         try:
             # uncomment the below to set overrides at the request level

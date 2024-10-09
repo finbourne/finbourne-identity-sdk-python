@@ -65,9 +65,9 @@ async def main():
 
         # Objects can be created either via the class constructor, or using the 'from_dict' or 'from_json' methods
         # Change the lines below to switch approach
-        # create_api_key = CreateApiKey()
         # create_api_key = CreateApiKey.from_json("")
-        create_api_key = CreateApiKey.from_dict({"displayName":"My API Key","deactivationDate":"2022-12-08T13:30:12.0000000+00:00"}) # CreateApiKey | The request to create a new Personal Access Token
+        # create_api_key = CreateApiKey.from_dict({})
+        create_api_key = CreateApiKey()
 
         try:
             # uncomment the below to set overrides at the request level

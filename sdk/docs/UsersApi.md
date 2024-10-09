@@ -77,9 +77,9 @@ async def main():
 
         # Objects can be created either via the class constructor, or using the 'from_dict' or 'from_json' methods
         # Change the lines below to switch approach
-        # create_user_request = CreateUserRequest()
         # create_user_request = CreateUserRequest.from_json("")
-        create_user_request = CreateUserRequest.from_dict({"firstName":"Joe","lastName":"Bloggs","emailAddress":"joe.bloggs@myco.com","login":"joe.bloggs@myco.com","alternativeUserIds":{},"type":"Personal"}) # CreateUserRequest | Details of the User to be created
+        # create_user_request = CreateUserRequest.from_dict({})
+        create_user_request = CreateUserRequest()
         wait_for_reindex = False # bool | Should the request wait until the newly created User is indexed (available in List) before returning (optional) (default to False)
 
         try:
@@ -1265,9 +1265,9 @@ async def main():
 
         # Objects can be created either via the class constructor, or using the 'from_dict' or 'from_json' methods
         # Change the lines below to switch approach
-        # update_user_request = UpdateUserRequest()
         # update_user_request = UpdateUserRequest.from_json("")
-        update_user_request = UpdateUserRequest.from_dict({"firstName":"Joe","lastName":"Bloggs","emailAddress":"joe.bloggs@myco.com","login":"joe.bloggs@myco.com","alternativeUserIds":{}}) # UpdateUserRequest | The new definition of the User
+        # update_user_request = UpdateUserRequest.from_dict({})
+        update_user_request = UpdateUserRequest()
 
         try:
             # uncomment the below to set overrides at the request level
@@ -1363,9 +1363,9 @@ async def main():
 
         # Objects can be created either via the class constructor, or using the 'from_dict' or 'from_json' methods
         # Change the lines below to switch approach
-        # update_user_schema_request = UpdateUserSchemaRequest()
         # update_user_schema_request = UpdateUserSchemaRequest.from_json("")
-        update_user_schema_request = UpdateUserSchemaRequest.from_dict({"alternativeUserIds":[{"name":"Alternative_User_Id","description":"Description of Alternative User ID"}]}) # UpdateUserSchemaRequest | The new User Schema
+        # update_user_schema_request = UpdateUserSchemaRequest.from_dict({})
+        update_user_schema_request = UpdateUserSchemaRequest()
 
         try:
             # uncomment the below to set overrides at the request level

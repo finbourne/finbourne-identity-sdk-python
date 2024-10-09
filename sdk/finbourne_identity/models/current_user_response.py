@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-
+from datetime import datetime
 from typing import Any, Dict, List, Optional
 from pydantic.v1 import BaseModel, Field, StrictStr, conlist, constr
 from finbourne_identity.models.link import Link
@@ -30,8 +30,9 @@ class CurrentUserResponse(BaseModel):
     email_address: constr(strict=True, min_length=1) = Field(..., alias="emailAddress", description="The user's email address which may be null depending on the authentication method")
     type: constr(strict=True, min_length=1) = Field(..., description="The type of user (e.g. Personal or Service)")
     domain_type: Optional[StrictStr] = Field(None, alias="domainType", description="The type of domain in which the user exists")
+    user_expiry: datetime = Field(..., alias="userExpiry", description="The user's user expiry datetime")
     links: Optional[conlist(Link)] = None
-    __properties = ["id", "emailAddress", "type", "domainType", "links"]
+    __properties = ["id", "emailAddress", "type", "domainType", "userExpiry", "links"]
 
     class Config:
         """Pydantic configuration"""
@@ -90,6 +91,7 @@ class CurrentUserResponse(BaseModel):
             "email_address": obj.get("emailAddress"),
             "type": obj.get("type"),
             "domain_type": obj.get("domainType"),
+            "user_expiry": obj.get("userExpiry"),
             "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
         })
         return _obj
