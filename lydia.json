@@ -9,11 +9,126 @@
       "url": "https://www.finbourne.com",
       "email": "info@finbourne.com"
     },
-    "version": "0.0.3062",
+    "version": "0.0.3070",
     "x-logo": {
       "url": "https://www.lusid.com/app/assets/logo_white.png",
       "backgroundColor": "#415464"
-    }
+    },
+    "x-fbn-error-codes": {
+      "-1": {
+        "title": "Unknown error",
+        "description": "An unexpected error was encountered on our side."
+      },
+      "144": {
+        "title": "Duplicate In Parameter Set"
+      },
+      "151": {
+        "title": "Invalid Parameter Value"
+      },
+      "152": {
+        "title": "Action Execution Failure"
+      },
+      "157": {
+        "title": "Invalid Request"
+      },
+      "186": {
+        "title": "Access Denied"
+      },
+      "187": {
+        "title": "Invalid Identity Token"
+      },
+      "238": {
+        "title": "Max User Api Key Limit Reached"
+      },
+      "239": {
+        "title": "API Key not found"
+      },
+      "657": {
+        "title": "User does not exist",
+        "description": "The specified user does not exist"
+      },
+      "658": {
+        "title": "User already exists",
+        "description": "A user with the specified identifier already exists"
+      },
+      "659": {
+        "title": "API Key display name already in use",
+        "description": "There is already an active API Key with the specified display name"
+      },
+      "660": {
+        "title": "Role does not exist",
+        "description": "The specified role does not exist"
+      },
+      "661": {
+        "title": "Role does not exist in identity provider",
+        "description": "One or more of the roles specified do not exist in your identity provider (Okta)"
+      },
+      "662": {
+        "title": "Application does not exist",
+        "description": "The specified application does not exist"
+      },
+      "663": {
+        "title": "Token does not exist",
+        "description": "The specified domain token does not exist"
+      },
+      "679": {
+        "title": "Single Sign-on (SSO) Incorrectly Configured",
+        "description": "This condition is encountered when the necessary configuration required to enable Single Sign-on (SSO) for your LUSID account is missing or not complete. To resolve this you will need to contact your LUSID administrator or LUSID Support to request that the correct configuration is applied."
+      },
+      "680": {
+        "title": "Identity Provider Not Found",
+        "description": "The specified identity provider does not exist"
+      },
+      "689": {
+        "title": "The supplied pagination token is invalid"
+      },
+      "692": {
+        "title": "This endpoint does not support impersonation"
+      },
+      "705": {
+        "title": "User In A Deleted State"
+      },
+      "706": {
+        "title": "User is not locked out"
+      },
+      "707": {
+        "title": "User is already activated"
+      },
+      "717": {
+        "title": "User's status is invalid for the given operation"
+      },
+      "718": {
+        "title": "User's status is invalid for resetting the user's password"
+      },
+      "719": {
+        "title": "User's status is invalid for expiring the user's password"
+      },
+      "784": {
+        "title": "Cannot update password"
+      },
+      "785": {
+        "title": "Incorrect authentication type for action"
+      },
+      "786": {
+        "title": "Action not valid for user of this type"
+      },
+      "787": {
+        "title": "Password validation failure"
+      },
+      "871": {
+        "title": "The specified impersonated user does not exist"
+      },
+      "2153": {
+        "title": "Invalid Authentication Token"
+      },
+      "2154": {
+        "title": "Invalid Identity Provider Access Token"
+      },
+      "2200": {
+        "title": "Tenant Scheduler Domain Job Error"
+      }
+    },
+    "x-fbn-description": "Identity manages user authentication for LUSID, ensuring secure sign-ins and integrations with single sign-on (SSO) providers, and facilitating the setup of both personal and service user accounts. It works in conjunction with the Access SDK."
   },
   "servers": [
     {
