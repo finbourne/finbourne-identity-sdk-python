@@ -30,7 +30,7 @@ class CurrentUserResponse(BaseModel):
     email_address: constr(strict=True, min_length=1) = Field(..., alias="emailAddress", description="The user's email address which may be null depending on the authentication method")
     type: constr(strict=True, min_length=1) = Field(..., description="The type of user (e.g. Personal or Service)")
     domain_type: Optional[StrictStr] = Field(None, alias="domainType", description="The type of domain in which the user exists")
-    user_expiry: datetime = Field(..., alias="userExpiry", description="The user's user expiry datetime")
+    user_expiry: Optional[datetime] = Field(None, alias="userExpiry", description="The user's user expiry datetime")
     links: Optional[conlist(Link)] = None
     __properties = ["id", "emailAddress", "type", "domainType", "userExpiry", "links"]
 
@@ -69,6 +69,11 @@ class CurrentUserResponse(BaseModel):
         # and __fields_set__ contains the field
         if self.domain_type is None and "domain_type" in self.__fields_set__:
             _dict['domainType'] = None
+
+        # set to None if user_expiry (nullable) is None
+        # and __fields_set__ contains the field
+        if self.user_expiry is None and "user_expiry" in self.__fields_set__:
+            _dict['userExpiry'] = None
 
         # set to None if links (nullable) is None
         # and __fields_set__ contains the field
