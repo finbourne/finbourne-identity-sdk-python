@@ -18,33 +18,32 @@ Get the requesting user's basic info
 ### Example
 
 ```python
-import asyncio
 from finbourne_identity.exceptions import ApiException
 from finbourne_identity.extensions.configuration_options import ConfigurationOptions
 from finbourne_identity.models import *
 from pprint import pprint
 from finbourne_identity import (
-    ApiClientFactory,
+    SyncApiClientFactory,
     MeApi
 )
 
-async def main():
+def main():
 
     with open("secrets.json", "w") as file:
         file.write('''
-{
-    "api":
     {
-        "tokenUrl":"<your-token-url>",
-        "identityUrl":"https://<your-domain>.lusid.com/identity",
-        "username":"<your-username>",
-        "password":"<your-password>",
-        "clientId":"<your-client-id>",
-        "clientSecret":"<your-client-secret>"
-    }
-}''')
+        "api":
+        {
+            "tokenUrl":"<your-token-url>",
+            "identityUrl":"https://<your-domain>.lusid.com/identity",
+            "username":"<your-username>",
+            "password":"<your-password>",
+            "clientId":"<your-client-id>",
+            "clientSecret":"<your-client-secret>"
+        }
+    }''')
 
-    # Use the finbourne_identity ApiClientFactory to build Api instances with a configured api client
+    # Use the finbourne_identity SyncApiClientFactory to build Api instances with a configured api client
     # By default this will read config from environment variables
     # Then from a secrets.json file found in the current working directory
 
@@ -53,26 +52,27 @@ async def main():
     # opts.total_timeout_ms = 30_000
 
     # uncomment the below to use an api client factory with overrides
-    # api_client_factory = ApiClientFactory(opts=opts)
+    # api_client_factory = SyncApiClientFactory(opts=opts)
 
-    api_client_factory = ApiClientFactory()
+    api_client_factory = SyncApiClientFactory()
 
-    # Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
-    async with api_client_factory:
-        # Create an instance of the API class
-        api_instance = api_client_factory.build(MeApi)
+    # Enter a context with an instance of the SyncApiClientFactory to ensure the connection pool is closed after use
+    
+    # Create an instance of the API class
+    api_instance = api_client_factory.build(MeApi)
 
-        try:
-            # uncomment the below to set overrides at the request level
-            # api_response = await api_instance.get_user_info(opts=opts)
+    try:
+        # uncomment the below to set overrides at the request level
+        # api_response =  api_instance.get_user_info(opts=opts)
 
-            # GetUserInfo: Get User Info
-            api_response = await api_instance.get_user_info()
-            pprint(api_response)
-        except ApiException as e:
-            print("Exception when calling MeApi->get_user_info: %s\n" % e)
+        # GetUserInfo: Get User Info
+        api_response = api_instance.get_user_info()
+        pprint(api_response)
 
-asyncio.run(main())
+    except ApiException as e:
+        print("Exception when calling MeApi->get_user_info: %s\n" % e)
+
+main()
 ```
 
 ### Parameters
@@ -105,33 +105,32 @@ Set the password of the current user to the specified value.                Note
 ### Example
 
 ```python
-import asyncio
 from finbourne_identity.exceptions import ApiException
 from finbourne_identity.extensions.configuration_options import ConfigurationOptions
 from finbourne_identity.models import *
 from pprint import pprint
 from finbourne_identity import (
-    ApiClientFactory,
+    SyncApiClientFactory,
     MeApi
 )
 
-async def main():
+def main():
 
     with open("secrets.json", "w") as file:
         file.write('''
-{
-    "api":
     {
-        "tokenUrl":"<your-token-url>",
-        "identityUrl":"https://<your-domain>.lusid.com/identity",
-        "username":"<your-username>",
-        "password":"<your-password>",
-        "clientId":"<your-client-id>",
-        "clientSecret":"<your-client-secret>"
-    }
-}''')
+        "api":
+        {
+            "tokenUrl":"<your-token-url>",
+            "identityUrl":"https://<your-domain>.lusid.com/identity",
+            "username":"<your-username>",
+            "password":"<your-password>",
+            "clientId":"<your-client-id>",
+            "clientSecret":"<your-client-secret>"
+        }
+    }''')
 
-    # Use the finbourne_identity ApiClientFactory to build Api instances with a configured api client
+    # Use the finbourne_identity SyncApiClientFactory to build Api instances with a configured api client
     # By default this will read config from environment variables
     # Then from a secrets.json file found in the current working directory
 
@@ -140,32 +139,33 @@ async def main():
     # opts.total_timeout_ms = 30_000
 
     # uncomment the below to use an api client factory with overrides
-    # api_client_factory = ApiClientFactory(opts=opts)
+    # api_client_factory = SyncApiClientFactory(opts=opts)
 
-    api_client_factory = ApiClientFactory()
+    api_client_factory = SyncApiClientFactory()
 
-    # Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
-    async with api_client_factory:
-        # Create an instance of the API class
-        api_instance = api_client_factory.build(MeApi)
+    # Enter a context with an instance of the SyncApiClientFactory to ensure the connection pool is closed after use
+    
+    # Create an instance of the API class
+    api_instance = api_client_factory.build(MeApi)
 
-        # Objects can be created either via the class constructor, or using the 'from_dict' or 'from_json' methods
-        # Change the lines below to switch approach
-        # set_password = SetPassword.from_json("")
-        # set_password = SetPassword.from_dict({})
-        set_password = SetPassword()
+    # Objects can be created either via the class constructor, or using the 'from_dict' or 'from_json' methods
+    # Change the lines below to switch approach
+    # set_password = SetPassword.from_json("")
+    # set_password = SetPassword.from_dict({})
+    set_password = SetPassword()
 
-        try:
-            # uncomment the below to set overrides at the request level
-            # api_response = await api_instance.set_password(set_password, opts=opts)
+    try:
+        # uncomment the below to set overrides at the request level
+        # api_response =  api_instance.set_password(set_password, opts=opts)
 
-            # SetPassword: Set password of current user
-            api_response = await api_instance.set_password(set_password)
-            pprint(api_response)
-        except ApiException as e:
-            print("Exception when calling MeApi->set_password: %s\n" % e)
+        # SetPassword: Set password of current user
+        api_response = api_instance.set_password(set_password)
+        pprint(api_response)
 
-asyncio.run(main())
+    except ApiException as e:
+        print("Exception when calling MeApi->set_password: %s\n" % e)
+
+main()
 ```
 
 ### Parameters

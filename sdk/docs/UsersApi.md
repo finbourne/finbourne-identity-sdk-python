@@ -31,33 +31,32 @@ Create a new User
 ### Example
 
 ```python
-import asyncio
 from finbourne_identity.exceptions import ApiException
 from finbourne_identity.extensions.configuration_options import ConfigurationOptions
 from finbourne_identity.models import *
 from pprint import pprint
 from finbourne_identity import (
-    ApiClientFactory,
+    SyncApiClientFactory,
     UsersApi
 )
 
-async def main():
+def main():
 
     with open("secrets.json", "w") as file:
         file.write('''
-{
-    "api":
     {
-        "tokenUrl":"<your-token-url>",
-        "identityUrl":"https://<your-domain>.lusid.com/identity",
-        "username":"<your-username>",
-        "password":"<your-password>",
-        "clientId":"<your-client-id>",
-        "clientSecret":"<your-client-secret>"
-    }
-}''')
+        "api":
+        {
+            "tokenUrl":"<your-token-url>",
+            "identityUrl":"https://<your-domain>.lusid.com/identity",
+            "username":"<your-username>",
+            "password":"<your-password>",
+            "clientId":"<your-client-id>",
+            "clientSecret":"<your-client-secret>"
+        }
+    }''')
 
-    # Use the finbourne_identity ApiClientFactory to build Api instances with a configured api client
+    # Use the finbourne_identity SyncApiClientFactory to build Api instances with a configured api client
     # By default this will read config from environment variables
     # Then from a secrets.json file found in the current working directory
 
@@ -66,33 +65,34 @@ async def main():
     # opts.total_timeout_ms = 30_000
 
     # uncomment the below to use an api client factory with overrides
-    # api_client_factory = ApiClientFactory(opts=opts)
+    # api_client_factory = SyncApiClientFactory(opts=opts)
 
-    api_client_factory = ApiClientFactory()
+    api_client_factory = SyncApiClientFactory()
 
-    # Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
-    async with api_client_factory:
-        # Create an instance of the API class
-        api_instance = api_client_factory.build(UsersApi)
+    # Enter a context with an instance of the SyncApiClientFactory to ensure the connection pool is closed after use
+    
+    # Create an instance of the API class
+    api_instance = api_client_factory.build(UsersApi)
 
-        # Objects can be created either via the class constructor, or using the 'from_dict' or 'from_json' methods
-        # Change the lines below to switch approach
-        # create_user_request = CreateUserRequest.from_json("")
-        # create_user_request = CreateUserRequest.from_dict({})
-        create_user_request = CreateUserRequest()
-        wait_for_reindex = False # bool | Should the request wait until the newly created User is indexed (available in List) before returning (optional) (default to False)
+    # Objects can be created either via the class constructor, or using the 'from_dict' or 'from_json' methods
+    # Change the lines below to switch approach
+    # create_user_request = CreateUserRequest.from_json("")
+    # create_user_request = CreateUserRequest.from_dict({})
+    create_user_request = CreateUserRequest()
+    wait_for_reindex = False # bool | Should the request wait until the newly created User is indexed (available in List) before returning (optional) (default to False)
 
-        try:
-            # uncomment the below to set overrides at the request level
-            # api_response = await api_instance.create_user(create_user_request, wait_for_reindex=wait_for_reindex, opts=opts)
+    try:
+        # uncomment the below to set overrides at the request level
+        # api_response =  api_instance.create_user(create_user_request, wait_for_reindex=wait_for_reindex, opts=opts)
 
-            # CreateUser: Create User
-            api_response = await api_instance.create_user(create_user_request, wait_for_reindex=wait_for_reindex)
-            pprint(api_response)
-        except ApiException as e:
-            print("Exception when calling UsersApi->create_user: %s\n" % e)
+        # CreateUser: Create User
+        api_response = api_instance.create_user(create_user_request, wait_for_reindex=wait_for_reindex)
+        pprint(api_response)
 
-asyncio.run(main())
+    except ApiException as e:
+        print("Exception when calling UsersApi->create_user: %s\n" % e)
+
+main()
 ```
 
 ### Parameters
@@ -130,33 +130,32 @@ By default the user will be de-provisioned and inactive, however their record wi
 ### Example
 
 ```python
-import asyncio
 from finbourne_identity.exceptions import ApiException
 from finbourne_identity.extensions.configuration_options import ConfigurationOptions
 from finbourne_identity.models import *
 from pprint import pprint
 from finbourne_identity import (
-    ApiClientFactory,
+    SyncApiClientFactory,
     UsersApi
 )
 
-async def main():
+def main():
 
     with open("secrets.json", "w") as file:
         file.write('''
-{
-    "api":
     {
-        "tokenUrl":"<your-token-url>",
-        "identityUrl":"https://<your-domain>.lusid.com/identity",
-        "username":"<your-username>",
-        "password":"<your-password>",
-        "clientId":"<your-client-id>",
-        "clientSecret":"<your-client-secret>"
-    }
-}''')
+        "api":
+        {
+            "tokenUrl":"<your-token-url>",
+            "identityUrl":"https://<your-domain>.lusid.com/identity",
+            "username":"<your-username>",
+            "password":"<your-password>",
+            "clientId":"<your-client-id>",
+            "clientSecret":"<your-client-secret>"
+        }
+    }''')
 
-    # Use the finbourne_identity ApiClientFactory to build Api instances with a configured api client
+    # Use the finbourne_identity SyncApiClientFactory to build Api instances with a configured api client
     # By default this will read config from environment variables
     # Then from a secrets.json file found in the current working directory
 
@@ -165,26 +164,27 @@ async def main():
     # opts.total_timeout_ms = 30_000
 
     # uncomment the below to use an api client factory with overrides
-    # api_client_factory = ApiClientFactory(opts=opts)
+    # api_client_factory = SyncApiClientFactory(opts=opts)
 
-    api_client_factory = ApiClientFactory()
+    api_client_factory = SyncApiClientFactory()
 
-    # Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
-    async with api_client_factory:
-        # Create an instance of the API class
-        api_instance = api_client_factory.build(UsersApi)
-        id = 'id_example' # str | The unique identifier for the user
-        purge = True # bool | Whether to purge any trace of the user from the identity provider (will affect audit) (optional)
+    # Enter a context with an instance of the SyncApiClientFactory to ensure the connection pool is closed after use
+    
+    # Create an instance of the API class
+    api_instance = api_client_factory.build(UsersApi)
+    id = 'id_example' # str | The unique identifier for the user
+    purge = True # bool | Whether to purge any trace of the user from the identity provider (will affect audit) (optional)
 
-        try:
-            # uncomment the below to set overrides at the request level
-            # await api_instance.delete_user(id, purge=purge, opts=opts)
+    try:
+        # uncomment the below to set overrides at the request level
+        #  api_instance.delete_user(id, purge=purge, opts=opts)
 
-            # DeleteUser: Delete User
-            await api_instance.delete_user(id, purge=purge)        except ApiException as e:
-            print("Exception when calling UsersApi->delete_user: %s\n" % e)
+        # DeleteUser: Delete User
+        api_instance.delete_user(id, purge=purge)
+    except ApiException as e:
+        print("Exception when calling UsersApi->delete_user: %s\n" % e)
 
-asyncio.run(main())
+main()
 ```
 
 ### Parameters
@@ -222,33 +222,32 @@ Resets the user's password to a temporary one which is then expired
 ### Example
 
 ```python
-import asyncio
 from finbourne_identity.exceptions import ApiException
 from finbourne_identity.extensions.configuration_options import ConfigurationOptions
 from finbourne_identity.models import *
 from pprint import pprint
 from finbourne_identity import (
-    ApiClientFactory,
+    SyncApiClientFactory,
     UsersApi
 )
 
-async def main():
+def main():
 
     with open("secrets.json", "w") as file:
         file.write('''
-{
-    "api":
     {
-        "tokenUrl":"<your-token-url>",
-        "identityUrl":"https://<your-domain>.lusid.com/identity",
-        "username":"<your-username>",
-        "password":"<your-password>",
-        "clientId":"<your-client-id>",
-        "clientSecret":"<your-client-secret>"
-    }
-}''')
+        "api":
+        {
+            "tokenUrl":"<your-token-url>",
+            "identityUrl":"https://<your-domain>.lusid.com/identity",
+            "username":"<your-username>",
+            "password":"<your-password>",
+            "clientId":"<your-client-id>",
+            "clientSecret":"<your-client-secret>"
+        }
+    }''')
 
-    # Use the finbourne_identity ApiClientFactory to build Api instances with a configured api client
+    # Use the finbourne_identity SyncApiClientFactory to build Api instances with a configured api client
     # By default this will read config from environment variables
     # Then from a secrets.json file found in the current working directory
 
@@ -257,27 +256,28 @@ async def main():
     # opts.total_timeout_ms = 30_000
 
     # uncomment the below to use an api client factory with overrides
-    # api_client_factory = ApiClientFactory(opts=opts)
+    # api_client_factory = SyncApiClientFactory(opts=opts)
 
-    api_client_factory = ApiClientFactory()
+    api_client_factory = SyncApiClientFactory()
 
-    # Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
-    async with api_client_factory:
-        # Create an instance of the API class
-        api_instance = api_client_factory.build(UsersApi)
-        id = 'id_example' # str | The unique identifier for the User having its password reset
+    # Enter a context with an instance of the SyncApiClientFactory to ensure the connection pool is closed after use
+    
+    # Create an instance of the API class
+    api_instance = api_client_factory.build(UsersApi)
+    id = 'id_example' # str | The unique identifier for the User having its password reset
 
-        try:
-            # uncomment the below to set overrides at the request level
-            # api_response = await api_instance.expire_password(id, opts=opts)
+    try:
+        # uncomment the below to set overrides at the request level
+        # api_response =  api_instance.expire_password(id, opts=opts)
 
-            # ExpirePassword: Reset the user's password to a temporary one
-            api_response = await api_instance.expire_password(id)
-            pprint(api_response)
-        except ApiException as e:
-            print("Exception when calling UsersApi->expire_password: %s\n" % e)
+        # ExpirePassword: Reset the user's password to a temporary one
+        api_response = api_instance.expire_password(id)
+        pprint(api_response)
 
-asyncio.run(main())
+    except ApiException as e:
+        print("Exception when calling UsersApi->expire_password: %s\n" % e)
+
+main()
 ```
 
 ### Parameters
@@ -314,33 +314,32 @@ Finds a maximum of 50 users by ID
 ### Example
 
 ```python
-import asyncio
 from finbourne_identity.exceptions import ApiException
 from finbourne_identity.extensions.configuration_options import ConfigurationOptions
 from finbourne_identity.models import *
 from pprint import pprint
 from finbourne_identity import (
-    ApiClientFactory,
+    SyncApiClientFactory,
     UsersApi
 )
 
-async def main():
+def main():
 
     with open("secrets.json", "w") as file:
         file.write('''
-{
-    "api":
     {
-        "tokenUrl":"<your-token-url>",
-        "identityUrl":"https://<your-domain>.lusid.com/identity",
-        "username":"<your-username>",
-        "password":"<your-password>",
-        "clientId":"<your-client-id>",
-        "clientSecret":"<your-client-secret>"
-    }
-}''')
+        "api":
+        {
+            "tokenUrl":"<your-token-url>",
+            "identityUrl":"https://<your-domain>.lusid.com/identity",
+            "username":"<your-username>",
+            "password":"<your-password>",
+            "clientId":"<your-client-id>",
+            "clientSecret":"<your-client-secret>"
+        }
+    }''')
 
-    # Use the finbourne_identity ApiClientFactory to build Api instances with a configured api client
+    # Use the finbourne_identity SyncApiClientFactory to build Api instances with a configured api client
     # By default this will read config from environment variables
     # Then from a secrets.json file found in the current working directory
 
@@ -349,27 +348,28 @@ async def main():
     # opts.total_timeout_ms = 30_000
 
     # uncomment the below to use an api client factory with overrides
-    # api_client_factory = ApiClientFactory(opts=opts)
+    # api_client_factory = SyncApiClientFactory(opts=opts)
 
-    api_client_factory = ApiClientFactory()
+    api_client_factory = SyncApiClientFactory()
 
-    # Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
-    async with api_client_factory:
-        # Create an instance of the API class
-        api_instance = api_client_factory.build(UsersApi)
-        id = ['id_example'] # List[str] | A list of unique identifiers for the users
+    # Enter a context with an instance of the SyncApiClientFactory to ensure the connection pool is closed after use
+    
+    # Create an instance of the API class
+    api_instance = api_client_factory.build(UsersApi)
+    id = ['id_example'] # List[str] | A list of unique identifiers for the users
 
-        try:
-            # uncomment the below to set overrides at the request level
-            # api_response = await api_instance.find_users_by_id(id, opts=opts)
+    try:
+        # uncomment the below to set overrides at the request level
+        # api_response =  api_instance.find_users_by_id(id, opts=opts)
 
-            # FindUsersById: Find users by id endpoint
-            api_response = await api_instance.find_users_by_id(id)
-            pprint(api_response)
-        except ApiException as e:
-            print("Exception when calling UsersApi->find_users_by_id: %s\n" % e)
+        # FindUsersById: Find users by id endpoint
+        api_response = api_instance.find_users_by_id(id)
+        pprint(api_response)
 
-asyncio.run(main())
+    except ApiException as e:
+        print("Exception when calling UsersApi->find_users_by_id: %s\n" % e)
+
+main()
 ```
 
 ### Parameters
@@ -406,33 +406,32 @@ Get the specified User
 ### Example
 
 ```python
-import asyncio
 from finbourne_identity.exceptions import ApiException
 from finbourne_identity.extensions.configuration_options import ConfigurationOptions
 from finbourne_identity.models import *
 from pprint import pprint
 from finbourne_identity import (
-    ApiClientFactory,
+    SyncApiClientFactory,
     UsersApi
 )
 
-async def main():
+def main():
 
     with open("secrets.json", "w") as file:
         file.write('''
-{
-    "api":
     {
-        "tokenUrl":"<your-token-url>",
-        "identityUrl":"https://<your-domain>.lusid.com/identity",
-        "username":"<your-username>",
-        "password":"<your-password>",
-        "clientId":"<your-client-id>",
-        "clientSecret":"<your-client-secret>"
-    }
-}''')
+        "api":
+        {
+            "tokenUrl":"<your-token-url>",
+            "identityUrl":"https://<your-domain>.lusid.com/identity",
+            "username":"<your-username>",
+            "password":"<your-password>",
+            "clientId":"<your-client-id>",
+            "clientSecret":"<your-client-secret>"
+        }
+    }''')
 
-    # Use the finbourne_identity ApiClientFactory to build Api instances with a configured api client
+    # Use the finbourne_identity SyncApiClientFactory to build Api instances with a configured api client
     # By default this will read config from environment variables
     # Then from a secrets.json file found in the current working directory
 
@@ -441,28 +440,29 @@ async def main():
     # opts.total_timeout_ms = 30_000
 
     # uncomment the below to use an api client factory with overrides
-    # api_client_factory = ApiClientFactory(opts=opts)
+    # api_client_factory = SyncApiClientFactory(opts=opts)
 
-    api_client_factory = ApiClientFactory()
+    api_client_factory = SyncApiClientFactory()
 
-    # Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
-    async with api_client_factory:
-        # Create an instance of the API class
-        api_instance = api_client_factory.build(UsersApi)
-        id = 'id_example' # str | The unique identifier for the User
-        include_roles = True # bool | Flag indicating that the users roles should be included in the response (optional)
+    # Enter a context with an instance of the SyncApiClientFactory to ensure the connection pool is closed after use
+    
+    # Create an instance of the API class
+    api_instance = api_client_factory.build(UsersApi)
+    id = 'id_example' # str | The unique identifier for the User
+    include_roles = True # bool | Flag indicating that the users roles should be included in the response (optional)
 
-        try:
-            # uncomment the below to set overrides at the request level
-            # api_response = await api_instance.get_user(id, include_roles=include_roles, opts=opts)
+    try:
+        # uncomment the below to set overrides at the request level
+        # api_response =  api_instance.get_user(id, include_roles=include_roles, opts=opts)
 
-            # GetUser: Get User
-            api_response = await api_instance.get_user(id, include_roles=include_roles)
-            pprint(api_response)
-        except ApiException as e:
-            print("Exception when calling UsersApi->get_user: %s\n" % e)
+        # GetUser: Get User
+        api_response = api_instance.get_user(id, include_roles=include_roles)
+        pprint(api_response)
 
-asyncio.run(main())
+    except ApiException as e:
+        print("Exception when calling UsersApi->get_user: %s\n" % e)
+
+main()
 ```
 
 ### Parameters
@@ -500,33 +500,32 @@ Get the User Schema
 ### Example
 
 ```python
-import asyncio
 from finbourne_identity.exceptions import ApiException
 from finbourne_identity.extensions.configuration_options import ConfigurationOptions
 from finbourne_identity.models import *
 from pprint import pprint
 from finbourne_identity import (
-    ApiClientFactory,
+    SyncApiClientFactory,
     UsersApi
 )
 
-async def main():
+def main():
 
     with open("secrets.json", "w") as file:
         file.write('''
-{
-    "api":
     {
-        "tokenUrl":"<your-token-url>",
-        "identityUrl":"https://<your-domain>.lusid.com/identity",
-        "username":"<your-username>",
-        "password":"<your-password>",
-        "clientId":"<your-client-id>",
-        "clientSecret":"<your-client-secret>"
-    }
-}''')
+        "api":
+        {
+            "tokenUrl":"<your-token-url>",
+            "identityUrl":"https://<your-domain>.lusid.com/identity",
+            "username":"<your-username>",
+            "password":"<your-password>",
+            "clientId":"<your-client-id>",
+            "clientSecret":"<your-client-secret>"
+        }
+    }''')
 
-    # Use the finbourne_identity ApiClientFactory to build Api instances with a configured api client
+    # Use the finbourne_identity SyncApiClientFactory to build Api instances with a configured api client
     # By default this will read config from environment variables
     # Then from a secrets.json file found in the current working directory
 
@@ -535,26 +534,27 @@ async def main():
     # opts.total_timeout_ms = 30_000
 
     # uncomment the below to use an api client factory with overrides
-    # api_client_factory = ApiClientFactory(opts=opts)
+    # api_client_factory = SyncApiClientFactory(opts=opts)
 
-    api_client_factory = ApiClientFactory()
+    api_client_factory = SyncApiClientFactory()
 
-    # Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
-    async with api_client_factory:
-        # Create an instance of the API class
-        api_instance = api_client_factory.build(UsersApi)
+    # Enter a context with an instance of the SyncApiClientFactory to ensure the connection pool is closed after use
+    
+    # Create an instance of the API class
+    api_instance = api_client_factory.build(UsersApi)
 
-        try:
-            # uncomment the below to set overrides at the request level
-            # api_response = await api_instance.get_user_schema(opts=opts)
+    try:
+        # uncomment the below to set overrides at the request level
+        # api_response =  api_instance.get_user_schema(opts=opts)
 
-            # [EXPERIMENTAL] GetUserSchema: Get User Schema
-            api_response = await api_instance.get_user_schema()
-            pprint(api_response)
-        except ApiException as e:
-            print("Exception when calling UsersApi->get_user_schema: %s\n" % e)
+        # [EXPERIMENTAL] GetUserSchema: Get User Schema
+        api_response = api_instance.get_user_schema()
+        pprint(api_response)
 
-asyncio.run(main())
+    except ApiException as e:
+        print("Exception when calling UsersApi->get_user_schema: %s\n" % e)
+
+main()
 ```
 
 ### Parameters
@@ -587,33 +587,32 @@ List the available runnable Users
 ### Example
 
 ```python
-import asyncio
 from finbourne_identity.exceptions import ApiException
 from finbourne_identity.extensions.configuration_options import ConfigurationOptions
 from finbourne_identity.models import *
 from pprint import pprint
 from finbourne_identity import (
-    ApiClientFactory,
+    SyncApiClientFactory,
     UsersApi
 )
 
-async def main():
+def main():
 
     with open("secrets.json", "w") as file:
         file.write('''
-{
-    "api":
     {
-        "tokenUrl":"<your-token-url>",
-        "identityUrl":"https://<your-domain>.lusid.com/identity",
-        "username":"<your-username>",
-        "password":"<your-password>",
-        "clientId":"<your-client-id>",
-        "clientSecret":"<your-client-secret>"
-    }
-}''')
+        "api":
+        {
+            "tokenUrl":"<your-token-url>",
+            "identityUrl":"https://<your-domain>.lusid.com/identity",
+            "username":"<your-username>",
+            "password":"<your-password>",
+            "clientId":"<your-client-id>",
+            "clientSecret":"<your-client-secret>"
+        }
+    }''')
 
-    # Use the finbourne_identity ApiClientFactory to build Api instances with a configured api client
+    # Use the finbourne_identity SyncApiClientFactory to build Api instances with a configured api client
     # By default this will read config from environment variables
     # Then from a secrets.json file found in the current working directory
 
@@ -622,26 +621,27 @@ async def main():
     # opts.total_timeout_ms = 30_000
 
     # uncomment the below to use an api client factory with overrides
-    # api_client_factory = ApiClientFactory(opts=opts)
+    # api_client_factory = SyncApiClientFactory(opts=opts)
 
-    api_client_factory = ApiClientFactory()
+    api_client_factory = SyncApiClientFactory()
 
-    # Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
-    async with api_client_factory:
-        # Create an instance of the API class
-        api_instance = api_client_factory.build(UsersApi)
+    # Enter a context with an instance of the SyncApiClientFactory to ensure the connection pool is closed after use
+    
+    # Create an instance of the API class
+    api_instance = api_client_factory.build(UsersApi)
 
-        try:
-            # uncomment the below to set overrides at the request level
-            # api_response = await api_instance.list_runnable_users(opts=opts)
+    try:
+        # uncomment the below to set overrides at the request level
+        # api_response =  api_instance.list_runnable_users(opts=opts)
 
-            # [EARLY ACCESS] ListRunnableUsers: List Runable Users
-            api_response = await api_instance.list_runnable_users()
-            pprint(api_response)
-        except ApiException as e:
-            print("Exception when calling UsersApi->list_runnable_users: %s\n" % e)
+        # [EARLY ACCESS] ListRunnableUsers: List Runable Users
+        api_response = api_instance.list_runnable_users()
+        pprint(api_response)
 
-asyncio.run(main())
+    except ApiException as e:
+        print("Exception when calling UsersApi->list_runnable_users: %s\n" % e)
+
+main()
 ```
 
 ### Parameters
@@ -674,33 +674,32 @@ List the available Users
 ### Example
 
 ```python
-import asyncio
 from finbourne_identity.exceptions import ApiException
 from finbourne_identity.extensions.configuration_options import ConfigurationOptions
 from finbourne_identity.models import *
 from pprint import pprint
 from finbourne_identity import (
-    ApiClientFactory,
+    SyncApiClientFactory,
     UsersApi
 )
 
-async def main():
+def main():
 
     with open("secrets.json", "w") as file:
         file.write('''
-{
-    "api":
     {
-        "tokenUrl":"<your-token-url>",
-        "identityUrl":"https://<your-domain>.lusid.com/identity",
-        "username":"<your-username>",
-        "password":"<your-password>",
-        "clientId":"<your-client-id>",
-        "clientSecret":"<your-client-secret>"
-    }
-}''')
+        "api":
+        {
+            "tokenUrl":"<your-token-url>",
+            "identityUrl":"https://<your-domain>.lusid.com/identity",
+            "username":"<your-username>",
+            "password":"<your-password>",
+            "clientId":"<your-client-id>",
+            "clientSecret":"<your-client-secret>"
+        }
+    }''')
 
-    # Use the finbourne_identity ApiClientFactory to build Api instances with a configured api client
+    # Use the finbourne_identity SyncApiClientFactory to build Api instances with a configured api client
     # By default this will read config from environment variables
     # Then from a secrets.json file found in the current working directory
 
@@ -709,28 +708,29 @@ async def main():
     # opts.total_timeout_ms = 30_000
 
     # uncomment the below to use an api client factory with overrides
-    # api_client_factory = ApiClientFactory(opts=opts)
+    # api_client_factory = SyncApiClientFactory(opts=opts)
 
-    api_client_factory = ApiClientFactory()
+    api_client_factory = SyncApiClientFactory()
 
-    # Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
-    async with api_client_factory:
-        # Create an instance of the API class
-        api_instance = api_client_factory.build(UsersApi)
-        include_roles = False # bool | Flag indicating that the users roles should be included in the response (optional) (default to False)
-        include_deactivated = False # bool | Include previously deleted (not purged) users (optional) (default to False)
+    # Enter a context with an instance of the SyncApiClientFactory to ensure the connection pool is closed after use
+    
+    # Create an instance of the API class
+    api_instance = api_client_factory.build(UsersApi)
+    include_roles = False # bool | Flag indicating that the users roles should be included in the response (optional) (default to False)
+    include_deactivated = False # bool | Include previously deleted (not purged) users (optional) (default to False)
 
-        try:
-            # uncomment the below to set overrides at the request level
-            # api_response = await api_instance.list_users(include_roles=include_roles, include_deactivated=include_deactivated, opts=opts)
+    try:
+        # uncomment the below to set overrides at the request level
+        # api_response =  api_instance.list_users(include_roles=include_roles, include_deactivated=include_deactivated, opts=opts)
 
-            # ListUsers: List Users
-            api_response = await api_instance.list_users(include_roles=include_roles, include_deactivated=include_deactivated)
-            pprint(api_response)
-        except ApiException as e:
-            print("Exception when calling UsersApi->list_users: %s\n" % e)
+        # ListUsers: List Users
+        api_response = api_instance.list_users(include_roles=include_roles, include_deactivated=include_deactivated)
+        pprint(api_response)
 
-asyncio.run(main())
+    except ApiException as e:
+        print("Exception when calling UsersApi->list_users: %s\n" % e)
+
+main()
 ```
 
 ### Parameters
@@ -768,33 +768,32 @@ Resets the MFA factors of the specified User
 ### Example
 
 ```python
-import asyncio
 from finbourne_identity.exceptions import ApiException
 from finbourne_identity.extensions.configuration_options import ConfigurationOptions
 from finbourne_identity.models import *
 from pprint import pprint
 from finbourne_identity import (
-    ApiClientFactory,
+    SyncApiClientFactory,
     UsersApi
 )
 
-async def main():
+def main():
 
     with open("secrets.json", "w") as file:
         file.write('''
-{
-    "api":
     {
-        "tokenUrl":"<your-token-url>",
-        "identityUrl":"https://<your-domain>.lusid.com/identity",
-        "username":"<your-username>",
-        "password":"<your-password>",
-        "clientId":"<your-client-id>",
-        "clientSecret":"<your-client-secret>"
-    }
-}''')
+        "api":
+        {
+            "tokenUrl":"<your-token-url>",
+            "identityUrl":"https://<your-domain>.lusid.com/identity",
+            "username":"<your-username>",
+            "password":"<your-password>",
+            "clientId":"<your-client-id>",
+            "clientSecret":"<your-client-secret>"
+        }
+    }''')
 
-    # Use the finbourne_identity ApiClientFactory to build Api instances with a configured api client
+    # Use the finbourne_identity SyncApiClientFactory to build Api instances with a configured api client
     # By default this will read config from environment variables
     # Then from a secrets.json file found in the current working directory
 
@@ -803,25 +802,26 @@ async def main():
     # opts.total_timeout_ms = 30_000
 
     # uncomment the below to use an api client factory with overrides
-    # api_client_factory = ApiClientFactory(opts=opts)
+    # api_client_factory = SyncApiClientFactory(opts=opts)
 
-    api_client_factory = ApiClientFactory()
+    api_client_factory = SyncApiClientFactory()
 
-    # Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
-    async with api_client_factory:
-        # Create an instance of the API class
-        api_instance = api_client_factory.build(UsersApi)
-        id = 'id_example' # str | The unique identifier for the User having their MFA factors reset
+    # Enter a context with an instance of the SyncApiClientFactory to ensure the connection pool is closed after use
+    
+    # Create an instance of the API class
+    api_instance = api_client_factory.build(UsersApi)
+    id = 'id_example' # str | The unique identifier for the User having their MFA factors reset
 
-        try:
-            # uncomment the below to set overrides at the request level
-            # await api_instance.reset_factors(id, opts=opts)
+    try:
+        # uncomment the below to set overrides at the request level
+        #  api_instance.reset_factors(id, opts=opts)
 
-            # ResetFactors: Reset MFA factors
-            await api_instance.reset_factors(id)        except ApiException as e:
-            print("Exception when calling UsersApi->reset_factors: %s\n" % e)
+        # ResetFactors: Reset MFA factors
+        api_instance.reset_factors(id)
+    except ApiException as e:
+        print("Exception when calling UsersApi->reset_factors: %s\n" % e)
 
-asyncio.run(main())
+main()
 ```
 
 ### Parameters
@@ -858,33 +858,32 @@ Resets the password of the specified User
 ### Example
 
 ```python
-import asyncio
 from finbourne_identity.exceptions import ApiException
 from finbourne_identity.extensions.configuration_options import ConfigurationOptions
 from finbourne_identity.models import *
 from pprint import pprint
 from finbourne_identity import (
-    ApiClientFactory,
+    SyncApiClientFactory,
     UsersApi
 )
 
-async def main():
+def main():
 
     with open("secrets.json", "w") as file:
         file.write('''
-{
-    "api":
     {
-        "tokenUrl":"<your-token-url>",
-        "identityUrl":"https://<your-domain>.lusid.com/identity",
-        "username":"<your-username>",
-        "password":"<your-password>",
-        "clientId":"<your-client-id>",
-        "clientSecret":"<your-client-secret>"
-    }
-}''')
+        "api":
+        {
+            "tokenUrl":"<your-token-url>",
+            "identityUrl":"https://<your-domain>.lusid.com/identity",
+            "username":"<your-username>",
+            "password":"<your-password>",
+            "clientId":"<your-client-id>",
+            "clientSecret":"<your-client-secret>"
+        }
+    }''')
 
-    # Use the finbourne_identity ApiClientFactory to build Api instances with a configured api client
+    # Use the finbourne_identity SyncApiClientFactory to build Api instances with a configured api client
     # By default this will read config from environment variables
     # Then from a secrets.json file found in the current working directory
 
@@ -893,25 +892,26 @@ async def main():
     # opts.total_timeout_ms = 30_000
 
     # uncomment the below to use an api client factory with overrides
-    # api_client_factory = ApiClientFactory(opts=opts)
+    # api_client_factory = SyncApiClientFactory(opts=opts)
 
-    api_client_factory = ApiClientFactory()
+    api_client_factory = SyncApiClientFactory()
 
-    # Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
-    async with api_client_factory:
-        # Create an instance of the API class
-        api_instance = api_client_factory.build(UsersApi)
-        id = 'id_example' # str | The unique identifier for the User having their password reset
+    # Enter a context with an instance of the SyncApiClientFactory to ensure the connection pool is closed after use
+    
+    # Create an instance of the API class
+    api_instance = api_client_factory.build(UsersApi)
+    id = 'id_example' # str | The unique identifier for the User having their password reset
 
-        try:
-            # uncomment the below to set overrides at the request level
-            # await api_instance.reset_password(id, opts=opts)
+    try:
+        # uncomment the below to set overrides at the request level
+        #  api_instance.reset_password(id, opts=opts)
 
-            # ResetPassword: Reset Password
-            await api_instance.reset_password(id)        except ApiException as e:
-            print("Exception when calling UsersApi->reset_password: %s\n" % e)
+        # ResetPassword: Reset Password
+        api_instance.reset_password(id)
+    except ApiException as e:
+        print("Exception when calling UsersApi->reset_password: %s\n" % e)
 
-asyncio.run(main())
+main()
 ```
 
 ### Parameters
@@ -948,33 +948,32 @@ Sends an activation email to the specified User
 ### Example
 
 ```python
-import asyncio
 from finbourne_identity.exceptions import ApiException
 from finbourne_identity.extensions.configuration_options import ConfigurationOptions
 from finbourne_identity.models import *
 from pprint import pprint
 from finbourne_identity import (
-    ApiClientFactory,
+    SyncApiClientFactory,
     UsersApi
 )
 
-async def main():
+def main():
 
     with open("secrets.json", "w") as file:
         file.write('''
-{
-    "api":
     {
-        "tokenUrl":"<your-token-url>",
-        "identityUrl":"https://<your-domain>.lusid.com/identity",
-        "username":"<your-username>",
-        "password":"<your-password>",
-        "clientId":"<your-client-id>",
-        "clientSecret":"<your-client-secret>"
-    }
-}''')
+        "api":
+        {
+            "tokenUrl":"<your-token-url>",
+            "identityUrl":"https://<your-domain>.lusid.com/identity",
+            "username":"<your-username>",
+            "password":"<your-password>",
+            "clientId":"<your-client-id>",
+            "clientSecret":"<your-client-secret>"
+        }
+    }''')
 
-    # Use the finbourne_identity ApiClientFactory to build Api instances with a configured api client
+    # Use the finbourne_identity SyncApiClientFactory to build Api instances with a configured api client
     # By default this will read config from environment variables
     # Then from a secrets.json file found in the current working directory
 
@@ -983,25 +982,26 @@ async def main():
     # opts.total_timeout_ms = 30_000
 
     # uncomment the below to use an api client factory with overrides
-    # api_client_factory = ApiClientFactory(opts=opts)
+    # api_client_factory = SyncApiClientFactory(opts=opts)
 
-    api_client_factory = ApiClientFactory()
+    api_client_factory = SyncApiClientFactory()
 
-    # Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
-    async with api_client_factory:
-        # Create an instance of the API class
-        api_instance = api_client_factory.build(UsersApi)
-        id = 'id_example' # str | The unique identifier for the User to be activated
+    # Enter a context with an instance of the SyncApiClientFactory to ensure the connection pool is closed after use
+    
+    # Create an instance of the API class
+    api_instance = api_client_factory.build(UsersApi)
+    id = 'id_example' # str | The unique identifier for the User to be activated
 
-        try:
-            # uncomment the below to set overrides at the request level
-            # await api_instance.send_activation_email(id, opts=opts)
+    try:
+        # uncomment the below to set overrides at the request level
+        #  api_instance.send_activation_email(id, opts=opts)
 
-            # SendActivationEmail: Sends an activation email to the User
-            await api_instance.send_activation_email(id)        except ApiException as e:
-            print("Exception when calling UsersApi->send_activation_email: %s\n" % e)
+        # SendActivationEmail: Sends an activation email to the User
+        api_instance.send_activation_email(id)
+    except ApiException as e:
+        print("Exception when calling UsersApi->send_activation_email: %s\n" % e)
 
-asyncio.run(main())
+main()
 ```
 
 ### Parameters
@@ -1038,33 +1038,32 @@ Unlocks the specified User
 ### Example
 
 ```python
-import asyncio
 from finbourne_identity.exceptions import ApiException
 from finbourne_identity.extensions.configuration_options import ConfigurationOptions
 from finbourne_identity.models import *
 from pprint import pprint
 from finbourne_identity import (
-    ApiClientFactory,
+    SyncApiClientFactory,
     UsersApi
 )
 
-async def main():
+def main():
 
     with open("secrets.json", "w") as file:
         file.write('''
-{
-    "api":
     {
-        "tokenUrl":"<your-token-url>",
-        "identityUrl":"https://<your-domain>.lusid.com/identity",
-        "username":"<your-username>",
-        "password":"<your-password>",
-        "clientId":"<your-client-id>",
-        "clientSecret":"<your-client-secret>"
-    }
-}''')
+        "api":
+        {
+            "tokenUrl":"<your-token-url>",
+            "identityUrl":"https://<your-domain>.lusid.com/identity",
+            "username":"<your-username>",
+            "password":"<your-password>",
+            "clientId":"<your-client-id>",
+            "clientSecret":"<your-client-secret>"
+        }
+    }''')
 
-    # Use the finbourne_identity ApiClientFactory to build Api instances with a configured api client
+    # Use the finbourne_identity SyncApiClientFactory to build Api instances with a configured api client
     # By default this will read config from environment variables
     # Then from a secrets.json file found in the current working directory
 
@@ -1073,25 +1072,26 @@ async def main():
     # opts.total_timeout_ms = 30_000
 
     # uncomment the below to use an api client factory with overrides
-    # api_client_factory = ApiClientFactory(opts=opts)
+    # api_client_factory = SyncApiClientFactory(opts=opts)
 
-    api_client_factory = ApiClientFactory()
+    api_client_factory = SyncApiClientFactory()
 
-    # Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
-    async with api_client_factory:
-        # Create an instance of the API class
-        api_instance = api_client_factory.build(UsersApi)
-        id = 'id_example' # str | The unique identifier for the User to be unlocked
+    # Enter a context with an instance of the SyncApiClientFactory to ensure the connection pool is closed after use
+    
+    # Create an instance of the API class
+    api_instance = api_client_factory.build(UsersApi)
+    id = 'id_example' # str | The unique identifier for the User to be unlocked
 
-        try:
-            # uncomment the below to set overrides at the request level
-            # await api_instance.unlock_user(id, opts=opts)
+    try:
+        # uncomment the below to set overrides at the request level
+        #  api_instance.unlock_user(id, opts=opts)
 
-            # UnlockUser: Unlock User
-            await api_instance.unlock_user(id)        except ApiException as e:
-            print("Exception when calling UsersApi->unlock_user: %s\n" % e)
+        # UnlockUser: Unlock User
+        api_instance.unlock_user(id)
+    except ApiException as e:
+        print("Exception when calling UsersApi->unlock_user: %s\n" % e)
 
-asyncio.run(main())
+main()
 ```
 
 ### Parameters
@@ -1128,33 +1128,32 @@ Unsuspend the user
 ### Example
 
 ```python
-import asyncio
 from finbourne_identity.exceptions import ApiException
 from finbourne_identity.extensions.configuration_options import ConfigurationOptions
 from finbourne_identity.models import *
 from pprint import pprint
 from finbourne_identity import (
-    ApiClientFactory,
+    SyncApiClientFactory,
     UsersApi
 )
 
-async def main():
+def main():
 
     with open("secrets.json", "w") as file:
         file.write('''
-{
-    "api":
     {
-        "tokenUrl":"<your-token-url>",
-        "identityUrl":"https://<your-domain>.lusid.com/identity",
-        "username":"<your-username>",
-        "password":"<your-password>",
-        "clientId":"<your-client-id>",
-        "clientSecret":"<your-client-secret>"
-    }
-}''')
+        "api":
+        {
+            "tokenUrl":"<your-token-url>",
+            "identityUrl":"https://<your-domain>.lusid.com/identity",
+            "username":"<your-username>",
+            "password":"<your-password>",
+            "clientId":"<your-client-id>",
+            "clientSecret":"<your-client-secret>"
+        }
+    }''')
 
-    # Use the finbourne_identity ApiClientFactory to build Api instances with a configured api client
+    # Use the finbourne_identity SyncApiClientFactory to build Api instances with a configured api client
     # By default this will read config from environment variables
     # Then from a secrets.json file found in the current working directory
 
@@ -1163,25 +1162,26 @@ async def main():
     # opts.total_timeout_ms = 30_000
 
     # uncomment the below to use an api client factory with overrides
-    # api_client_factory = ApiClientFactory(opts=opts)
+    # api_client_factory = SyncApiClientFactory(opts=opts)
 
-    api_client_factory = ApiClientFactory()
+    api_client_factory = SyncApiClientFactory()
 
-    # Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
-    async with api_client_factory:
-        # Create an instance of the API class
-        api_instance = api_client_factory.build(UsersApi)
-        id = 'id_example' # str | The unique identifier for the User to Unsuspend
+    # Enter a context with an instance of the SyncApiClientFactory to ensure the connection pool is closed after use
+    
+    # Create an instance of the API class
+    api_instance = api_client_factory.build(UsersApi)
+    id = 'id_example' # str | The unique identifier for the User to Unsuspend
 
-        try:
-            # uncomment the below to set overrides at the request level
-            # await api_instance.unsuspend_user(id, opts=opts)
+    try:
+        # uncomment the below to set overrides at the request level
+        #  api_instance.unsuspend_user(id, opts=opts)
 
-            # [EXPERIMENTAL] UnsuspendUser: Unsuspend user
-            await api_instance.unsuspend_user(id)        except ApiException as e:
-            print("Exception when calling UsersApi->unsuspend_user: %s\n" % e)
+        # [EXPERIMENTAL] UnsuspendUser: Unsuspend user
+        api_instance.unsuspend_user(id)
+    except ApiException as e:
+        print("Exception when calling UsersApi->unsuspend_user: %s\n" % e)
 
-asyncio.run(main())
+main()
 ```
 
 ### Parameters
@@ -1218,33 +1218,32 @@ Updates the specified User
 ### Example
 
 ```python
-import asyncio
 from finbourne_identity.exceptions import ApiException
 from finbourne_identity.extensions.configuration_options import ConfigurationOptions
 from finbourne_identity.models import *
 from pprint import pprint
 from finbourne_identity import (
-    ApiClientFactory,
+    SyncApiClientFactory,
     UsersApi
 )
 
-async def main():
+def main():
 
     with open("secrets.json", "w") as file:
         file.write('''
-{
-    "api":
     {
-        "tokenUrl":"<your-token-url>",
-        "identityUrl":"https://<your-domain>.lusid.com/identity",
-        "username":"<your-username>",
-        "password":"<your-password>",
-        "clientId":"<your-client-id>",
-        "clientSecret":"<your-client-secret>"
-    }
-}''')
+        "api":
+        {
+            "tokenUrl":"<your-token-url>",
+            "identityUrl":"https://<your-domain>.lusid.com/identity",
+            "username":"<your-username>",
+            "password":"<your-password>",
+            "clientId":"<your-client-id>",
+            "clientSecret":"<your-client-secret>"
+        }
+    }''')
 
-    # Use the finbourne_identity ApiClientFactory to build Api instances with a configured api client
+    # Use the finbourne_identity SyncApiClientFactory to build Api instances with a configured api client
     # By default this will read config from environment variables
     # Then from a secrets.json file found in the current working directory
 
@@ -1253,33 +1252,34 @@ async def main():
     # opts.total_timeout_ms = 30_000
 
     # uncomment the below to use an api client factory with overrides
-    # api_client_factory = ApiClientFactory(opts=opts)
+    # api_client_factory = SyncApiClientFactory(opts=opts)
 
-    api_client_factory = ApiClientFactory()
+    api_client_factory = SyncApiClientFactory()
 
-    # Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
-    async with api_client_factory:
-        # Create an instance of the API class
-        api_instance = api_client_factory.build(UsersApi)
-        id = 'id_example' # str | The unique identifier for the User to be updated
+    # Enter a context with an instance of the SyncApiClientFactory to ensure the connection pool is closed after use
+    
+    # Create an instance of the API class
+    api_instance = api_client_factory.build(UsersApi)
+    id = 'id_example' # str | The unique identifier for the User to be updated
 
-        # Objects can be created either via the class constructor, or using the 'from_dict' or 'from_json' methods
-        # Change the lines below to switch approach
-        # update_user_request = UpdateUserRequest.from_json("")
-        # update_user_request = UpdateUserRequest.from_dict({})
-        update_user_request = UpdateUserRequest()
+    # Objects can be created either via the class constructor, or using the 'from_dict' or 'from_json' methods
+    # Change the lines below to switch approach
+    # update_user_request = UpdateUserRequest.from_json("")
+    # update_user_request = UpdateUserRequest.from_dict({})
+    update_user_request = UpdateUserRequest()
 
-        try:
-            # uncomment the below to set overrides at the request level
-            # api_response = await api_instance.update_user(id, update_user_request, opts=opts)
+    try:
+        # uncomment the below to set overrides at the request level
+        # api_response =  api_instance.update_user(id, update_user_request, opts=opts)
 
-            # UpdateUser: Update User
-            api_response = await api_instance.update_user(id, update_user_request)
-            pprint(api_response)
-        except ApiException as e:
-            print("Exception when calling UsersApi->update_user: %s\n" % e)
+        # UpdateUser: Update User
+        api_response = api_instance.update_user(id, update_user_request)
+        pprint(api_response)
 
-asyncio.run(main())
+    except ApiException as e:
+        print("Exception when calling UsersApi->update_user: %s\n" % e)
+
+main()
 ```
 
 ### Parameters
@@ -1317,33 +1317,32 @@ Update the User Schema
 ### Example
 
 ```python
-import asyncio
 from finbourne_identity.exceptions import ApiException
 from finbourne_identity.extensions.configuration_options import ConfigurationOptions
 from finbourne_identity.models import *
 from pprint import pprint
 from finbourne_identity import (
-    ApiClientFactory,
+    SyncApiClientFactory,
     UsersApi
 )
 
-async def main():
+def main():
 
     with open("secrets.json", "w") as file:
         file.write('''
-{
-    "api":
     {
-        "tokenUrl":"<your-token-url>",
-        "identityUrl":"https://<your-domain>.lusid.com/identity",
-        "username":"<your-username>",
-        "password":"<your-password>",
-        "clientId":"<your-client-id>",
-        "clientSecret":"<your-client-secret>"
-    }
-}''')
+        "api":
+        {
+            "tokenUrl":"<your-token-url>",
+            "identityUrl":"https://<your-domain>.lusid.com/identity",
+            "username":"<your-username>",
+            "password":"<your-password>",
+            "clientId":"<your-client-id>",
+            "clientSecret":"<your-client-secret>"
+        }
+    }''')
 
-    # Use the finbourne_identity ApiClientFactory to build Api instances with a configured api client
+    # Use the finbourne_identity SyncApiClientFactory to build Api instances with a configured api client
     # By default this will read config from environment variables
     # Then from a secrets.json file found in the current working directory
 
@@ -1352,32 +1351,33 @@ async def main():
     # opts.total_timeout_ms = 30_000
 
     # uncomment the below to use an api client factory with overrides
-    # api_client_factory = ApiClientFactory(opts=opts)
+    # api_client_factory = SyncApiClientFactory(opts=opts)
 
-    api_client_factory = ApiClientFactory()
+    api_client_factory = SyncApiClientFactory()
 
-    # Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
-    async with api_client_factory:
-        # Create an instance of the API class
-        api_instance = api_client_factory.build(UsersApi)
+    # Enter a context with an instance of the SyncApiClientFactory to ensure the connection pool is closed after use
+    
+    # Create an instance of the API class
+    api_instance = api_client_factory.build(UsersApi)
 
-        # Objects can be created either via the class constructor, or using the 'from_dict' or 'from_json' methods
-        # Change the lines below to switch approach
-        # update_user_schema_request = UpdateUserSchemaRequest.from_json("")
-        # update_user_schema_request = UpdateUserSchemaRequest.from_dict({})
-        update_user_schema_request = UpdateUserSchemaRequest()
+    # Objects can be created either via the class constructor, or using the 'from_dict' or 'from_json' methods
+    # Change the lines below to switch approach
+    # update_user_schema_request = UpdateUserSchemaRequest.from_json("")
+    # update_user_schema_request = UpdateUserSchemaRequest.from_dict({})
+    update_user_schema_request = UpdateUserSchemaRequest()
 
-        try:
-            # uncomment the below to set overrides at the request level
-            # api_response = await api_instance.update_user_schema(update_user_schema_request, opts=opts)
+    try:
+        # uncomment the below to set overrides at the request level
+        # api_response =  api_instance.update_user_schema(update_user_schema_request, opts=opts)
 
-            # [EXPERIMENTAL] UpdateUserSchema: Update User Schema
-            api_response = await api_instance.update_user_schema(update_user_schema_request)
-            pprint(api_response)
-        except ApiException as e:
-            print("Exception when calling UsersApi->update_user_schema: %s\n" % e)
+        # [EXPERIMENTAL] UpdateUserSchema: Update User Schema
+        api_response = api_instance.update_user_schema(update_user_schema_request)
+        pprint(api_response)
 
-asyncio.run(main())
+    except ApiException as e:
+        print("Exception when calling UsersApi->update_user_schema: %s\n" % e)
+
+main()
 ```
 
 ### Parameters

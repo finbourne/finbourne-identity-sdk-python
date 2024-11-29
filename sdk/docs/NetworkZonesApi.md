@@ -1,22 +1,22 @@
-# finbourne_identity.ApplicationsApi
+# finbourne_identity.NetworkZonesApi
 
 All URIs are relative to *https://fbn-prd.lusid.com/identity*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**create_application**](ApplicationsApi.md#create_application) | **POST** /api/applications | [EARLY ACCESS] CreateApplication: Create Application
-[**delete_application**](ApplicationsApi.md#delete_application) | **DELETE** /api/applications/{id} | [EARLY ACCESS] DeleteApplication: Delete Application
-[**get_application**](ApplicationsApi.md#get_application) | **GET** /api/applications/{id} | GetApplication: Get Application
-[**list_applications**](ApplicationsApi.md#list_applications) | **GET** /api/applications | ListApplications: List Applications
-[**rotate_application_secrets**](ApplicationsApi.md#rotate_application_secrets) | **POST** /api/applications/{id}/lifecycle/$newsecret | [EARLY ACCESS] RotateApplicationSecrets: Rotate Application Secrets
+[**create_network_zone**](NetworkZonesApi.md#create_network_zone) | **POST** /api/networkzones | [BETA] CreateNetworkZone: Creates a network zone
+[**delete_network_zone**](NetworkZonesApi.md#delete_network_zone) | **DELETE** /api/networkzones/{code} | [BETA] DeleteNetworkZone: Deletes a network zone
+[**get_network_zone**](NetworkZonesApi.md#get_network_zone) | **GET** /api/networkzones/{code} | [BETA] GetNetworkZone: Retrieve a Network Zone
+[**list_network_zones**](NetworkZonesApi.md#list_network_zones) | **GET** /api/networkzones | [BETA] ListNetworkZones: Lists all network zones for a domain
+[**update_network_zone**](NetworkZonesApi.md#update_network_zone) | **PUT** /api/networkzones/{code} | [BETA] UpdateNetworkZone: Updates an existing network zone
 
 
-# **create_application**
-> OAuthApplication create_application(create_application_request=create_application_request)
+# **create_network_zone**
+> NetworkZoneDefinitionResponse create_network_zone(create_network_zone_request)
 
-[EARLY ACCESS] CreateApplication: Create Application
+[BETA] CreateNetworkZone: Creates a network zone
 
-Create a new Application
+By default, the network zone will have its hierarchy set to last on creation.
 
 ### Example
 
@@ -27,7 +27,7 @@ from finbourne_identity.models import *
 from pprint import pprint
 from finbourne_identity import (
     SyncApiClientFactory,
-    ApplicationsApi
+    NetworkZonesApi
 )
 
 def main():
@@ -62,24 +62,24 @@ def main():
     # Enter a context with an instance of the SyncApiClientFactory to ensure the connection pool is closed after use
     
     # Create an instance of the API class
-    api_instance = api_client_factory.build(ApplicationsApi)
+    api_instance = api_client_factory.build(NetworkZonesApi)
 
     # Objects can be created either via the class constructor, or using the 'from_dict' or 'from_json' methods
     # Change the lines below to switch approach
-    # create_application_request = CreateApplicationRequest.from_json("")
-    # create_application_request = CreateApplicationRequest.from_dict({})
-    create_application_request = CreateApplicationRequest()
+    # create_network_zone_request = CreateNetworkZoneRequest.from_json("")
+    # create_network_zone_request = CreateNetworkZoneRequest.from_dict({})
+    create_network_zone_request = CreateNetworkZoneRequest()
 
     try:
         # uncomment the below to set overrides at the request level
-        # api_response =  api_instance.create_application(create_application_request=create_application_request, opts=opts)
+        # api_response =  api_instance.create_network_zone(create_network_zone_request, opts=opts)
 
-        # [EARLY ACCESS] CreateApplication: Create Application
-        api_response = api_instance.create_application(create_application_request=create_application_request)
+        # [BETA] CreateNetworkZone: Creates a network zone
+        api_response = api_instance.create_network_zone(create_network_zone_request)
         pprint(api_response)
 
     except ApiException as e:
-        print("Exception when calling ApplicationsApi->create_application: %s\n" % e)
+        print("Exception when calling NetworkZonesApi->create_network_zone: %s\n" % e)
 
 main()
 ```
@@ -88,11 +88,11 @@ main()
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **create_application_request** | [**CreateApplicationRequest**](CreateApplicationRequest.md)| Details of the application to be created | [optional] 
+ **create_network_zone_request** | [**CreateNetworkZoneRequest**](CreateNetworkZoneRequest.md)| The details of the network zone to define | 
 
 ### Return type
 
-[**OAuthApplication**](OAuthApplication.md)
+[**NetworkZoneDefinitionResponse**](NetworkZoneDefinitionResponse.md)
 
 ### HTTP request headers
 
@@ -102,18 +102,18 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Create Application |  -  |
+**201** | Create Network Zone |  -  |
 **400** | The details of the input related failure |  -  |
 **0** | Error response |  -  |
 
 [Back to top](#) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to Model list](../README.md#documentation-for-models) &#8226; [Back to README](../README.md)
 
-# **delete_application**
-> delete_application(id)
+# **delete_network_zone**
+> delete_network_zone(code)
 
-[EARLY ACCESS] DeleteApplication: Delete Application
+[BETA] DeleteNetworkZone: Deletes a network zone
 
-Delete the specified application
+Will return a success if network zone already deleted
 
 ### Example
 
@@ -124,7 +124,7 @@ from finbourne_identity.models import *
 from pprint import pprint
 from finbourne_identity import (
     SyncApiClientFactory,
-    ApplicationsApi
+    NetworkZonesApi
 )
 
 def main():
@@ -159,17 +159,17 @@ def main():
     # Enter a context with an instance of the SyncApiClientFactory to ensure the connection pool is closed after use
     
     # Create an instance of the API class
-    api_instance = api_client_factory.build(ApplicationsApi)
-    id = 'id_example' # str | The unique identifier for the application
+    api_instance = api_client_factory.build(NetworkZonesApi)
+    code = 'code_example' # str | The unique identifier of the network zone to delete
 
     try:
         # uncomment the below to set overrides at the request level
-        #  api_instance.delete_application(id, opts=opts)
+        #  api_instance.delete_network_zone(code, opts=opts)
 
-        # [EARLY ACCESS] DeleteApplication: Delete Application
-        api_instance.delete_application(id)
+        # [BETA] DeleteNetworkZone: Deletes a network zone
+        api_instance.delete_network_zone(code)
     except ApiException as e:
-        print("Exception when calling ApplicationsApi->delete_application: %s\n" % e)
+        print("Exception when calling NetworkZonesApi->delete_network_zone: %s\n" % e)
 
 main()
 ```
@@ -178,7 +178,7 @@ main()
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **str**| The unique identifier for the application | 
+ **code** | **str**| The unique identifier of the network zone to delete | 
 
 ### Return type
 
@@ -198,12 +198,12 @@ void (empty response body)
 
 [Back to top](#) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to Model list](../README.md#documentation-for-models) &#8226; [Back to README](../README.md)
 
-# **get_application**
-> OAuthApplication get_application(id, include_secret=include_secret)
+# **get_network_zone**
+> NetworkZoneDefinitionResponse get_network_zone(code)
 
-GetApplication: Get Application
+[BETA] GetNetworkZone: Retrieve a Network Zone
 
-get the specified application, and optionally the OIDC secret
+Retrieves a Network Zone
 
 ### Example
 
@@ -214,7 +214,7 @@ from finbourne_identity.models import *
 from pprint import pprint
 from finbourne_identity import (
     SyncApiClientFactory,
-    ApplicationsApi
+    NetworkZonesApi
 )
 
 def main():
@@ -249,20 +249,19 @@ def main():
     # Enter a context with an instance of the SyncApiClientFactory to ensure the connection pool is closed after use
     
     # Create an instance of the API class
-    api_instance = api_client_factory.build(ApplicationsApi)
-    id = 'id_example' # str | The unique identifier for the application
-    include_secret = True # bool | Optional. If set to true, the application secrets will be returned in plain text (optional)
+    api_instance = api_client_factory.build(NetworkZonesApi)
+    code = 'code_example' # str | The unique identifier of the network zone
 
     try:
         # uncomment the below to set overrides at the request level
-        # api_response =  api_instance.get_application(id, include_secret=include_secret, opts=opts)
+        # api_response =  api_instance.get_network_zone(code, opts=opts)
 
-        # GetApplication: Get Application
-        api_response = api_instance.get_application(id, include_secret=include_secret)
+        # [BETA] GetNetworkZone: Retrieve a Network Zone
+        api_response = api_instance.get_network_zone(code)
         pprint(api_response)
 
     except ApiException as e:
-        print("Exception when calling ApplicationsApi->get_application: %s\n" % e)
+        print("Exception when calling NetworkZonesApi->get_network_zone: %s\n" % e)
 
 main()
 ```
@@ -271,12 +270,11 @@ main()
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **str**| The unique identifier for the application | 
- **include_secret** | **bool**| Optional. If set to true, the application secrets will be returned in plain text | [optional] 
+ **code** | **str**| The unique identifier of the network zone | 
 
 ### Return type
 
-[**OAuthApplication**](OAuthApplication.md)
+[**NetworkZoneDefinitionResponse**](NetworkZoneDefinitionResponse.md)
 
 ### HTTP request headers
 
@@ -286,19 +284,18 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Get the specified application |  -  |
-**404** | Not Found |  -  |
+**200** | Get Network Zone |  -  |
 **400** | The details of the input related failure |  -  |
 **0** | Error response |  -  |
 
 [Back to top](#) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to Model list](../README.md#documentation-for-models) &#8226; [Back to README](../README.md)
 
-# **list_applications**
-> List[OAuthApplication] list_applications()
+# **list_network_zones**
+> List[NetworkZoneDefinitionResponse] list_network_zones()
 
-ListApplications: List Applications
+[BETA] ListNetworkZones: Lists all network zones for a domain
 
-List the available applications
+Lists all network zones for a domain
 
 ### Example
 
@@ -309,7 +306,7 @@ from finbourne_identity.models import *
 from pprint import pprint
 from finbourne_identity import (
     SyncApiClientFactory,
-    ApplicationsApi
+    NetworkZonesApi
 )
 
 def main():
@@ -344,18 +341,18 @@ def main():
     # Enter a context with an instance of the SyncApiClientFactory to ensure the connection pool is closed after use
     
     # Create an instance of the API class
-    api_instance = api_client_factory.build(ApplicationsApi)
+    api_instance = api_client_factory.build(NetworkZonesApi)
 
     try:
         # uncomment the below to set overrides at the request level
-        # api_response =  api_instance.list_applications(opts=opts)
+        # api_response =  api_instance.list_network_zones(opts=opts)
 
-        # ListApplications: List Applications
-        api_response = api_instance.list_applications()
+        # [BETA] ListNetworkZones: Lists all network zones for a domain
+        api_response = api_instance.list_network_zones()
         pprint(api_response)
 
     except ApiException as e:
-        print("Exception when calling ApplicationsApi->list_applications: %s\n" % e)
+        print("Exception when calling NetworkZonesApi->list_network_zones: %s\n" % e)
 
 main()
 ```
@@ -365,7 +362,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**List[OAuthApplication]**](OAuthApplication.md)
+[**List[NetworkZoneDefinitionResponse]**](NetworkZoneDefinitionResponse.md)
 
 ### HTTP request headers
 
@@ -375,17 +372,17 @@ This endpoint does not need any parameter.
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | List the available applications |  -  |
+**200** | List Network Zones |  -  |
 **0** | Error response |  -  |
 
 [Back to top](#) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to Model list](../README.md#documentation-for-models) &#8226; [Back to README](../README.md)
 
-# **rotate_application_secrets**
-> OAuthApplication rotate_application_secrets(id)
+# **update_network_zone**
+> NetworkZoneDefinitionResponse update_network_zone(code, update_network_zone_request)
 
-[EARLY ACCESS] RotateApplicationSecrets: Rotate Application Secrets
+[BETA] UpdateNetworkZone: Updates an existing network zone
 
-Rotate the secrets for the specified application
+Updates an existing network zone
 
 ### Example
 
@@ -396,7 +393,7 @@ from finbourne_identity.models import *
 from pprint import pprint
 from finbourne_identity import (
     SyncApiClientFactory,
-    ApplicationsApi
+    NetworkZonesApi
 )
 
 def main():
@@ -431,19 +428,25 @@ def main():
     # Enter a context with an instance of the SyncApiClientFactory to ensure the connection pool is closed after use
     
     # Create an instance of the API class
-    api_instance = api_client_factory.build(ApplicationsApi)
-    id = 'id_example' # str | The unique identifier for the application
+    api_instance = api_client_factory.build(NetworkZonesApi)
+    code = 'code_example' # str | The unique identifier of the network zone
+
+    # Objects can be created either via the class constructor, or using the 'from_dict' or 'from_json' methods
+    # Change the lines below to switch approach
+    # update_network_zone_request = UpdateNetworkZoneRequest.from_json("")
+    # update_network_zone_request = UpdateNetworkZoneRequest.from_dict({})
+    update_network_zone_request = UpdateNetworkZoneRequest()
 
     try:
         # uncomment the below to set overrides at the request level
-        # api_response =  api_instance.rotate_application_secrets(id, opts=opts)
+        # api_response =  api_instance.update_network_zone(code, update_network_zone_request, opts=opts)
 
-        # [EARLY ACCESS] RotateApplicationSecrets: Rotate Application Secrets
-        api_response = api_instance.rotate_application_secrets(id)
+        # [BETA] UpdateNetworkZone: Updates an existing network zone
+        api_response = api_instance.update_network_zone(code, update_network_zone_request)
         pprint(api_response)
 
     except ApiException as e:
-        print("Exception when calling ApplicationsApi->rotate_application_secrets: %s\n" % e)
+        print("Exception when calling NetworkZonesApi->update_network_zone: %s\n" % e)
 
 main()
 ```
@@ -452,21 +455,22 @@ main()
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **str**| The unique identifier for the application | 
+ **code** | **str**| The unique identifier of the network zone | 
+ **update_network_zone_request** | [**UpdateNetworkZoneRequest**](UpdateNetworkZoneRequest.md)| The updated definition of the network zone | 
 
 ### Return type
 
-[**OAuthApplication**](OAuthApplication.md)
+[**NetworkZoneDefinitionResponse**](NetworkZoneDefinitionResponse.md)
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
  - **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Rotate Application Secrets |  -  |
+**200** | Update Network Zone |  -  |
 **400** | The details of the input related failure |  -  |
 **0** | Error response |  -  |
 

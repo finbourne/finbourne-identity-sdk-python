@@ -22,6 +22,7 @@ from finbourne_identity.models.api_key import ApiKey
 from finbourne_identity.models.authentication_information import AuthenticationInformation
 from finbourne_identity.models.create_api_key import CreateApiKey
 from finbourne_identity.models.create_application_request import CreateApplicationRequest
+from finbourne_identity.models.create_network_zone_request import CreateNetworkZoneRequest
 from finbourne_identity.models.create_role_request import CreateRoleRequest
 from finbourne_identity.models.create_user_request import CreateUserRequest
 from finbourne_identity.models.created_api_key import CreatedApiKey
@@ -29,10 +30,13 @@ from finbourne_identity.models.current_user_response import CurrentUserResponse
 from finbourne_identity.models.error_detail import ErrorDetail
 from finbourne_identity.models.id_selector_definition import IdSelectorDefinition
 from finbourne_identity.models.identifier_part_schema import IdentifierPartSchema
+from finbourne_identity.models.ip_address_definition import IpAddressDefinition
 from finbourne_identity.models.link import Link
 from finbourne_identity.models.list_users_response import ListUsersResponse
 from finbourne_identity.models.lusid_problem_details import LusidProblemDetails
 from finbourne_identity.models.lusid_validation_problem_details import LusidValidationProblemDetails
+from finbourne_identity.models.network_zone_definition_response import NetworkZoneDefinitionResponse
+from finbourne_identity.models.network_zones_apply_rules import NetworkZonesApplyRules
 from finbourne_identity.models.o_auth_application import OAuthApplication
 from finbourne_identity.models.password_policy_response import PasswordPolicyResponse
 from finbourne_identity.models.password_policy_response_age import PasswordPolicyResponseAge
@@ -51,6 +55,7 @@ from finbourne_identity.models.support_access_response import SupportAccessRespo
 from finbourne_identity.models.support_role import SupportRole
 from finbourne_identity.models.support_roles_response import SupportRolesResponse
 from finbourne_identity.models.temporary_password import TemporaryPassword
+from finbourne_identity.models.update_network_zone_request import UpdateNetworkZoneRequest
 from finbourne_identity.models.update_password_policy_request import UpdatePasswordPolicyRequest
 from finbourne_identity.models.update_password_policy_request_age import UpdatePasswordPolicyRequestAge
 from finbourne_identity.models.update_password_policy_request_complexity import UpdatePasswordPolicyRequestComplexity
@@ -74,6 +79,7 @@ __all__ = [
     "AuthenticationInformation",
     "CreateApiKey",
     "CreateApplicationRequest",
+    "CreateNetworkZoneRequest",
     "CreateRoleRequest",
     "CreateUserRequest",
     "CreatedApiKey",
@@ -81,10 +87,13 @@ __all__ = [
     "ErrorDetail",
     "IdSelectorDefinition",
     "IdentifierPartSchema",
+    "IpAddressDefinition",
     "Link",
     "ListUsersResponse",
     "LusidProblemDetails",
     "LusidValidationProblemDetails",
+    "NetworkZoneDefinitionResponse",
+    "NetworkZonesApplyRules",
     "OAuthApplication",
     "PasswordPolicyResponse",
     "PasswordPolicyResponseAge",
@@ -103,6 +112,7 @@ __all__ = [
     "SupportRole",
     "SupportRolesResponse",
     "TemporaryPassword",
+    "UpdateNetworkZoneRequest",
     "UpdatePasswordPolicyRequest",
     "UpdatePasswordPolicyRequestAge",
     "UpdatePasswordPolicyRequestComplexity",

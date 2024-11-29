@@ -6,6 +6,7 @@ from finbourne_identity.api.applications_api import ApplicationsApi
 from finbourne_identity.api.authentication_api import AuthenticationApi
 from finbourne_identity.api.identity_provider_api import IdentityProviderApi
 from finbourne_identity.api.me_api import MeApi
+from finbourne_identity.api.network_zones_api import NetworkZonesApi
 from finbourne_identity.api.personal_authentication_tokens_api import PersonalAuthenticationTokensApi
 from finbourne_identity.api.roles_api import RolesApi
 from finbourne_identity.api.tokens_api import TokensApi
@@ -18,6 +19,7 @@ __all__ = [
     "AuthenticationApi",
     "IdentityProviderApi",
     "MeApi",
+    "NetworkZonesApi",
     "PersonalAuthenticationTokensApi",
     "RolesApi",
     "TokensApi",

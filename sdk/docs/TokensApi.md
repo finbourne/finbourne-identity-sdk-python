@@ -17,33 +17,32 @@ Log the current user out of all Finbourne platforms by invalidating the current 
 ### Example
 
 ```python
-import asyncio
 from finbourne_identity.exceptions import ApiException
 from finbourne_identity.extensions.configuration_options import ConfigurationOptions
 from finbourne_identity.models import *
 from pprint import pprint
 from finbourne_identity import (
-    ApiClientFactory,
+    SyncApiClientFactory,
     TokensApi
 )
 
-async def main():
+def main():
 
     with open("secrets.json", "w") as file:
         file.write('''
-{
-    "api":
     {
-        "tokenUrl":"<your-token-url>",
-        "identityUrl":"https://<your-domain>.lusid.com/identity",
-        "username":"<your-username>",
-        "password":"<your-password>",
-        "clientId":"<your-client-id>",
-        "clientSecret":"<your-client-secret>"
-    }
-}''')
+        "api":
+        {
+            "tokenUrl":"<your-token-url>",
+            "identityUrl":"https://<your-domain>.lusid.com/identity",
+            "username":"<your-username>",
+            "password":"<your-password>",
+            "clientId":"<your-client-id>",
+            "clientSecret":"<your-client-secret>"
+        }
+    }''')
 
-    # Use the finbourne_identity ApiClientFactory to build Api instances with a configured api client
+    # Use the finbourne_identity SyncApiClientFactory to build Api instances with a configured api client
     # By default this will read config from environment variables
     # Then from a secrets.json file found in the current working directory
 
@@ -52,24 +51,25 @@ async def main():
     # opts.total_timeout_ms = 30_000
 
     # uncomment the below to use an api client factory with overrides
-    # api_client_factory = ApiClientFactory(opts=opts)
+    # api_client_factory = SyncApiClientFactory(opts=opts)
 
-    api_client_factory = ApiClientFactory()
+    api_client_factory = SyncApiClientFactory()
 
-    # Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
-    async with api_client_factory:
-        # Create an instance of the API class
-        api_instance = api_client_factory.build(TokensApi)
+    # Enter a context with an instance of the SyncApiClientFactory to ensure the connection pool is closed after use
+    
+    # Create an instance of the API class
+    api_instance = api_client_factory.build(TokensApi)
 
-        try:
-            # uncomment the below to set overrides at the request level
-            # await api_instance.invalidate_token(opts=opts)
+    try:
+        # uncomment the below to set overrides at the request level
+        #  api_instance.invalidate_token(opts=opts)
 
-            # InvalidateToken: Invalidate current JWT token (sign out)
-            await api_instance.invalidate_token()        except ApiException as e:
-            print("Exception when calling TokensApi->invalidate_token: %s\n" % e)
+        # InvalidateToken: Invalidate current JWT token (sign out)
+        api_instance.invalidate_token()
+    except ApiException as e:
+        print("Exception when calling TokensApi->invalidate_token: %s\n" % e)
 
-asyncio.run(main())
+main()
 ```
 
 ### Parameters

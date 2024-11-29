@@ -19,33 +19,32 @@ Generates a Personal Access Token and returns the new key and its associated met
 ### Example
 
 ```python
-import asyncio
 from finbourne_identity.exceptions import ApiException
 from finbourne_identity.extensions.configuration_options import ConfigurationOptions
 from finbourne_identity.models import *
 from pprint import pprint
 from finbourne_identity import (
-    ApiClientFactory,
+    SyncApiClientFactory,
     PersonalAuthenticationTokensApi
 )
 
-async def main():
+def main():
 
     with open("secrets.json", "w") as file:
         file.write('''
-{
-    "api":
     {
-        "tokenUrl":"<your-token-url>",
-        "identityUrl":"https://<your-domain>.lusid.com/identity",
-        "username":"<your-username>",
-        "password":"<your-password>",
-        "clientId":"<your-client-id>",
-        "clientSecret":"<your-client-secret>"
-    }
-}''')
+        "api":
+        {
+            "tokenUrl":"<your-token-url>",
+            "identityUrl":"https://<your-domain>.lusid.com/identity",
+            "username":"<your-username>",
+            "password":"<your-password>",
+            "clientId":"<your-client-id>",
+            "clientSecret":"<your-client-secret>"
+        }
+    }''')
 
-    # Use the finbourne_identity ApiClientFactory to build Api instances with a configured api client
+    # Use the finbourne_identity SyncApiClientFactory to build Api instances with a configured api client
     # By default this will read config from environment variables
     # Then from a secrets.json file found in the current working directory
 
@@ -54,32 +53,33 @@ async def main():
     # opts.total_timeout_ms = 30_000
 
     # uncomment the below to use an api client factory with overrides
-    # api_client_factory = ApiClientFactory(opts=opts)
+    # api_client_factory = SyncApiClientFactory(opts=opts)
 
-    api_client_factory = ApiClientFactory()
+    api_client_factory = SyncApiClientFactory()
 
-    # Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
-    async with api_client_factory:
-        # Create an instance of the API class
-        api_instance = api_client_factory.build(PersonalAuthenticationTokensApi)
+    # Enter a context with an instance of the SyncApiClientFactory to ensure the connection pool is closed after use
+    
+    # Create an instance of the API class
+    api_instance = api_client_factory.build(PersonalAuthenticationTokensApi)
 
-        # Objects can be created either via the class constructor, or using the 'from_dict' or 'from_json' methods
-        # Change the lines below to switch approach
-        # create_api_key = CreateApiKey.from_json("")
-        # create_api_key = CreateApiKey.from_dict({})
-        create_api_key = CreateApiKey()
+    # Objects can be created either via the class constructor, or using the 'from_dict' or 'from_json' methods
+    # Change the lines below to switch approach
+    # create_api_key = CreateApiKey.from_json("")
+    # create_api_key = CreateApiKey.from_dict({})
+    create_api_key = CreateApiKey()
 
-        try:
-            # uncomment the below to set overrides at the request level
-            # api_response = await api_instance.create_api_key(create_api_key, opts=opts)
+    try:
+        # uncomment the below to set overrides at the request level
+        # api_response =  api_instance.create_api_key(create_api_key, opts=opts)
 
-            # CreateApiKey: Create a Personal Access Token
-            api_response = await api_instance.create_api_key(create_api_key)
-            pprint(api_response)
-        except ApiException as e:
-            print("Exception when calling PersonalAuthenticationTokensApi->create_api_key: %s\n" % e)
+        # CreateApiKey: Create a Personal Access Token
+        api_response = api_instance.create_api_key(create_api_key)
+        pprint(api_response)
 
-asyncio.run(main())
+    except ApiException as e:
+        print("Exception when calling PersonalAuthenticationTokensApi->create_api_key: %s\n" % e)
+
+main()
 ```
 
 ### Parameters
@@ -116,33 +116,32 @@ Immediately invalidates the specified Personal Access Token
 ### Example
 
 ```python
-import asyncio
 from finbourne_identity.exceptions import ApiException
 from finbourne_identity.extensions.configuration_options import ConfigurationOptions
 from finbourne_identity.models import *
 from pprint import pprint
 from finbourne_identity import (
-    ApiClientFactory,
+    SyncApiClientFactory,
     PersonalAuthenticationTokensApi
 )
 
-async def main():
+def main():
 
     with open("secrets.json", "w") as file:
         file.write('''
-{
-    "api":
     {
-        "tokenUrl":"<your-token-url>",
-        "identityUrl":"https://<your-domain>.lusid.com/identity",
-        "username":"<your-username>",
-        "password":"<your-password>",
-        "clientId":"<your-client-id>",
-        "clientSecret":"<your-client-secret>"
-    }
-}''')
+        "api":
+        {
+            "tokenUrl":"<your-token-url>",
+            "identityUrl":"https://<your-domain>.lusid.com/identity",
+            "username":"<your-username>",
+            "password":"<your-password>",
+            "clientId":"<your-client-id>",
+            "clientSecret":"<your-client-secret>"
+        }
+    }''')
 
-    # Use the finbourne_identity ApiClientFactory to build Api instances with a configured api client
+    # Use the finbourne_identity SyncApiClientFactory to build Api instances with a configured api client
     # By default this will read config from environment variables
     # Then from a secrets.json file found in the current working directory
 
@@ -151,27 +150,28 @@ async def main():
     # opts.total_timeout_ms = 30_000
 
     # uncomment the below to use an api client factory with overrides
-    # api_client_factory = ApiClientFactory(opts=opts)
+    # api_client_factory = SyncApiClientFactory(opts=opts)
 
-    api_client_factory = ApiClientFactory()
+    api_client_factory = SyncApiClientFactory()
 
-    # Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
-    async with api_client_factory:
-        # Create an instance of the API class
-        api_instance = api_client_factory.build(PersonalAuthenticationTokensApi)
-        id = 'id_example' # str | The id of the Personal Access Token to delete
+    # Enter a context with an instance of the SyncApiClientFactory to ensure the connection pool is closed after use
+    
+    # Create an instance of the API class
+    api_instance = api_client_factory.build(PersonalAuthenticationTokensApi)
+    id = 'id_example' # str | The id of the Personal Access Token to delete
 
-        try:
-            # uncomment the below to set overrides at the request level
-            # api_response = await api_instance.delete_api_key(id, opts=opts)
+    try:
+        # uncomment the below to set overrides at the request level
+        # api_response =  api_instance.delete_api_key(id, opts=opts)
 
-            # DeleteApiKey: Invalidate a Personal Access Token
-            api_response = await api_instance.delete_api_key(id)
-            pprint(api_response)
-        except ApiException as e:
-            print("Exception when calling PersonalAuthenticationTokensApi->delete_api_key: %s\n" % e)
+        # DeleteApiKey: Invalidate a Personal Access Token
+        api_response = api_instance.delete_api_key(id)
+        pprint(api_response)
 
-asyncio.run(main())
+    except ApiException as e:
+        print("Exception when calling PersonalAuthenticationTokensApi->delete_api_key: %s\n" % e)
+
+main()
 ```
 
 ### Parameters
@@ -208,33 +208,32 @@ Gets the meta data for all of the user's Personal Access Tokens that have not be
 ### Example
 
 ```python
-import asyncio
 from finbourne_identity.exceptions import ApiException
 from finbourne_identity.extensions.configuration_options import ConfigurationOptions
 from finbourne_identity.models import *
 from pprint import pprint
 from finbourne_identity import (
-    ApiClientFactory,
+    SyncApiClientFactory,
     PersonalAuthenticationTokensApi
 )
 
-async def main():
+def main():
 
     with open("secrets.json", "w") as file:
         file.write('''
-{
-    "api":
     {
-        "tokenUrl":"<your-token-url>",
-        "identityUrl":"https://<your-domain>.lusid.com/identity",
-        "username":"<your-username>",
-        "password":"<your-password>",
-        "clientId":"<your-client-id>",
-        "clientSecret":"<your-client-secret>"
-    }
-}''')
+        "api":
+        {
+            "tokenUrl":"<your-token-url>",
+            "identityUrl":"https://<your-domain>.lusid.com/identity",
+            "username":"<your-username>",
+            "password":"<your-password>",
+            "clientId":"<your-client-id>",
+            "clientSecret":"<your-client-secret>"
+        }
+    }''')
 
-    # Use the finbourne_identity ApiClientFactory to build Api instances with a configured api client
+    # Use the finbourne_identity SyncApiClientFactory to build Api instances with a configured api client
     # By default this will read config from environment variables
     # Then from a secrets.json file found in the current working directory
 
@@ -243,26 +242,27 @@ async def main():
     # opts.total_timeout_ms = 30_000
 
     # uncomment the below to use an api client factory with overrides
-    # api_client_factory = ApiClientFactory(opts=opts)
+    # api_client_factory = SyncApiClientFactory(opts=opts)
 
-    api_client_factory = ApiClientFactory()
+    api_client_factory = SyncApiClientFactory()
 
-    # Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
-    async with api_client_factory:
-        # Create an instance of the API class
-        api_instance = api_client_factory.build(PersonalAuthenticationTokensApi)
+    # Enter a context with an instance of the SyncApiClientFactory to ensure the connection pool is closed after use
+    
+    # Create an instance of the API class
+    api_instance = api_client_factory.build(PersonalAuthenticationTokensApi)
 
-        try:
-            # uncomment the below to set overrides at the request level
-            # api_response = await api_instance.list_own_api_keys(opts=opts)
+    try:
+        # uncomment the below to set overrides at the request level
+        # api_response =  api_instance.list_own_api_keys(opts=opts)
 
-            # ListOwnApiKeys: Gets the meta data for all of the user's existing Personal Access Tokens.
-            api_response = await api_instance.list_own_api_keys()
-            pprint(api_response)
-        except ApiException as e:
-            print("Exception when calling PersonalAuthenticationTokensApi->list_own_api_keys: %s\n" % e)
+        # ListOwnApiKeys: Gets the meta data for all of the user's existing Personal Access Tokens.
+        api_response = api_instance.list_own_api_keys()
+        pprint(api_response)
 
-asyncio.run(main())
+    except ApiException as e:
+        print("Exception when calling PersonalAuthenticationTokensApi->list_own_api_keys: %s\n" % e)
+
+main()
 ```
 
 ### Parameters
