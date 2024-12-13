@@ -665,7 +665,7 @@ This endpoint does not need any parameter.
 [Back to top](#) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to Model list](../README.md#documentation-for-models) &#8226; [Back to README](../README.md)
 
 # **list_users**
-> List[UserResponse] list_users(include_roles=include_roles, include_deactivated=include_deactivated)
+> List[UserResponse] list_users(include_deactivated=include_deactivated)
 
 ListUsers: List Users
 
@@ -716,15 +716,14 @@ def main():
     
     # Create an instance of the API class
     api_instance = api_client_factory.build(UsersApi)
-    include_roles = False # bool | Flag indicating that the users roles should be included in the response (optional) (default to False)
     include_deactivated = False # bool | Include previously deleted (not purged) users (optional) (default to False)
 
     try:
         # uncomment the below to set overrides at the request level
-        # api_response =  api_instance.list_users(include_roles=include_roles, include_deactivated=include_deactivated, opts=opts)
+        # api_response =  api_instance.list_users(include_deactivated=include_deactivated, opts=opts)
 
         # ListUsers: List Users
-        api_response = api_instance.list_users(include_roles=include_roles, include_deactivated=include_deactivated)
+        api_response = api_instance.list_users(include_deactivated=include_deactivated)
         pprint(api_response)
 
     except ApiException as e:
@@ -737,7 +736,6 @@ main()
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **include_roles** | **bool**| Flag indicating that the users roles should be included in the response | [optional] [default to False]
  **include_deactivated** | **bool**| Include previously deleted (not purged) users | [optional] [default to False]
 
 ### Return type

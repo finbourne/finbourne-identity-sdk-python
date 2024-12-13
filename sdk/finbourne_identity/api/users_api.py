@@ -1122,26 +1122,24 @@ class UsersApi:
             _request_auth=_params.get('_request_auth'))
 
     @overload
-    async def list_users(self, include_roles : Annotated[Optional[StrictBool], Field(description="Flag indicating that the users roles should be included in the response")] = None, include_deactivated : Annotated[Optional[StrictBool], Field(description="Include previously deleted (not purged) users")] = None, **kwargs) -> List[UserResponse]:  # noqa: E501
+    async def list_users(self, include_deactivated : Annotated[Optional[StrictBool], Field(description="Include previously deleted (not purged) users")] = None, **kwargs) -> List[UserResponse]:  # noqa: E501
         ...
 
     @overload
-    def list_users(self, include_roles : Annotated[Optional[StrictBool], Field(description="Flag indicating that the users roles should be included in the response")] = None, include_deactivated : Annotated[Optional[StrictBool], Field(description="Include previously deleted (not purged) users")] = None, async_req: Optional[bool]=True, **kwargs) -> List[UserResponse]:  # noqa: E501
+    def list_users(self, include_deactivated : Annotated[Optional[StrictBool], Field(description="Include previously deleted (not purged) users")] = None, async_req: Optional[bool]=True, **kwargs) -> List[UserResponse]:  # noqa: E501
         ...
 
     @validate_arguments
-    def list_users(self, include_roles : Annotated[Optional[StrictBool], Field(description="Flag indicating that the users roles should be included in the response")] = None, include_deactivated : Annotated[Optional[StrictBool], Field(description="Include previously deleted (not purged) users")] = None, async_req: Optional[bool]=None, **kwargs) -> Union[List[UserResponse], Awaitable[List[UserResponse]]]:  # noqa: E501
+    def list_users(self, include_deactivated : Annotated[Optional[StrictBool], Field(description="Include previously deleted (not purged) users")] = None, async_req: Optional[bool]=None, **kwargs) -> Union[List[UserResponse], Awaitable[List[UserResponse]]]:  # noqa: E501
         """ListUsers: List Users  # noqa: E501
 
         List the available Users  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.list_users(include_roles, include_deactivated, async_req=True)
+        >>> thread = api.list_users(include_deactivated, async_req=True)
         >>> result = thread.get()
 
-        :param include_roles: Flag indicating that the users roles should be included in the response
-        :type include_roles: bool
         :param include_deactivated: Include previously deleted (not purged) users
         :type include_deactivated: bool
         :param async_req: Whether to execute the request asynchronously.
@@ -1160,21 +1158,19 @@ class UsersApi:
             raise ValueError(message)
         if async_req is not None:
             kwargs['async_req'] = async_req
-        return self.list_users_with_http_info(include_roles, include_deactivated, **kwargs)  # noqa: E501
+        return self.list_users_with_http_info(include_deactivated, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def list_users_with_http_info(self, include_roles : Annotated[Optional[StrictBool], Field(description="Flag indicating that the users roles should be included in the response")] = None, include_deactivated : Annotated[Optional[StrictBool], Field(description="Include previously deleted (not purged) users")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def list_users_with_http_info(self, include_deactivated : Annotated[Optional[StrictBool], Field(description="Include previously deleted (not purged) users")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """ListUsers: List Users  # noqa: E501
 
         List the available Users  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.list_users_with_http_info(include_roles, include_deactivated, async_req=True)
+        >>> thread = api.list_users_with_http_info(include_deactivated, async_req=True)
         >>> result = thread.get()
 
-        :param include_roles: Flag indicating that the users roles should be included in the response
-        :type include_roles: bool
         :param include_deactivated: Include previously deleted (not purged) users
         :type include_deactivated: bool
         :param async_req: Whether to execute the request asynchronously.
@@ -1204,7 +1200,6 @@ class UsersApi:
         _params = locals()
 
         _all_params = [
-            'include_roles',
             'include_deactivated'
         ]
         _all_params.extend(
@@ -1237,9 +1232,6 @@ class UsersApi:
 
         # process the query parameters
         _query_params = []
-        if _params.get('include_roles') is not None:  # noqa: E501
-            _query_params.append(('includeRoles', _params['include_roles']))
-
         if _params.get('include_deactivated') is not None:  # noqa: E501
             _query_params.append(('includeDeactivated', _params['include_deactivated']))
 
