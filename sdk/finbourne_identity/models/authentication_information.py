@@ -19,7 +19,7 @@ import json
 
 
 from typing import Any, Dict, List, Optional
-from pydantic.v1 import BaseModel, Field, StrictStr, conlist, constr
+from pydantic.v1 import StrictStr, Field, BaseModel, Field, StrictStr, conlist, constr 
 from finbourne_identity.models.link import Link
 from finbourne_identity.models.support_access_expiry import SupportAccessExpiry
 from finbourne_identity.models.support_access_expiry_with_role import SupportAccessExpiryWithRole
@@ -28,9 +28,9 @@ class AuthenticationInformation(BaseModel):
     """
     AuthenticationInformation
     """
-    issuer_url: constr(strict=True, min_length=1) = Field(..., alias="issuerUrl")
+    issuer_url:  StrictStr = Field(...,alias="issuerUrl") 
     fallback_issuer_urls: Optional[conlist(StrictStr)] = Field(None, alias="fallbackIssuerUrls")
-    saml_identity_provider_id: Optional[StrictStr] = Field(None, alias="samlIdentityProviderId")
+    saml_identity_provider_id:  Optional[StrictStr] = Field(None,alias="samlIdentityProviderId") 
     support: Optional[SupportAccessExpiry] = None
     support_access_expiry_with_role: Optional[conlist(SupportAccessExpiryWithRole)] = Field(None, alias="supportAccessExpiryWithRole")
     links: Optional[conlist(Link)] = None

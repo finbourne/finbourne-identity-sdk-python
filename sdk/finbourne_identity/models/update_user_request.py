@@ -19,42 +19,21 @@ import json
 
 
 from typing import Any, Dict, List, Optional
-from pydantic.v1 import BaseModel, Field, StrictStr, conlist, constr, validator
+from pydantic.v1 import StrictStr, Field, BaseModel, Field, StrictStr, conlist, constr, validator 
 from finbourne_identity.models.role_id import RoleId
 
 class UpdateUserRequest(BaseModel):
     """
     UpdateUserRequest
     """
-    first_name: constr(strict=True, max_length=50, min_length=1) = Field(..., alias="firstName")
-    last_name: constr(strict=True, max_length=50, min_length=2) = Field(..., alias="lastName")
-    email_address: constr(strict=True, max_length=80, min_length=5) = Field(..., alias="emailAddress")
-    second_email_address: Optional[constr(strict=True, max_length=80, min_length=5)] = Field(None, alias="secondEmailAddress")
-    login: constr(strict=True, max_length=80, min_length=5) = Field(..., description="The user's login username, in the form of an email address, which must be unique within the system.  For user accounts this should exactly match the user's email address.")
+    first_name:  StrictStr = Field(...,alias="firstName") 
+    last_name:  StrictStr = Field(...,alias="lastName") 
+    email_address:  StrictStr = Field(...,alias="emailAddress") 
+    second_email_address:  Optional[StrictStr] = Field(None,alias="secondEmailAddress") 
+    login:  StrictStr = Field(...,alias="login", description="The user's login username, in the form of an email address, which must be unique within the system.  For user accounts this should exactly match the user's email address.") 
     alternative_user_ids: Optional[Dict[str, StrictStr]] = Field(None, alias="alternativeUserIds")
     roles: Optional[conlist(RoleId)] = Field(None, description="Deprecated. To update a user's roles use the AddUserToRole and RemoveUserFromRole endpoints")
     __properties = ["firstName", "lastName", "emailAddress", "secondEmailAddress", "login", "alternativeUserIds", "roles"]
-
-    @validator('first_name')
-    def first_name_validate_regular_expression(cls, value):
-        """Validates the regular expression"""
-        if not re.match(r"^[\s\S]*$", value):
-            raise ValueError(r"must validate the regular expression /^[\s\S]*$/")
-        return value
-
-    @validator('last_name')
-    def last_name_validate_regular_expression(cls, value):
-        """Validates the regular expression"""
-        if not re.match(r"^[\s\S]*$", value):
-            raise ValueError(r"must validate the regular expression /^[\s\S]*$/")
-        return value
-
-    @validator('login')
-    def login_validate_regular_expression(cls, value):
-        """Validates the regular expression"""
-        if not re.match(r"^[\s\S]*$", value):
-            raise ValueError(r"must validate the regular expression /^[\s\S]*$/")
-        return value
 
     class Config:
         """Pydantic configuration"""

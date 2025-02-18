@@ -19,7 +19,7 @@ import json
 
 
 from typing import Any, Dict, List, Optional
-from pydantic.v1 import BaseModel, Field, StrictStr, conlist, constr, validator
+from pydantic.v1 import StrictStr, Field, BaseModel, Field, StrictStr, conlist, constr, validator 
 from finbourne_identity.models.ip_address_definition import IpAddressDefinition
 from finbourne_identity.models.network_zones_apply_rules import NetworkZonesApplyRules
 
@@ -27,19 +27,12 @@ class CreateNetworkZoneRequest(BaseModel):
     """
     The Create Network Zone Request information  # noqa: E501
     """
-    code: constr(strict=True, max_length=64, min_length=1) = Field(...)
-    description: Optional[StrictStr] = None
+    code:  StrictStr = Field(...,alias="code") 
+    description:  Optional[StrictStr] = Field(None,alias="description") 
     network_zone_ips: conlist(IpAddressDefinition) = Field(..., alias="networkZoneIPs")
-    action: Optional[StrictStr] = None
+    action:  Optional[StrictStr] = Field(None,alias="action") 
     apply_rules: NetworkZonesApplyRules = Field(..., alias="applyRules")
     __properties = ["code", "description", "networkZoneIPs", "action", "applyRules"]
-
-    @validator('code')
-    def code_validate_regular_expression(cls, value):
-        """Validates the regular expression"""
-        if not re.match(r"^[a-zA-Z0-9\-_]+$", value):
-            raise ValueError(r"must validate the regular expression /^[a-zA-Z0-9\-_]+$/")
-        return value
 
     class Config:
         """Pydantic configuration"""

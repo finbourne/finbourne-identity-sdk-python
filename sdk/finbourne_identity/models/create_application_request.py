@@ -19,39 +19,18 @@ import json
 
 
 from typing import Any, Dict, List, Optional
-from pydantic.v1 import BaseModel, Field, StrictStr, conlist, constr, validator
+from pydantic.v1 import StrictStr, Field, BaseModel, Field, StrictStr, conlist, constr, validator 
 
 class CreateApplicationRequest(BaseModel):
     """
     A request to create an application for authenticating the source of token requests  # noqa: E501
     """
-    display_name: constr(strict=True, max_length=50, min_length=1) = Field(..., alias="displayName", description="The Display Name of the application")
-    client_id: constr(strict=True, max_length=50, min_length=6) = Field(..., alias="clientId", description="The OpenID Connect ClientId of the application")
-    type: constr(strict=True, max_length=20, min_length=1) = Field(..., description="The Type of the application. This must be either Native or Web")
+    display_name:  StrictStr = Field(...,alias="displayName", description="The Display Name of the application") 
+    client_id:  StrictStr = Field(...,alias="clientId", description="The OpenID Connect ClientId of the application") 
+    type:  StrictStr = Field(...,alias="type", description="The Type of the application. This must be either Native or Web") 
     redirect_uris: Optional[conlist(StrictStr)] = Field(None, alias="redirectUris", description="A web application's acceptable list of post-login redirect URIs")
     post_logout_redirect_uris: Optional[conlist(StrictStr)] = Field(None, alias="postLogoutRedirectUris", description="A web application's acceptable list of post-logout redirect URIs")
     __properties = ["displayName", "clientId", "type", "redirectUris", "postLogoutRedirectUris"]
-
-    @validator('display_name')
-    def display_name_validate_regular_expression(cls, value):
-        """Validates the regular expression"""
-        if not re.match(r"^[\s\S]*$", value):
-            raise ValueError(r"must validate the regular expression /^[\s\S]*$/")
-        return value
-
-    @validator('client_id')
-    def client_id_validate_regular_expression(cls, value):
-        """Validates the regular expression"""
-        if not re.match(r"^[a-zA-Z][a-zA-Z0-9-]{5,49}", value):
-            raise ValueError(r"must validate the regular expression /^[a-zA-Z][a-zA-Z0-9-]{5,49}/")
-        return value
-
-    @validator('type')
-    def type_validate_regular_expression(cls, value):
-        """Validates the regular expression"""
-        if not re.match(r"^[a-zA-Z]*$", value):
-            raise ValueError(r"must validate the regular expression /^[a-zA-Z]*$/")
-        return value
 
     class Config:
         """Pydantic configuration"""

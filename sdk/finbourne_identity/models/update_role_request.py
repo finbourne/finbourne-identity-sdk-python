@@ -19,24 +19,14 @@ import json
 
 
 from typing import Any, Dict, Optional
-from pydantic.v1 import BaseModel, Field, constr, validator
+from pydantic.v1 import StrictStr, Field, BaseModel, Field, constr, validator 
 
 class UpdateRoleRequest(BaseModel):
     """
     UpdateRoleRequest
     """
-    description: Optional[constr(strict=True, max_length=1024, min_length=0)] = Field(None, description="The description for this role")
+    description:  Optional[StrictStr] = Field(None,alias="description", description="The description for this role") 
     __properties = ["description"]
-
-    @validator('description')
-    def description_validate_regular_expression(cls, value):
-        """Validates the regular expression"""
-        if value is None:
-            return value
-
-        if not re.match(r"^[\s\S]*$", value):
-            raise ValueError(r"must validate the regular expression /^[\s\S]*$/")
-        return value
 
     class Config:
         """Pydantic configuration"""

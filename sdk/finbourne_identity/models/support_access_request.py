@@ -19,33 +19,16 @@ import json
 
 
 from typing import Any, Dict, List, Optional
-from pydantic.v1 import BaseModel, Field, StrictStr, conlist, constr, validator
+from pydantic.v1 import StrictStr, Field, BaseModel, Field, StrictStr, conlist, constr, validator 
 
 class SupportAccessRequest(BaseModel):
     """
     A Request to grant support access to your account  # noqa: E501
     """
-    duration: constr(strict=True, max_length=30, min_length=2) = Field(..., description="The duration for which access is requested (in any ISO-8601 format)")
-    description: Optional[constr(strict=True, max_length=1024, min_length=0)] = Field(None, description="The description of why the support access has been granted (i.e. support ticket numbers)")
+    duration:  StrictStr = Field(...,alias="duration", description="The duration for which access is requested (in any ISO-8601 format)") 
+    description:  Optional[StrictStr] = Field(None,alias="description", description="The description of why the support access has been granted (i.e. support ticket numbers)") 
     permitted_roles: Optional[conlist(StrictStr)] = Field(None, alias="permittedRoles")
     __properties = ["duration", "description", "permittedRoles"]
-
-    @validator('duration')
-    def duration_validate_regular_expression(cls, value):
-        """Validates the regular expression"""
-        if not re.match(r"^P(?!$)((\d+Y)|(\d+\.\d+Y$))?((\d+M)|(\d+\.\d+M$))?((\d+W)|(\d+\.\d+W$))?((\d+D)|(\d+\.\d+D$))?(T(?=\d)((\d+H)|(\d+\.\d+H$))?((\d+M)|(\d+\.\d+M$))?(\d+(\.\d+)?S)?)??$", value):
-            raise ValueError(r"must validate the regular expression /^P(?!$)((\d+Y)|(\d+\.\d+Y$))?((\d+M)|(\d+\.\d+M$))?((\d+W)|(\d+\.\d+W$))?((\d+D)|(\d+\.\d+D$))?(T(?=\d)((\d+H)|(\d+\.\d+H$))?((\d+M)|(\d+\.\d+M$))?(\d+(\.\d+)?S)?)??$/")
-        return value
-
-    @validator('description')
-    def description_validate_regular_expression(cls, value):
-        """Validates the regular expression"""
-        if value is None:
-            return value
-
-        if not re.match(r"^[\s\S]*$", value):
-            raise ValueError(r"must validate the regular expression /^[\s\S]*$/")
-        return value
 
     class Config:
         """Pydantic configuration"""

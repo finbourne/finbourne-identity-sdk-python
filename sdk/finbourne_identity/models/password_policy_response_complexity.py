@@ -19,7 +19,7 @@ import json
 
 
 from typing import Any, Dict
-from pydantic.v1 import BaseModel, Field, StrictBool, StrictInt
+from pydantic.v1 import StrictStr, Field, BaseModel, Field, StrictBool, StrictInt 
 
 class PasswordPolicyResponseComplexity(BaseModel):
     """

@@ -19,20 +19,20 @@ import json
 
 
 from typing import Any, Dict, List, Optional
-from pydantic.v1 import BaseModel, Field, StrictStr, conlist
+from pydantic.v1 import StrictStr, Field, BaseModel, Field, StrictStr, conlist 
 from finbourne_identity.models.link import Link
 
 class UserSummary(BaseModel):
     """
     Lightweight view of an user details  # noqa: E501
     """
-    id: Optional[StrictStr] = Field(None, description="The user id")
-    login: Optional[StrictStr] = Field(None, description="The user login")
-    email: Optional[StrictStr] = Field(None, description="The email address registered for that user")
-    second_email: Optional[StrictStr] = Field(None, alias="secondEmail")
-    first_name: Optional[StrictStr] = Field(None, alias="firstName", description="User's first name")
-    last_name: Optional[StrictStr] = Field(None, alias="lastName", description="User's last name")
-    type: Optional[StrictStr] = Field(None, description="User's type (Personal, Service...)")
+    id:  Optional[StrictStr] = Field(None,alias="id", description="The user id") 
+    login:  Optional[StrictStr] = Field(None,alias="login", description="The user login") 
+    email:  Optional[StrictStr] = Field(None,alias="email", description="The email address registered for that user") 
+    second_email:  Optional[StrictStr] = Field(None,alias="secondEmail") 
+    first_name:  Optional[StrictStr] = Field(None,alias="firstName", description="User's first name") 
+    last_name:  Optional[StrictStr] = Field(None,alias="lastName", description="User's last name") 
+    type:  Optional[StrictStr] = Field(None,alias="type", description="User's type (Personal, Service...)") 
     alternative_user_ids: Optional[Dict[str, StrictStr]] = Field(None, alias="alternativeUserIds", description="User's alternative user IDs. Only returned for the current user")
     links: Optional[conlist(Link)] = None
     __properties = ["id", "login", "email", "secondEmail", "firstName", "lastName", "type", "alternativeUserIds", "links"]

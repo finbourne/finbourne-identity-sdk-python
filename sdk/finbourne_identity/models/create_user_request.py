@@ -19,43 +19,22 @@ import json
 
 
 from typing import Any, Dict, List, Optional
-from pydantic.v1 import BaseModel, Field, StrictStr, conlist, constr, validator
+from pydantic.v1 import StrictStr, Field, BaseModel, Field, StrictStr, conlist, constr, validator 
 from finbourne_identity.models.role_id import RoleId
 
 class CreateUserRequest(BaseModel):
     """
     Details necessary for creating a new user  # noqa: E501
     """
-    first_name: constr(strict=True, max_length=50, min_length=1) = Field(..., alias="firstName", description="The first name of the user")
-    last_name: constr(strict=True, max_length=50, min_length=2) = Field(..., alias="lastName", description="The last name of the user")
-    email_address: constr(strict=True, max_length=80, min_length=5) = Field(..., alias="emailAddress", description="The user's email address - to which the account validation email will be sent. For user accounts  this should exactly match the Login.")
-    second_email_address: Optional[constr(strict=True, max_length=80, min_length=5)] = Field(None, alias="secondEmailAddress", description="The user's second email address. Only allowed for Service users")
-    login: constr(strict=True, max_length=80, min_length=5) = Field(..., description="The user's login username, in the form of an email address, which must be unique within the system.  For user accounts this should exactly match the user's email address.")
+    first_name:  StrictStr = Field(...,alias="firstName", description="The first name of the user") 
+    last_name:  StrictStr = Field(...,alias="lastName", description="The last name of the user") 
+    email_address:  StrictStr = Field(...,alias="emailAddress", description="The user's email address - to which the account validation email will be sent. For user accounts  this should exactly match the Login.") 
+    second_email_address:  Optional[StrictStr] = Field(None,alias="secondEmailAddress", description="The user's second email address. Only allowed for Service users") 
+    login:  StrictStr = Field(...,alias="login", description="The user's login username, in the form of an email address, which must be unique within the system.  For user accounts this should exactly match the user's email address.") 
     alternative_user_ids: Optional[Dict[str, StrictStr]] = Field(None, alias="alternativeUserIds")
     roles: Optional[conlist(RoleId, max_items=20)] = Field(None, description="Optional. Any known roles the user should be created with.")
-    type: constr(strict=True, max_length=20, min_length=1) = Field(..., description="The type of user (e.g. Personal or Service)")
+    type:  StrictStr = Field(...,alias="type", description="The type of user (e.g. Personal or Service)") 
     __properties = ["firstName", "lastName", "emailAddress", "secondEmailAddress", "login", "alternativeUserIds", "roles", "type"]
-
-    @validator('first_name')
-    def first_name_validate_regular_expression(cls, value):
-        """Validates the regular expression"""
-        if not re.match(r"^[\s\S]*$", value):
-            raise ValueError(r"must validate the regular expression /^[\s\S]*$/")
-        return value
-
-    @validator('last_name')
-    def last_name_validate_regular_expression(cls, value):
-        """Validates the regular expression"""
-        if not re.match(r"^[\s\S]*$", value):
-            raise ValueError(r"must validate the regular expression /^[\s\S]*$/")
-        return value
-
-    @validator('type')
-    def type_validate_regular_expression(cls, value):
-        """Validates the regular expression"""
-        if not re.match(r"^[a-zA-Z]*$", value):
-            raise ValueError(r"must validate the regular expression /^[a-zA-Z]*$/")
-        return value
 
     class Config:
         """Pydantic configuration"""

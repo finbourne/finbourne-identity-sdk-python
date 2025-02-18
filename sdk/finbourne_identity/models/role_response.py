@@ -19,19 +19,19 @@ import json
 
 
 from typing import Any, Dict, Optional
-from pydantic.v1 import BaseModel, Field, StrictStr, constr
+from pydantic.v1 import StrictStr, Field, BaseModel, Field, StrictStr, constr 
 from finbourne_identity.models.role_id import RoleId
 
 class RoleResponse(BaseModel):
     """
     RoleResponse
     """
-    id: constr(strict=True, min_length=1) = Field(..., description="The role's system supplied unique identifier")
+    id:  StrictStr = Field(...,alias="id", description="The role's system supplied unique identifier") 
     role_id: RoleId = Field(..., alias="roleId")
-    source: constr(strict=True, min_length=1) = Field(..., description="The source of the role")
-    name: constr(strict=True, min_length=1) = Field(..., description="The role name, which must be unique within the system.")
-    description: Optional[StrictStr] = Field(None, description="The description for this role")
-    saml_name: Optional[StrictStr] = Field(None, alias="samlName", description="The name to use on the SAML request if assigning this role via SAML Just in Time (JIT)")
+    source:  StrictStr = Field(...,alias="source", description="The source of the role") 
+    name:  StrictStr = Field(...,alias="name", description="The role name, which must be unique within the system.") 
+    description:  Optional[StrictStr] = Field(None,alias="description", description="The description for this role") 
+    saml_name:  Optional[StrictStr] = Field(None,alias="samlName", description="The name to use on the SAML request if assigning this role via SAML Just in Time (JIT)") 
     __properties = ["id", "roleId", "source", "name", "description", "samlName"]
 
     class Config:

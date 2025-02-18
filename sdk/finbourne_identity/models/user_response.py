@@ -19,7 +19,7 @@ import json
 
 
 from typing import Any, Dict, List, Optional
-from pydantic.v1 import BaseModel, Field, StrictBool, StrictStr, conlist, constr
+from pydantic.v1 import StrictStr, Field, BaseModel, Field, StrictBool, StrictStr, conlist, constr 
 from finbourne_identity.models.link import Link
 from finbourne_identity.models.role_response import RoleResponse
 
@@ -27,16 +27,16 @@ class UserResponse(BaseModel):
     """
     UserResponse
     """
-    id: constr(strict=True, min_length=1) = Field(..., description="The user's system supplied unique identifier")
+    id:  StrictStr = Field(...,alias="id", description="The user's system supplied unique identifier") 
     alternative_user_ids: Optional[Dict[str, StrictStr]] = Field(None, alias="alternativeUserIds", description="The user's alternative IDs")
-    email_address: constr(strict=True, min_length=1) = Field(..., alias="emailAddress", description="The user's emailAddress address, which must be unique within the system")
-    second_email_address: Optional[StrictStr] = Field(None, alias="secondEmailAddress", description="The user's second email address. Only allowed for service users.")
-    login: constr(strict=True, min_length=1) = Field(...)
-    first_name: constr(strict=True, min_length=1) = Field(..., alias="firstName", description="The user's first name")
-    last_name: constr(strict=True, min_length=1) = Field(..., alias="lastName", description="The user's last name")
+    email_address:  StrictStr = Field(...,alias="emailAddress", description="The user's emailAddress address, which must be unique within the system") 
+    second_email_address:  Optional[StrictStr] = Field(None,alias="secondEmailAddress", description="The user's second email address. Only allowed for service users.") 
+    login:  StrictStr = Field(...,alias="login") 
+    first_name:  StrictStr = Field(...,alias="firstName", description="The user's first name") 
+    last_name:  StrictStr = Field(...,alias="lastName", description="The user's last name") 
     roles: Optional[conlist(RoleResponse)] = Field(None, description="The roles that the user has.")
-    type: constr(strict=True, min_length=1) = Field(..., description="The type of user (e.g. Personal or Service)")
-    status: constr(strict=True, min_length=1) = Field(..., description="The status of the user")
+    type:  StrictStr = Field(...,alias="type", description="The type of user (e.g. Personal or Service)") 
+    status:  StrictStr = Field(...,alias="status", description="The status of the user") 
     external: StrictBool = Field(..., description="Whether or not the user originates from an external identity system")
     links: Optional[conlist(Link)] = None
     __properties = ["id", "alternativeUserIds", "emailAddress", "secondEmailAddress", "login", "firstName", "lastName", "roles", "type", "status", "external", "links"]

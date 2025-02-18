@@ -19,31 +19,17 @@ import json
 
 from datetime import datetime
 from typing import Any, Dict, Optional
-from pydantic.v1 import BaseModel, Field, constr, validator
+from pydantic.v1 import StrictStr, Field, BaseModel, Field, constr, validator 
 
 class ApiKey(BaseModel):
     """
     The metadata of an API key  # noqa: E501
     """
-    id: constr(strict=True, max_length=64, min_length=1) = Field(..., description="The unique Id of the API key")
-    display_name: constr(strict=True, max_length=512, min_length=1) = Field(..., alias="displayName", description="The display name of the API key")
+    id:  StrictStr = Field(...,alias="id", description="The unique Id of the API key") 
+    display_name:  StrictStr = Field(...,alias="displayName", description="The display name of the API key") 
     created_date: datetime = Field(..., alias="createdDate", description="The creation date of the API key")
     deactivation_date: Optional[datetime] = Field(None, alias="deactivationDate", description="The deactivation date of the API key")
     __properties = ["id", "displayName", "createdDate", "deactivationDate"]
-
-    @validator('id')
-    def id_validate_regular_expression(cls, value):
-        """Validates the regular expression"""
-        if not re.match(r"^[a-zA-Z0-9\-_]+$", value):
-            raise ValueError(r"must validate the regular expression /^[a-zA-Z0-9\-_]+$/")
-        return value
-
-    @validator('display_name')
-    def display_name_validate_regular_expression(cls, value):
-        """Validates the regular expression"""
-        if not re.match(r"^[\s\S]*$", value):
-            raise ValueError(r"must validate the regular expression /^[\s\S]*$/")
-        return value
 
     class Config:
         """Pydantic configuration"""

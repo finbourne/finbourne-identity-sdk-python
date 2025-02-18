@@ -19,15 +19,15 @@ import json
 
 
 from typing import Any, Dict, Optional
-from pydantic.v1 import BaseModel, Field, StrictStr
+from pydantic.v1 import StrictStr, Field, BaseModel, Field, StrictStr 
 
 class ErrorDetail(BaseModel):
     """
     Provides details about an entity error that occured  # noqa: E501
     """
-    id: Optional[StrictStr] = Field(None, description="Id of the entity this error relates to")
-    type: Optional[StrictStr] = Field(None, description="Error type")
-    detail: Optional[StrictStr] = Field(None, description="Human readable description of the error")
+    id:  Optional[StrictStr] = Field(None,alias="id", description="Id of the entity this error relates to") 
+    type:  Optional[StrictStr] = Field(None,alias="type", description="Error type") 
+    detail:  Optional[StrictStr] = Field(None,alias="detail", description="Human readable description of the error") 
     __properties = ["id", "type", "detail"]
 
     class Config:

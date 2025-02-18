@@ -19,13 +19,13 @@ import json
 
 
 from typing import Any, Dict
-from pydantic.v1 import BaseModel, Field, constr
+from pydantic.v1 import StrictStr, Field, BaseModel, Field, constr 
 
 class TemporaryPassword(BaseModel):
     """
     TemporaryPassword
     """
-    password: constr(strict=True, min_length=1) = Field(..., description="The user's temporary password")
+    password:  StrictStr = Field(...,alias="password", description="The user's temporary password") 
     __properties = ["password"]
 
     class Config:

@@ -19,14 +19,14 @@ import json
 
 
 from typing import Any, Dict, Optional
-from pydantic.v1 import BaseModel, Field, StrictStr
+from pydantic.v1 import StrictStr, Field, BaseModel, Field, StrictStr 
 
 class AddScimResponse(BaseModel):
     """
     AddScimResponse
     """
-    base_url: Optional[StrictStr] = Field(None, alias="baseUrl")
-    api_token: Optional[StrictStr] = Field(None, alias="apiToken")
+    base_url:  Optional[StrictStr] = Field(None,alias="baseUrl") 
+    api_token:  Optional[StrictStr] = Field(None,alias="apiToken") 
     __properties = ["baseUrl", "apiToken"]
 
     class Config:

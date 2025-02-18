@@ -19,26 +19,19 @@ import json
 
 
 from typing import Any, Dict, Optional
-from pydantic.v1 import BaseModel, Field, StrictStr, constr, validator
+from pydantic.v1 import StrictStr, Field, BaseModel, Field, StrictStr, constr, validator 
 
 class OAuthApplication(BaseModel):
     """
     OAuthApplication
     """
-    id: constr(strict=True, min_length=1) = Field(...)
-    type: constr(strict=True, min_length=1) = Field(...)
-    display_name: constr(strict=True, max_length=512, min_length=1) = Field(..., alias="displayName")
-    secret: Optional[StrictStr] = None
-    client_id: constr(strict=True, min_length=1) = Field(..., alias="clientId")
-    issuer: constr(strict=True, min_length=1) = Field(...)
+    id:  StrictStr = Field(...,alias="id") 
+    type:  StrictStr = Field(...,alias="type") 
+    display_name:  StrictStr = Field(...,alias="displayName") 
+    secret:  Optional[StrictStr] = Field(None,alias="secret") 
+    client_id:  StrictStr = Field(...,alias="clientId") 
+    issuer:  StrictStr = Field(...,alias="issuer") 
     __properties = ["id", "type", "displayName", "secret", "clientId", "issuer"]
-
-    @validator('display_name')
-    def display_name_validate_regular_expression(cls, value):
-        """Validates the regular expression"""
-        if not re.match(r"^[\s\S]*$", value):
-            raise ValueError(r"must validate the regular expression /^[\s\S]*$/")
-        return value
 
     class Config:
         """Pydantic configuration"""

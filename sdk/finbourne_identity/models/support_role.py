@@ -19,16 +19,16 @@ import json
 
 
 from typing import Any, Dict, Optional
-from pydantic.v1 import BaseModel, Field, StrictStr
+from pydantic.v1 import StrictStr, Field, BaseModel, Field, StrictStr 
 
 class SupportRole(BaseModel):
     """
     SupportRole
     """
-    label: Optional[StrictStr] = None
-    description: Optional[StrictStr] = None
+    label:  Optional[StrictStr] = Field(None,alias="label") 
+    description:  Optional[StrictStr] = Field(None,alias="description") 
     role_identifier: Optional[Dict[str, StrictStr]] = Field(None, alias="roleIdentifier")
-    internal_identifier: Optional[StrictStr] = Field(None, alias="internalIdentifier")
+    internal_identifier:  Optional[StrictStr] = Field(None,alias="internalIdentifier") 
     __properties = ["label", "description", "roleIdentifier", "internalIdentifier"]
 
     class Config:

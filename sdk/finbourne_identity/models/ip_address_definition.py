@@ -19,15 +19,15 @@ import json
 
 
 from typing import Any, Dict, Optional
-from pydantic.v1 import BaseModel, Field, StrictStr, constr
+from pydantic.v1 import StrictStr, Field, BaseModel, Field, StrictStr, constr 
 
 class IpAddressDefinition(BaseModel):
     """
     IpAddressDefinition
     """
-    type: Optional[StrictStr] = None
-    description: Optional[StrictStr] = None
-    value: constr(strict=True, min_length=1) = Field(...)
+    type:  Optional[StrictStr] = Field(None,alias="type") 
+    description:  Optional[StrictStr] = Field(None,alias="description") 
+    value:  StrictStr = Field(...,alias="value") 
     __properties = ["type", "description", "value"]
 
     class Config:

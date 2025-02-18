@@ -19,33 +19,23 @@ import json
 
 from datetime import datetime
 from typing import Any, Dict, List, Optional
-from pydantic.v1 import BaseModel, Field, StrictBool, StrictStr, conlist, constr, validator
+from pydantic.v1 import StrictStr, Field, BaseModel, Field, StrictBool, StrictStr, conlist, constr, validator 
 
 class SupportAccessResponse(BaseModel):
     """
     Timestamped successful response to grant access to your account  # noqa: E501
     """
-    id: constr(strict=True, min_length=1) = Field(..., description="ID of the support access request")
-    duration: constr(strict=True, max_length=50, min_length=3) = Field(..., description="The duration for which access is requested (in any ISO-8601 format)")
-    description: Optional[constr(strict=True, max_length=1024, min_length=0)] = Field(None, description="The description of why the support access has been granted (i.e. support ticket numbers)")
+    id:  StrictStr = Field(...,alias="id", description="ID of the support access request") 
+    duration:  StrictStr = Field(...,alias="duration", description="The duration for which access is requested (in any ISO-8601 format)") 
+    description:  Optional[StrictStr] = Field(None,alias="description", description="The description of why the support access has been granted (i.e. support ticket numbers)") 
     created_at: datetime = Field(..., alias="createdAt", description="DateTimeOffset at which the access was granted")
     expiry: datetime = Field(..., description="DateTimeOffset at which the access will be revoked")
-    created_by: constr(strict=True, min_length=1) = Field(..., alias="createdBy", description="Obfuscated UserId of the user who granted the support access")
+    created_by:  StrictStr = Field(...,alias="createdBy", description="Obfuscated UserId of the user who granted the support access") 
     terminated: Optional[StrictBool] = Field(None, description="Whether or not that access has been invalidated")
     terminated_at: Optional[datetime] = Field(None, alias="terminatedAt", description="DateTimeOffset at which the access was invalidated")
-    terminated_by: Optional[StrictStr] = Field(None, alias="terminatedBy", description="Obfuscated UserId of the user who revoked the access")
+    terminated_by:  Optional[StrictStr] = Field(None,alias="terminatedBy", description="Obfuscated UserId of the user who revoked the access") 
     permitted_roles: Optional[conlist(StrictStr)] = Field(None, alias="permittedRoles", description="A list of permitted roles, valid for support staff to assume, for the duration of the access request")
     __properties = ["id", "duration", "description", "createdAt", "expiry", "createdBy", "terminated", "terminatedAt", "terminatedBy", "permittedRoles"]
-
-    @validator('description')
-    def description_validate_regular_expression(cls, value):
-        """Validates the regular expression"""
-        if value is None:
-            return value
-
-        if not re.match(r"^[\s\S]*$", value):
-            raise ValueError(r"must validate the regular expression /^[\s\S]*$/")
-        return value
 
     class Config:
         """Pydantic configuration"""

@@ -19,22 +19,15 @@ import json
 
 from datetime import datetime
 from typing import Any, Dict, Optional
-from pydantic.v1 import BaseModel, Field, constr, validator
+from pydantic.v1 import StrictStr, Field, BaseModel, Field, constr, validator 
 
 class CreateApiKey(BaseModel):
     """
     Create an API key  # noqa: E501
     """
-    display_name: constr(strict=True, max_length=512, min_length=1) = Field(..., alias="displayName", description="The display name for the API key")
+    display_name:  StrictStr = Field(...,alias="displayName", description="The display name for the API key") 
     deactivation_date: Optional[datetime] = Field(None, alias="deactivationDate", description="The optional date at which the key should deactivate")
     __properties = ["displayName", "deactivationDate"]
-
-    @validator('display_name')
-    def display_name_validate_regular_expression(cls, value):
-        """Validates the regular expression"""
-        if not re.match(r"^[\s\S]*$", value):
-            raise ValueError(r"must validate the regular expression /^[\s\S]*$/")
-        return value
 
     class Config:
         """Pydantic configuration"""

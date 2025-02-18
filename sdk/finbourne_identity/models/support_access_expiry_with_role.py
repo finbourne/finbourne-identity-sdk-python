@@ -19,14 +19,14 @@ import json
 
 from datetime import datetime
 from typing import Any, Dict
-from pydantic.v1 import BaseModel, Field, constr
+from pydantic.v1 import StrictStr, Field, BaseModel, Field, constr 
 
 class SupportAccessExpiryWithRole(BaseModel):
     """
     Time at which the support access granted for a role expires  # noqa: E501
     """
     expiry: datetime = Field(..., description="DateTimeOffset at which the access will be revoked")
-    permitted_role: constr(strict=True, min_length=1) = Field(..., alias="permittedRole", description="Unique identifier for permitted role.   Use GET /identity/api/authentication/support-roles to lookup role label/code from identifier.")
+    permitted_role:  StrictStr = Field(...,alias="permittedRole", description="Unique identifier for permitted role.   Use GET /identity/api/authentication/support-roles to lookup role label/code from identifier.") 
     __properties = ["expiry", "permittedRole"]
 
     class Config:

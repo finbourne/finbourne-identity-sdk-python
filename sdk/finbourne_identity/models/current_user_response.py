@@ -19,17 +19,17 @@ import json
 
 from datetime import datetime
 from typing import Any, Dict, List, Optional
-from pydantic.v1 import BaseModel, Field, StrictStr, conlist, constr
+from pydantic.v1 import StrictStr, Field, BaseModel, Field, StrictStr, conlist, constr 
 from finbourne_identity.models.link import Link
 
 class CurrentUserResponse(BaseModel):
     """
     CurrentUserResponse
     """
-    id: constr(strict=True, min_length=1) = Field(..., description="The user's system supplied unique identifier")
-    email_address: constr(strict=True, min_length=1) = Field(..., alias="emailAddress", description="The user's email address which may be null depending on the authentication method")
-    type: constr(strict=True, min_length=1) = Field(..., description="The type of user (e.g. Personal or Service)")
-    domain_type: Optional[StrictStr] = Field(None, alias="domainType", description="The type of domain in which the user exists")
+    id:  StrictStr = Field(...,alias="id", description="The user's system supplied unique identifier") 
+    email_address:  StrictStr = Field(...,alias="emailAddress", description="The user's email address which may be null depending on the authentication method") 
+    type:  StrictStr = Field(...,alias="type", description="The type of user (e.g. Personal or Service)") 
+    domain_type:  Optional[StrictStr] = Field(None,alias="domainType", description="The type of domain in which the user exists") 
     user_expiry: Optional[datetime] = Field(None, alias="userExpiry", description="The user's user expiry datetime")
     links: Optional[conlist(Link)] = None
     __properties = ["id", "emailAddress", "type", "domainType", "userExpiry", "links"]

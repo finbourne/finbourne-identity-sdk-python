@@ -19,7 +19,7 @@ import json
 
 
 from typing import Any, Dict, List, Optional
-from pydantic.v1 import BaseModel, Field, StrictInt, StrictStr, conlist
+from pydantic.v1 import StrictStr, Field, BaseModel, Field, StrictInt, StrictStr, conlist 
 from finbourne_identity.models.ip_address_definition import IpAddressDefinition
 from finbourne_identity.models.network_zones_apply_rules import NetworkZonesApplyRules
 
@@ -27,9 +27,9 @@ class UpdateNetworkZoneRequest(BaseModel):
     """
     UpdateNetworkZoneRequest
     """
-    description: Optional[StrictStr] = None
+    description:  Optional[StrictStr] = Field(None,alias="description") 
     network_zone_ips: conlist(IpAddressDefinition) = Field(..., alias="networkZoneIPs")
-    action: Optional[StrictStr] = None
+    action:  Optional[StrictStr] = Field(None,alias="action") 
     apply_rules: NetworkZonesApplyRules = Field(..., alias="applyRules")
     hierarchy: StrictInt = Field(...)
     __properties = ["description", "networkZoneIPs", "action", "applyRules", "hierarchy"]

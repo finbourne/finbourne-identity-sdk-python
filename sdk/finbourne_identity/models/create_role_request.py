@@ -19,32 +19,15 @@ import json
 
 
 from typing import Any, Dict, Optional
-from pydantic.v1 import BaseModel, Field, constr, validator
+from pydantic.v1 import StrictStr, Field, BaseModel, Field, constr, validator 
 
 class CreateRoleRequest(BaseModel):
     """
     Specifies the information required to create a new role.  # noqa: E501
     """
-    name: constr(strict=True, max_length=512, min_length=1) = Field(..., description="The role name, which must be unique within the system.")
-    description: Optional[constr(strict=True, max_length=1024, min_length=0)] = Field(None, description="The description for this role")
+    name:  StrictStr = Field(...,alias="name", description="The role name, which must be unique within the system.") 
+    description:  Optional[StrictStr] = Field(None,alias="description", description="The description for this role") 
     __properties = ["name", "description"]
-
-    @validator('name')
-    def name_validate_regular_expression(cls, value):
-        """Validates the regular expression"""
-        if not re.match(r"^[a-zA-Z][a-zA-Z0-9-_ +]{2,100}$", value):
-            raise ValueError(r"must validate the regular expression /^[a-zA-Z][a-zA-Z0-9-_ +]{2,100}$/")
-        return value
-
-    @validator('description')
-    def description_validate_regular_expression(cls, value):
-        """Validates the regular expression"""
-        if value is None:
-            return value
-
-        if not re.match(r"^[\s\S]*$", value):
-            raise ValueError(r"must validate the regular expression /^[\s\S]*$/")
-        return value
 
     class Config:
         """Pydantic configuration"""

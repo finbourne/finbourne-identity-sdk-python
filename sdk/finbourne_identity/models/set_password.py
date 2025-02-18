@@ -19,13 +19,13 @@ import json
 
 
 from typing import Any, Dict
-from pydantic.v1 import BaseModel, Field, constr
+from pydantic.v1 import StrictStr, Field, BaseModel, Field, constr 
 
 class SetPassword(BaseModel):
     """
     Set password request  # noqa: E501
     """
-    value: constr(strict=True, max_length=50, min_length=12) = Field(..., description="The value of the new password")
+    value:  StrictStr = Field(...,alias="value", description="The value of the new password") 
     __properties = ["value"]
 
     class Config:

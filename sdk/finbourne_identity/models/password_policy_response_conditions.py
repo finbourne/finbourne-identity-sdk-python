@@ -19,7 +19,7 @@ import json
 
 
 from typing import Any, Dict
-from pydantic.v1 import BaseModel, Field
+from pydantic.v1 import StrictStr, Field, BaseModel, Field 
 from finbourne_identity.models.password_policy_response_age import PasswordPolicyResponseAge
 from finbourne_identity.models.password_policy_response_complexity import PasswordPolicyResponseComplexity
 from finbourne_identity.models.password_policy_response_lockout import PasswordPolicyResponseLockout

@@ -19,7 +19,7 @@ import json
 
 
 from typing import Any, Dict, List, Optional
-from pydantic.v1 import BaseModel, Field, StrictStr, conlist
+from pydantic.v1 import StrictStr, Field, BaseModel, Field, StrictStr, conlist 
 from finbourne_identity.models.error_detail import ErrorDetail
 from finbourne_identity.models.link import Link
 from finbourne_identity.models.user_summary import UserSummary
@@ -28,7 +28,7 @@ class ListUsersResponse(BaseModel):
     """
     Users directory query response  # noqa: E501
     """
-    href: Optional[StrictStr] = Field(None, description="Uri of this response")
+    href:  Optional[StrictStr] = Field(None,alias="href", description="Uri of this response") 
     values: Optional[Dict[str, UserSummary]] = Field(None, description="Successful entities, indexed by their id")
     failed: Optional[Dict[str, ErrorDetail]] = Field(None, description="Failed entities, indexed by their id")
     links: Optional[conlist(Link)] = None
