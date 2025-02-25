@@ -26,7 +26,7 @@ class UpdateUserSchemaRequest(BaseModel):
     """
     UpdateUserSchemaRequest
     """
-    alternative_user_ids: conlist(UserSchemaProperty, max_items=10) = Field(..., alias="alternativeUserIds")
+    alternative_user_ids: conlist(UserSchemaProperty) = Field(..., alias="alternativeUserIds")
     __properties = ["alternativeUserIds"]
 
     class Config:

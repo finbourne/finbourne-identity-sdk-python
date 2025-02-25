@@ -22,11 +22,11 @@ Class | Method | HTTP request | Description
 *IdentityProviderApi* | [**remove_scim**](docs/IdentityProviderApi.md#remove_scim) | **DELETE** /api/identityprovider/scim | RemoveScim: Remove SCIM
 *MeApi* | [**get_user_info**](docs/MeApi.md#get_user_info) | **GET** /api/me | GetUserInfo: Get User Info
 *MeApi* | [**set_password**](docs/MeApi.md#set_password) | **PUT** /api/me/password | SetPassword: Set password of current user
-*NetworkZonesApi* | [**create_network_zone**](docs/NetworkZonesApi.md#create_network_zone) | **POST** /api/networkzones | [BETA] CreateNetworkZone: Creates a network zone
-*NetworkZonesApi* | [**delete_network_zone**](docs/NetworkZonesApi.md#delete_network_zone) | **DELETE** /api/networkzones/{code} | [BETA] DeleteNetworkZone: Deletes a network zone
-*NetworkZonesApi* | [**get_network_zone**](docs/NetworkZonesApi.md#get_network_zone) | **GET** /api/networkzones/{code} | [BETA] GetNetworkZone: Retrieve a Network Zone
-*NetworkZonesApi* | [**list_network_zones**](docs/NetworkZonesApi.md#list_network_zones) | **GET** /api/networkzones | [BETA] ListNetworkZones: Lists all network zones for a domain
-*NetworkZonesApi* | [**update_network_zone**](docs/NetworkZonesApi.md#update_network_zone) | **PUT** /api/networkzones/{code} | [BETA] UpdateNetworkZone: Updates an existing network zone
+*NetworkZonesApi* | [**create_network_zone**](docs/NetworkZonesApi.md#create_network_zone) | **POST** /api/networkzones | [EARLY ACCESS] CreateNetworkZone: Creates a network zone
+*NetworkZonesApi* | [**delete_network_zone**](docs/NetworkZonesApi.md#delete_network_zone) | **DELETE** /api/networkzones/{code} | [EARLY ACCESS] DeleteNetworkZone: Deletes a network zone
+*NetworkZonesApi* | [**get_network_zone**](docs/NetworkZonesApi.md#get_network_zone) | **GET** /api/networkzones/{code} | [EARLY ACCESS] GetNetworkZone: Retrieve a Network Zone
+*NetworkZonesApi* | [**list_network_zones**](docs/NetworkZonesApi.md#list_network_zones) | **GET** /api/networkzones | [EARLY ACCESS] ListNetworkZones: Lists all network zones for a domain
+*NetworkZonesApi* | [**update_network_zone**](docs/NetworkZonesApi.md#update_network_zone) | **PUT** /api/networkzones/{code} | [EARLY ACCESS] UpdateNetworkZone: Updates an existing network zone
 *PersonalAuthenticationTokensApi* | [**create_api_key**](docs/PersonalAuthenticationTokensApi.md#create_api_key) | **POST** /api/keys | CreateApiKey: Create a Personal Access Token
 *PersonalAuthenticationTokensApi* | [**delete_api_key**](docs/PersonalAuthenticationTokensApi.md#delete_api_key) | **DELETE** /api/keys/{id} | DeleteApiKey: Invalidate a Personal Access Token
 *PersonalAuthenticationTokensApi* | [**list_own_api_keys**](docs/PersonalAuthenticationTokensApi.md#list_own_api_keys) | **GET** /api/keys | ListOwnApiKeys: Gets the meta data for all of the user's existing Personal Access Tokens.

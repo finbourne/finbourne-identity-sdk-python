@@ -25,8 +25,8 @@ class UpdatePasswordPolicyRequestAge(BaseModel):
     """
     UpdatePasswordPolicyRequestAge
     """
-    max_age_days: conint(strict=True, le=999, ge=0) = Field(..., alias="maxAgeDays", description="The maximum age (in days) a password can be before expiring and needing to be changed.  0 indicates no limit")
-    history_count: conint(strict=True, le=30, ge=0) = Field(..., alias="historyCount", description="The number of unique passwords that need to be used before a previous password is permitted again.  0 indicates none")
+    max_age_days: conint(strict=True) = Field(..., alias="maxAgeDays", description="The maximum age (in days) a password can be before expiring and needing to be changed.  0 indicates no limit")
+    history_count: conint(strict=True) = Field(..., alias="historyCount", description="The number of unique passwords that need to be used before a previous password is permitted again.  0 indicates none")
     __properties = ["maxAgeDays", "historyCount"]
 
     class Config:

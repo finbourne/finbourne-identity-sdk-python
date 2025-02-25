@@ -4,17 +4,17 @@ All URIs are relative to *https://fbn-prd.lusid.com/identity*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**create_network_zone**](NetworkZonesApi.md#create_network_zone) | **POST** /api/networkzones | [BETA] CreateNetworkZone: Creates a network zone
-[**delete_network_zone**](NetworkZonesApi.md#delete_network_zone) | **DELETE** /api/networkzones/{code} | [BETA] DeleteNetworkZone: Deletes a network zone
-[**get_network_zone**](NetworkZonesApi.md#get_network_zone) | **GET** /api/networkzones/{code} | [BETA] GetNetworkZone: Retrieve a Network Zone
-[**list_network_zones**](NetworkZonesApi.md#list_network_zones) | **GET** /api/networkzones | [BETA] ListNetworkZones: Lists all network zones for a domain
-[**update_network_zone**](NetworkZonesApi.md#update_network_zone) | **PUT** /api/networkzones/{code} | [BETA] UpdateNetworkZone: Updates an existing network zone
+[**create_network_zone**](NetworkZonesApi.md#create_network_zone) | **POST** /api/networkzones | [EARLY ACCESS] CreateNetworkZone: Creates a network zone
+[**delete_network_zone**](NetworkZonesApi.md#delete_network_zone) | **DELETE** /api/networkzones/{code} | [EARLY ACCESS] DeleteNetworkZone: Deletes a network zone
+[**get_network_zone**](NetworkZonesApi.md#get_network_zone) | **GET** /api/networkzones/{code} | [EARLY ACCESS] GetNetworkZone: Retrieve a Network Zone
+[**list_network_zones**](NetworkZonesApi.md#list_network_zones) | **GET** /api/networkzones | [EARLY ACCESS] ListNetworkZones: Lists all network zones for a domain
+[**update_network_zone**](NetworkZonesApi.md#update_network_zone) | **PUT** /api/networkzones/{code} | [EARLY ACCESS] UpdateNetworkZone: Updates an existing network zone
 
 
 # **create_network_zone**
 > NetworkZoneDefinitionResponse create_network_zone(create_network_zone_request)
 
-[BETA] CreateNetworkZone: Creates a network zone
+[EARLY ACCESS] CreateNetworkZone: Creates a network zone
 
 By default, the network zone will have its hierarchy set to last on creation.
 
@@ -74,7 +74,7 @@ def main():
         # uncomment the below to set overrides at the request level
         # api_response =  api_instance.create_network_zone(create_network_zone_request, opts=opts)
 
-        # [BETA] CreateNetworkZone: Creates a network zone
+        # [EARLY ACCESS] CreateNetworkZone: Creates a network zone
         api_response = api_instance.create_network_zone(create_network_zone_request)
         pprint(api_response)
 
@@ -111,7 +111,7 @@ Name | Type | Description  | Notes
 # **delete_network_zone**
 > delete_network_zone(code)
 
-[BETA] DeleteNetworkZone: Deletes a network zone
+[EARLY ACCESS] DeleteNetworkZone: Deletes a network zone
 
 Will return a success if network zone already deleted
 
@@ -166,7 +166,7 @@ def main():
         # uncomment the below to set overrides at the request level
         #  api_instance.delete_network_zone(code, opts=opts)
 
-        # [BETA] DeleteNetworkZone: Deletes a network zone
+        # [EARLY ACCESS] DeleteNetworkZone: Deletes a network zone
         api_instance.delete_network_zone(code)
     except ApiException as e:
         print("Exception when calling NetworkZonesApi->delete_network_zone: %s\n" % e)
@@ -201,7 +201,7 @@ void (empty response body)
 # **get_network_zone**
 > NetworkZoneDefinitionResponse get_network_zone(code)
 
-[BETA] GetNetworkZone: Retrieve a Network Zone
+[EARLY ACCESS] GetNetworkZone: Retrieve a Network Zone
 
 Retrieves a Network Zone
 
@@ -256,7 +256,7 @@ def main():
         # uncomment the below to set overrides at the request level
         # api_response =  api_instance.get_network_zone(code, opts=opts)
 
-        # [BETA] GetNetworkZone: Retrieve a Network Zone
+        # [EARLY ACCESS] GetNetworkZone: Retrieve a Network Zone
         api_response = api_instance.get_network_zone(code)
         pprint(api_response)
 
@@ -293,7 +293,7 @@ Name | Type | Description  | Notes
 # **list_network_zones**
 > List[NetworkZoneDefinitionResponse] list_network_zones()
 
-[BETA] ListNetworkZones: Lists all network zones for a domain
+[EARLY ACCESS] ListNetworkZones: Lists all network zones for a domain
 
 Lists all network zones for a domain
 
@@ -347,7 +347,7 @@ def main():
         # uncomment the below to set overrides at the request level
         # api_response =  api_instance.list_network_zones(opts=opts)
 
-        # [BETA] ListNetworkZones: Lists all network zones for a domain
+        # [EARLY ACCESS] ListNetworkZones: Lists all network zones for a domain
         api_response = api_instance.list_network_zones()
         pprint(api_response)
 
@@ -380,7 +380,7 @@ This endpoint does not need any parameter.
 # **update_network_zone**
 > NetworkZoneDefinitionResponse update_network_zone(code, update_network_zone_request)
 
-[BETA] UpdateNetworkZone: Updates an existing network zone
+[EARLY ACCESS] UpdateNetworkZone: Updates an existing network zone
 
 Updates an existing network zone
 
@@ -441,7 +441,7 @@ def main():
         # uncomment the below to set overrides at the request level
         # api_response =  api_instance.update_network_zone(code, update_network_zone_request, opts=opts)
 
-        # [BETA] UpdateNetworkZone: Updates an existing network zone
+        # [EARLY ACCESS] UpdateNetworkZone: Updates an existing network zone
         api_response = api_instance.update_network_zone(code, update_network_zone_request)
         pprint(api_response)
 

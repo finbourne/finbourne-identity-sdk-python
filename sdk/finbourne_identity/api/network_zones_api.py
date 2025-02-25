@@ -64,7 +64,7 @@ class NetworkZonesApi:
 
     @validate_arguments
     def create_network_zone(self, create_network_zone_request : Annotated[CreateNetworkZoneRequest, Field(..., description="The details of the network zone to define")], async_req: Optional[bool]=None, **kwargs) -> Union[NetworkZoneDefinitionResponse, Awaitable[NetworkZoneDefinitionResponse]]:  # noqa: E501
-        """[BETA] CreateNetworkZone: Creates a network zone  # noqa: E501
+        """[EARLY ACCESS] CreateNetworkZone: Creates a network zone  # noqa: E501
 
         By default, the network zone will have its hierarchy set to last on creation.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -95,7 +95,7 @@ class NetworkZonesApi:
 
     @validate_arguments
     def create_network_zone_with_http_info(self, create_network_zone_request : Annotated[CreateNetworkZoneRequest, Field(..., description="The details of the network zone to define")], **kwargs) -> ApiResponse:  # noqa: E501
-        """[BETA] CreateNetworkZone: Creates a network zone  # noqa: E501
+        """[EARLY ACCESS] CreateNetworkZone: Creates a network zone  # noqa: E501
 
         By default, the network zone will have its hierarchy set to last on creation.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -223,7 +223,7 @@ class NetworkZonesApi:
 
     @validate_arguments
     def delete_network_zone(self, code : Annotated[StrictStr, Field(..., description="The unique identifier of the network zone to delete")], async_req: Optional[bool]=None, **kwargs) -> Union[None, Awaitable[None]]:  # noqa: E501
-        """[BETA] DeleteNetworkZone: Deletes a network zone  # noqa: E501
+        """[EARLY ACCESS] DeleteNetworkZone: Deletes a network zone  # noqa: E501
 
         Will return a success if network zone already deleted  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -254,7 +254,7 @@ class NetworkZonesApi:
 
     @validate_arguments
     def delete_network_zone_with_http_info(self, code : Annotated[StrictStr, Field(..., description="The unique identifier of the network zone to delete")], **kwargs) -> ApiResponse:  # noqa: E501
-        """[BETA] DeleteNetworkZone: Deletes a network zone  # noqa: E501
+        """[EARLY ACCESS] DeleteNetworkZone: Deletes a network zone  # noqa: E501
 
         Will return a success if network zone already deleted  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -372,7 +372,7 @@ class NetworkZonesApi:
 
     @validate_arguments
     def get_network_zone(self, code : Annotated[StrictStr, Field(..., description="The unique identifier of the network zone")], async_req: Optional[bool]=None, **kwargs) -> Union[NetworkZoneDefinitionResponse, Awaitable[NetworkZoneDefinitionResponse]]:  # noqa: E501
-        """[BETA] GetNetworkZone: Retrieve a Network Zone  # noqa: E501
+        """[EARLY ACCESS] GetNetworkZone: Retrieve a Network Zone  # noqa: E501
 
         Retrieves a Network Zone  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -403,7 +403,7 @@ class NetworkZonesApi:
 
     @validate_arguments
     def get_network_zone_with_http_info(self, code : Annotated[StrictStr, Field(..., description="The unique identifier of the network zone")], **kwargs) -> ApiResponse:  # noqa: E501
-        """[BETA] GetNetworkZone: Retrieve a Network Zone  # noqa: E501
+        """[EARLY ACCESS] GetNetworkZone: Retrieve a Network Zone  # noqa: E501
 
         Retrieves a Network Zone  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -524,7 +524,7 @@ class NetworkZonesApi:
 
     @validate_arguments
     def list_network_zones(self, async_req: Optional[bool]=None, **kwargs) -> Union[List[NetworkZoneDefinitionResponse], Awaitable[List[NetworkZoneDefinitionResponse]]]:  # noqa: E501
-        """[BETA] ListNetworkZones: Lists all network zones for a domain  # noqa: E501
+        """[EARLY ACCESS] ListNetworkZones: Lists all network zones for a domain  # noqa: E501
 
         Lists all network zones for a domain  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -553,7 +553,7 @@ class NetworkZonesApi:
 
     @validate_arguments
     def list_network_zones_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
-        """[BETA] ListNetworkZones: Lists all network zones for a domain  # noqa: E501
+        """[EARLY ACCESS] ListNetworkZones: Lists all network zones for a domain  # noqa: E501
 
         Lists all network zones for a domain  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -667,7 +667,7 @@ class NetworkZonesApi:
 
     @validate_arguments
     def update_network_zone(self, code : Annotated[StrictStr, Field(..., description="The unique identifier of the network zone")], update_network_zone_request : Annotated[UpdateNetworkZoneRequest, Field(..., description="The updated definition of the network zone")], async_req: Optional[bool]=None, **kwargs) -> Union[NetworkZoneDefinitionResponse, Awaitable[NetworkZoneDefinitionResponse]]:  # noqa: E501
-        """[BETA] UpdateNetworkZone: Updates an existing network zone  # noqa: E501
+        """[EARLY ACCESS] UpdateNetworkZone: Updates an existing network zone  # noqa: E501
 
         Updates an existing network zone  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -700,7 +700,7 @@ class NetworkZonesApi:
 
     @validate_arguments
     def update_network_zone_with_http_info(self, code : Annotated[StrictStr, Field(..., description="The unique identifier of the network zone")], update_network_zone_request : Annotated[UpdateNetworkZoneRequest, Field(..., description="The updated definition of the network zone")], **kwargs) -> ApiResponse:  # noqa: E501
-        """[BETA] UpdateNetworkZone: Updates an existing network zone  # noqa: E501
+        """[EARLY ACCESS] UpdateNetworkZone: Updates an existing network zone  # noqa: E501
 
         Updates an existing network zone  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an

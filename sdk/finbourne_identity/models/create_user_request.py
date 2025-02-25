@@ -32,7 +32,7 @@ class CreateUserRequest(BaseModel):
     second_email_address:  Optional[StrictStr] = Field(None,alias="secondEmailAddress", description="The user's second email address. Only allowed for Service users") 
     login:  StrictStr = Field(...,alias="login", description="The user's login username, in the form of an email address, which must be unique within the system.  For user accounts this should exactly match the user's email address.") 
     alternative_user_ids: Optional[Dict[str, StrictStr]] = Field(None, alias="alternativeUserIds")
-    roles: Optional[conlist(RoleId, max_items=20)] = Field(None, description="Optional. Any known roles the user should be created with.")
+    roles: Optional[conlist(RoleId)] = Field(None, description="Optional. Any known roles the user should be created with.")
     type:  StrictStr = Field(...,alias="type", description="The type of user (e.g. Personal or Service)") 
     __properties = ["firstName", "lastName", "emailAddress", "secondEmailAddress", "login", "alternativeUserIds", "roles", "type"]
 
