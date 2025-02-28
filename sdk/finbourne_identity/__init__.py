@@ -25,6 +25,7 @@ from finbourne_identity.api.me_api import MeApi
 from finbourne_identity.api.network_zones_api import NetworkZonesApi
 from finbourne_identity.api.personal_authentication_tokens_api import PersonalAuthenticationTokensApi
 from finbourne_identity.api.roles_api import RolesApi
+from finbourne_identity.api.system_logs_api import SystemLogsApi
 from finbourne_identity.api.tokens_api import TokensApi
 from finbourne_identity.api.users_api import UsersApi
 
@@ -56,6 +57,24 @@ from finbourne_identity.models.identifier_part_schema import IdentifierPartSchem
 from finbourne_identity.models.ip_address_definition import IpAddressDefinition
 from finbourne_identity.models.link import Link
 from finbourne_identity.models.list_users_response import ListUsersResponse
+from finbourne_identity.models.log_actor import LogActor
+from finbourne_identity.models.log_authentication_context import LogAuthenticationContext
+from finbourne_identity.models.log_authentication_provider import LogAuthenticationProvider
+from finbourne_identity.models.log_client_info import LogClientInfo
+from finbourne_identity.models.log_credential_provider import LogCredentialProvider
+from finbourne_identity.models.log_credential_type import LogCredentialType
+from finbourne_identity.models.log_debug_context import LogDebugContext
+from finbourne_identity.models.log_geographical_context import LogGeographicalContext
+from finbourne_identity.models.log_geolocation import LogGeolocation
+from finbourne_identity.models.log_ip_chain_entry import LogIpChainEntry
+from finbourne_identity.models.log_issuer import LogIssuer
+from finbourne_identity.models.log_outcome import LogOutcome
+from finbourne_identity.models.log_request import LogRequest
+from finbourne_identity.models.log_security_context import LogSecurityContext
+from finbourne_identity.models.log_severity import LogSeverity
+from finbourne_identity.models.log_target import LogTarget
+from finbourne_identity.models.log_transaction import LogTransaction
+from finbourne_identity.models.log_user_agent import LogUserAgent
 from finbourne_identity.models.lusid_problem_details import LusidProblemDetails
 from finbourne_identity.models.lusid_validation_problem_details import LusidValidationProblemDetails
 from finbourne_identity.models.network_zone_definition_response import NetworkZoneDefinitionResponse
@@ -67,6 +86,7 @@ from finbourne_identity.models.password_policy_response_complexity import Passwo
 from finbourne_identity.models.password_policy_response_conditions import PasswordPolicyResponseConditions
 from finbourne_identity.models.password_policy_response_lockout import PasswordPolicyResponseLockout
 from finbourne_identity.models.resource_list_of_access_controlled_resource import ResourceListOfAccessControlledResource
+from finbourne_identity.models.resource_list_of_system_log import ResourceListOfSystemLog
 from finbourne_identity.models.role_id import RoleId
 from finbourne_identity.models.role_response import RoleResponse
 from finbourne_identity.models.set_password import SetPassword
@@ -77,6 +97,7 @@ from finbourne_identity.models.support_access_request import SupportAccessReques
 from finbourne_identity.models.support_access_response import SupportAccessResponse
 from finbourne_identity.models.support_role import SupportRole
 from finbourne_identity.models.support_roles_response import SupportRolesResponse
+from finbourne_identity.models.system_log import SystemLog
 from finbourne_identity.models.temporary_password import TemporaryPassword
 from finbourne_identity.models.update_network_zone_request import UpdateNetworkZoneRequest
 from finbourne_identity.models.update_password_policy_request import UpdatePasswordPolicyRequest
@@ -114,6 +135,7 @@ __all__ = [
     "NetworkZonesApi",
     "PersonalAuthenticationTokensApi",
     "RolesApi",
+    "SystemLogsApi",
     "TokensApi",
     "UsersApi",
     "AccessControlledAction",
@@ -135,6 +157,24 @@ __all__ = [
     "IpAddressDefinition",
     "Link",
     "ListUsersResponse",
+    "LogActor",
+    "LogAuthenticationContext",
+    "LogAuthenticationProvider",
+    "LogClientInfo",
+    "LogCredentialProvider",
+    "LogCredentialType",
+    "LogDebugContext",
+    "LogGeographicalContext",
+    "LogGeolocation",
+    "LogIpChainEntry",
+    "LogIssuer",
+    "LogOutcome",
+    "LogRequest",
+    "LogSecurityContext",
+    "LogSeverity",
+    "LogTarget",
+    "LogTransaction",
+    "LogUserAgent",
     "LusidProblemDetails",
     "LusidValidationProblemDetails",
     "NetworkZoneDefinitionResponse",
@@ -146,6 +186,7 @@ __all__ = [
     "PasswordPolicyResponseConditions",
     "PasswordPolicyResponseLockout",
     "ResourceListOfAccessControlledResource",
+    "ResourceListOfSystemLog",
     "RoleId",
     "RoleResponse",
     "SetPassword",
@@ -156,6 +197,7 @@ __all__ = [
     "SupportAccessResponse",
     "SupportRole",
     "SupportRolesResponse",
+    "SystemLog",
     "TemporaryPassword",
     "UpdateNetworkZoneRequest",
     "UpdatePasswordPolicyRequest",

@@ -9,6 +9,7 @@ from finbourne_identity.api.me_api import MeApi
 from finbourne_identity.api.network_zones_api import NetworkZonesApi
 from finbourne_identity.api.personal_authentication_tokens_api import PersonalAuthenticationTokensApi
 from finbourne_identity.api.roles_api import RolesApi
+from finbourne_identity.api.system_logs_api import SystemLogsApi
 from finbourne_identity.api.tokens_api import TokensApi
 from finbourne_identity.api.users_api import UsersApi
 
@@ -22,6 +23,7 @@ __all__ = [
     "NetworkZonesApi",
     "PersonalAuthenticationTokensApi",
     "RolesApi",
+    "SystemLogsApi",
     "TokensApi",
     "UsersApi"
 ]
