@@ -35,10 +35,7 @@ from finbourne_identity.models.link import Link
 from finbourne_identity.models.list_users_response import ListUsersResponse
 from finbourne_identity.models.log_actor import LogActor
 from finbourne_identity.models.log_authentication_context import LogAuthenticationContext
-from finbourne_identity.models.log_authentication_provider import LogAuthenticationProvider
 from finbourne_identity.models.log_client_info import LogClientInfo
-from finbourne_identity.models.log_credential_provider import LogCredentialProvider
-from finbourne_identity.models.log_credential_type import LogCredentialType
 from finbourne_identity.models.log_debug_context import LogDebugContext
 from finbourne_identity.models.log_geographical_context import LogGeographicalContext
 from finbourne_identity.models.log_geolocation import LogGeolocation
@@ -112,10 +109,7 @@ __all__ = [
     "ListUsersResponse",
     "LogActor",
     "LogAuthenticationContext",
-    "LogAuthenticationProvider",
     "LogClientInfo",
-    "LogCredentialProvider",
-    "LogCredentialType",
     "LogDebugContext",
     "LogGeographicalContext",
     "LogGeolocation",

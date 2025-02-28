@@ -20,18 +20,15 @@ import json
 
 from typing import Any, Dict, List, Optional
 from pydantic.v1 import StrictStr, Field, BaseModel, Field, StrictInt, StrictStr, conlist 
-from finbourne_identity.models.log_authentication_provider import LogAuthenticationProvider
-from finbourne_identity.models.log_credential_provider import LogCredentialProvider
-from finbourne_identity.models.log_credential_type import LogCredentialType
 from finbourne_identity.models.log_issuer import LogIssuer
 
 class LogAuthenticationContext(BaseModel):
     """
     Represents a LogAuthenticationContext resource in the Okta API  # noqa: E501
     """
-    authentication_provider: Optional[LogAuthenticationProvider] = Field(None, alias="authenticationProvider")
-    credential_provider: Optional[conlist(LogCredentialProvider)] = Field(None, alias="credentialProvider")
-    credential_type: Optional[conlist(LogCredentialType)] = Field(None, alias="credentialType")
+    authentication_provider:  Optional[StrictStr] = Field(None,alias="authenticationProvider") 
+    credential_provider: Optional[conlist(StrictStr)] = Field(None, alias="credentialProvider")
+    credential_type: Optional[conlist(StrictStr)] = Field(None, alias="credentialType")
     issuer: Optional[LogIssuer] = None
     interface:  Optional[StrictStr] = Field(None,alias="interface") 
     authentication_step: Optional[StrictInt] = Field(None, alias="authenticationStep")
@@ -70,26 +67,14 @@ class LogAuthenticationContext(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of authentication_provider
-        if self.authentication_provider:
-            _dict['authenticationProvider'] = self.authentication_provider.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of each item in credential_provider (list)
-        _items = []
-        if self.credential_provider:
-            for _item in self.credential_provider:
-                if _item:
-                    _items.append(_item.to_dict())
-            _dict['credentialProvider'] = _items
-        # override the default output from pydantic by calling `to_dict()` of each item in credential_type (list)
-        _items = []
-        if self.credential_type:
-            for _item in self.credential_type:
-                if _item:
-                    _items.append(_item.to_dict())
-            _dict['credentialType'] = _items
         # override the default output from pydantic by calling `to_dict()` of issuer
         if self.issuer:
             _dict['issuer'] = self.issuer.to_dict()
+        # set to None if authentication_provider (nullable) is None
+        # and __fields_set__ contains the field
+        if self.authentication_provider is None and "authentication_provider" in self.__fields_set__:
+            _dict['authenticationProvider'] = None
+
         # set to None if credential_provider (nullable) is None
         # and __fields_set__ contains the field
         if self.credential_provider is None and "credential_provider" in self.__fields_set__:
@@ -127,9 +112,9 @@ class LogAuthenticationContext(BaseModel):
             return LogAuthenticationContext.parse_obj(obj)
 
         _obj = LogAuthenticationContext.parse_obj({
-            "authentication_provider": LogAuthenticationProvider.from_dict(obj.get("authenticationProvider")) if obj.get("authenticationProvider") is not None else None,
-            "credential_provider": [LogCredentialProvider.from_dict(_item) for _item in obj.get("credentialProvider")] if obj.get("credentialProvider") is not None else None,
-            "credential_type": [LogCredentialType.from_dict(_item) for _item in obj.get("credentialType")] if obj.get("credentialType") is not None else None,
+            "authentication_provider": obj.get("authenticationProvider"),
+            "credential_provider": obj.get("credentialProvider"),
+            "credential_type": obj.get("credentialType"),
             "issuer": LogIssuer.from_dict(obj.get("issuer")) if obj.get("issuer") is not None else None,
             "interface": obj.get("interface"),
             "authentication_step": obj.get("authenticationStep"),
