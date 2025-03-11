@@ -1,14 +1,14 @@
-# finbourne_identity.SystemLogsApi
+# finbourne_identity.IdentityLogsApi
 
 All URIs are relative to *https://fbn-prd.lusid.com/identity*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**list_logs**](SystemLogsApi.md#list_logs) | **GET** /api/logs | [BETA] ListLogs: Lists system logs for a domain
+[**list_logs**](IdentityLogsApi.md#list_logs) | **GET** /api/logs | [BETA] ListLogs: Lists system logs for a domain
 
 
 # **list_logs**
-> ResourceListOfSystemLog list_logs(since=since, until=until, after=after, filter=filter, query=query, limit=limit, sort_order=sort_order)
+> ResourceListOfSystemLog list_logs(okta_since=okta_since, okta_until=okta_until, okta_filter=okta_filter, okta_query=okta_query, okta_limit=okta_limit, okta_sort_order=okta_sort_order, okta_after=okta_after)
 
 [BETA] ListLogs: Lists system logs for a domain
 
@@ -23,7 +23,7 @@ from finbourne_identity.models import *
 from pprint import pprint
 from finbourne_identity import (
     SyncApiClientFactory,
-    SystemLogsApi
+    IdentityLogsApi
 )
 
 def main():
@@ -58,25 +58,25 @@ def main():
     # Enter a context with an instance of the SyncApiClientFactory to ensure the connection pool is closed after use
     
     # Create an instance of the API class
-    api_instance = api_client_factory.build(SystemLogsApi)
-    since = '2013-10-20T19:20:30+01:00' # datetime | Lower bound of log events published property (optional)
-    until = '2013-10-20T19:20:30+01:00' # datetime | Upper bound of log events published property (optional)
-    after = 'after_example' # str | Page token (optional)
-    filter = 'filter_example' # str | Okta filter expression (optional)
-    query = 'query_example' # str | Filters log events results by one or more case insensitive keywords (optional)
-    limit = 56 # int | Max number of results returned (optional)
-    sort_order = 'sort_order_example' # str | Order of events by published property. Either ASCENDING or DESCENDING (optional)
+    api_instance = api_client_factory.build(IdentityLogsApi)
+    okta_since = '2013-10-20T19:20:30+01:00' # datetime | Lower bound of log events published property (optional)
+    okta_until = '2013-10-20T19:20:30+01:00' # datetime | Upper bound of log events published property (optional)
+    okta_filter = 'okta_filter_example' # str | Okta Page token (optional)
+    okta_query = 'okta_query_example' # str | Okta filter expression (optional)
+    okta_limit = 56 # int | Filters log events results by one or more case insensitive keywords (optional)
+    okta_sort_order = 'okta_sort_order_example' # str | Max number of results returned (optional)
+    okta_after = 'okta_after_example' # str | Order of events by published property. Either ASCENDING or DESCENDING (optional)
 
     try:
         # uncomment the below to set overrides at the request level
-        # api_response =  api_instance.list_logs(since=since, until=until, after=after, filter=filter, query=query, limit=limit, sort_order=sort_order, opts=opts)
+        # api_response =  api_instance.list_logs(okta_since=okta_since, okta_until=okta_until, okta_filter=okta_filter, okta_query=okta_query, okta_limit=okta_limit, okta_sort_order=okta_sort_order, okta_after=okta_after, opts=opts)
 
         # [BETA] ListLogs: Lists system logs for a domain
-        api_response = api_instance.list_logs(since=since, until=until, after=after, filter=filter, query=query, limit=limit, sort_order=sort_order)
+        api_response = api_instance.list_logs(okta_since=okta_since, okta_until=okta_until, okta_filter=okta_filter, okta_query=okta_query, okta_limit=okta_limit, okta_sort_order=okta_sort_order, okta_after=okta_after)
         pprint(api_response)
 
     except ApiException as e:
-        print("Exception when calling SystemLogsApi->list_logs: %s\n" % e)
+        print("Exception when calling IdentityLogsApi->list_logs: %s\n" % e)
 
 main()
 ```
@@ -85,13 +85,13 @@ main()
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **since** | **datetime**| Lower bound of log events published property | [optional] 
- **until** | **datetime**| Upper bound of log events published property | [optional] 
- **after** | **str**| Page token | [optional] 
- **filter** | **str**| Okta filter expression | [optional] 
- **query** | **str**| Filters log events results by one or more case insensitive keywords | [optional] 
- **limit** | **int**| Max number of results returned | [optional] 
- **sort_order** | **str**| Order of events by published property. Either ASCENDING or DESCENDING | [optional] 
+ **okta_since** | **datetime**| Lower bound of log events published property | [optional] 
+ **okta_until** | **datetime**| Upper bound of log events published property | [optional] 
+ **okta_filter** | **str**| Okta Page token | [optional] 
+ **okta_query** | **str**| Okta filter expression | [optional] 
+ **okta_limit** | **int**| Filters log events results by one or more case insensitive keywords | [optional] 
+ **okta_sort_order** | **str**| Max number of results returned | [optional] 
+ **okta_after** | **str**| Order of events by published property. Either ASCENDING or DESCENDING | [optional] 
 
 ### Return type
 

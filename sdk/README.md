@@ -18,6 +18,7 @@ Class | Method | HTTP request | Description
 *AuthenticationApi* | [**grant_support_access**](docs/AuthenticationApi.md#grant_support_access) | **POST** /api/authentication/support | GrantSupportAccess: Grants FINBOURNE support access to your account
 *AuthenticationApi* | [**invalidate_support_access**](docs/AuthenticationApi.md#invalidate_support_access) | **DELETE** /api/authentication/support | InvalidateSupportAccess: Revoke any FINBOURNE support access to your account
 *AuthenticationApi* | [**update_password_policy**](docs/AuthenticationApi.md#update_password_policy) | **PUT** /api/authentication/password-policy/{userType} | [EXPERIMENTAL] UpdatePasswordPolicy: Updates password policy for a user type
+*IdentityLogsApi* | [**list_logs**](docs/IdentityLogsApi.md#list_logs) | **GET** /api/logs | [BETA] ListLogs: Lists system logs for a domain
 *IdentityProviderApi* | [**add_scim**](docs/IdentityProviderApi.md#add_scim) | **PUT** /api/identityprovider/scim | AddScim: Add SCIM
 *IdentityProviderApi* | [**remove_scim**](docs/IdentityProviderApi.md#remove_scim) | **DELETE** /api/identityprovider/scim | RemoveScim: Remove SCIM
 *MeApi* | [**get_user_info**](docs/MeApi.md#get_user_info) | **GET** /api/me | GetUserInfo: Get User Info
@@ -38,7 +39,6 @@ Class | Method | HTTP request | Description
 *RolesApi* | [**list_users_in_role**](docs/RolesApi.md#list_users_in_role) | **GET** /api/roles/{id}/users | ListUsersInRole: Get the users in the specified role.
 *RolesApi* | [**remove_user_from_role**](docs/RolesApi.md#remove_user_from_role) | **DELETE** /api/roles/{id}/users/{userId} | RemoveUserFromRole: Remove User from Role
 *RolesApi* | [**update_role**](docs/RolesApi.md#update_role) | **PUT** /api/roles/{id} | UpdateRole: Update Role
-*SystemLogsApi* | [**list_logs**](docs/SystemLogsApi.md#list_logs) | **GET** /api/logs | [BETA] ListLogs: Lists system logs for a domain
 *TokensApi* | [**invalidate_token**](docs/TokensApi.md#invalidate_token) | **DELETE** /api/tokens | InvalidateToken: Invalidate current JWT token (sign out)
 *UsersApi* | [**create_user**](docs/UsersApi.md#create_user) | **POST** /api/users | CreateUser: Create User
 *UsersApi* | [**delete_user**](docs/UsersApi.md#delete_user) | **DELETE** /api/users/{id} | DeleteUser: Delete User
