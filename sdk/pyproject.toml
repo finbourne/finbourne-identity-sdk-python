@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "finbourne-identity-sdk"
-version = "2.1.124"
+version = "2.1.125"
 description = "FINBOURNE Identity Service API"
 authors = ["FINBOURNE Technology <info@finbourne.com>"]
 license = "MIT"
