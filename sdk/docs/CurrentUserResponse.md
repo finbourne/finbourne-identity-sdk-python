@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **type** | **str** | The type of user (e.g. Personal or Service) | 
 **domain_type** | **str** | The type of domain in which the user exists | [optional] 
 **user_expiry** | **datetime** | The user&#39;s user expiry datetime | [optional] 
+**groups** | **List[str]** | The groups this user belongs to | [optional] 
 **links** | [**List[Link]**](Link.md) |  | [optional] 
 
 ## Example
