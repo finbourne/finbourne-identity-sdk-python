@@ -20,6 +20,7 @@ from __future__ import absolute_import
 from finbourne_identity.api.application_metadata_api import ApplicationMetadataApi
 from finbourne_identity.api.applications_api import ApplicationsApi
 from finbourne_identity.api.authentication_api import AuthenticationApi
+from finbourne_identity.api.external_token_issuers_api import ExternalTokenIssuersApi
 from finbourne_identity.api.identity_logs_api import IdentityLogsApi
 from finbourne_identity.api.identity_provider_api import IdentityProviderApi
 from finbourne_identity.api.me_api import MeApi
@@ -44,14 +45,17 @@ from finbourne_identity.models.action_id import ActionId
 from finbourne_identity.models.add_scim_response import AddScimResponse
 from finbourne_identity.models.api_key import ApiKey
 from finbourne_identity.models.authentication_information import AuthenticationInformation
+from finbourne_identity.models.claim_mappings import ClaimMappings
 from finbourne_identity.models.create_api_key import CreateApiKey
 from finbourne_identity.models.create_application_request import CreateApplicationRequest
+from finbourne_identity.models.create_external_token_issuer_request import CreateExternalTokenIssuerRequest
 from finbourne_identity.models.create_network_zone_request import CreateNetworkZoneRequest
 from finbourne_identity.models.create_role_request import CreateRoleRequest
 from finbourne_identity.models.create_user_request import CreateUserRequest
 from finbourne_identity.models.created_api_key import CreatedApiKey
 from finbourne_identity.models.current_user_response import CurrentUserResponse
 from finbourne_identity.models.error_detail import ErrorDetail
+from finbourne_identity.models.external_token_issuer_response import ExternalTokenIssuerResponse
 from finbourne_identity.models.id_selector_definition import IdSelectorDefinition
 from finbourne_identity.models.identifier_part_schema import IdentifierPartSchema
 from finbourne_identity.models.ip_address_definition import IpAddressDefinition
@@ -96,6 +100,7 @@ from finbourne_identity.models.support_role import SupportRole
 from finbourne_identity.models.support_roles_response import SupportRolesResponse
 from finbourne_identity.models.system_log import SystemLog
 from finbourne_identity.models.temporary_password import TemporaryPassword
+from finbourne_identity.models.update_external_token_issuer_request import UpdateExternalTokenIssuerRequest
 from finbourne_identity.models.update_network_zone_request import UpdateNetworkZoneRequest
 from finbourne_identity.models.update_password_policy_request import UpdatePasswordPolicyRequest
 from finbourne_identity.models.update_password_policy_request_age import UpdatePasswordPolicyRequestAge
@@ -127,6 +132,7 @@ __all__ = [
     "ApplicationMetadataApi",
     "ApplicationsApi",
     "AuthenticationApi",
+    "ExternalTokenIssuersApi",
     "IdentityLogsApi",
     "IdentityProviderApi",
     "MeApi",
@@ -141,14 +147,17 @@ __all__ = [
     "AddScimResponse",
     "ApiKey",
     "AuthenticationInformation",
+    "ClaimMappings",
     "CreateApiKey",
     "CreateApplicationRequest",
+    "CreateExternalTokenIssuerRequest",
     "CreateNetworkZoneRequest",
     "CreateRoleRequest",
     "CreateUserRequest",
     "CreatedApiKey",
     "CurrentUserResponse",
     "ErrorDetail",
+    "ExternalTokenIssuerResponse",
     "IdSelectorDefinition",
     "IdentifierPartSchema",
     "IpAddressDefinition",
@@ -193,6 +202,7 @@ __all__ = [
     "SupportRolesResponse",
     "SystemLog",
     "TemporaryPassword",
+    "UpdateExternalTokenIssuerRequest",
     "UpdateNetworkZoneRequest",
     "UpdatePasswordPolicyRequest",
     "UpdatePasswordPolicyRequestAge",

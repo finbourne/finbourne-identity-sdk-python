@@ -18,6 +18,11 @@ Class | Method | HTTP request | Description
 *AuthenticationApi* | [**grant_support_access**](docs/AuthenticationApi.md#grant_support_access) | **POST** /api/authentication/support | GrantSupportAccess: Grants FINBOURNE support access to your account
 *AuthenticationApi* | [**invalidate_support_access**](docs/AuthenticationApi.md#invalidate_support_access) | **DELETE** /api/authentication/support | InvalidateSupportAccess: Revoke any FINBOURNE support access to your account
 *AuthenticationApi* | [**update_password_policy**](docs/AuthenticationApi.md#update_password_policy) | **PUT** /api/authentication/password-policy/{userType} | [EXPERIMENTAL] UpdatePasswordPolicy: Updates password policy for a user type
+*ExternalTokenIssuersApi* | [**create_external_token_issuer**](docs/ExternalTokenIssuersApi.md#create_external_token_issuer) | **POST** /api/externaltokenissuers | [EARLY ACCESS] CreateExternalTokenIssuer: Create an External Token Issuer
+*ExternalTokenIssuersApi* | [**delete_external_token_issuer**](docs/ExternalTokenIssuersApi.md#delete_external_token_issuer) | **DELETE** /api/externaltokenissuers/{code} | [EARLY ACCESS] DeleteExternalTokenIssuer: Deletes an External Token Issuer by code
+*ExternalTokenIssuersApi* | [**get_external_token_issuer**](docs/ExternalTokenIssuersApi.md#get_external_token_issuer) | **GET** /api/externaltokenissuers/{code} | [EARLY ACCESS] GetExternalTokenIssuer: Gets an External Token Issuer with code
+*ExternalTokenIssuersApi* | [**list_external_token_issuers**](docs/ExternalTokenIssuersApi.md#list_external_token_issuers) | **GET** /api/externaltokenissuers | [EARLY ACCESS] ListExternalTokenIssuers: Lists all External Token Issuers for a domain
+*ExternalTokenIssuersApi* | [**update_external_token_issuer**](docs/ExternalTokenIssuersApi.md#update_external_token_issuer) | **PUT** /api/externaltokenissuers/{code} | [EARLY ACCESS] UpdateExternalTokenIssuer: Updates an existing External Token Issuer
 *IdentityLogsApi* | [**list_logs**](docs/IdentityLogsApi.md#list_logs) | **GET** /api/logs | [BETA] ListLogs: Lists system logs for a domain
 *IdentityLogsApi* | [**list_user_logs**](docs/IdentityLogsApi.md#list_user_logs) | **GET** /api/logs/me | [BETA] ListUserLogs: Lists user logs
 *IdentityProviderApi* | [**add_scim**](docs/IdentityProviderApi.md#add_scim) | **PUT** /api/identityprovider/scim | AddScim: Add SCIM
@@ -67,14 +72,17 @@ Class | Method | HTTP request | Description
  - [AddScimResponse](docs/AddScimResponse.md)
  - [ApiKey](docs/ApiKey.md)
  - [AuthenticationInformation](docs/AuthenticationInformation.md)
+ - [ClaimMappings](docs/ClaimMappings.md)
  - [CreateApiKey](docs/CreateApiKey.md)
  - [CreateApplicationRequest](docs/CreateApplicationRequest.md)
+ - [CreateExternalTokenIssuerRequest](docs/CreateExternalTokenIssuerRequest.md)
  - [CreateNetworkZoneRequest](docs/CreateNetworkZoneRequest.md)
  - [CreateRoleRequest](docs/CreateRoleRequest.md)
  - [CreateUserRequest](docs/CreateUserRequest.md)
  - [CreatedApiKey](docs/CreatedApiKey.md)
  - [CurrentUserResponse](docs/CurrentUserResponse.md)
  - [ErrorDetail](docs/ErrorDetail.md)
+ - [ExternalTokenIssuerResponse](docs/ExternalTokenIssuerResponse.md)
  - [IdSelectorDefinition](docs/IdSelectorDefinition.md)
  - [IdentifierPartSchema](docs/IdentifierPartSchema.md)
  - [IpAddressDefinition](docs/IpAddressDefinition.md)
@@ -119,6 +127,7 @@ Class | Method | HTTP request | Description
  - [SupportRolesResponse](docs/SupportRolesResponse.md)
  - [SystemLog](docs/SystemLog.md)
  - [TemporaryPassword](docs/TemporaryPassword.md)
+ - [UpdateExternalTokenIssuerRequest](docs/UpdateExternalTokenIssuerRequest.md)
  - [UpdateNetworkZoneRequest](docs/UpdateNetworkZoneRequest.md)
  - [UpdatePasswordPolicyRequest](docs/UpdatePasswordPolicyRequest.md)
  - [UpdatePasswordPolicyRequestAge](docs/UpdatePasswordPolicyRequestAge.md)
