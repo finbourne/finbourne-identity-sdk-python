@@ -1,6 +1,5 @@
 # OAuthApplication
 
-
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
@@ -10,24 +9,22 @@ Name | Type | Description | Notes
 **secret** | **str** |  | [optional] 
 **client_id** | **str** |  | 
 **issuer** | **str** |  | 
-
 ## Example
 
 ```python
 from finbourne_identity.models.o_auth_application import OAuthApplication
+from typing import Any, Dict, Optional
+from pydantic.v1 import BaseModel, Field, StrictStr, constr, validator
 
-# TODO update the JSON string below
-json = "{}"
-# create an instance of OAuthApplication from a JSON string
-o_auth_application_instance = OAuthApplication.from_json(json)
-# print the JSON string representation of the object
-print OAuthApplication.to_json()
+id: StrictStr = "example_id"
+type: StrictStr = "example_type"
+display_name: StrictStr = "example_display_name"
+secret: Optional[StrictStr] = "example_secret"
+client_id: StrictStr = "example_client_id"
+issuer: StrictStr = "example_issuer"
+o_auth_application_instance = OAuthApplication(id=id, type=type, display_name=display_name, secret=secret, client_id=client_id, issuer=issuer)
 
-# convert the object into a dict
-o_auth_application_dict = o_auth_application_instance.to_dict()
-# create an instance of OAuthApplication from a dict
-o_auth_application_form_dict = o_auth_application.from_dict(o_auth_application_dict)
 ```
-[Back to Model list](../README.md#documentation-for-models) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to README](../README.md)
 
+[Back to Model list](../README.md#documentation-for-models) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to README](../README.md)
 

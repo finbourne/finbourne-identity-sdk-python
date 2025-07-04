@@ -1,7 +1,6 @@
 # LogIpChainEntry
 
 Represents a LogIpChainEntry resource in the Okta API
-
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
@@ -9,24 +8,20 @@ Name | Type | Description | Notes
 **geographical_context** | [**LogGeographicalContext**](LogGeographicalContext.md) |  | [optional] 
 **version** | **str** |  | [optional] 
 **source** | **str** |  | [optional] 
-
 ## Example
 
 ```python
 from finbourne_identity.models.log_ip_chain_entry import LogIpChainEntry
+from typing import Any, Dict, Optional
+from pydantic.v1 import BaseModel, Field, StrictStr
 
-# TODO update the JSON string below
-json = "{}"
-# create an instance of LogIpChainEntry from a JSON string
-log_ip_chain_entry_instance = LogIpChainEntry.from_json(json)
-# print the JSON string representation of the object
-print LogIpChainEntry.to_json()
+ip: Optional[StrictStr] = "example_ip"
+geographical_context: Optional[LogGeographicalContext] = # Replace with your value
+version: Optional[StrictStr] = "example_version"
+source: Optional[StrictStr] = "example_source"
+log_ip_chain_entry_instance = LogIpChainEntry(ip=ip, geographical_context=geographical_context, version=version, source=source)
 
-# convert the object into a dict
-log_ip_chain_entry_dict = log_ip_chain_entry_instance.to_dict()
-# create an instance of LogIpChainEntry from a dict
-log_ip_chain_entry_form_dict = log_ip_chain_entry.from_dict(log_ip_chain_entry_dict)
 ```
-[Back to Model list](../README.md#documentation-for-models) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to README](../README.md)
 
+[Back to Model list](../README.md#documentation-for-models) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to README](../README.md)
 

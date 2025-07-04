@@ -1,6 +1,5 @@
 # UserResponse
 
-
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
@@ -16,24 +15,29 @@ Name | Type | Description | Notes
 **status** | **str** | The status of the user | 
 **external** | **bool** | Whether or not the user originates from an external identity system | 
 **links** | [**List[Link]**](Link.md) |  | [optional] 
-
 ## Example
 
 ```python
 from finbourne_identity.models.user_response import UserResponse
+from typing import Any, Dict, List, Optional
+from pydantic.v1 import BaseModel, Field, StrictBool, StrictStr, conlist, constr
 
-# TODO update the JSON string below
-json = "{}"
-# create an instance of UserResponse from a JSON string
-user_response_instance = UserResponse.from_json(json)
-# print the JSON string representation of the object
-print UserResponse.to_json()
+id: StrictStr = "example_id"
+alternative_user_ids: Optional[Dict[str, StrictStr]] = # Replace with your value
+email_address: StrictStr = "example_email_address"
+second_email_address: Optional[StrictStr] = "example_second_email_address"
+login: StrictStr = "example_login"
+first_name: StrictStr = "example_first_name"
+last_name: StrictStr = "example_last_name"
+roles: Optional[conlist(RoleResponse)] = # Replace with your value
+type: StrictStr = "example_type"
+status: StrictStr = "example_status"
+external: StrictBool = # Replace with your value
+external:StrictBool = True
+links: Optional[conlist(Link)] = None
+user_response_instance = UserResponse(id=id, alternative_user_ids=alternative_user_ids, email_address=email_address, second_email_address=second_email_address, login=login, first_name=first_name, last_name=last_name, roles=roles, type=type, status=status, external=external, links=links)
 
-# convert the object into a dict
-user_response_dict = user_response_instance.to_dict()
-# create an instance of UserResponse from a dict
-user_response_form_dict = user_response.from_dict(user_response_dict)
 ```
-[Back to Model list](../README.md#documentation-for-models) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to README](../README.md)
 
+[Back to Model list](../README.md#documentation-for-models) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to README](../README.md)
 

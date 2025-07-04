@@ -1,7 +1,6 @@
 # CreateApplicationRequest
 
 A request to create an application for authenticating the source of token requests
-
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
@@ -10,24 +9,21 @@ Name | Type | Description | Notes
 **type** | **str** | The Type of the application. This must be either Native or Web | 
 **redirect_uris** | **List[str]** | A web application&#39;s acceptable list of post-login redirect URIs | [optional] 
 **post_logout_redirect_uris** | **List[str]** | A web application&#39;s acceptable list of post-logout redirect URIs | [optional] 
-
 ## Example
 
 ```python
 from finbourne_identity.models.create_application_request import CreateApplicationRequest
+from typing import Any, Dict, List, Optional
+from pydantic.v1 import BaseModel, Field, StrictStr, conlist, constr, validator
 
-# TODO update the JSON string below
-json = "{}"
-# create an instance of CreateApplicationRequest from a JSON string
-create_application_request_instance = CreateApplicationRequest.from_json(json)
-# print the JSON string representation of the object
-print CreateApplicationRequest.to_json()
+display_name: StrictStr = "example_display_name"
+client_id: StrictStr = "example_client_id"
+type: StrictStr = "example_type"
+redirect_uris: Optional[conlist(StrictStr)] = # Replace with your value
+post_logout_redirect_uris: Optional[conlist(StrictStr)] = # Replace with your value
+create_application_request_instance = CreateApplicationRequest(display_name=display_name, client_id=client_id, type=type, redirect_uris=redirect_uris, post_logout_redirect_uris=post_logout_redirect_uris)
 
-# convert the object into a dict
-create_application_request_dict = create_application_request_instance.to_dict()
-# create an instance of CreateApplicationRequest from a dict
-create_application_request_form_dict = create_application_request.from_dict(create_application_request_dict)
 ```
-[Back to Model list](../README.md#documentation-for-models) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to README](../README.md)
 
+[Back to Model list](../README.md#documentation-for-models) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to README](../README.md)
 

@@ -1,29 +1,22 @@
 # AddScimResponse
 
-
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **base_url** | **str** |  | [optional] 
 **api_token** | **str** |  | [optional] 
-
 ## Example
 
 ```python
 from finbourne_identity.models.add_scim_response import AddScimResponse
+from typing import Any, Dict, Optional
+from pydantic.v1 import BaseModel, Field, StrictStr
 
-# TODO update the JSON string below
-json = "{}"
-# create an instance of AddScimResponse from a JSON string
-add_scim_response_instance = AddScimResponse.from_json(json)
-# print the JSON string representation of the object
-print AddScimResponse.to_json()
+base_url: Optional[StrictStr] = "example_base_url"
+api_token: Optional[StrictStr] = "example_api_token"
+add_scim_response_instance = AddScimResponse(base_url=base_url, api_token=api_token)
 
-# convert the object into a dict
-add_scim_response_dict = add_scim_response_instance.to_dict()
-# create an instance of AddScimResponse from a dict
-add_scim_response_form_dict = add_scim_response.from_dict(add_scim_response_dict)
 ```
-[Back to Model list](../README.md#documentation-for-models) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to README](../README.md)
 
+[Back to Model list](../README.md#documentation-for-models) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to README](../README.md)
 

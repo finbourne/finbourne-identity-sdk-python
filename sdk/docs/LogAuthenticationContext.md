@@ -1,7 +1,6 @@
 # LogAuthenticationContext
 
 Represents a LogAuthenticationContext resource in the Okta API
-
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
@@ -12,24 +11,24 @@ Name | Type | Description | Notes
 **interface** | **str** |  | [optional] 
 **authentication_step** | **int** |  | [optional] 
 **external_session_id** | **str** |  | [optional] 
-
 ## Example
 
 ```python
 from finbourne_identity.models.log_authentication_context import LogAuthenticationContext
+from typing import Any, Dict, List, Optional
+from pydantic.v1 import BaseModel, Field, StrictInt, StrictStr, conlist
 
-# TODO update the JSON string below
-json = "{}"
-# create an instance of LogAuthenticationContext from a JSON string
-log_authentication_context_instance = LogAuthenticationContext.from_json(json)
-# print the JSON string representation of the object
-print LogAuthenticationContext.to_json()
+authentication_provider: Optional[StrictStr] = "example_authentication_provider"
+credential_provider: Optional[conlist(StrictStr)] = # Replace with your value
+credential_type: Optional[conlist(StrictStr)] = # Replace with your value
+issuer: Optional[LogIssuer] = None
+interface: Optional[StrictStr] = "example_interface"
+authentication_step: Optional[StrictInt] = # Replace with your value
+authentication_step: Optional[StrictInt] = None
+external_session_id: Optional[StrictStr] = "example_external_session_id"
+log_authentication_context_instance = LogAuthenticationContext(authentication_provider=authentication_provider, credential_provider=credential_provider, credential_type=credential_type, issuer=issuer, interface=interface, authentication_step=authentication_step, external_session_id=external_session_id)
 
-# convert the object into a dict
-log_authentication_context_dict = log_authentication_context_instance.to_dict()
-# create an instance of LogAuthenticationContext from a dict
-log_authentication_context_form_dict = log_authentication_context.from_dict(log_authentication_context_dict)
 ```
-[Back to Model list](../README.md#documentation-for-models) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to README](../README.md)
 
+[Back to Model list](../README.md#documentation-for-models) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to README](../README.md)
 

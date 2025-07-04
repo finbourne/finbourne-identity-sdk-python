@@ -1,7 +1,6 @@
 # SystemLog
 
 A system log event
-
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
@@ -21,24 +20,32 @@ Name | Type | Description | Notes
 **transaction** | [**LogTransaction**](LogTransaction.md) |  | [optional] 
 **uuid** | **str** | Represents Uuid in the Okta API | [optional] 
 **version** | **str** | Represents a Version in the Okta API | [optional] 
-
 ## Example
 
 ```python
 from finbourne_identity.models.system_log import SystemLog
+from typing import Any, Dict, List, Optional
+from pydantic.v1 import BaseModel, Field, StrictStr, conlist
+from datetime import datetime
+actor: Optional[LogActor] = None
+authentication_context: Optional[LogAuthenticationContext] = # Replace with your value
+client_info: Optional[LogClientInfo] = # Replace with your value
+debug_context: Optional[LogDebugContext] = # Replace with your value
+display_message: Optional[StrictStr] = "example_display_message"
+event_type: Optional[StrictStr] = "example_event_type"
+legacy_event_type: Optional[StrictStr] = "example_legacy_event_type"
+outcome: Optional[LogOutcome] = None
+published: Optional[datetime] = # Replace with your value
+request: Optional[LogRequest] = None
+security_context: Optional[LogSecurityContext] = # Replace with your value
+severity: Optional[LogSeverity] = None
+target: Optional[conlist(LogTarget)] = # Replace with your value
+transaction: Optional[LogTransaction] = None
+uuid: Optional[StrictStr] = "example_uuid"
+version: Optional[StrictStr] = "example_version"
+system_log_instance = SystemLog(actor=actor, authentication_context=authentication_context, client_info=client_info, debug_context=debug_context, display_message=display_message, event_type=event_type, legacy_event_type=legacy_event_type, outcome=outcome, published=published, request=request, security_context=security_context, severity=severity, target=target, transaction=transaction, uuid=uuid, version=version)
 
-# TODO update the JSON string below
-json = "{}"
-# create an instance of SystemLog from a JSON string
-system_log_instance = SystemLog.from_json(json)
-# print the JSON string representation of the object
-print SystemLog.to_json()
-
-# convert the object into a dict
-system_log_dict = system_log_instance.to_dict()
-# create an instance of SystemLog from a dict
-system_log_form_dict = system_log.from_dict(system_log_dict)
 ```
-[Back to Model list](../README.md#documentation-for-models) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to README](../README.md)
 
+[Back to Model list](../README.md#documentation-for-models) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to README](../README.md)
 

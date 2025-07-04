@@ -1,7 +1,6 @@
 # UserSummary
 
 Lightweight view of an user details
-
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
@@ -14,24 +13,25 @@ Name | Type | Description | Notes
 **type** | **str** | User&#39;s type (Personal, Service...) | [optional] 
 **alternative_user_ids** | **Dict[str, str]** | User&#39;s alternative user IDs. Only returned for the current user | [optional] 
 **links** | [**List[Link]**](Link.md) |  | [optional] 
-
 ## Example
 
 ```python
 from finbourne_identity.models.user_summary import UserSummary
+from typing import Any, Dict, List, Optional
+from pydantic.v1 import BaseModel, Field, StrictStr, conlist
 
-# TODO update the JSON string below
-json = "{}"
-# create an instance of UserSummary from a JSON string
-user_summary_instance = UserSummary.from_json(json)
-# print the JSON string representation of the object
-print UserSummary.to_json()
+id: Optional[StrictStr] = "example_id"
+login: Optional[StrictStr] = "example_login"
+email: Optional[StrictStr] = "example_email"
+second_email: Optional[StrictStr] = "example_second_email"
+first_name: Optional[StrictStr] = "example_first_name"
+last_name: Optional[StrictStr] = "example_last_name"
+type: Optional[StrictStr] = "example_type"
+alternative_user_ids: Optional[Dict[str, StrictStr]] = # Replace with your value
+links: Optional[conlist(Link)] = None
+user_summary_instance = UserSummary(id=id, login=login, email=email, second_email=second_email, first_name=first_name, last_name=last_name, type=type, alternative_user_ids=alternative_user_ids, links=links)
 
-# convert the object into a dict
-user_summary_dict = user_summary_instance.to_dict()
-# create an instance of UserSummary from a dict
-user_summary_form_dict = user_summary.from_dict(user_summary_dict)
 ```
-[Back to Model list](../README.md#documentation-for-models) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to README](../README.md)
 
+[Back to Model list](../README.md#documentation-for-models) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to README](../README.md)
 

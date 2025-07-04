@@ -1,7 +1,6 @@
 # CreateNetworkZoneRequest
 
 The Create Network Zone Request information
-
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
@@ -10,24 +9,21 @@ Name | Type | Description | Notes
 **network_zone_ips** | [**List[IpAddressDefinition]**](IpAddressDefinition.md) |  | 
 **action** | **str** |  | [optional] 
 **apply_rules** | [**NetworkZonesApplyRules**](NetworkZonesApplyRules.md) |  | 
-
 ## Example
 
 ```python
 from finbourne_identity.models.create_network_zone_request import CreateNetworkZoneRequest
+from typing import Any, Dict, List, Optional
+from pydantic.v1 import BaseModel, Field, StrictStr, conlist, constr, validator
 
-# TODO update the JSON string below
-json = "{}"
-# create an instance of CreateNetworkZoneRequest from a JSON string
-create_network_zone_request_instance = CreateNetworkZoneRequest.from_json(json)
-# print the JSON string representation of the object
-print CreateNetworkZoneRequest.to_json()
+code: StrictStr = "example_code"
+description: Optional[StrictStr] = "example_description"
+network_zone_ips: conlist(IpAddressDefinition) = # Replace with your value
+action: Optional[StrictStr] = "example_action"
+apply_rules: NetworkZonesApplyRules = # Replace with your value
+create_network_zone_request_instance = CreateNetworkZoneRequest(code=code, description=description, network_zone_ips=network_zone_ips, action=action, apply_rules=apply_rules)
 
-# convert the object into a dict
-create_network_zone_request_dict = create_network_zone_request_instance.to_dict()
-# create an instance of CreateNetworkZoneRequest from a dict
-create_network_zone_request_form_dict = create_network_zone_request.from_dict(create_network_zone_request_dict)
 ```
-[Back to Model list](../README.md#documentation-for-models) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to README](../README.md)
 
+[Back to Model list](../README.md#documentation-for-models) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to README](../README.md)
 

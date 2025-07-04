@@ -1,30 +1,23 @@
 # CreateApiKey
 
 Create an API key
-
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **display_name** | **str** | The display name for the API key | 
 **deactivation_date** | **datetime** | The optional date at which the key should deactivate | [optional] 
-
 ## Example
 
 ```python
 from finbourne_identity.models.create_api_key import CreateApiKey
+from typing import Any, Dict, Optional
+from pydantic.v1 import BaseModel, Field, constr, validator
+from datetime import datetime
+display_name: StrictStr = "example_display_name"
+deactivation_date: Optional[datetime] = # Replace with your value
+create_api_key_instance = CreateApiKey(display_name=display_name, deactivation_date=deactivation_date)
 
-# TODO update the JSON string below
-json = "{}"
-# create an instance of CreateApiKey from a JSON string
-create_api_key_instance = CreateApiKey.from_json(json)
-# print the JSON string representation of the object
-print CreateApiKey.to_json()
-
-# convert the object into a dict
-create_api_key_dict = create_api_key_instance.to_dict()
-# create an instance of CreateApiKey from a dict
-create_api_key_form_dict = create_api_key.from_dict(create_api_key_dict)
 ```
-[Back to Model list](../README.md#documentation-for-models) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to README](../README.md)
 
+[Back to Model list](../README.md#documentation-for-models) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to README](../README.md)
 

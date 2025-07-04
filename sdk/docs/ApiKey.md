@@ -1,7 +1,6 @@
 # ApiKey
 
 The metadata of an API key
-
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
@@ -9,24 +8,20 @@ Name | Type | Description | Notes
 **display_name** | **str** | The display name of the API key | 
 **created_date** | **datetime** | The creation date of the API key | 
 **deactivation_date** | **datetime** | The deactivation date of the API key | [optional] 
-
 ## Example
 
 ```python
 from finbourne_identity.models.api_key import ApiKey
+from typing import Any, Dict, Optional
+from pydantic.v1 import BaseModel, Field, constr, validator
+from datetime import datetime
+id: StrictStr = "example_id"
+display_name: StrictStr = "example_display_name"
+created_date: datetime = # Replace with your value
+deactivation_date: Optional[datetime] = # Replace with your value
+api_key_instance = ApiKey(id=id, display_name=display_name, created_date=created_date, deactivation_date=deactivation_date)
 
-# TODO update the JSON string below
-json = "{}"
-# create an instance of ApiKey from a JSON string
-api_key_instance = ApiKey.from_json(json)
-# print the JSON string representation of the object
-print ApiKey.to_json()
-
-# convert the object into a dict
-api_key_dict = api_key_instance.to_dict()
-# create an instance of ApiKey from a dict
-api_key_form_dict = api_key.from_dict(api_key_dict)
 ```
-[Back to Model list](../README.md#documentation-for-models) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to README](../README.md)
 
+[Back to Model list](../README.md#documentation-for-models) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to README](../README.md)
 

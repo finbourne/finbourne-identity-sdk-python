@@ -1,7 +1,6 @@
 # CreateUserRequest
 
 Details necessary for creating a new user
-
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
@@ -13,24 +12,24 @@ Name | Type | Description | Notes
 **alternative_user_ids** | **Dict[str, str]** |  | [optional] 
 **roles** | [**List[RoleId]**](RoleId.md) | Optional. Any known roles the user should be created with. | [optional] 
 **type** | **str** | The type of user (e.g. Personal or Service) | 
-
 ## Example
 
 ```python
 from finbourne_identity.models.create_user_request import CreateUserRequest
+from typing import Any, Dict, List, Optional
+from pydantic.v1 import BaseModel, Field, StrictStr, conlist, constr, validator
 
-# TODO update the JSON string below
-json = "{}"
-# create an instance of CreateUserRequest from a JSON string
-create_user_request_instance = CreateUserRequest.from_json(json)
-# print the JSON string representation of the object
-print CreateUserRequest.to_json()
+first_name: StrictStr = "example_first_name"
+last_name: StrictStr = "example_last_name"
+email_address: StrictStr = "example_email_address"
+second_email_address: Optional[StrictStr] = "example_second_email_address"
+login: StrictStr = "example_login"
+alternative_user_ids: Optional[Dict[str, StrictStr]] = # Replace with your value
+roles: Optional[conlist(RoleId, max_items=20)] = Field(None, description="Optional. Any known roles the user should be created with.")
+type: StrictStr = "example_type"
+create_user_request_instance = CreateUserRequest(first_name=first_name, last_name=last_name, email_address=email_address, second_email_address=second_email_address, login=login, alternative_user_ids=alternative_user_ids, roles=roles, type=type)
 
-# convert the object into a dict
-create_user_request_dict = create_user_request_instance.to_dict()
-# create an instance of CreateUserRequest from a dict
-create_user_request_form_dict = create_user_request.from_dict(create_user_request_dict)
 ```
-[Back to Model list](../README.md#documentation-for-models) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to README](../README.md)
 
+[Back to Model list](../README.md#documentation-for-models) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to README](../README.md)
 
