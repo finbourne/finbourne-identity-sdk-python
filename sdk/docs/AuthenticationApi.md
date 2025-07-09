@@ -5,12 +5,12 @@ All URIs are relative to *https://fbn-prd.lusid.com/identity*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**get_authentication_information**](AuthenticationApi.md#get_authentication_information) | **GET** /api/authentication/information | GetAuthenticationInformation: Gets AuthenticationInformation
-[**get_password_policy**](AuthenticationApi.md#get_password_policy) | **GET** /api/authentication/password-policy/{userType} | [EXPERIMENTAL] GetPasswordPolicy: Gets password policy for a user type
+[**get_password_policy**](AuthenticationApi.md#get_password_policy) | **GET** /api/authentication/password-policy/{userType} | GetPasswordPolicy: Gets password policy for a user type
 [**get_support_access_history**](AuthenticationApi.md#get_support_access_history) | **GET** /api/authentication/support | GetSupportAccessHistory: Get the history of all support access granted and any information pertaining to their termination
 [**get_support_roles**](AuthenticationApi.md#get_support_roles) | **GET** /api/authentication/support-roles | GetSupportRoles: Get mapping of support roles, the internal representation to a human friendly representation
 [**grant_support_access**](AuthenticationApi.md#grant_support_access) | **POST** /api/authentication/support | GrantSupportAccess: Grants FINBOURNE support access to your account
 [**invalidate_support_access**](AuthenticationApi.md#invalidate_support_access) | **DELETE** /api/authentication/support | InvalidateSupportAccess: Revoke any FINBOURNE support access to your account
-[**update_password_policy**](AuthenticationApi.md#update_password_policy) | **PUT** /api/authentication/password-policy/{userType} | [EXPERIMENTAL] UpdatePasswordPolicy: Updates password policy for a user type
+[**update_password_policy**](AuthenticationApi.md#update_password_policy) | **PUT** /api/authentication/password-policy/{userType} | UpdatePasswordPolicy: Updates password policy for a user type
 
 
 # **get_authentication_information**
@@ -103,7 +103,7 @@ This endpoint does not need any parameter.
 # **get_password_policy**
 > PasswordPolicyResponse get_password_policy(user_type)
 
-[EXPERIMENTAL] GetPasswordPolicy: Gets password policy for a user type
+GetPasswordPolicy: Gets password policy for a user type
 
 Get the password policy for a given user type
 
@@ -158,7 +158,7 @@ def main():
         # uncomment the below to set overrides at the request level
         # api_response =  api_instance.get_password_policy(user_type, opts=opts)
 
-        # [EXPERIMENTAL] GetPasswordPolicy: Gets password policy for a user type
+        # GetPasswordPolicy: Gets password policy for a user type
         api_response = api_instance.get_password_policy(user_type)
         pprint(api_response)
 
@@ -560,7 +560,7 @@ This endpoint does not need any parameter.
 # **update_password_policy**
 > PasswordPolicyResponse update_password_policy(user_type, update_password_policy_request=update_password_policy_request)
 
-[EXPERIMENTAL] UpdatePasswordPolicy: Updates password policy for a user type
+UpdatePasswordPolicy: Updates password policy for a user type
 
 Update the password policy for a given user type
 
@@ -621,7 +621,7 @@ def main():
         # uncomment the below to set overrides at the request level
         # api_response =  api_instance.update_password_policy(user_type, update_password_policy_request=update_password_policy_request, opts=opts)
 
-        # [EXPERIMENTAL] UpdatePasswordPolicy: Updates password policy for a user type
+        # UpdatePasswordPolicy: Updates password policy for a user type
         api_response = api_instance.update_password_policy(user_type, update_password_policy_request=update_password_policy_request)
         pprint(api_response)
 
