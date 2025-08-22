@@ -3,8 +3,8 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**user_id** | **str** |  | [optional] 
-**login** | **str** |  | [optional] 
+**user_id** | **str** |  | 
+**login** | **str** |  | 
 **email** | **str** |  | 
 **first_name** | **str** |  | 
 **last_name** | **str** |  | 
@@ -17,8 +17,8 @@ from finbourne_identity.models.claim_mappings import ClaimMappings
 from typing import Any, Dict, Optional
 from pydantic.v1 import BaseModel, Field, StrictStr, constr
 
-user_id: Optional[StrictStr] = "example_user_id"
-login: Optional[StrictStr] = "example_login"
+user_id: StrictStr = "example_user_id"
+login: StrictStr = "example_login"
 email: StrictStr = "example_email"
 first_name: StrictStr = "example_first_name"
 last_name: StrictStr = "example_last_name"
