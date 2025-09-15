@@ -24,7 +24,7 @@ Class | Method | HTTP request | Description
 *ExternalTokenIssuersApi* | [**list_external_token_issuers**](docs/ExternalTokenIssuersApi.md#list_external_token_issuers) | **GET** /api/externaltokenissuers | [EARLY ACCESS] ListExternalTokenIssuers: Lists all External Token Issuers for a domain
 *ExternalTokenIssuersApi* | [**update_external_token_issuer**](docs/ExternalTokenIssuersApi.md#update_external_token_issuer) | **PUT** /api/externaltokenissuers/{code} | [EARLY ACCESS] UpdateExternalTokenIssuer: Updates an existing External Token Issuer
 *IdentityLogsApi* | [**list_logs**](docs/IdentityLogsApi.md#list_logs) | **GET** /api/logs | [BETA] ListLogs: Lists system logs for a domain
-*IdentityLogsApi* | [**list_user_logs**](docs/IdentityLogsApi.md#list_user_logs) | **GET** /api/logs/me | [BETA] ListUserLogs: Lists user logs
+*IdentityLogsApi* | [**list_user_logs**](docs/IdentityLogsApi.md#list_user_logs) | **GET** /api/logs/me | ListUserLogs: Lists user logs
 *IdentityProviderApi* | [**add_scim**](docs/IdentityProviderApi.md#add_scim) | **PUT** /api/identityprovider/scim | AddScim: Add SCIM
 *IdentityProviderApi* | [**remove_scim**](docs/IdentityProviderApi.md#remove_scim) | **DELETE** /api/identityprovider/scim | RemoveScim: Remove SCIM
 *MeApi* | [**get_user_info**](docs/MeApi.md#get_user_info) | **GET** /api/me | GetUserInfo: Get User Info

@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-
+from datetime import datetime
 from typing import Any, Dict, List, Optional
 from pydantic.v1 import StrictStr, Field, BaseModel, Field, StrictBool, StrictStr, conlist, constr 
 from finbourne_identity.models.link import Link
@@ -38,8 +38,12 @@ class UserResponse(BaseModel):
     type:  StrictStr = Field(...,alias="type", description="The type of user (e.g. Personal or Service)") 
     status:  StrictStr = Field(...,alias="status", description="The status of the user") 
     external: StrictBool = Field(..., description="Whether or not the user originates from an external identity system")
+    last_login: datetime = Field(..., alias="lastLogin", description="Last time the user logged in")
+    last_updated: datetime = Field(..., alias="lastUpdated", description="Last time the user was updated")
+    created: datetime = Field(..., description="Date the user was created")
+    password_changed: datetime = Field(..., alias="passwordChanged", description="Last time the password was changed for this user")
     links: Optional[conlist(Link)] = None
-    __properties = ["id", "alternativeUserIds", "emailAddress", "secondEmailAddress", "login", "firstName", "lastName", "roles", "type", "status", "external", "links"]
+    __properties = ["id", "alternativeUserIds", "emailAddress", "secondEmailAddress", "login", "firstName", "lastName", "roles", "type", "status", "external", "lastLogin", "lastUpdated", "created", "passwordChanged", "links"]
 
     class Config:
         """Pydantic configuration"""
@@ -130,6 +134,10 @@ class UserResponse(BaseModel):
             "type": obj.get("type"),
             "status": obj.get("status"),
             "external": obj.get("external"),
+            "last_login": obj.get("lastLogin"),
+            "last_updated": obj.get("lastUpdated"),
+            "created": obj.get("created"),
+            "password_changed": obj.get("passwordChanged"),
             "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
         })
         return _obj

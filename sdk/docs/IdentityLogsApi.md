@@ -5,7 +5,7 @@ All URIs are relative to *https://fbn-prd.lusid.com/identity*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**list_logs**](IdentityLogsApi.md#list_logs) | **GET** /api/logs | [BETA] ListLogs: Lists system logs for a domain
-[**list_user_logs**](IdentityLogsApi.md#list_user_logs) | **GET** /api/logs/me | [BETA] ListUserLogs: Lists user logs
+[**list_user_logs**](IdentityLogsApi.md#list_user_logs) | **GET** /api/logs/me | ListUserLogs: Lists user logs
 
 
 # **list_logs**
@@ -115,7 +115,7 @@ Name | Type | Description  | Notes
 # **list_user_logs**
 > ResourceListOfSystemLog list_user_logs(okta_since=okta_since, okta_until=okta_until, okta_limit=okta_limit, okta_sort_order=okta_sort_order, okta_after=okta_after)
 
-[BETA] ListUserLogs: Lists user logs
+ListUserLogs: Lists user logs
 
 Lists account related system logs for the calling user
 
@@ -174,7 +174,7 @@ def main():
         # uncomment the below to set overrides at the request level
         # api_response =  api_instance.list_user_logs(okta_since=okta_since, okta_until=okta_until, okta_limit=okta_limit, okta_sort_order=okta_sort_order, okta_after=okta_after, opts=opts)
 
-        # [BETA] ListUserLogs: Lists user logs
+        # ListUserLogs: Lists user logs
         api_response = api_instance.list_user_logs(okta_since=okta_since, okta_until=okta_until, okta_limit=okta_limit, okta_sort_order=okta_sort_order, okta_after=okta_after)
         pprint(api_response)
 

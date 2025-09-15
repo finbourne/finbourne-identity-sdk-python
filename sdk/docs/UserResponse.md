@@ -14,6 +14,10 @@ Name | Type | Description | Notes
 **type** | **str** | The type of user (e.g. Personal or Service) | 
 **status** | **str** | The status of the user | 
 **external** | **bool** | Whether or not the user originates from an external identity system | 
+**last_login** | **datetime** | Last time the user logged in | 
+**last_updated** | **datetime** | Last time the user was updated | 
+**created** | **datetime** | Date the user was created | 
+**password_changed** | **datetime** | Last time the password was changed for this user | 
 **links** | [**List[Link]**](Link.md) |  | [optional] 
 ## Example
 
@@ -21,7 +25,7 @@ Name | Type | Description | Notes
 from finbourne_identity.models.user_response import UserResponse
 from typing import Any, Dict, List, Optional
 from pydantic.v1 import BaseModel, Field, StrictBool, StrictStr, conlist, constr
-
+from datetime import datetime
 id: StrictStr = "example_id"
 alternative_user_ids: Optional[Dict[str, StrictStr]] = # Replace with your value
 email_address: StrictStr = "example_email_address"
@@ -34,8 +38,12 @@ type: StrictStr = "example_type"
 status: StrictStr = "example_status"
 external: StrictBool = # Replace with your value
 external:StrictBool = True
+last_login: datetime = # Replace with your value
+last_updated: datetime = # Replace with your value
+created: datetime = # Replace with your value
+password_changed: datetime = # Replace with your value
 links: Optional[conlist(Link)] = None
-user_response_instance = UserResponse(id=id, alternative_user_ids=alternative_user_ids, email_address=email_address, second_email_address=second_email_address, login=login, first_name=first_name, last_name=last_name, roles=roles, type=type, status=status, external=external, links=links)
+user_response_instance = UserResponse(id=id, alternative_user_ids=alternative_user_ids, email_address=email_address, second_email_address=second_email_address, login=login, first_name=first_name, last_name=last_name, roles=roles, type=type, status=status, external=external, last_login=last_login, last_updated=last_updated, created=created, password_changed=password_changed, links=links)
 
 ```
 

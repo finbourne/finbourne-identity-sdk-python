@@ -270,7 +270,7 @@ class IdentityLogsApi:
 
     @validate_arguments
     def list_user_logs(self, okta_since : Annotated[Optional[datetime], Field(description="Lower bound of log events published property")] = None, okta_until : Annotated[Optional[datetime], Field(description="Upper bound of log events published property")] = None, okta_limit : Annotated[Optional[conint(strict=True)], Field(description="Max number of results returned")] = None, okta_sort_order : Annotated[Optional[StrictStr], Field( description="Order of events by published property. Either ASCENDING or DESCENDING")] = None, okta_after : Annotated[Optional[StrictStr], Field( description="Okta Page token")] = None, async_req: Optional[bool]=None, **kwargs) -> Union[ResourceListOfSystemLog, Awaitable[ResourceListOfSystemLog]]:  # noqa: E501
-        """[BETA] ListUserLogs: Lists user logs  # noqa: E501
+        """ListUserLogs: Lists user logs  # noqa: E501
 
         Lists account related system logs for the calling user  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -309,7 +309,7 @@ class IdentityLogsApi:
 
     @validate_arguments
     def list_user_logs_with_http_info(self, okta_since : Annotated[Optional[datetime], Field(description="Lower bound of log events published property")] = None, okta_until : Annotated[Optional[datetime], Field(description="Upper bound of log events published property")] = None, okta_limit : Annotated[Optional[conint(strict=True)], Field(description="Max number of results returned")] = None, okta_sort_order : Annotated[Optional[StrictStr], Field( description="Order of events by published property. Either ASCENDING or DESCENDING")] = None, okta_after : Annotated[Optional[StrictStr], Field( description="Okta Page token")] = None, **kwargs) -> ApiResponse:  # noqa: E501
-        """[BETA] ListUserLogs: Lists user logs  # noqa: E501
+        """ListUserLogs: Lists user logs  # noqa: E501
 
         Lists account related system logs for the calling user  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
