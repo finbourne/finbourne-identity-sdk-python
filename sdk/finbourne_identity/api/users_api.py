@@ -857,7 +857,7 @@ class UsersApi:
 
     @validate_arguments
     def get_user_schema(self, async_req: Optional[bool]=None, **kwargs) -> Union[UserSchemaResponse, Awaitable[UserSchemaResponse]]:  # noqa: E501
-        """[EXPERIMENTAL] GetUserSchema: Get User Schema  # noqa: E501
+        """[EARLY ACCESS] GetUserSchema: Get User Schema  # noqa: E501
 
         Get the User Schema  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -886,7 +886,7 @@ class UsersApi:
 
     @validate_arguments
     def get_user_schema_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
-        """[EXPERIMENTAL] GetUserSchema: Get User Schema  # noqa: E501
+        """[EARLY ACCESS] GetUserSchema: Get User Schema  # noqa: E501
 
         Get the User Schema  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -2207,7 +2207,7 @@ class UsersApi:
 
     @validate_arguments
     def update_user_schema(self, update_user_schema_request : Annotated[UpdateUserSchemaRequest, Field(..., description="The new User Schema")], async_req: Optional[bool]=None, **kwargs) -> Union[UserSchemaResponse, Awaitable[UserSchemaResponse]]:  # noqa: E501
-        """[EXPERIMENTAL] UpdateUserSchema: Update User Schema  # noqa: E501
+        """[EARLY ACCESS] UpdateUserSchema: Update User Schema  # noqa: E501
 
         Update the User Schema  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -2238,7 +2238,7 @@ class UsersApi:
 
     @validate_arguments
     def update_user_schema_with_http_info(self, update_user_schema_request : Annotated[UpdateUserSchemaRequest, Field(..., description="The new User Schema")], **kwargs) -> ApiResponse:  # noqa: E501
-        """[EXPERIMENTAL] UpdateUserSchema: Update User Schema  # noqa: E501
+        """[EARLY ACCESS] UpdateUserSchema: Update User Schema  # noqa: E501
 
         Update the User Schema  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an

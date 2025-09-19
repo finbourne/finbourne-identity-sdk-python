@@ -9,7 +9,7 @@ Method | HTTP request | Description
 [**expire_password**](UsersApi.md#expire_password) | **POST** /api/users/{id}/lifecycle/$expirepassword | ExpirePassword: Reset the user&#39;s password to a temporary one
 [**find_users_by_id**](UsersApi.md#find_users_by_id) | **GET** /api/directory | FindUsersById: Find users by id endpoint
 [**get_user**](UsersApi.md#get_user) | **GET** /api/users/{id} | GetUser: Get User
-[**get_user_schema**](UsersApi.md#get_user_schema) | **GET** /api/users/schema | [EXPERIMENTAL] GetUserSchema: Get User Schema
+[**get_user_schema**](UsersApi.md#get_user_schema) | **GET** /api/users/schema | [EARLY ACCESS] GetUserSchema: Get User Schema
 [**list_runnable_users**](UsersApi.md#list_runnable_users) | **GET** /api/users/$runnable | [EARLY ACCESS] ListRunnableUsers: List Runable Users
 [**list_users**](UsersApi.md#list_users) | **GET** /api/users | ListUsers: List Users
 [**reset_factors**](UsersApi.md#reset_factors) | **POST** /api/users/{id}/lifecycle/$resetfactors | ResetFactors: Reset MFA factors
@@ -18,7 +18,7 @@ Method | HTTP request | Description
 [**unlock_user**](UsersApi.md#unlock_user) | **POST** /api/users/{id}/lifecycle/$unlock | UnlockUser: Unlock User
 [**unsuspend_user**](UsersApi.md#unsuspend_user) | **POST** /api/users/{id}/lifecycle/$unsuspend | [EXPERIMENTAL] UnsuspendUser: Unsuspend user
 [**update_user**](UsersApi.md#update_user) | **PUT** /api/users/{id} | UpdateUser: Update User
-[**update_user_schema**](UsersApi.md#update_user_schema) | **PUT** /api/users/schema | [EXPERIMENTAL] UpdateUserSchema: Update User Schema
+[**update_user_schema**](UsersApi.md#update_user_schema) | **PUT** /api/users/schema | [EARLY ACCESS] UpdateUserSchema: Update User Schema
 
 
 # **create_user**
@@ -493,7 +493,7 @@ Name | Type | Description  | Notes
 # **get_user_schema**
 > UserSchemaResponse get_user_schema()
 
-[EXPERIMENTAL] GetUserSchema: Get User Schema
+[EARLY ACCESS] GetUserSchema: Get User Schema
 
 Get the User Schema
 
@@ -547,7 +547,7 @@ def main():
         # uncomment the below to set overrides at the request level
         # api_response =  api_instance.get_user_schema(opts=opts)
 
-        # [EXPERIMENTAL] GetUserSchema: Get User Schema
+        # [EARLY ACCESS] GetUserSchema: Get User Schema
         api_response = api_instance.get_user_schema()
         pprint(api_response)
 
@@ -1308,7 +1308,7 @@ Name | Type | Description  | Notes
 # **update_user_schema**
 > UserSchemaResponse update_user_schema(update_user_schema_request)
 
-[EXPERIMENTAL] UpdateUserSchema: Update User Schema
+[EARLY ACCESS] UpdateUserSchema: Update User Schema
 
 Update the User Schema
 
@@ -1368,7 +1368,7 @@ def main():
         # uncomment the below to set overrides at the request level
         # api_response =  api_instance.update_user_schema(update_user_schema_request, opts=opts)
 
-        # [EXPERIMENTAL] UpdateUserSchema: Update User Schema
+        # [EARLY ACCESS] UpdateUserSchema: Update User Schema
         api_response = api_instance.update_user_schema(update_user_schema_request)
         pprint(api_response)
 
