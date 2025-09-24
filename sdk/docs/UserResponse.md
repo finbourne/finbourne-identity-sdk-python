@@ -14,10 +14,10 @@ Name | Type | Description | Notes
 **type** | **str** | The type of user (e.g. Personal or Service) | 
 **status** | **str** | The status of the user | 
 **external** | **bool** | Whether or not the user originates from an external identity system | 
-**last_login** | **datetime** | Last time the user logged in | 
-**last_updated** | **datetime** | Last time the user was updated | 
-**created** | **datetime** | Date the user was created | 
-**password_changed** | **datetime** | Last time the password was changed for this user | 
+**last_login** | **datetime** | Last time the user logged in | [optional] 
+**last_updated** | **datetime** | Last time the user was updated | [optional] 
+**created** | **datetime** | Date the user was created | [optional] 
+**password_changed** | **datetime** | Last time the password was changed for this user | [optional] 
 **links** | [**List[Link]**](Link.md) |  | [optional] 
 ## Example
 
@@ -38,10 +38,10 @@ type: StrictStr = "example_type"
 status: StrictStr = "example_status"
 external: StrictBool = # Replace with your value
 external:StrictBool = True
-last_login: datetime = # Replace with your value
-last_updated: datetime = # Replace with your value
-created: datetime = # Replace with your value
-password_changed: datetime = # Replace with your value
+last_login: Optional[datetime] = # Replace with your value
+last_updated: Optional[datetime] = # Replace with your value
+created: Optional[datetime] = # Replace with your value
+password_changed: Optional[datetime] = # Replace with your value
 links: Optional[conlist(Link)] = None
 user_response_instance = UserResponse(id=id, alternative_user_ids=alternative_user_ids, email_address=email_address, second_email_address=second_email_address, login=login, first_name=first_name, last_name=last_name, roles=roles, type=type, status=status, external=external, last_login=last_login, last_updated=last_updated, created=created, password_changed=password_changed, links=links)
 

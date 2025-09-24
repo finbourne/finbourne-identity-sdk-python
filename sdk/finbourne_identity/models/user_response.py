@@ -38,10 +38,10 @@ class UserResponse(BaseModel):
     type:  StrictStr = Field(...,alias="type", description="The type of user (e.g. Personal or Service)") 
     status:  StrictStr = Field(...,alias="status", description="The status of the user") 
     external: StrictBool = Field(..., description="Whether or not the user originates from an external identity system")
-    last_login: datetime = Field(..., alias="lastLogin", description="Last time the user logged in")
-    last_updated: datetime = Field(..., alias="lastUpdated", description="Last time the user was updated")
-    created: datetime = Field(..., description="Date the user was created")
-    password_changed: datetime = Field(..., alias="passwordChanged", description="Last time the password was changed for this user")
+    last_login: Optional[datetime] = Field(None, alias="lastLogin", description="Last time the user logged in")
+    last_updated: Optional[datetime] = Field(None, alias="lastUpdated", description="Last time the user was updated")
+    created: Optional[datetime] = Field(None, description="Date the user was created")
+    password_changed: Optional[datetime] = Field(None, alias="passwordChanged", description="Last time the password was changed for this user")
     links: Optional[conlist(Link)] = None
     __properties = ["id", "alternativeUserIds", "emailAddress", "secondEmailAddress", "login", "firstName", "lastName", "roles", "type", "status", "external", "lastLogin", "lastUpdated", "created", "passwordChanged", "links"]
 
@@ -105,6 +105,26 @@ class UserResponse(BaseModel):
         # and __fields_set__ contains the field
         if self.roles is None and "roles" in self.__fields_set__:
             _dict['roles'] = None
+
+        # set to None if last_login (nullable) is None
+        # and __fields_set__ contains the field
+        if self.last_login is None and "last_login" in self.__fields_set__:
+            _dict['lastLogin'] = None
+
+        # set to None if last_updated (nullable) is None
+        # and __fields_set__ contains the field
+        if self.last_updated is None and "last_updated" in self.__fields_set__:
+            _dict['lastUpdated'] = None
+
+        # set to None if created (nullable) is None
+        # and __fields_set__ contains the field
+        if self.created is None and "created" in self.__fields_set__:
+            _dict['created'] = None
+
+        # set to None if password_changed (nullable) is None
+        # and __fields_set__ contains the field
+        if self.password_changed is None and "password_changed" in self.__fields_set__:
+            _dict['passwordChanged'] = None
 
         # set to None if links (nullable) is None
         # and __fields_set__ contains the field
