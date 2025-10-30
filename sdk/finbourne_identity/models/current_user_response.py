@@ -17,9 +17,11 @@ import pprint
 import re  # noqa: F401
 import json
 
+
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
 from datetime import datetime
-from typing import Any, Dict, List, Optional
-from pydantic.v1 import StrictStr, Field, BaseModel, Field, StrictStr, conlist, constr 
 from finbourne_identity.models.link import Link
 
 class CurrentUserResponse(BaseModel):
@@ -30,9 +32,9 @@ class CurrentUserResponse(BaseModel):
     email_address:  StrictStr = Field(...,alias="emailAddress", description="The user's email address which may be null depending on the authentication method") 
     type:  StrictStr = Field(...,alias="type", description="The type of user (e.g. Personal or Service)") 
     domain_type:  Optional[StrictStr] = Field(None,alias="domainType", description="The type of domain in which the user exists") 
-    user_expiry: Optional[datetime] = Field(None, alias="userExpiry", description="The user's user expiry datetime")
-    groups: Optional[conlist(StrictStr)] = Field(None, description="The groups this user belongs to")
-    links: Optional[conlist(Link)] = None
+    user_expiry: Optional[datetime] = Field(default=None, description="The user's user expiry datetime", alias="userExpiry")
+    groups: Optional[List[StrictStr]] = Field(default=None, description="The groups this user belongs to")
+    links: Optional[List[Link]] = None
     __properties = ["id", "emailAddress", "type", "domainType", "userExpiry", "groups", "links"]
 
     class Config:
@@ -115,3 +117,5 @@ class CurrentUserResponse(BaseModel):
             "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
         })
         return _obj
+
+CurrentUserResponse.update_forward_refs()

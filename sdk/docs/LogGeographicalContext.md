@@ -13,8 +13,10 @@ Name | Type | Description | Notes
 
 ```python
 from finbourne_identity.models.log_geographical_context import LogGeographicalContext
-from typing import Any, Dict, Optional
-from pydantic.v1 import BaseModel, Field, StrictStr
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
+from datetime import datetime
 
 city: Optional[StrictStr] = "example_city"
 state: Optional[StrictStr] = "example_state"

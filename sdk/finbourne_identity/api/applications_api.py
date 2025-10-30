@@ -19,11 +19,9 @@ import warnings
 from pydantic.v1 import validate_arguments, ValidationError
 from typing import overload, Optional, Union, Awaitable
 
-from typing_extensions import Annotated
-from pydantic.v1 import Field, StrictBool, constr, validator
-
+from pydantic.v1 import Field, StrictBool
 from typing import List, Optional
-
+from typing_extensions import Annotated
 from finbourne_identity.models.create_application_request import CreateApplicationRequest
 from finbourne_identity.models.o_auth_application import OAuthApplication
 

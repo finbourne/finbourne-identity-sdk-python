@@ -18,8 +18,10 @@ import re  # noqa: F401
 import json
 
 
-from typing import Any, Dict
-from pydantic.v1 import StrictStr, Field, BaseModel, Field 
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
+from datetime import datetime
 from finbourne_identity.models.password_policy_response_age import PasswordPolicyResponseAge
 from finbourne_identity.models.password_policy_response_complexity import PasswordPolicyResponseComplexity
 from finbourne_identity.models.password_policy_response_lockout import PasswordPolicyResponseLockout
@@ -28,9 +30,9 @@ class PasswordPolicyResponseConditions(BaseModel):
     """
     Password policy conditions for a password policy  # noqa: E501
     """
-    complexity: PasswordPolicyResponseComplexity = Field(...)
-    age: PasswordPolicyResponseAge = Field(...)
-    lockout: PasswordPolicyResponseLockout = Field(...)
+    complexity: PasswordPolicyResponseComplexity
+    age: PasswordPolicyResponseAge
+    lockout: PasswordPolicyResponseLockout
     __properties = ["complexity", "age", "lockout"]
 
     class Config:
@@ -91,3 +93,5 @@ class PasswordPolicyResponseConditions(BaseModel):
             "lockout": PasswordPolicyResponseLockout.from_dict(obj.get("lockout")) if obj.get("lockout") is not None else None
         })
         return _obj
+
+PasswordPolicyResponseConditions.update_forward_refs()

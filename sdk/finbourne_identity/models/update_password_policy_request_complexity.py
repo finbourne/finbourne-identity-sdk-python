@@ -18,16 +18,18 @@ import re  # noqa: F401
 import json
 
 
-from typing import Any, Dict
-from pydantic.v1 import StrictStr, Field, BaseModel, Field, StrictBool, conint 
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
+from datetime import datetime
 
 class UpdatePasswordPolicyRequestComplexity(BaseModel):
     """
     UpdatePasswordPolicyRequestComplexity
     """
-    min_length: conint(strict=True) = Field(..., alias="minLength", description="The minimum length for a password")
-    exclude_first_name: StrictBool = Field(..., alias="excludeFirstName", description="Rule determining whether a user's first name should be permitted in their password")
-    exclude_last_name: StrictBool = Field(..., alias="excludeLastName", description="Rule determining whether a user's last name should be permitted in their password")
+    min_length: StrictInt = Field(description="The minimum length for a password", alias="minLength")
+    exclude_first_name: StrictBool = Field(description="Rule determining whether a user's first name should be permitted in their password", alias="excludeFirstName")
+    exclude_last_name: StrictBool = Field(description="Rule determining whether a user's last name should be permitted in their password", alias="excludeLastName")
     __properties = ["minLength", "excludeFirstName", "excludeLastName"]
 
     class Config:
@@ -79,3 +81,5 @@ class UpdatePasswordPolicyRequestComplexity(BaseModel):
             "exclude_last_name": obj.get("excludeLastName")
         })
         return _obj
+
+UpdatePasswordPolicyRequestComplexity.update_forward_refs()

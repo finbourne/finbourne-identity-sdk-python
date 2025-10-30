@@ -19,13 +19,10 @@ import warnings
 from pydantic.v1 import validate_arguments, ValidationError
 from typing import overload, Optional, Union, Awaitable
 
-from typing_extensions import Annotated
 from datetime import datetime
-
-from pydantic.v1 import Field, constr, validator
-
+from pydantic.v1 import Field
 from typing import List, Optional
-
+from typing_extensions import Annotated
 from finbourne_identity.models.authentication_information import AuthenticationInformation
 from finbourne_identity.models.password_policy_response import PasswordPolicyResponse
 from finbourne_identity.models.support_access_request import SupportAccessRequest
@@ -71,7 +68,7 @@ class AuthenticationApi:
     def get_authentication_information(self, async_req: Optional[bool]=None, **kwargs) -> Union[AuthenticationInformation, Awaitable[AuthenticationInformation]]:  # noqa: E501
         """GetAuthenticationInformation: Gets AuthenticationInformation  # noqa: E501
 
-        Get the AuthenticationInformation associated with the current domain. This includes all the  necessary information to login to this domain.  # noqa: E501
+        Get the AuthenticationInformation associated with the current domain. This includes all the necessary information to login to this domain.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -100,7 +97,7 @@ class AuthenticationApi:
     def get_authentication_information_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
         """GetAuthenticationInformation: Gets AuthenticationInformation  # noqa: E501
 
-        Get the AuthenticationInformation associated with the current domain. This includes all the  necessary information to login to this domain.  # noqa: E501
+        Get the AuthenticationInformation associated with the current domain. This includes all the necessary information to login to this domain.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -366,7 +363,7 @@ class AuthenticationApi:
     def get_support_access_history(self, start : Annotated[Optional[datetime], Field(description="The start expiry date to query support access requests from")] = None, end : Annotated[Optional[datetime], Field(description="The end expiry date to query support access requests to")] = None, async_req: Optional[bool]=None, **kwargs) -> Union[List[SupportAccessResponse], Awaitable[List[SupportAccessResponse]]]:  # noqa: E501
         """GetSupportAccessHistory: Get the history of all support access granted and any information pertaining to their termination  # noqa: E501
 
-        The active and inactive support requests will be returned, inactive support requests will have information pertaining to their termination  including obfuscated userIds of those who created and terminated the request  # noqa: E501
+        The active and inactive support requests will be returned, inactive support requests will have information pertaining to their termination including obfuscated userIds of those who created and terminated the request  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -399,7 +396,7 @@ class AuthenticationApi:
     def get_support_access_history_with_http_info(self, start : Annotated[Optional[datetime], Field(description="The start expiry date to query support access requests from")] = None, end : Annotated[Optional[datetime], Field(description="The end expiry date to query support access requests to")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """GetSupportAccessHistory: Get the history of all support access granted and any information pertaining to their termination  # noqa: E501
 
-        The active and inactive support requests will be returned, inactive support requests will have information pertaining to their termination  including obfuscated userIds of those who created and terminated the request  # noqa: E501
+        The active and inactive support requests will be returned, inactive support requests will have information pertaining to their termination including obfuscated userIds of those who created and terminated the request  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -664,18 +661,18 @@ class AuthenticationApi:
 
 
     @overload
-    async def grant_support_access(self, support_access_request : Annotated[SupportAccessRequest, Field(..., description="Request detailing the duration and reasons for supplying support access")], **kwargs) -> SupportAccessResponse:  # noqa: E501
+    async def grant_support_access(self, support_access_request : Annotated[SupportAccessRequest, Field(description="Request detailing the duration and reasons for supplying support access")], **kwargs) -> SupportAccessResponse:  # noqa: E501
         ...
 
     @overload
-    def grant_support_access(self, support_access_request : Annotated[SupportAccessRequest, Field(..., description="Request detailing the duration and reasons for supplying support access")], async_req: Optional[bool]=True, **kwargs) -> SupportAccessResponse:  # noqa: E501
+    def grant_support_access(self, support_access_request : Annotated[SupportAccessRequest, Field(description="Request detailing the duration and reasons for supplying support access")], async_req: Optional[bool]=True, **kwargs) -> SupportAccessResponse:  # noqa: E501
         ...
 
     @validate_arguments
-    def grant_support_access(self, support_access_request : Annotated[SupportAccessRequest, Field(..., description="Request detailing the duration and reasons for supplying support access")], async_req: Optional[bool]=None, **kwargs) -> Union[SupportAccessResponse, Awaitable[SupportAccessResponse]]:  # noqa: E501
+    def grant_support_access(self, support_access_request : Annotated[SupportAccessRequest, Field(description="Request detailing the duration and reasons for supplying support access")], async_req: Optional[bool]=None, **kwargs) -> Union[SupportAccessResponse, Awaitable[SupportAccessResponse]]:  # noqa: E501
         """GrantSupportAccess: Grants FINBOURNE support access to your account  # noqa: E501
 
-        Granting support access will allow FINBOURNE employees full access to your data with the express intent to investigate support issues  You can revoke this (and all) access at any time using the InvalidateSupportAccess endpoint.  # noqa: E501
+        Granting support access will allow FINBOURNE employees full access to your data with the express intent to investigate support issues You can revoke this (and all) access at any time using the InvalidateSupportAccess endpoint.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -703,10 +700,10 @@ class AuthenticationApi:
         return self.grant_support_access_with_http_info(support_access_request, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def grant_support_access_with_http_info(self, support_access_request : Annotated[SupportAccessRequest, Field(..., description="Request detailing the duration and reasons for supplying support access")], **kwargs) -> ApiResponse:  # noqa: E501
+    def grant_support_access_with_http_info(self, support_access_request : Annotated[SupportAccessRequest, Field(description="Request detailing the duration and reasons for supplying support access")], **kwargs) -> ApiResponse:  # noqa: E501
         """GrantSupportAccess: Grants FINBOURNE support access to your account  # noqa: E501
 
-        Granting support access will allow FINBOURNE employees full access to your data with the express intent to investigate support issues  You can revoke this (and all) access at any time using the InvalidateSupportAccess endpoint.  # noqa: E501
+        Granting support access will allow FINBOURNE employees full access to your data with the express intent to investigate support issues You can revoke this (and all) access at any time using the InvalidateSupportAccess endpoint.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 

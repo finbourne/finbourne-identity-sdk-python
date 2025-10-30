@@ -18,8 +18,10 @@ import re  # noqa: F401
 import json
 
 
-from typing import Any, Dict, Optional
-from pydantic.v1 import StrictStr, Field, BaseModel, Field, StrictStr 
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
+from datetime import datetime
 from finbourne_identity.models.log_geolocation import LogGeolocation
 
 class LogGeographicalContext(BaseModel):
@@ -107,3 +109,5 @@ class LogGeographicalContext(BaseModel):
             "geolocation": LogGeolocation.from_dict(obj.get("geolocation")) if obj.get("geolocation") is not None else None
         })
         return _obj
+
+LogGeographicalContext.update_forward_refs()

@@ -19,11 +19,9 @@ import warnings
 from pydantic.v1 import validate_arguments, ValidationError
 from typing import overload, Optional, Union, Awaitable
 
-from typing_extensions import Annotated
-from pydantic.v1 import Field, constr, validator
-
+from pydantic.v1 import Field
 from typing import List
-
+from typing_extensions import Annotated
 from finbourne_identity.models.create_external_token_issuer_request import CreateExternalTokenIssuerRequest
 from finbourne_identity.models.external_token_issuer_response import ExternalTokenIssuerResponse
 from finbourne_identity.models.update_external_token_issuer_request import UpdateExternalTokenIssuerRequest

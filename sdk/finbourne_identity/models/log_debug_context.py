@@ -18,14 +18,16 @@ import re  # noqa: F401
 import json
 
 
-from typing import Any, Dict, Optional
-from pydantic.v1 import StrictStr, Field, BaseModel, Field 
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
+from datetime import datetime
 
 class LogDebugContext(BaseModel):
     """
     Represents a LogDebugContext resource in the Okta API  # noqa: E501
     """
-    debug_data: Optional[Dict[str, Any]] = Field(None, alias="debugData")
+    debug_data: Optional[Dict[str, Any]] = Field(default=None, alias="debugData")
     __properties = ["debugData"]
 
     class Config:
@@ -80,3 +82,5 @@ class LogDebugContext(BaseModel):
             "debug_data": obj.get("debugData")
         })
         return _obj
+
+LogDebugContext.update_forward_refs()

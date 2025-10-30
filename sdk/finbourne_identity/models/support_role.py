@@ -18,8 +18,10 @@ import re  # noqa: F401
 import json
 
 
-from typing import Any, Dict, Optional
-from pydantic.v1 import StrictStr, Field, BaseModel, Field, StrictStr 
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
+from datetime import datetime
 
 class SupportRole(BaseModel):
     """
@@ -27,7 +29,7 @@ class SupportRole(BaseModel):
     """
     label:  Optional[StrictStr] = Field(None,alias="label") 
     description:  Optional[StrictStr] = Field(None,alias="description") 
-    role_identifier: Optional[Dict[str, StrictStr]] = Field(None, alias="roleIdentifier")
+    role_identifier: Optional[Dict[str, StrictStr]] = Field(default=None, alias="roleIdentifier")
     internal_identifier:  Optional[StrictStr] = Field(None,alias="internalIdentifier") 
     __properties = ["label", "description", "roleIdentifier", "internalIdentifier"]
 
@@ -101,3 +103,5 @@ class SupportRole(BaseModel):
             "internal_identifier": obj.get("internalIdentifier")
         })
         return _obj
+
+SupportRole.update_forward_refs()

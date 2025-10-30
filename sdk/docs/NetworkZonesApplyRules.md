@@ -9,11 +9,13 @@ Name | Type | Description | Notes
 
 ```python
 from finbourne_identity.models.network_zones_apply_rules import NetworkZonesApplyRules
-from typing import Any, Dict, List
-from pydantic.v1 import BaseModel, Field, StrictStr, conlist
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
+from datetime import datetime
 
-session_type: conlist(StrictStr) = # Replace with your value
-user_roles: conlist(StrictStr) = # Replace with your value
+session_type: List[StrictStr] = # Replace with your value
+user_roles: List[StrictStr] = # Replace with your value
 network_zones_apply_rules_instance = NetworkZonesApplyRules(session_type=session_type, user_roles=user_roles)
 
 ```

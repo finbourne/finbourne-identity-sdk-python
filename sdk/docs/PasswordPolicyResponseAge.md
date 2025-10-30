@@ -9,8 +9,10 @@ Name | Type | Description | Notes
 
 ```python
 from finbourne_identity.models.password_policy_response_age import PasswordPolicyResponseAge
-from typing import Any, Dict
-from pydantic.v1 import BaseModel, Field, StrictInt
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
+from datetime import datetime
 
 max_age_days: StrictInt = # Replace with your value
 max_age_days: StrictInt = 42

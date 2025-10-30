@@ -17,9 +17,11 @@ import pprint
 import re  # noqa: F401
 import json
 
+
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
 from datetime import datetime
-from typing import Any, Dict, List, Optional
-from pydantic.v1 import StrictStr, Field, BaseModel, Field, StrictStr, conlist 
 from finbourne_identity.models.log_actor import LogActor
 from finbourne_identity.models.log_authentication_context import LogAuthenticationContext
 from finbourne_identity.models.log_client_info import LogClientInfo
@@ -36,18 +38,18 @@ class SystemLog(BaseModel):
     A system log event  # noqa: E501
     """
     actor: Optional[LogActor] = None
-    authentication_context: Optional[LogAuthenticationContext] = Field(None, alias="authenticationContext")
-    client_info: Optional[LogClientInfo] = Field(None, alias="clientInfo")
-    debug_context: Optional[LogDebugContext] = Field(None, alias="debugContext")
+    authentication_context: Optional[LogAuthenticationContext] = Field(default=None, alias="authenticationContext")
+    client_info: Optional[LogClientInfo] = Field(default=None, alias="clientInfo")
+    debug_context: Optional[LogDebugContext] = Field(default=None, alias="debugContext")
     display_message:  Optional[StrictStr] = Field(None,alias="displayMessage", description="Represents a DisplayMessage resource in the Okta API") 
     event_type:  Optional[StrictStr] = Field(None,alias="eventType", description="Represents a EventType resource in the Okta API") 
     legacy_event_type:  Optional[StrictStr] = Field(None,alias="legacyEventType", description="Represents a LegacyEventType resource in the Okta API") 
     outcome: Optional[LogOutcome] = None
-    published: Optional[datetime] = Field(None, description="Represents when Published in the Okta API")
+    published: Optional[datetime] = Field(default=None, description="Represents when Published in the Okta API")
     request: Optional[LogRequest] = None
-    security_context: Optional[LogSecurityContext] = Field(None, alias="securityContext")
+    security_context: Optional[LogSecurityContext] = Field(default=None, alias="securityContext")
     severity: Optional[LogSeverity] = None
-    target: Optional[conlist(LogTarget)] = Field(None, description="Represents a LogTarget resource in the Okta API")
+    target: Optional[List[LogTarget]] = Field(default=None, description="Represents a LogTarget resource in the Okta API")
     transaction: Optional[LogTransaction] = None
     uuid:  Optional[StrictStr] = Field(None,alias="uuid", description="Represents Uuid in the Okta API") 
     version:  Optional[StrictStr] = Field(None,alias="version", description="Represents a Version in the Okta API") 
@@ -184,3 +186,5 @@ class SystemLog(BaseModel):
             "version": obj.get("version")
         })
         return _obj
+
+SystemLog.update_forward_refs()

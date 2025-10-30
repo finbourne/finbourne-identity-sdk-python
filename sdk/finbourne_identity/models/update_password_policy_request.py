@@ -18,15 +18,17 @@ import re  # noqa: F401
 import json
 
 
-from typing import Any, Dict
-from pydantic.v1 import StrictStr, Field, BaseModel, Field 
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
+from datetime import datetime
 from finbourne_identity.models.update_password_policy_request_conditions import UpdatePasswordPolicyRequestConditions
 
 class UpdatePasswordPolicyRequest(BaseModel):
     """
     UpdatePasswordPolicyRequest
     """
-    conditions: UpdatePasswordPolicyRequestConditions = Field(...)
+    conditions: UpdatePasswordPolicyRequestConditions
     __properties = ["conditions"]
 
     class Config:
@@ -79,3 +81,5 @@ class UpdatePasswordPolicyRequest(BaseModel):
             "conditions": UpdatePasswordPolicyRequestConditions.from_dict(obj.get("conditions")) if obj.get("conditions") is not None else None
         })
         return _obj
+
+UpdatePasswordPolicyRequest.update_forward_refs()

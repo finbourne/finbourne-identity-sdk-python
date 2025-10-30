@@ -17,9 +17,11 @@ import pprint
 import re  # noqa: F401
 import json
 
+
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
 from datetime import datetime
-from typing import Any, Dict, List, Optional
-from pydantic.v1 import StrictStr, Field, BaseModel, Field, StrictInt, StrictStr, conlist 
 from finbourne_identity.models.ip_address_definition import IpAddressDefinition
 from finbourne_identity.models.network_zones_apply_rules import NetworkZonesApplyRules
 
@@ -28,13 +30,13 @@ class NetworkZoneDefinitionResponse(BaseModel):
     The Client facing representation of a NetworkZone  # noqa: E501
     """
     code:  Optional[StrictStr] = Field(None,alias="code", description="The Network Zone Code") 
-    hierarchy: Optional[StrictInt] = Field(None, description="Hierarchy of the Network Zone")
+    hierarchy: Optional[StrictInt] = Field(default=None, description="Hierarchy of the Network Zone")
     description:  Optional[StrictStr] = Field(None,alias="description", description="The Description of the Network Zone") 
-    created_at: Optional[datetime] = Field(None, alias="createdAt", description="Network Zone Creation timestamp")
-    updated_at: Optional[datetime] = Field(None, alias="updatedAt", description="Timestamp of the last update")
-    network_zone_ips: Optional[conlist(IpAddressDefinition)] = Field(None, alias="networkZoneIPs", description="Network zone IP information (IPs and CIDR ranges)")
+    created_at: Optional[datetime] = Field(default=None, description="Network Zone Creation timestamp", alias="createdAt")
+    updated_at: Optional[datetime] = Field(default=None, description="Timestamp of the last update", alias="updatedAt")
+    network_zone_ips: Optional[List[IpAddressDefinition]] = Field(default=None, description="Network zone IP information (IPs and CIDR ranges)", alias="networkZoneIPs")
     action:  Optional[StrictStr] = Field(None,alias="action", description="Kind of action to apply when a request matches this Network Zone (Block/Allow/NoOp)") 
-    apply_rules: Optional[NetworkZonesApplyRules] = Field(None, alias="applyRules")
+    apply_rules: Optional[NetworkZonesApplyRules] = Field(default=None, alias="applyRules")
     created_by:  Optional[StrictStr] = Field(None,alias="createdBy", description="User Id that created the Network Zone") 
     updated_by:  Optional[StrictStr] = Field(None,alias="updatedBy", description="User Id of the last update on the Network Zone") 
     __properties = ["code", "hierarchy", "description", "createdAt", "updatedAt", "networkZoneIPs", "action", "applyRules", "createdBy", "updatedBy"]
@@ -135,3 +137,5 @@ class NetworkZoneDefinitionResponse(BaseModel):
             "updated_by": obj.get("updatedBy")
         })
         return _obj
+
+NetworkZoneDefinitionResponse.update_forward_refs()

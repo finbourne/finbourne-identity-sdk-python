@@ -19,11 +19,9 @@ import warnings
 from pydantic.v1 import validate_arguments, ValidationError
 from typing import overload, Optional, Union, Awaitable
 
-from typing_extensions import Annotated
-from pydantic.v1 import Field, StrictBool, StrictStr, conlist, constr, validator
-
+from pydantic.v1 import Field, StrictBool, StrictStr
 from typing import List, Optional
-
+from typing_extensions import Annotated
 from finbourne_identity.models.create_user_request import CreateUserRequest
 from finbourne_identity.models.list_users_response import ListUsersResponse
 from finbourne_identity.models.temporary_password import TemporaryPassword
@@ -59,15 +57,15 @@ class UsersApi:
 
 
     @overload
-    async def create_user(self, create_user_request : Annotated[CreateUserRequest, Field(..., description="Details of the User to be created")], wait_for_reindex : Annotated[Optional[StrictBool], Field(description="Should the request wait until the newly created User is indexed (available in List) before returning")] = None, **kwargs) -> UserResponse:  # noqa: E501
+    async def create_user(self, create_user_request : Annotated[CreateUserRequest, Field(description="Details of the User to be created")], wait_for_reindex : Annotated[Optional[StrictBool], Field(description="Should the request wait until the newly created User is indexed (available in List) before returning")] = None, **kwargs) -> UserResponse:  # noqa: E501
         ...
 
     @overload
-    def create_user(self, create_user_request : Annotated[CreateUserRequest, Field(..., description="Details of the User to be created")], wait_for_reindex : Annotated[Optional[StrictBool], Field(description="Should the request wait until the newly created User is indexed (available in List) before returning")] = None, async_req: Optional[bool]=True, **kwargs) -> UserResponse:  # noqa: E501
+    def create_user(self, create_user_request : Annotated[CreateUserRequest, Field(description="Details of the User to be created")], wait_for_reindex : Annotated[Optional[StrictBool], Field(description="Should the request wait until the newly created User is indexed (available in List) before returning")] = None, async_req: Optional[bool]=True, **kwargs) -> UserResponse:  # noqa: E501
         ...
 
     @validate_arguments
-    def create_user(self, create_user_request : Annotated[CreateUserRequest, Field(..., description="Details of the User to be created")], wait_for_reindex : Annotated[Optional[StrictBool], Field(description="Should the request wait until the newly created User is indexed (available in List) before returning")] = None, async_req: Optional[bool]=None, **kwargs) -> Union[UserResponse, Awaitable[UserResponse]]:  # noqa: E501
+    def create_user(self, create_user_request : Annotated[CreateUserRequest, Field(description="Details of the User to be created")], wait_for_reindex : Annotated[Optional[StrictBool], Field(description="Should the request wait until the newly created User is indexed (available in List) before returning")] = None, async_req: Optional[bool]=None, **kwargs) -> Union[UserResponse, Awaitable[UserResponse]]:  # noqa: E501
         """CreateUser: Create User  # noqa: E501
 
         Create a new User  # noqa: E501
@@ -100,7 +98,7 @@ class UsersApi:
         return self.create_user_with_http_info(create_user_request, wait_for_reindex, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def create_user_with_http_info(self, create_user_request : Annotated[CreateUserRequest, Field(..., description="Details of the User to be created")], wait_for_reindex : Annotated[Optional[StrictBool], Field(description="Should the request wait until the newly created User is indexed (available in List) before returning")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def create_user_with_http_info(self, create_user_request : Annotated[CreateUserRequest, Field(description="Details of the User to be created")], wait_for_reindex : Annotated[Optional[StrictBool], Field(description="Should the request wait until the newly created User is indexed (available in List) before returning")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """CreateUser: Create User  # noqa: E501
 
         Create a new User  # noqa: E501
@@ -237,7 +235,7 @@ class UsersApi:
     def delete_user(self, id : Annotated[StrictStr, Field(..., description="The unique identifier for the user")], purge : Annotated[Optional[StrictBool], Field(description="Whether to purge any trace of the user from the identity provider (will affect audit)")] = None, async_req: Optional[bool]=None, **kwargs) -> Union[None, Awaitable[None]]:  # noqa: E501
         """DeleteUser: Delete User  # noqa: E501
 
-        By default the user will be de-provisioned and inactive, however their record will remain in the identity  provider for audit purposes. If this is not desirable and removal of all trace of the user is required,  the purge parameter can be specified to indicate the details should be purged completely.  # noqa: E501
+        By default the user will be de-provisioned and inactive, however their record will remain in the identity provider for audit purposes. If this is not desirable and removal of all trace of the user is required, the purge parameter can be specified to indicate the details should be purged completely.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -270,7 +268,7 @@ class UsersApi:
     def delete_user_with_http_info(self, id : Annotated[StrictStr, Field(..., description="The unique identifier for the user")], purge : Annotated[Optional[StrictBool], Field(description="Whether to purge any trace of the user from the identity provider (will affect audit)")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """DeleteUser: Delete User  # noqa: E501
 
-        By default the user will be de-provisioned and inactive, however their record will remain in the identity  provider for audit purposes. If this is not desirable and removal of all trace of the user is required,  the purge parameter can be specified to indicate the details should be purged completely.  # noqa: E501
+        By default the user will be de-provisioned and inactive, however their record will remain in the identity provider for audit purposes. If this is not desirable and removal of all trace of the user is required, the purge parameter can be specified to indicate the details should be purged completely.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -535,15 +533,15 @@ class UsersApi:
 
 
     @overload
-    async def find_users_by_id(self, id : Annotated[conlist(StrictStr), Field(..., description="A list of unique identifiers for the users")], **kwargs) -> ListUsersResponse:  # noqa: E501
+    async def find_users_by_id(self, id : Annotated[List[StrictStr], Field(description="A list of unique identifiers for the users")], **kwargs) -> ListUsersResponse:  # noqa: E501
         ...
 
     @overload
-    def find_users_by_id(self, id : Annotated[conlist(StrictStr), Field(..., description="A list of unique identifiers for the users")], async_req: Optional[bool]=True, **kwargs) -> ListUsersResponse:  # noqa: E501
+    def find_users_by_id(self, id : Annotated[List[StrictStr], Field(description="A list of unique identifiers for the users")], async_req: Optional[bool]=True, **kwargs) -> ListUsersResponse:  # noqa: E501
         ...
 
     @validate_arguments
-    def find_users_by_id(self, id : Annotated[conlist(StrictStr), Field(..., description="A list of unique identifiers for the users")], async_req: Optional[bool]=None, **kwargs) -> Union[ListUsersResponse, Awaitable[ListUsersResponse]]:  # noqa: E501
+    def find_users_by_id(self, id : Annotated[List[StrictStr], Field(description="A list of unique identifiers for the users")], async_req: Optional[bool]=None, **kwargs) -> Union[ListUsersResponse, Awaitable[ListUsersResponse]]:  # noqa: E501
         """FindUsersById: Find users by id endpoint  # noqa: E501
 
         Finds a maximum of 50 users by ID  # noqa: E501
@@ -574,7 +572,7 @@ class UsersApi:
         return self.find_users_by_id_with_http_info(id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_users_by_id_with_http_info(self, id : Annotated[conlist(StrictStr), Field(..., description="A list of unique identifiers for the users")], **kwargs) -> ApiResponse:  # noqa: E501
+    def find_users_by_id_with_http_info(self, id : Annotated[List[StrictStr], Field(description="A list of unique identifiers for the users")], **kwargs) -> ApiResponse:  # noqa: E501
         """FindUsersById: Find users by id endpoint  # noqa: E501
 
         Finds a maximum of 50 users by ID  # noqa: E501
@@ -2031,15 +2029,15 @@ class UsersApi:
 
 
     @overload
-    async def update_user(self, id : Annotated[StrictStr, Field(..., description="The unique identifier for the User to be updated")], update_user_request : Annotated[UpdateUserRequest, Field(..., description="The new definition of the User")], **kwargs) -> UserResponse:  # noqa: E501
+    async def update_user(self, id : Annotated[StrictStr, Field(..., description="The unique identifier for the User to be updated")], update_user_request : Annotated[UpdateUserRequest, Field(description="The new definition of the User")], **kwargs) -> UserResponse:  # noqa: E501
         ...
 
     @overload
-    def update_user(self, id : Annotated[StrictStr, Field(..., description="The unique identifier for the User to be updated")], update_user_request : Annotated[UpdateUserRequest, Field(..., description="The new definition of the User")], async_req: Optional[bool]=True, **kwargs) -> UserResponse:  # noqa: E501
+    def update_user(self, id : Annotated[StrictStr, Field(..., description="The unique identifier for the User to be updated")], update_user_request : Annotated[UpdateUserRequest, Field(description="The new definition of the User")], async_req: Optional[bool]=True, **kwargs) -> UserResponse:  # noqa: E501
         ...
 
     @validate_arguments
-    def update_user(self, id : Annotated[StrictStr, Field(..., description="The unique identifier for the User to be updated")], update_user_request : Annotated[UpdateUserRequest, Field(..., description="The new definition of the User")], async_req: Optional[bool]=None, **kwargs) -> Union[UserResponse, Awaitable[UserResponse]]:  # noqa: E501
+    def update_user(self, id : Annotated[StrictStr, Field(..., description="The unique identifier for the User to be updated")], update_user_request : Annotated[UpdateUserRequest, Field(description="The new definition of the User")], async_req: Optional[bool]=None, **kwargs) -> Union[UserResponse, Awaitable[UserResponse]]:  # noqa: E501
         """UpdateUser: Update User  # noqa: E501
 
         Updates the specified User  # noqa: E501
@@ -2072,7 +2070,7 @@ class UsersApi:
         return self.update_user_with_http_info(id, update_user_request, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def update_user_with_http_info(self, id : Annotated[StrictStr, Field(..., description="The unique identifier for the User to be updated")], update_user_request : Annotated[UpdateUserRequest, Field(..., description="The new definition of the User")], **kwargs) -> ApiResponse:  # noqa: E501
+    def update_user_with_http_info(self, id : Annotated[StrictStr, Field(..., description="The unique identifier for the User to be updated")], update_user_request : Annotated[UpdateUserRequest, Field(description="The new definition of the User")], **kwargs) -> ApiResponse:  # noqa: E501
         """UpdateUser: Update User  # noqa: E501
 
         Updates the specified User  # noqa: E501
@@ -2198,15 +2196,15 @@ class UsersApi:
 
 
     @overload
-    async def update_user_schema(self, update_user_schema_request : Annotated[UpdateUserSchemaRequest, Field(..., description="The new User Schema")], **kwargs) -> UserSchemaResponse:  # noqa: E501
+    async def update_user_schema(self, update_user_schema_request : Annotated[UpdateUserSchemaRequest, Field(description="The new User Schema")], **kwargs) -> UserSchemaResponse:  # noqa: E501
         ...
 
     @overload
-    def update_user_schema(self, update_user_schema_request : Annotated[UpdateUserSchemaRequest, Field(..., description="The new User Schema")], async_req: Optional[bool]=True, **kwargs) -> UserSchemaResponse:  # noqa: E501
+    def update_user_schema(self, update_user_schema_request : Annotated[UpdateUserSchemaRequest, Field(description="The new User Schema")], async_req: Optional[bool]=True, **kwargs) -> UserSchemaResponse:  # noqa: E501
         ...
 
     @validate_arguments
-    def update_user_schema(self, update_user_schema_request : Annotated[UpdateUserSchemaRequest, Field(..., description="The new User Schema")], async_req: Optional[bool]=None, **kwargs) -> Union[UserSchemaResponse, Awaitable[UserSchemaResponse]]:  # noqa: E501
+    def update_user_schema(self, update_user_schema_request : Annotated[UpdateUserSchemaRequest, Field(description="The new User Schema")], async_req: Optional[bool]=None, **kwargs) -> Union[UserSchemaResponse, Awaitable[UserSchemaResponse]]:  # noqa: E501
         """[EARLY ACCESS] UpdateUserSchema: Update User Schema  # noqa: E501
 
         Update the User Schema  # noqa: E501
@@ -2237,7 +2235,7 @@ class UsersApi:
         return self.update_user_schema_with_http_info(update_user_schema_request, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def update_user_schema_with_http_info(self, update_user_schema_request : Annotated[UpdateUserSchemaRequest, Field(..., description="The new User Schema")], **kwargs) -> ApiResponse:  # noqa: E501
+    def update_user_schema_with_http_info(self, update_user_schema_request : Annotated[UpdateUserSchemaRequest, Field(description="The new User Schema")], **kwargs) -> ApiResponse:  # noqa: E501
         """[EARLY ACCESS] UpdateUserSchema: Update User Schema  # noqa: E501
 
         Update the User Schema  # noqa: E501

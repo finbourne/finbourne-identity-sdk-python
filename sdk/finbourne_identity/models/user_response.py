@@ -17,9 +17,11 @@ import pprint
 import re  # noqa: F401
 import json
 
+
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
 from datetime import datetime
-from typing import Any, Dict, List, Optional
-from pydantic.v1 import StrictStr, Field, BaseModel, Field, StrictBool, StrictStr, conlist, constr 
 from finbourne_identity.models.link import Link
 from finbourne_identity.models.role_response import RoleResponse
 
@@ -28,22 +30,23 @@ class UserResponse(BaseModel):
     UserResponse
     """
     id:  StrictStr = Field(...,alias="id", description="The user's system supplied unique identifier") 
-    alternative_user_ids: Optional[Dict[str, StrictStr]] = Field(None, alias="alternativeUserIds", description="The user's alternative IDs")
+    alternative_user_ids: Optional[Dict[str, Optional[StrictStr]]] = Field(default=None, description="The user's alternative IDs", alias="alternativeUserIds")
     email_address:  StrictStr = Field(...,alias="emailAddress", description="The user's emailAddress address, which must be unique within the system") 
     second_email_address:  Optional[StrictStr] = Field(None,alias="secondEmailAddress", description="The user's second email address. Only allowed for service users.") 
     login:  StrictStr = Field(...,alias="login") 
     first_name:  StrictStr = Field(...,alias="firstName", description="The user's first name") 
     last_name:  StrictStr = Field(...,alias="lastName", description="The user's last name") 
-    roles: Optional[conlist(RoleResponse)] = Field(None, description="The roles that the user has.")
+    roles: Optional[List[RoleResponse]] = Field(default=None, description="The roles that the user has.")
     type:  StrictStr = Field(...,alias="type", description="The type of user (e.g. Personal or Service)") 
     status:  StrictStr = Field(...,alias="status", description="The status of the user") 
-    external: StrictBool = Field(..., description="Whether or not the user originates from an external identity system")
-    last_login: Optional[datetime] = Field(None, alias="lastLogin", description="Last time the user logged in")
-    last_updated: Optional[datetime] = Field(None, alias="lastUpdated", description="Last time the user was updated")
-    created: Optional[datetime] = Field(None, description="Date the user was created")
-    password_changed: Optional[datetime] = Field(None, alias="passwordChanged", description="Last time the password was changed for this user")
-    links: Optional[conlist(Link)] = None
-    __properties = ["id", "alternativeUserIds", "emailAddress", "secondEmailAddress", "login", "firstName", "lastName", "roles", "type", "status", "external", "lastLogin", "lastUpdated", "created", "passwordChanged", "links"]
+    external: StrictBool = Field(description="Whether or not the user originates from an external identity system")
+    last_login: Optional[datetime] = Field(default=None, description="Last time the user logged in", alias="lastLogin")
+    last_updated: Optional[datetime] = Field(default=None, description="Last time the user was updated", alias="lastUpdated")
+    created: Optional[datetime] = Field(default=None, description="Date the user was created")
+    password_changed: Optional[datetime] = Field(default=None, description="Last time the password was changed for this user", alias="passwordChanged")
+    user_expiry: Optional[datetime] = Field(default=None, description="The user's expiry unix datetime", alias="userExpiry")
+    links: Optional[List[Link]] = None
+    __properties = ["id", "alternativeUserIds", "emailAddress", "secondEmailAddress", "login", "firstName", "lastName", "roles", "type", "status", "external", "lastLogin", "lastUpdated", "created", "passwordChanged", "userExpiry", "links"]
 
     class Config:
         """Pydantic configuration"""
@@ -126,6 +129,11 @@ class UserResponse(BaseModel):
         if self.password_changed is None and "password_changed" in self.__fields_set__:
             _dict['passwordChanged'] = None
 
+        # set to None if user_expiry (nullable) is None
+        # and __fields_set__ contains the field
+        if self.user_expiry is None and "user_expiry" in self.__fields_set__:
+            _dict['userExpiry'] = None
+
         # set to None if links (nullable) is None
         # and __fields_set__ contains the field
         if self.links is None and "links" in self.__fields_set__:
@@ -158,6 +166,9 @@ class UserResponse(BaseModel):
             "last_updated": obj.get("lastUpdated"),
             "created": obj.get("created"),
             "password_changed": obj.get("passwordChanged"),
+            "user_expiry": obj.get("userExpiry"),
             "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
         })
         return _obj
+
+UserResponse.update_forward_refs()

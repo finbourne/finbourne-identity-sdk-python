@@ -18,8 +18,10 @@ import re  # noqa: F401
 import json
 
 
-from typing import Any, Dict, List, Optional
-from pydantic.v1 import StrictStr, Field, BaseModel, Field, StrictStr, conlist, constr, validator 
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
+from datetime import datetime
 from finbourne_identity.models.ip_address_definition import IpAddressDefinition
 from finbourne_identity.models.network_zones_apply_rules import NetworkZonesApplyRules
 
@@ -29,9 +31,9 @@ class CreateNetworkZoneRequest(BaseModel):
     """
     code:  StrictStr = Field(...,alias="code") 
     description:  Optional[StrictStr] = Field(None,alias="description") 
-    network_zone_ips: conlist(IpAddressDefinition) = Field(..., alias="networkZoneIPs")
+    network_zone_ips: List[IpAddressDefinition] = Field(alias="networkZoneIPs")
     action:  Optional[StrictStr] = Field(None,alias="action") 
-    apply_rules: NetworkZonesApplyRules = Field(..., alias="applyRules")
+    apply_rules: NetworkZonesApplyRules = Field(alias="applyRules")
     __properties = ["code", "description", "networkZoneIPs", "action", "applyRules"]
 
     class Config:
@@ -105,3 +107,5 @@ class CreateNetworkZoneRequest(BaseModel):
             "apply_rules": NetworkZonesApplyRules.from_dict(obj.get("applyRules")) if obj.get("applyRules") is not None else None
         })
         return _obj
+
+CreateNetworkZoneRequest.update_forward_refs()

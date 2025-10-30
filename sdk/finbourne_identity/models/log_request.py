@@ -18,15 +18,17 @@ import re  # noqa: F401
 import json
 
 
-from typing import Any, Dict, List, Optional
-from pydantic.v1 import StrictStr, Field, BaseModel, Field, conlist 
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
+from datetime import datetime
 from finbourne_identity.models.log_ip_chain_entry import LogIpChainEntry
 
 class LogRequest(BaseModel):
     """
     Represents a LogRequest resource in the Okta API  # noqa: E501
     """
-    ip_chain: Optional[conlist(LogIpChainEntry)] = Field(None, alias="ipChain")
+    ip_chain: Optional[List[LogIpChainEntry]] = Field(default=None, alias="ipChain")
     __properties = ["ipChain"]
 
     class Config:
@@ -88,3 +90,5 @@ class LogRequest(BaseModel):
             "ip_chain": [LogIpChainEntry.from_dict(_item) for _item in obj.get("ipChain")] if obj.get("ipChain") is not None else None
         })
         return _obj
+
+LogRequest.update_forward_refs()

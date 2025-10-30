@@ -18,8 +18,10 @@ import re  # noqa: F401
 import json
 
 
-from typing import Any, Dict, List, Optional
-from pydantic.v1 import StrictStr, Field, BaseModel, Field, StrictStr, conlist, constr, validator 
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
+from datetime import datetime
 
 class SupportAccessRequest(BaseModel):
     """
@@ -27,7 +29,7 @@ class SupportAccessRequest(BaseModel):
     """
     duration:  StrictStr = Field(...,alias="duration", description="The duration for which access is requested (in any ISO-8601 format)") 
     description:  Optional[StrictStr] = Field(None,alias="description", description="The description of why the support access has been granted (i.e. support ticket numbers)") 
-    permitted_roles: Optional[conlist(StrictStr)] = Field(None, alias="permittedRoles")
+    permitted_roles: Optional[List[StrictStr]] = Field(default=None, alias="permittedRoles")
     __properties = ["duration", "description", "permittedRoles"]
 
     class Config:
@@ -89,3 +91,5 @@ class SupportAccessRequest(BaseModel):
             "permitted_roles": obj.get("permittedRoles")
         })
         return _obj
+
+SupportAccessRequest.update_forward_refs()

@@ -15,12 +15,14 @@ Name | Type | Description | Notes
 
 ```python
 from finbourne_identity.models.log_authentication_context import LogAuthenticationContext
-from typing import Any, Dict, List, Optional
-from pydantic.v1 import BaseModel, Field, StrictInt, StrictStr, conlist
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
+from datetime import datetime
 
 authentication_provider: Optional[StrictStr] = "example_authentication_provider"
-credential_provider: Optional[conlist(StrictStr)] = # Replace with your value
-credential_type: Optional[conlist(StrictStr)] = # Replace with your value
+credential_provider: Optional[List[StrictStr]] = # Replace with your value
+credential_type: Optional[List[StrictStr]] = # Replace with your value
 issuer: Optional[LogIssuer] = None
 interface: Optional[StrictStr] = "example_interface"
 authentication_step: Optional[StrictInt] = # Replace with your value

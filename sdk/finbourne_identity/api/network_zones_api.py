@@ -19,11 +19,9 @@ import warnings
 from pydantic.v1 import validate_arguments, ValidationError
 from typing import overload, Optional, Union, Awaitable
 
-from typing_extensions import Annotated
-from pydantic.v1 import Field, constr, validator
-
+from pydantic.v1 import Field
 from typing import List
-
+from typing_extensions import Annotated
 from finbourne_identity.models.create_network_zone_request import CreateNetworkZoneRequest
 from finbourne_identity.models.network_zone_definition_response import NetworkZoneDefinitionResponse
 from finbourne_identity.models.update_network_zone_request import UpdateNetworkZoneRequest
@@ -55,15 +53,15 @@ class NetworkZonesApi:
 
 
     @overload
-    async def create_network_zone(self, create_network_zone_request : Annotated[CreateNetworkZoneRequest, Field(..., description="The details of the network zone to define")], **kwargs) -> NetworkZoneDefinitionResponse:  # noqa: E501
+    async def create_network_zone(self, create_network_zone_request : Annotated[CreateNetworkZoneRequest, Field(description="The details of the network zone to define")], **kwargs) -> NetworkZoneDefinitionResponse:  # noqa: E501
         ...
 
     @overload
-    def create_network_zone(self, create_network_zone_request : Annotated[CreateNetworkZoneRequest, Field(..., description="The details of the network zone to define")], async_req: Optional[bool]=True, **kwargs) -> NetworkZoneDefinitionResponse:  # noqa: E501
+    def create_network_zone(self, create_network_zone_request : Annotated[CreateNetworkZoneRequest, Field(description="The details of the network zone to define")], async_req: Optional[bool]=True, **kwargs) -> NetworkZoneDefinitionResponse:  # noqa: E501
         ...
 
     @validate_arguments
-    def create_network_zone(self, create_network_zone_request : Annotated[CreateNetworkZoneRequest, Field(..., description="The details of the network zone to define")], async_req: Optional[bool]=None, **kwargs) -> Union[NetworkZoneDefinitionResponse, Awaitable[NetworkZoneDefinitionResponse]]:  # noqa: E501
+    def create_network_zone(self, create_network_zone_request : Annotated[CreateNetworkZoneRequest, Field(description="The details of the network zone to define")], async_req: Optional[bool]=None, **kwargs) -> Union[NetworkZoneDefinitionResponse, Awaitable[NetworkZoneDefinitionResponse]]:  # noqa: E501
         """[EARLY ACCESS] CreateNetworkZone: Creates a network zone  # noqa: E501
 
         By default, the network zone will have its hierarchy set to last on creation.  # noqa: E501
@@ -94,7 +92,7 @@ class NetworkZonesApi:
         return self.create_network_zone_with_http_info(create_network_zone_request, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def create_network_zone_with_http_info(self, create_network_zone_request : Annotated[CreateNetworkZoneRequest, Field(..., description="The details of the network zone to define")], **kwargs) -> ApiResponse:  # noqa: E501
+    def create_network_zone_with_http_info(self, create_network_zone_request : Annotated[CreateNetworkZoneRequest, Field(description="The details of the network zone to define")], **kwargs) -> ApiResponse:  # noqa: E501
         """[EARLY ACCESS] CreateNetworkZone: Creates a network zone  # noqa: E501
 
         By default, the network zone will have its hierarchy set to last on creation.  # noqa: E501
@@ -658,15 +656,15 @@ class NetworkZonesApi:
 
 
     @overload
-    async def update_network_zone(self, code : Annotated[StrictStr, Field(..., description="The unique identifier of the network zone")], update_network_zone_request : Annotated[UpdateNetworkZoneRequest, Field(..., description="The updated definition of the network zone")], **kwargs) -> NetworkZoneDefinitionResponse:  # noqa: E501
+    async def update_network_zone(self, code : Annotated[StrictStr, Field(..., description="The unique identifier of the network zone")], update_network_zone_request : Annotated[UpdateNetworkZoneRequest, Field(description="The updated definition of the network zone")], **kwargs) -> NetworkZoneDefinitionResponse:  # noqa: E501
         ...
 
     @overload
-    def update_network_zone(self, code : Annotated[StrictStr, Field(..., description="The unique identifier of the network zone")], update_network_zone_request : Annotated[UpdateNetworkZoneRequest, Field(..., description="The updated definition of the network zone")], async_req: Optional[bool]=True, **kwargs) -> NetworkZoneDefinitionResponse:  # noqa: E501
+    def update_network_zone(self, code : Annotated[StrictStr, Field(..., description="The unique identifier of the network zone")], update_network_zone_request : Annotated[UpdateNetworkZoneRequest, Field(description="The updated definition of the network zone")], async_req: Optional[bool]=True, **kwargs) -> NetworkZoneDefinitionResponse:  # noqa: E501
         ...
 
     @validate_arguments
-    def update_network_zone(self, code : Annotated[StrictStr, Field(..., description="The unique identifier of the network zone")], update_network_zone_request : Annotated[UpdateNetworkZoneRequest, Field(..., description="The updated definition of the network zone")], async_req: Optional[bool]=None, **kwargs) -> Union[NetworkZoneDefinitionResponse, Awaitable[NetworkZoneDefinitionResponse]]:  # noqa: E501
+    def update_network_zone(self, code : Annotated[StrictStr, Field(..., description="The unique identifier of the network zone")], update_network_zone_request : Annotated[UpdateNetworkZoneRequest, Field(description="The updated definition of the network zone")], async_req: Optional[bool]=None, **kwargs) -> Union[NetworkZoneDefinitionResponse, Awaitable[NetworkZoneDefinitionResponse]]:  # noqa: E501
         """[EARLY ACCESS] UpdateNetworkZone: Updates an existing network zone  # noqa: E501
 
         Updates an existing network zone  # noqa: E501
@@ -699,7 +697,7 @@ class NetworkZonesApi:
         return self.update_network_zone_with_http_info(code, update_network_zone_request, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def update_network_zone_with_http_info(self, code : Annotated[StrictStr, Field(..., description="The unique identifier of the network zone")], update_network_zone_request : Annotated[UpdateNetworkZoneRequest, Field(..., description="The updated definition of the network zone")], **kwargs) -> ApiResponse:  # noqa: E501
+    def update_network_zone_with_http_info(self, code : Annotated[StrictStr, Field(..., description="The unique identifier of the network zone")], update_network_zone_request : Annotated[UpdateNetworkZoneRequest, Field(description="The updated definition of the network zone")], **kwargs) -> ApiResponse:  # noqa: E501
         """[EARLY ACCESS] UpdateNetworkZone: Updates an existing network zone  # noqa: E501
 
         Updates an existing network zone  # noqa: E501

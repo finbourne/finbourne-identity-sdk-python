@@ -8,10 +8,12 @@ Name | Type | Description | Notes
 
 ```python
 from finbourne_identity.models.update_password_policy_request import UpdatePasswordPolicyRequest
-from typing import Any, Dict
-from pydantic.v1 import BaseModel, Field
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
+from datetime import datetime
 
-conditions: UpdatePasswordPolicyRequestConditions = # Replace with your value
+conditions: UpdatePasswordPolicyRequestConditions
 update_password_policy_request_instance = UpdatePasswordPolicyRequest(conditions=conditions)
 
 ```

@@ -17,9 +17,11 @@ import pprint
 import re  # noqa: F401
 import json
 
+
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
 from datetime import datetime
-from typing import Any, Dict, Optional
-from pydantic.v1 import StrictStr, Field, BaseModel, Field, constr, validator 
 
 class ApiKey(BaseModel):
     """
@@ -27,8 +29,8 @@ class ApiKey(BaseModel):
     """
     id:  StrictStr = Field(...,alias="id", description="The unique Id of the API key") 
     display_name:  StrictStr = Field(...,alias="displayName", description="The display name of the API key") 
-    created_date: datetime = Field(..., alias="createdDate", description="The creation date of the API key")
-    deactivation_date: Optional[datetime] = Field(None, alias="deactivationDate", description="The deactivation date of the API key")
+    created_date: datetime = Field(description="The creation date of the API key", alias="createdDate")
+    deactivation_date: Optional[datetime] = Field(default=None, description="The deactivation date of the API key", alias="deactivationDate")
     __properties = ["id", "displayName", "createdDate", "deactivationDate"]
 
     class Config:
@@ -86,3 +88,5 @@ class ApiKey(BaseModel):
             "deactivation_date": obj.get("deactivationDate")
         })
         return _obj
+
+ApiKey.update_forward_refs()

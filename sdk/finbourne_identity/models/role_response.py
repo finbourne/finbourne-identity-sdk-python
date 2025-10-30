@@ -18,8 +18,10 @@ import re  # noqa: F401
 import json
 
 
-from typing import Any, Dict, Optional
-from pydantic.v1 import StrictStr, Field, BaseModel, Field, StrictStr, constr 
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
+from datetime import datetime
 from finbourne_identity.models.role_id import RoleId
 
 class RoleResponse(BaseModel):
@@ -27,7 +29,7 @@ class RoleResponse(BaseModel):
     RoleResponse
     """
     id:  StrictStr = Field(...,alias="id", description="The role's system supplied unique identifier") 
-    role_id: RoleId = Field(..., alias="roleId")
+    role_id: RoleId = Field(alias="roleId")
     source:  StrictStr = Field(...,alias="source", description="The source of the role") 
     name:  StrictStr = Field(...,alias="name", description="The role name, which must be unique within the system.") 
     description:  Optional[StrictStr] = Field(None,alias="description", description="The description for this role") 
@@ -99,3 +101,5 @@ class RoleResponse(BaseModel):
             "saml_name": obj.get("samlName")
         })
         return _obj
+
+RoleResponse.update_forward_refs()

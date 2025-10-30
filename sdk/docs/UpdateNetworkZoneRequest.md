@@ -12,14 +12,16 @@ Name | Type | Description | Notes
 
 ```python
 from finbourne_identity.models.update_network_zone_request import UpdateNetworkZoneRequest
-from typing import Any, Dict, List, Optional
-from pydantic.v1 import BaseModel, Field, StrictInt, StrictStr, conlist
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
+from datetime import datetime
 
 description: Optional[StrictStr] = "example_description"
-network_zone_ips: conlist(IpAddressDefinition) = # Replace with your value
+network_zone_ips: List[IpAddressDefinition] = # Replace with your value
 action: Optional[StrictStr] = "example_action"
 apply_rules: NetworkZonesApplyRules = # Replace with your value
-hierarchy: StrictInt = # Replace with your value
+hierarchy: StrictInt
 hierarchy: StrictInt = 42
 update_network_zone_request_instance = UpdateNetworkZoneRequest(description=description, network_zone_ips=network_zone_ips, action=action, apply_rules=apply_rules, hierarchy=hierarchy)
 

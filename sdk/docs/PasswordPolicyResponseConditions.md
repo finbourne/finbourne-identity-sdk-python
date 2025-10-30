@@ -11,12 +11,14 @@ Name | Type | Description | Notes
 
 ```python
 from finbourne_identity.models.password_policy_response_conditions import PasswordPolicyResponseConditions
-from typing import Any, Dict
-from pydantic.v1 import BaseModel, Field
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
+from datetime import datetime
 
-complexity: PasswordPolicyResponseComplexity = # Replace with your value
-age: PasswordPolicyResponseAge = # Replace with your value
-lockout: PasswordPolicyResponseLockout = # Replace with your value
+complexity: PasswordPolicyResponseComplexity
+age: PasswordPolicyResponseAge
+lockout: PasswordPolicyResponseLockout
 password_policy_response_conditions_instance = PasswordPolicyResponseConditions(complexity=complexity, age=age, lockout=lockout)
 
 ```

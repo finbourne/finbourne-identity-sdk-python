@@ -17,16 +17,18 @@ import pprint
 import re  # noqa: F401
 import json
 
+
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
 from datetime import datetime
-from typing import Any, Dict, Optional
-from pydantic.v1 import StrictStr, Field, BaseModel, Field, constr, validator 
 
 class CreateApiKey(BaseModel):
     """
     Create an API key  # noqa: E501
     """
     display_name:  StrictStr = Field(...,alias="displayName", description="The display name for the API key") 
-    deactivation_date: Optional[datetime] = Field(None, alias="deactivationDate", description="The optional date at which the key should deactivate")
+    deactivation_date: Optional[datetime] = Field(default=None, description="The optional date at which the key should deactivate", alias="deactivationDate")
     __properties = ["displayName", "deactivationDate"]
 
     class Config:
@@ -82,3 +84,5 @@ class CreateApiKey(BaseModel):
             "deactivation_date": obj.get("deactivationDate")
         })
         return _obj
+
+CreateApiKey.update_forward_refs()

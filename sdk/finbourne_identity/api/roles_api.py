@@ -19,11 +19,9 @@ import warnings
 from pydantic.v1 import validate_arguments, ValidationError
 from typing import overload, Optional, Union, Awaitable
 
-from typing_extensions import Annotated
-from pydantic.v1 import Field, constr, validator
-
+from pydantic.v1 import Field
 from typing import List, Optional
-
+from typing_extensions import Annotated
 from finbourne_identity.models.create_role_request import CreateRoleRequest
 from finbourne_identity.models.role_response import RoleResponse
 from finbourne_identity.models.update_role_request import UpdateRoleRequest
@@ -213,15 +211,15 @@ class RolesApi:
 
 
     @overload
-    async def create_role(self, create_role_request : Annotated[CreateRoleRequest, Field(..., description="Details of the role to be created")], **kwargs) -> RoleResponse:  # noqa: E501
+    async def create_role(self, create_role_request : Annotated[CreateRoleRequest, Field(description="Details of the role to be created")], **kwargs) -> RoleResponse:  # noqa: E501
         ...
 
     @overload
-    def create_role(self, create_role_request : Annotated[CreateRoleRequest, Field(..., description="Details of the role to be created")], async_req: Optional[bool]=True, **kwargs) -> RoleResponse:  # noqa: E501
+    def create_role(self, create_role_request : Annotated[CreateRoleRequest, Field(description="Details of the role to be created")], async_req: Optional[bool]=True, **kwargs) -> RoleResponse:  # noqa: E501
         ...
 
     @validate_arguments
-    def create_role(self, create_role_request : Annotated[CreateRoleRequest, Field(..., description="Details of the role to be created")], async_req: Optional[bool]=None, **kwargs) -> Union[RoleResponse, Awaitable[RoleResponse]]:  # noqa: E501
+    def create_role(self, create_role_request : Annotated[CreateRoleRequest, Field(description="Details of the role to be created")], async_req: Optional[bool]=None, **kwargs) -> Union[RoleResponse, Awaitable[RoleResponse]]:  # noqa: E501
         """CreateRole: Create Role  # noqa: E501
 
         Creates a new Role  # noqa: E501
@@ -252,7 +250,7 @@ class RolesApi:
         return self.create_role_with_http_info(create_role_request, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def create_role_with_http_info(self, create_role_request : Annotated[CreateRoleRequest, Field(..., description="Details of the role to be created")], **kwargs) -> ApiResponse:  # noqa: E501
+    def create_role_with_http_info(self, create_role_request : Annotated[CreateRoleRequest, Field(description="Details of the role to be created")], **kwargs) -> ApiResponse:  # noqa: E501
         """CreateRole: Create Role  # noqa: E501
 
         Creates a new Role  # noqa: E501

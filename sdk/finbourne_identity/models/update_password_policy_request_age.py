@@ -18,15 +18,17 @@ import re  # noqa: F401
 import json
 
 
-from typing import Any, Dict
-from pydantic.v1 import StrictStr, Field, BaseModel, Field, conint 
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
+from datetime import datetime
 
 class UpdatePasswordPolicyRequestAge(BaseModel):
     """
     UpdatePasswordPolicyRequestAge
     """
-    max_age_days: conint(strict=True) = Field(..., alias="maxAgeDays", description="The maximum age (in days) a password can be before expiring and needing to be changed.  0 indicates no limit")
-    history_count: conint(strict=True) = Field(..., alias="historyCount", description="The number of unique passwords that need to be used before a previous password is permitted again.  0 indicates none")
+    max_age_days: StrictInt = Field(description="The maximum age (in days) a password can be before expiring and needing to be changed. 0 indicates no limit", alias="maxAgeDays")
+    history_count: StrictInt = Field(description="The number of unique passwords that need to be used before a previous password is permitted again. 0 indicates none", alias="historyCount")
     __properties = ["maxAgeDays", "historyCount"]
 
     class Config:
@@ -77,3 +79,5 @@ class UpdatePasswordPolicyRequestAge(BaseModel):
             "history_count": obj.get("historyCount")
         })
         return _obj
+
+UpdatePasswordPolicyRequestAge.update_forward_refs()

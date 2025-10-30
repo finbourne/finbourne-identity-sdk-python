@@ -19,11 +19,9 @@ import warnings
 from pydantic.v1 import validate_arguments, ValidationError
 from typing import overload, Optional, Union, Awaitable
 
-from typing_extensions import Annotated
-from pydantic.v1 import Field, constr, validator
-
+from pydantic.v1 import Field
 from typing import List
-
+from typing_extensions import Annotated
 from finbourne_identity.models.api_key import ApiKey
 from finbourne_identity.models.create_api_key import CreateApiKey
 from finbourne_identity.models.created_api_key import CreatedApiKey
@@ -55,15 +53,15 @@ class PersonalAuthenticationTokensApi:
 
 
     @overload
-    async def create_api_key(self, create_api_key : Annotated[CreateApiKey, Field(..., description="The request to create a new Personal Access Token")], **kwargs) -> CreatedApiKey:  # noqa: E501
+    async def create_api_key(self, create_api_key : Annotated[CreateApiKey, Field(description="The request to create a new Personal Access Token")], **kwargs) -> CreatedApiKey:  # noqa: E501
         ...
 
     @overload
-    def create_api_key(self, create_api_key : Annotated[CreateApiKey, Field(..., description="The request to create a new Personal Access Token")], async_req: Optional[bool]=True, **kwargs) -> CreatedApiKey:  # noqa: E501
+    def create_api_key(self, create_api_key : Annotated[CreateApiKey, Field(description="The request to create a new Personal Access Token")], async_req: Optional[bool]=True, **kwargs) -> CreatedApiKey:  # noqa: E501
         ...
 
     @validate_arguments
-    def create_api_key(self, create_api_key : Annotated[CreateApiKey, Field(..., description="The request to create a new Personal Access Token")], async_req: Optional[bool]=None, **kwargs) -> Union[CreatedApiKey, Awaitable[CreatedApiKey]]:  # noqa: E501
+    def create_api_key(self, create_api_key : Annotated[CreateApiKey, Field(description="The request to create a new Personal Access Token")], async_req: Optional[bool]=None, **kwargs) -> Union[CreatedApiKey, Awaitable[CreatedApiKey]]:  # noqa: E501
         """CreateApiKey: Create a Personal Access Token  # noqa: E501
 
         Generates a Personal Access Token and returns the new key and its associated metadata.  # noqa: E501
@@ -94,7 +92,7 @@ class PersonalAuthenticationTokensApi:
         return self.create_api_key_with_http_info(create_api_key, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def create_api_key_with_http_info(self, create_api_key : Annotated[CreateApiKey, Field(..., description="The request to create a new Personal Access Token")], **kwargs) -> ApiResponse:  # noqa: E501
+    def create_api_key_with_http_info(self, create_api_key : Annotated[CreateApiKey, Field(description="The request to create a new Personal Access Token")], **kwargs) -> ApiResponse:  # noqa: E501
         """CreateApiKey: Create a Personal Access Token  # noqa: E501
 
         Generates a Personal Access Token and returns the new key and its associated metadata.  # noqa: E501
@@ -377,7 +375,7 @@ class PersonalAuthenticationTokensApi:
     def list_own_api_keys(self, async_req: Optional[bool]=None, **kwargs) -> Union[List[ApiKey], Awaitable[List[ApiKey]]]:  # noqa: E501
         """ListOwnApiKeys: Gets the meta data for all of the user's existing Personal Access Tokens.  # noqa: E501
 
-        Gets the meta data for all of the user's Personal Access Tokens that have not been deleted. They may be  invalid due to the deactivation date having passed.  # noqa: E501
+        Gets the meta data for all of the user's Personal Access Tokens that have not been deleted. They may be invalid due to the deactivation date having passed.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -406,7 +404,7 @@ class PersonalAuthenticationTokensApi:
     def list_own_api_keys_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
         """ListOwnApiKeys: Gets the meta data for all of the user's existing Personal Access Tokens.  # noqa: E501
 
-        Gets the meta data for all of the user's Personal Access Tokens that have not been deleted. They may be  invalid due to the deactivation date having passed.  # noqa: E501
+        Gets the meta data for all of the user's Personal Access Tokens that have not been deleted. They may be invalid due to the deactivation date having passed.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 

@@ -18,8 +18,10 @@ import re  # noqa: F401
 import json
 
 
-from typing import Any, Dict, List, Optional
-from pydantic.v1 import StrictStr, Field, BaseModel, Field, StrictStr, conlist 
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
+from datetime import datetime
 from finbourne_identity.models.link import Link
 
 class UserSummary(BaseModel):
@@ -33,8 +35,8 @@ class UserSummary(BaseModel):
     first_name:  Optional[StrictStr] = Field(None,alias="firstName", description="User's first name") 
     last_name:  Optional[StrictStr] = Field(None,alias="lastName", description="User's last name") 
     type:  Optional[StrictStr] = Field(None,alias="type", description="User's type (Personal, Service...)") 
-    alternative_user_ids: Optional[Dict[str, StrictStr]] = Field(None, alias="alternativeUserIds", description="User's alternative user IDs. Only returned for the current user")
-    links: Optional[conlist(Link)] = None
+    alternative_user_ids: Optional[Dict[str, Optional[StrictStr]]] = Field(default=None, description="User's alternative user IDs. Only returned for the current user", alias="alternativeUserIds")
+    links: Optional[List[Link]] = None
     __properties = ["id", "login", "email", "secondEmail", "firstName", "lastName", "type", "alternativeUserIds", "links"]
 
     class Config:
@@ -144,3 +146,5 @@ class UserSummary(BaseModel):
             "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
         })
         return _obj
+
+UserSummary.update_forward_refs()

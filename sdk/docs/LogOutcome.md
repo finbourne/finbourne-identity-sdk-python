@@ -10,8 +10,10 @@ Name | Type | Description | Notes
 
 ```python
 from finbourne_identity.models.log_outcome import LogOutcome
-from typing import Any, Dict, Optional
-from pydantic.v1 import BaseModel, StrictStr
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
+from datetime import datetime
 
 result: Optional[StrictStr] = "example_result"
 reason: Optional[StrictStr] = "example_reason"

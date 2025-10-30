@@ -18,8 +18,10 @@ import re  # noqa: F401
 import json
 
 
-from typing import Any, Dict, Optional
-from pydantic.v1 import StrictStr, Field, BaseModel, Field, StrictStr 
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
+from datetime import datetime
 from finbourne_identity.models.log_geographical_context import LogGeographicalContext
 from finbourne_identity.models.log_user_agent import LogUserAgent
 
@@ -27,12 +29,12 @@ class LogClientInfo(BaseModel):
     """
     Represents a LogClientInfo resource in the Okta API  # noqa: E501
     """
-    user_agent: Optional[LogUserAgent] = Field(None, alias="userAgent")
+    user_agent: Optional[LogUserAgent] = Field(default=None, alias="userAgent")
     zone:  Optional[StrictStr] = Field(None,alias="zone") 
     device:  Optional[StrictStr] = Field(None,alias="device") 
     id:  Optional[StrictStr] = Field(None,alias="id") 
     ip_address:  Optional[StrictStr] = Field(None,alias="ipAddress") 
-    geographical_context: Optional[LogGeographicalContext] = Field(None, alias="geographicalContext")
+    geographical_context: Optional[LogGeographicalContext] = Field(default=None, alias="geographicalContext")
     __properties = ["userAgent", "zone", "device", "id", "ipAddress", "geographicalContext"]
 
     class Config:
@@ -113,3 +115,5 @@ class LogClientInfo(BaseModel):
             "geographical_context": LogGeographicalContext.from_dict(obj.get("geographicalContext")) if obj.get("geographicalContext") is not None else None
         })
         return _obj
+
+LogClientInfo.update_forward_refs()

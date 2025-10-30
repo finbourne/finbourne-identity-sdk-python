@@ -13,8 +13,10 @@ Name | Type | Description | Notes
 
 ```python
 from finbourne_identity.models.log_security_context import LogSecurityContext
-from typing import Any, Dict, Optional
-from pydantic.v1 import BaseModel, Field, StrictBool, StrictInt, StrictStr
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
+from datetime import datetime
 
 as_number: Optional[StrictInt] = # Replace with your value
 as_number: Optional[StrictInt] = None

@@ -17,16 +17,18 @@ import pprint
 import re  # noqa: F401
 import json
 
+
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
 from datetime import datetime
-from typing import Any, Dict
-from pydantic.v1 import StrictStr, Field, BaseModel, Field, constr 
 
 class SupportAccessExpiryWithRole(BaseModel):
     """
     Time at which the support access granted for a role expires  # noqa: E501
     """
-    expiry: datetime = Field(..., description="DateTimeOffset at which the access will be revoked")
-    permitted_role:  StrictStr = Field(...,alias="permittedRole", description="Unique identifier for permitted role.   Use GET /identity/api/authentication/support-roles to lookup role label/code from identifier.") 
+    expiry: datetime = Field(description="DateTimeOffset at which the access will be revoked")
+    permitted_role:  StrictStr = Field(...,alias="permittedRole", description="Unique identifier for permitted role.  Use GET /identity/api/authentication/support-roles to lookup role label/code from identifier.") 
     __properties = ["expiry", "permittedRole"]
 
     class Config:
@@ -77,3 +79,5 @@ class SupportAccessExpiryWithRole(BaseModel):
             "permitted_role": obj.get("permittedRole")
         })
         return _obj
+
+SupportAccessExpiryWithRole.update_forward_refs()

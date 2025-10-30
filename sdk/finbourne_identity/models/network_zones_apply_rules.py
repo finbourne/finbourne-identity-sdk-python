@@ -18,15 +18,17 @@ import re  # noqa: F401
 import json
 
 
-from typing import Any, Dict, List
-from pydantic.v1 import StrictStr, Field, BaseModel, Field, StrictStr, conlist 
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
+from datetime import datetime
 
 class NetworkZonesApplyRules(BaseModel):
     """
     NetworkZonesApplyRules
     """
-    session_type: conlist(StrictStr) = Field(..., alias="sessionType")
-    user_roles: conlist(StrictStr) = Field(..., alias="userRoles")
+    session_type: List[StrictStr] = Field(alias="sessionType")
+    user_roles: List[StrictStr] = Field(alias="userRoles")
     __properties = ["sessionType", "userRoles"]
 
     class Config:
@@ -77,3 +79,5 @@ class NetworkZonesApplyRules(BaseModel):
             "user_roles": obj.get("userRoles")
         })
         return _obj
+
+NetworkZonesApplyRules.update_forward_refs()

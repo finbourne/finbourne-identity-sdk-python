@@ -18,8 +18,10 @@ import re  # noqa: F401
 import json
 
 
-from typing import Any, Dict, List, Optional
-from pydantic.v1 import StrictStr, Field, BaseModel, Field, StrictInt, StrictStr, conlist 
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
+from datetime import datetime
 from finbourne_identity.models.log_issuer import LogIssuer
 
 class LogAuthenticationContext(BaseModel):
@@ -27,11 +29,11 @@ class LogAuthenticationContext(BaseModel):
     Represents a LogAuthenticationContext resource in the Okta API  # noqa: E501
     """
     authentication_provider:  Optional[StrictStr] = Field(None,alias="authenticationProvider") 
-    credential_provider: Optional[conlist(StrictStr)] = Field(None, alias="credentialProvider")
-    credential_type: Optional[conlist(StrictStr)] = Field(None, alias="credentialType")
+    credential_provider: Optional[List[StrictStr]] = Field(default=None, alias="credentialProvider")
+    credential_type: Optional[List[StrictStr]] = Field(default=None, alias="credentialType")
     issuer: Optional[LogIssuer] = None
     interface:  Optional[StrictStr] = Field(None,alias="interface") 
-    authentication_step: Optional[StrictInt] = Field(None, alias="authenticationStep")
+    authentication_step: Optional[StrictInt] = Field(default=None, alias="authenticationStep")
     external_session_id:  Optional[StrictStr] = Field(None,alias="externalSessionId") 
     __properties = ["authenticationProvider", "credentialProvider", "credentialType", "issuer", "interface", "authenticationStep", "externalSessionId"]
 
@@ -121,3 +123,5 @@ class LogAuthenticationContext(BaseModel):
             "external_session_id": obj.get("externalSessionId")
         })
         return _obj
+
+LogAuthenticationContext.update_forward_refs()

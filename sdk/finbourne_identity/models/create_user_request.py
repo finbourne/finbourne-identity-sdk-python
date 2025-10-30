@@ -18,8 +18,10 @@ import re  # noqa: F401
 import json
 
 
-from typing import Any, Dict, List, Optional
-from pydantic.v1 import StrictStr, Field, BaseModel, Field, StrictStr, conlist, constr, validator 
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
+from datetime import datetime
 from finbourne_identity.models.role_id import RoleId
 
 class CreateUserRequest(BaseModel):
@@ -28,13 +30,14 @@ class CreateUserRequest(BaseModel):
     """
     first_name:  StrictStr = Field(...,alias="firstName", description="The first name of the user") 
     last_name:  StrictStr = Field(...,alias="lastName", description="The last name of the user") 
-    email_address:  StrictStr = Field(...,alias="emailAddress", description="The user's email address - to which the account validation email will be sent. For user accounts  this should exactly match the Login.") 
+    email_address:  StrictStr = Field(...,alias="emailAddress", description="The user's email address - to which the account validation email will be sent. For user accounts this should exactly match the Login.") 
     second_email_address:  Optional[StrictStr] = Field(None,alias="secondEmailAddress", description="The user's second email address. Only allowed for Service users") 
-    login:  StrictStr = Field(...,alias="login", description="The user's login username, in the form of an email address, which must be unique within the system.  For user accounts this should exactly match the user's email address.") 
-    alternative_user_ids: Optional[Dict[str, StrictStr]] = Field(None, alias="alternativeUserIds")
-    roles: Optional[conlist(RoleId)] = Field(None, description="Optional. Any known roles the user should be created with.")
+    login:  StrictStr = Field(...,alias="login", description="The user's login username, in the form of an email address, which must be unique within the system. For user accounts this should exactly match the user's email address.") 
+    alternative_user_ids: Optional[Dict[str, Optional[StrictStr]]] = Field(default=None, alias="alternativeUserIds")
+    roles: Optional[List[RoleId]] = Field(default=None, description="Optional. Any known roles the user should be created with.")
     type:  StrictStr = Field(...,alias="type", description="The type of user (e.g. Personal or Service)") 
-    __properties = ["firstName", "lastName", "emailAddress", "secondEmailAddress", "login", "alternativeUserIds", "roles", "type"]
+    user_expiry: Optional[datetime] = Field(default=None, description="The user's expiry unix datetime", alias="userExpiry")
+    __properties = ["firstName", "lastName", "emailAddress", "secondEmailAddress", "login", "alternativeUserIds", "roles", "type", "userExpiry"]
 
     class Config:
         """Pydantic configuration"""
@@ -90,6 +93,11 @@ class CreateUserRequest(BaseModel):
         if self.roles is None and "roles" in self.__fields_set__:
             _dict['roles'] = None
 
+        # set to None if user_expiry (nullable) is None
+        # and __fields_set__ contains the field
+        if self.user_expiry is None and "user_expiry" in self.__fields_set__:
+            _dict['userExpiry'] = None
+
         return _dict
 
     @classmethod
@@ -109,6 +117,9 @@ class CreateUserRequest(BaseModel):
             "login": obj.get("login"),
             "alternative_user_ids": obj.get("alternativeUserIds"),
             "roles": [RoleId.from_dict(_item) for _item in obj.get("roles")] if obj.get("roles") is not None else None,
-            "type": obj.get("type")
+            "type": obj.get("type"),
+            "user_expiry": obj.get("userExpiry")
         })
         return _obj
+
+CreateUserRequest.update_forward_refs()

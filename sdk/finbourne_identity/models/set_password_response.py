@@ -17,17 +17,19 @@ import pprint
 import re  # noqa: F401
 import json
 
+
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
 from datetime import datetime
-from typing import Any, Dict, List, Optional
-from pydantic.v1 import StrictStr, Field, BaseModel, Field, conlist 
 from finbourne_identity.models.link import Link
 
 class SetPasswordResponse(BaseModel):
     """
     The result of setting a password  # noqa: E501
     """
-    updated_at: datetime = Field(..., alias="updatedAt", description="The date and time at which the password was successfully updated")
-    links: Optional[conlist(Link)] = None
+    updated_at: datetime = Field(description="The date and time at which the password was successfully updated", alias="updatedAt")
+    links: Optional[List[Link]] = None
     __properties = ["updatedAt", "links"]
 
     class Config:
@@ -90,3 +92,5 @@ class SetPasswordResponse(BaseModel):
             "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
         })
         return _obj
+
+SetPasswordResponse.update_forward_refs()

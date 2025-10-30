@@ -18,15 +18,17 @@ import re  # noqa: F401
 import json
 
 
-from typing import Any, Dict, List
-from pydantic.v1 import StrictStr, Field, BaseModel, Field, conlist 
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
+from datetime import datetime
 from finbourne_identity.models.user_schema_property import UserSchemaProperty
 
 class UpdateUserSchemaRequest(BaseModel):
     """
     UpdateUserSchemaRequest
     """
-    alternative_user_ids: conlist(UserSchemaProperty) = Field(..., alias="alternativeUserIds")
+    alternative_user_ids: List[UserSchemaProperty] = Field(alias="alternativeUserIds")
     __properties = ["alternativeUserIds"]
 
     class Config:
@@ -83,3 +85,5 @@ class UpdateUserSchemaRequest(BaseModel):
             "alternative_user_ids": [UserSchemaProperty.from_dict(_item) for _item in obj.get("alternativeUserIds")] if obj.get("alternativeUserIds") is not None else None
         })
         return _obj
+
+UpdateUserSchemaRequest.update_forward_refs()

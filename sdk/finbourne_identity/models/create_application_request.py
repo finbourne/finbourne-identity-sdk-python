@@ -18,8 +18,10 @@ import re  # noqa: F401
 import json
 
 
-from typing import Any, Dict, List, Optional
-from pydantic.v1 import StrictStr, Field, BaseModel, Field, StrictStr, conlist, constr, validator 
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
+from datetime import datetime
 
 class CreateApplicationRequest(BaseModel):
     """
@@ -28,8 +30,8 @@ class CreateApplicationRequest(BaseModel):
     display_name:  StrictStr = Field(...,alias="displayName", description="The Display Name of the application") 
     client_id:  StrictStr = Field(...,alias="clientId", description="The OpenID Connect ClientId of the application") 
     type:  StrictStr = Field(...,alias="type", description="The Type of the application. This must be either Native or Web") 
-    redirect_uris: Optional[conlist(StrictStr)] = Field(None, alias="redirectUris", description="A web application's acceptable list of post-login redirect URIs")
-    post_logout_redirect_uris: Optional[conlist(StrictStr)] = Field(None, alias="postLogoutRedirectUris", description="A web application's acceptable list of post-logout redirect URIs")
+    redirect_uris: Optional[List[StrictStr]] = Field(default=None, description="A web application's acceptable list of post-login redirect URIs", alias="redirectUris")
+    post_logout_redirect_uris: Optional[List[StrictStr]] = Field(default=None, description="A web application's acceptable list of post-logout redirect URIs", alias="postLogoutRedirectUris")
     __properties = ["displayName", "clientId", "type", "redirectUris", "postLogoutRedirectUris"]
 
     class Config:
@@ -93,3 +95,5 @@ class CreateApplicationRequest(BaseModel):
             "post_logout_redirect_uris": obj.get("postLogoutRedirectUris")
         })
         return _obj
+
+CreateApplicationRequest.update_forward_refs()

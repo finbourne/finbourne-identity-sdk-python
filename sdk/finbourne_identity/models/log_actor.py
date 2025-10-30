@@ -18,8 +18,10 @@ import re  # noqa: F401
 import json
 
 
-from typing import Any, Dict, Optional
-from pydantic.v1 import StrictStr, Field, BaseModel, Field, StrictStr 
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
+from datetime import datetime
 
 class LogActor(BaseModel):
     """
@@ -29,7 +31,7 @@ class LogActor(BaseModel):
     type:  Optional[StrictStr] = Field(None,alias="type") 
     alternate_id:  Optional[StrictStr] = Field(None,alias="alternateId") 
     display_name:  Optional[StrictStr] = Field(None,alias="displayName") 
-    detail_entry: Optional[Dict[str, Any]] = Field(None, alias="detailEntry")
+    detail_entry: Optional[Dict[str, Any]] = Field(default=None, alias="detailEntry")
     __properties = ["id", "type", "alternateId", "displayName", "detailEntry"]
 
     class Config:
@@ -108,3 +110,5 @@ class LogActor(BaseModel):
             "detail_entry": obj.get("detailEntry")
         })
         return _obj
+
+LogActor.update_forward_refs()

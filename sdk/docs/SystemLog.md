@@ -24,9 +24,11 @@ Name | Type | Description | Notes
 
 ```python
 from finbourne_identity.models.system_log import SystemLog
-from typing import Any, Dict, List, Optional
-from pydantic.v1 import BaseModel, Field, StrictStr, conlist
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
 from datetime import datetime
+
 actor: Optional[LogActor] = None
 authentication_context: Optional[LogAuthenticationContext] = # Replace with your value
 client_info: Optional[LogClientInfo] = # Replace with your value
@@ -39,7 +41,7 @@ published: Optional[datetime] = # Replace with your value
 request: Optional[LogRequest] = None
 security_context: Optional[LogSecurityContext] = # Replace with your value
 severity: Optional[LogSeverity] = None
-target: Optional[conlist(LogTarget)] = # Replace with your value
+target: Optional[List[LogTarget]] = # Replace with your value
 transaction: Optional[LogTransaction] = None
 uuid: Optional[StrictStr] = "example_uuid"
 version: Optional[StrictStr] = "example_version"

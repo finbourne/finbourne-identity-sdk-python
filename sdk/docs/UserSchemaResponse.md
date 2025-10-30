@@ -8,10 +8,12 @@ Name | Type | Description | Notes
 
 ```python
 from finbourne_identity.models.user_schema_response import UserSchemaResponse
-from typing import Any, Dict, List, Optional
-from pydantic.v1 import BaseModel, Field, conlist
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
+from datetime import datetime
 
-alternative_user_ids: Optional[conlist(UserSchemaProperty)] = # Replace with your value
+alternative_user_ids: Optional[List[UserSchemaProperty]] = # Replace with your value
 user_schema_response_instance = UserSchemaResponse(alternative_user_ids=alternative_user_ids)
 
 ```

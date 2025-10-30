@@ -19,9 +19,8 @@ import warnings
 from pydantic.v1 import validate_arguments, ValidationError
 from typing import overload, Optional, Union, Awaitable
 
-from typing_extensions import Annotated
 from pydantic.v1 import Field
-
+from typing_extensions import Annotated
 from finbourne_identity.models.current_user_response import CurrentUserResponse
 from finbourne_identity.models.set_password import SetPassword
 from finbourne_identity.models.set_password_response import SetPasswordResponse
@@ -196,18 +195,18 @@ class MeApi:
 
 
     @overload
-    async def set_password(self, set_password : Annotated[SetPassword, Field(..., description="The request containing the new password value")], **kwargs) -> SetPasswordResponse:  # noqa: E501
+    async def set_password(self, set_password : Annotated[SetPassword, Field(description="The request containing the new password value")], **kwargs) -> SetPasswordResponse:  # noqa: E501
         ...
 
     @overload
-    def set_password(self, set_password : Annotated[SetPassword, Field(..., description="The request containing the new password value")], async_req: Optional[bool]=True, **kwargs) -> SetPasswordResponse:  # noqa: E501
+    def set_password(self, set_password : Annotated[SetPassword, Field(description="The request containing the new password value")], async_req: Optional[bool]=True, **kwargs) -> SetPasswordResponse:  # noqa: E501
         ...
 
     @validate_arguments
-    def set_password(self, set_password : Annotated[SetPassword, Field(..., description="The request containing the new password value")], async_req: Optional[bool]=None, **kwargs) -> Union[SetPasswordResponse, Awaitable[SetPasswordResponse]]:  # noqa: E501
+    def set_password(self, set_password : Annotated[SetPassword, Field(description="The request containing the new password value")], async_req: Optional[bool]=None, **kwargs) -> Union[SetPasswordResponse, Awaitable[SetPasswordResponse]]:  # noqa: E501
         """SetPassword: Set password of current user  # noqa: E501
 
-        Set the password of the current user to the specified value.                Note this is feature is only available to Service users authenticated using OpenID. For further information  relating to usage of this feature please consult the documentation.  # noqa: E501
+        Set the password of the current user to the specified value.              Note this is feature is only available to Service users authenticated using OpenID. For further information relating to usage of this feature please consult the documentation.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -235,10 +234,10 @@ class MeApi:
         return self.set_password_with_http_info(set_password, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def set_password_with_http_info(self, set_password : Annotated[SetPassword, Field(..., description="The request containing the new password value")], **kwargs) -> ApiResponse:  # noqa: E501
+    def set_password_with_http_info(self, set_password : Annotated[SetPassword, Field(description="The request containing the new password value")], **kwargs) -> ApiResponse:  # noqa: E501
         """SetPassword: Set password of current user  # noqa: E501
 
-        Set the password of the current user to the specified value.                Note this is feature is only available to Service users authenticated using OpenID. For further information  relating to usage of this feature please consult the documentation.  # noqa: E501
+        Set the password of the current user to the specified value.              Note this is feature is only available to Service users authenticated using OpenID. For further information relating to usage of this feature please consult the documentation.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 

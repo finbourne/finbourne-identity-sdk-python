@@ -8,13 +8,15 @@ Name | Type | Description | Notes
 **type** | **str** |  | [optional] 
 **alternate_id** | **str** |  | [optional] 
 **display_name** | **str** |  | [optional] 
-**detail_entry** | **Dict[str, object]** |  | [optional] 
+**detail_entry** | **Dict[str, Optional[object]]** |  | [optional] 
 ## Example
 
 ```python
 from finbourne_identity.models.log_actor import LogActor
-from typing import Any, Dict, Optional
-from pydantic.v1 import BaseModel, Field, StrictStr
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
+from datetime import datetime
 
 id: Optional[StrictStr] = "example_id"
 type: Optional[StrictStr] = "example_type"

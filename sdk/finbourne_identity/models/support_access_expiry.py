@@ -17,15 +17,17 @@ import pprint
 import re  # noqa: F401
 import json
 
+
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
 from datetime import datetime
-from typing import Any, Dict
-from pydantic.v1 import StrictStr, Field, BaseModel, Field 
 
 class SupportAccessExpiry(BaseModel):
     """
     Time at which the support access expires  # noqa: E501
     """
-    expiry: datetime = Field(..., description="DateTimeOffset at which the access will be revoked")
+    expiry: datetime = Field(description="DateTimeOffset at which the access will be revoked")
     __properties = ["expiry"]
 
     class Config:
@@ -75,3 +77,5 @@ class SupportAccessExpiry(BaseModel):
             "expiry": obj.get("expiry")
         })
         return _obj
+
+SupportAccessExpiry.update_forward_refs()

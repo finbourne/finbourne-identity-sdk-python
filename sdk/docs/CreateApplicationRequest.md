@@ -13,14 +13,16 @@ Name | Type | Description | Notes
 
 ```python
 from finbourne_identity.models.create_application_request import CreateApplicationRequest
-from typing import Any, Dict, List, Optional
-from pydantic.v1 import BaseModel, Field, StrictStr, conlist, constr, validator
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
+from datetime import datetime
 
 display_name: StrictStr = "example_display_name"
 client_id: StrictStr = "example_client_id"
 type: StrictStr = "example_type"
-redirect_uris: Optional[conlist(StrictStr)] = # Replace with your value
-post_logout_redirect_uris: Optional[conlist(StrictStr)] = # Replace with your value
+redirect_uris: Optional[List[StrictStr]] = # Replace with your value
+post_logout_redirect_uris: Optional[List[StrictStr]] = # Replace with your value
 create_application_request_instance = CreateApplicationRequest(display_name=display_name, client_id=client_id, type=type, redirect_uris=redirect_uris, post_logout_redirect_uris=post_logout_redirect_uris)
 
 ```

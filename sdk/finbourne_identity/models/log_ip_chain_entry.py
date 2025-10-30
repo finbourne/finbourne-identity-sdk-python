@@ -18,8 +18,10 @@ import re  # noqa: F401
 import json
 
 
-from typing import Any, Dict, Optional
-from pydantic.v1 import StrictStr, Field, BaseModel, Field, StrictStr 
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
+from datetime import datetime
 from finbourne_identity.models.log_geographical_context import LogGeographicalContext
 
 class LogIpChainEntry(BaseModel):
@@ -27,7 +29,7 @@ class LogIpChainEntry(BaseModel):
     Represents a LogIpChainEntry resource in the Okta API  # noqa: E501
     """
     ip:  Optional[StrictStr] = Field(None,alias="ip") 
-    geographical_context: Optional[LogGeographicalContext] = Field(None, alias="geographicalContext")
+    geographical_context: Optional[LogGeographicalContext] = Field(default=None, alias="geographicalContext")
     version:  Optional[StrictStr] = Field(None,alias="version") 
     source:  Optional[StrictStr] = Field(None,alias="source") 
     __properties = ["ip", "geographicalContext", "version", "source"]
@@ -100,3 +102,5 @@ class LogIpChainEntry(BaseModel):
             "source": obj.get("source")
         })
         return _obj
+
+LogIpChainEntry.update_forward_refs()

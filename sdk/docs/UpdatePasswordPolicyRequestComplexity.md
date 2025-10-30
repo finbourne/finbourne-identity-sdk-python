@@ -10,10 +10,12 @@ Name | Type | Description | Notes
 
 ```python
 from finbourne_identity.models.update_password_policy_request_complexity import UpdatePasswordPolicyRequestComplexity
-from typing import Any, Dict
-from pydantic.v1 import BaseModel, Field, StrictBool, conint
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
+from datetime import datetime
 
-min_length: conint(strict=True, le=30, ge=12) = Field(..., alias="minLength", description="The minimum length for a password")
+min_length: StrictInt = # Replace with your value
 min_length: StrictInt = 42
 exclude_first_name: StrictBool = # Replace with your value
 exclude_first_name:StrictBool = True

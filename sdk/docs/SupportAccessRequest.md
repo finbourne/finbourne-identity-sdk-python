@@ -11,12 +11,14 @@ Name | Type | Description | Notes
 
 ```python
 from finbourne_identity.models.support_access_request import SupportAccessRequest
-from typing import Any, Dict, List, Optional
-from pydantic.v1 import BaseModel, Field, StrictStr, conlist, constr, validator
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
+from datetime import datetime
 
 duration: StrictStr = "example_duration"
 description: Optional[StrictStr] = "example_description"
-permitted_roles: Optional[conlist(StrictStr)] = # Replace with your value
+permitted_roles: Optional[List[StrictStr]] = # Replace with your value
 support_access_request_instance = SupportAccessRequest(duration=duration, description=description, permitted_roles=permitted_roles)
 
 ```

@@ -18,8 +18,10 @@ import re  # noqa: F401
 import json
 
 
-from typing import Any, Dict, List, Optional
-from pydantic.v1 import StrictStr, Field, BaseModel, Field, StrictStr, conlist, constr 
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
+from datetime import datetime
 from finbourne_identity.models.link import Link
 from finbourne_identity.models.support_access_expiry import SupportAccessExpiry
 from finbourne_identity.models.support_access_expiry_with_role import SupportAccessExpiryWithRole
@@ -29,11 +31,11 @@ class AuthenticationInformation(BaseModel):
     AuthenticationInformation
     """
     issuer_url:  StrictStr = Field(...,alias="issuerUrl") 
-    fallback_issuer_urls: Optional[conlist(StrictStr)] = Field(None, alias="fallbackIssuerUrls")
+    fallback_issuer_urls: Optional[List[StrictStr]] = Field(default=None, alias="fallbackIssuerUrls")
     saml_identity_provider_id:  Optional[StrictStr] = Field(None,alias="samlIdentityProviderId") 
     support: Optional[SupportAccessExpiry] = None
-    support_access_expiry_with_role: Optional[conlist(SupportAccessExpiryWithRole)] = Field(None, alias="supportAccessExpiryWithRole")
-    links: Optional[conlist(Link)] = None
+    support_access_expiry_with_role: Optional[List[SupportAccessExpiryWithRole]] = Field(default=None, alias="supportAccessExpiryWithRole")
+    links: Optional[List[Link]] = None
     __properties = ["issuerUrl", "fallbackIssuerUrls", "samlIdentityProviderId", "support", "supportAccessExpiryWithRole", "links"]
 
     class Config:
@@ -125,3 +127,5 @@ class AuthenticationInformation(BaseModel):
             "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
         })
         return _obj
+
+AuthenticationInformation.update_forward_refs()

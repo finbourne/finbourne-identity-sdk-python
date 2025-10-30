@@ -18,8 +18,10 @@ import re  # noqa: F401
 import json
 
 
-from typing import Any, Dict, Optional
-from pydantic.v1 import StrictStr, Field, BaseModel, Field, StrictStr, constr 
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
+from datetime import datetime
 from finbourne_identity.models.claim_mappings import ClaimMappings
 
 class UpdateExternalTokenIssuerRequest(BaseModel):
@@ -29,7 +31,7 @@ class UpdateExternalTokenIssuerRequest(BaseModel):
     issuer:  Optional[StrictStr] = Field(None,alias="issuer") 
     audience:  Optional[StrictStr] = Field(None,alias="audience") 
     description:  Optional[StrictStr] = Field(None,alias="description") 
-    claim_mappings: Optional[ClaimMappings] = Field(None, alias="claimMappings")
+    claim_mappings: Optional[ClaimMappings] = Field(default=None, alias="claimMappings")
     logout_url:  Optional[StrictStr] = Field(None,alias="logoutUrl") 
     __properties = ["issuer", "audience", "description", "claimMappings", "logoutUrl"]
 
@@ -107,3 +109,5 @@ class UpdateExternalTokenIssuerRequest(BaseModel):
             "logout_url": obj.get("logoutUrl")
         })
         return _obj
+
+UpdateExternalTokenIssuerRequest.update_forward_refs()

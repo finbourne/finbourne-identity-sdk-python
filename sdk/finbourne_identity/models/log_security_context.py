@@ -18,18 +18,20 @@ import re  # noqa: F401
 import json
 
 
-from typing import Any, Dict, Optional
-from pydantic.v1 import StrictStr, Field, BaseModel, Field, StrictBool, StrictInt, StrictStr 
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
+from datetime import datetime
 
 class LogSecurityContext(BaseModel):
     """
     Represents a LogSecurityContext resource in the Okta API  # noqa: E501
     """
-    as_number: Optional[StrictInt] = Field(None, alias="asNumber")
+    as_number: Optional[StrictInt] = Field(default=None, alias="asNumber")
     as_org:  Optional[StrictStr] = Field(None,alias="asOrg") 
     isp:  Optional[StrictStr] = Field(None,alias="isp") 
     domain:  Optional[StrictStr] = Field(None,alias="domain") 
-    is_proxy: Optional[StrictBool] = Field(None, alias="isProxy")
+    is_proxy: Optional[StrictBool] = Field(default=None, alias="isProxy")
     __properties = ["asNumber", "asOrg", "isp", "domain", "isProxy"]
 
     class Config:
@@ -108,3 +110,5 @@ class LogSecurityContext(BaseModel):
             "is_proxy": obj.get("isProxy")
         })
         return _obj
+
+LogSecurityContext.update_forward_refs()

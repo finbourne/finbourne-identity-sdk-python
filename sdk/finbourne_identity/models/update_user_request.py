@@ -18,8 +18,10 @@ import re  # noqa: F401
 import json
 
 
-from typing import Any, Dict, List, Optional
-from pydantic.v1 import StrictStr, Field, BaseModel, Field, StrictStr, conlist, constr, validator 
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
+from datetime import datetime
 from finbourne_identity.models.role_id import RoleId
 
 class UpdateUserRequest(BaseModel):
@@ -30,10 +32,11 @@ class UpdateUserRequest(BaseModel):
     last_name:  StrictStr = Field(...,alias="lastName") 
     email_address:  StrictStr = Field(...,alias="emailAddress") 
     second_email_address:  Optional[StrictStr] = Field(None,alias="secondEmailAddress") 
-    login:  StrictStr = Field(...,alias="login", description="The user's login username, in the form of an email address, which must be unique within the system.  For user accounts this should exactly match the user's email address.") 
-    alternative_user_ids: Optional[Dict[str, StrictStr]] = Field(None, alias="alternativeUserIds")
-    roles: Optional[conlist(RoleId)] = Field(None, description="Deprecated. To update a user's roles use the AddUserToRole and RemoveUserFromRole endpoints")
-    __properties = ["firstName", "lastName", "emailAddress", "secondEmailAddress", "login", "alternativeUserIds", "roles"]
+    login:  StrictStr = Field(...,alias="login", description="The user's login username, in the form of an email address, which must be unique within the system. For user accounts this should exactly match the user's email address.") 
+    alternative_user_ids: Optional[Dict[str, Optional[StrictStr]]] = Field(default=None, alias="alternativeUserIds")
+    roles: Optional[List[RoleId]] = Field(default=None, description="Deprecated. To update a user's roles use the AddUserToRole and RemoveUserFromRole endpoints")
+    user_expiry: Optional[datetime] = Field(default=None, description="The user's expiry unix datetime", alias="userExpiry")
+    __properties = ["firstName", "lastName", "emailAddress", "secondEmailAddress", "login", "alternativeUserIds", "roles", "userExpiry"]
 
     class Config:
         """Pydantic configuration"""
@@ -89,6 +92,11 @@ class UpdateUserRequest(BaseModel):
         if self.roles is None and "roles" in self.__fields_set__:
             _dict['roles'] = None
 
+        # set to None if user_expiry (nullable) is None
+        # and __fields_set__ contains the field
+        if self.user_expiry is None and "user_expiry" in self.__fields_set__:
+            _dict['userExpiry'] = None
+
         return _dict
 
     @classmethod
@@ -107,6 +115,9 @@ class UpdateUserRequest(BaseModel):
             "second_email_address": obj.get("secondEmailAddress"),
             "login": obj.get("login"),
             "alternative_user_ids": obj.get("alternativeUserIds"),
-            "roles": [RoleId.from_dict(_item) for _item in obj.get("roles")] if obj.get("roles") is not None else None
+            "roles": [RoleId.from_dict(_item) for _item in obj.get("roles")] if obj.get("roles") is not None else None,
+            "user_expiry": obj.get("userExpiry")
         })
         return _obj
+
+UpdateUserRequest.update_forward_refs()

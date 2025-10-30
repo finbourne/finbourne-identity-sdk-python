@@ -9,10 +9,12 @@ Name | Type | Description | Notes
 
 ```python
 from finbourne_identity.models.log_request import LogRequest
-from typing import Any, Dict, List, Optional
-from pydantic.v1 import BaseModel, Field, conlist
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
+from datetime import datetime
 
-ip_chain: Optional[conlist(LogIpChainEntry)] = # Replace with your value
+ip_chain: Optional[List[LogIpChainEntry]] = # Replace with your value
 log_request_instance = LogRequest(ip_chain=ip_chain)
 
 ```

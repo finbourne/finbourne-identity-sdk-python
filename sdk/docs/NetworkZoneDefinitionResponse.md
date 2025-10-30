@@ -18,16 +18,18 @@ Name | Type | Description | Notes
 
 ```python
 from finbourne_identity.models.network_zone_definition_response import NetworkZoneDefinitionResponse
-from typing import Any, Dict, List, Optional
-from pydantic.v1 import BaseModel, Field, StrictInt, StrictStr, conlist
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
 from datetime import datetime
+
 code: Optional[StrictStr] = "example_code"
 hierarchy: Optional[StrictInt] = # Replace with your value
 hierarchy: Optional[StrictInt] = None
 description: Optional[StrictStr] = "example_description"
 created_at: Optional[datetime] = # Replace with your value
 updated_at: Optional[datetime] = # Replace with your value
-network_zone_ips: Optional[conlist(IpAddressDefinition)] = # Replace with your value
+network_zone_ips: Optional[List[IpAddressDefinition]] = # Replace with your value
 action: Optional[StrictStr] = "example_action"
 apply_rules: Optional[NetworkZonesApplyRules] = # Replace with your value
 created_by: Optional[StrictStr] = "example_created_by"

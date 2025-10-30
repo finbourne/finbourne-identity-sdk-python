@@ -17,9 +17,11 @@ import pprint
 import re  # noqa: F401
 import json
 
+
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
 from datetime import datetime
-from typing import Any, Dict, List, Optional
-from pydantic.v1 import StrictStr, Field, BaseModel, Field, StrictBool, StrictStr, conlist, constr, validator 
 
 class SupportAccessResponse(BaseModel):
     """
@@ -28,13 +30,13 @@ class SupportAccessResponse(BaseModel):
     id:  StrictStr = Field(...,alias="id", description="ID of the support access request") 
     duration:  StrictStr = Field(...,alias="duration", description="The duration for which access is requested (in any ISO-8601 format)") 
     description:  Optional[StrictStr] = Field(None,alias="description", description="The description of why the support access has been granted (i.e. support ticket numbers)") 
-    created_at: datetime = Field(..., alias="createdAt", description="DateTimeOffset at which the access was granted")
-    expiry: datetime = Field(..., description="DateTimeOffset at which the access will be revoked")
+    created_at: datetime = Field(description="DateTimeOffset at which the access was granted", alias="createdAt")
+    expiry: datetime = Field(description="DateTimeOffset at which the access will be revoked")
     created_by:  StrictStr = Field(...,alias="createdBy", description="Obfuscated UserId of the user who granted the support access") 
-    terminated: Optional[StrictBool] = Field(None, description="Whether or not that access has been invalidated")
-    terminated_at: Optional[datetime] = Field(None, alias="terminatedAt", description="DateTimeOffset at which the access was invalidated")
+    terminated: Optional[StrictBool] = Field(default=None, description="Whether or not that access has been invalidated")
+    terminated_at: Optional[datetime] = Field(default=None, description="DateTimeOffset at which the access was invalidated", alias="terminatedAt")
     terminated_by:  Optional[StrictStr] = Field(None,alias="terminatedBy", description="Obfuscated UserId of the user who revoked the access") 
-    permitted_roles: Optional[conlist(StrictStr)] = Field(None, alias="permittedRoles", description="A list of permitted roles, valid for support staff to assume, for the duration of the access request")
+    permitted_roles: Optional[List[StrictStr]] = Field(default=None, description="A list of permitted roles, valid for support staff to assume, for the duration of the access request", alias="permittedRoles")
     __properties = ["id", "duration", "description", "createdAt", "expiry", "createdBy", "terminated", "terminatedAt", "terminatedBy", "permittedRoles"]
 
     class Config:
@@ -113,3 +115,5 @@ class SupportAccessResponse(BaseModel):
             "permitted_roles": obj.get("permittedRoles")
         })
         return _obj
+
+SupportAccessResponse.update_forward_refs()

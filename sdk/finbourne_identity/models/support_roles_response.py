@@ -18,15 +18,17 @@ import re  # noqa: F401
 import json
 
 
-from typing import Any, Dict, List, Optional
-from pydantic.v1 import StrictStr, Field, BaseModel, Field, conlist 
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
+from datetime import datetime
 from finbourne_identity.models.support_role import SupportRole
 
 class SupportRolesResponse(BaseModel):
     """
     SupportRolesResponse
     """
-    support_roles: Optional[conlist(SupportRole)] = Field(None, alias="supportRoles")
+    support_roles: Optional[List[SupportRole]] = Field(default=None, alias="supportRoles")
     __properties = ["supportRoles"]
 
     class Config:
@@ -88,3 +90,5 @@ class SupportRolesResponse(BaseModel):
             "support_roles": [SupportRole.from_dict(_item) for _item in obj.get("supportRoles")] if obj.get("supportRoles") is not None else None
         })
         return _obj
+
+SupportRolesResponse.update_forward_refs()

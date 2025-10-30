@@ -19,13 +19,10 @@ import warnings
 from pydantic.v1 import validate_arguments, ValidationError
 from typing import overload, Optional, Union, Awaitable
 
-from typing_extensions import Annotated
 from datetime import datetime
-
 from pydantic.v1 import Field, StrictStr
-
 from typing import Optional
-
+from typing_extensions import Annotated
 from finbourne_identity.models.add_scim_response import AddScimResponse
 
 from finbourne_identity.api_client import ApiClient
