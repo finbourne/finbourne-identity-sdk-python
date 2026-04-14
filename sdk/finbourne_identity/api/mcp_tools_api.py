@@ -205,6 +205,7 @@ class MCPToolsApi:
         _response_types_map = {
             '201': "McpToolResponse",
             '400': "LusidValidationProblemDetails",
+            '409': None,
         }
 
         return self.api_client.call_api(
@@ -848,6 +849,7 @@ class MCPToolsApi:
         _response_types_map = {
             '200': "McpToolResponse",
             '400': "LusidValidationProblemDetails",
+            '409': None,
         }
 
         return self.api_client.call_api(

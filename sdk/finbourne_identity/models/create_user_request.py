@@ -32,7 +32,7 @@ class CreateUserRequest(BaseModel):
     last_name:  StrictStr = Field(...,alias="lastName", description="The last name of the user") 
     email_address:  StrictStr = Field(...,alias="emailAddress", description="The user's email address - to which the account validation email will be sent. For user accounts this should exactly match the Login.") 
     second_email_address:  Optional[StrictStr] = Field(None,alias="secondEmailAddress", description="The user's second email address. Only allowed for Service users") 
-    login:  StrictStr = Field(...,alias="login", description="The user's login username, in the form of an email address, which must be unique within the system. For user accounts this should exactly match the user's email address.") 
+    login:  StrictStr = Field(...,alias="login", description="The user's login username, which must be unique within the system. For user accounts this should exactly match the user's email address.") 
     alternative_user_ids: Optional[Dict[str, Optional[StrictStr]]] = Field(default=None, alias="alternativeUserIds")
     roles: Optional[List[RoleId]] = Field(default=None, description="Optional. Any known roles the user should be created with.")
     type:  StrictStr = Field(...,alias="type", description="The type of user (e.g. Personal or Service)") 
