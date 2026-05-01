@@ -44,11 +44,12 @@ class McpToolResponse(BaseModel):
     payload_type:  Optional[StrictStr] = Field(None,alias="payloadType", description="The type of payload (Luminesce or Scheduler)") 
     luminesce_payload: Optional[McpToolLuminescePayload] = Field(default=None, alias="luminescePayload")
     scheduler_payload: Optional[McpToolSchedulerPayload] = Field(default=None, alias="schedulerPayload")
+    destructive_action_summary_template:  Optional[StrictStr] = Field(None,alias="destructiveActionSummaryTemplate", description="Template for human-readable destructive action summary (e.g. \"Delete file '{filePath}'\")") 
     created_at: Optional[datetime] = Field(default=None, description="When the MCP tool was created", alias="createdAt")
     created_by:  Optional[StrictStr] = Field(None,alias="createdBy", description="Who created the MCP tool") 
     updated_at: Optional[datetime] = Field(default=None, description="When the MCP tool was last updated", alias="updatedAt")
     updated_by:  Optional[StrictStr] = Field(None,alias="updatedBy", description="Who last updated the MCP tool") 
-    __properties = ["scope", "code", "name", "version", "title", "description", "destructive", "idempotent", "openWorld", "readOnly", "parameters", "payloadType", "luminescePayload", "schedulerPayload", "createdAt", "createdBy", "updatedAt", "updatedBy"]
+    __properties = ["scope", "code", "name", "version", "title", "description", "destructive", "idempotent", "openWorld", "readOnly", "parameters", "payloadType", "luminescePayload", "schedulerPayload", "destructiveActionSummaryTemplate", "createdAt", "createdBy", "updatedAt", "updatedBy"]
 
     class Config:
         """Pydantic configuration"""
@@ -130,6 +131,11 @@ class McpToolResponse(BaseModel):
         if self.payload_type is None and "payload_type" in self.__fields_set__:
             _dict['payloadType'] = None
 
+        # set to None if destructive_action_summary_template (nullable) is None
+        # and __fields_set__ contains the field
+        if self.destructive_action_summary_template is None and "destructive_action_summary_template" in self.__fields_set__:
+            _dict['destructiveActionSummaryTemplate'] = None
+
         # set to None if created_by (nullable) is None
         # and __fields_set__ contains the field
         if self.created_by is None and "created_by" in self.__fields_set__:
@@ -166,6 +172,7 @@ class McpToolResponse(BaseModel):
             "payload_type": obj.get("payloadType"),
             "luminesce_payload": McpToolLuminescePayload.from_dict(obj.get("luminescePayload")) if obj.get("luminescePayload") is not None else None,
             "scheduler_payload": McpToolSchedulerPayload.from_dict(obj.get("schedulerPayload")) if obj.get("schedulerPayload") is not None else None,
+            "destructive_action_summary_template": obj.get("destructiveActionSummaryTemplate"),
             "created_at": obj.get("createdAt"),
             "created_by": obj.get("createdBy"),
             "updated_at": obj.get("updatedAt"),

@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **parameters** | [**List[McpToolParameter]**](McpToolParameter.md) | The parameters for this MCP tool | [optional] 
 **luminesce_payload** | [**McpToolLuminescePayload**](McpToolLuminescePayload.md) |  | [optional] 
 **scheduler_payload** | [**McpToolSchedulerPayload**](McpToolSchedulerPayload.md) |  | [optional] 
+**destructive_action_summary_template** | **str** | Template for human-readable destructive action summary. Uses {paramName} single-brace placeholders (e.g. \&quot;Delete file &#39;{filePath}&#39;\&quot;). Required when Destructive is true. | [optional] 
 ## Example
 
 ```python
@@ -37,7 +38,8 @@ read_only:Optional[StrictBool] = None
 parameters: Optional[List[McpToolParameter]] = # Replace with your value
 luminesce_payload: Optional[McpToolLuminescePayload] = # Replace with your value
 scheduler_payload: Optional[McpToolSchedulerPayload] = # Replace with your value
-upsert_mcp_tool_request_instance = UpsertMcpToolRequest(name=name, title=title, description=description, destructive=destructive, idempotent=idempotent, open_world=open_world, read_only=read_only, parameters=parameters, luminesce_payload=luminesce_payload, scheduler_payload=scheduler_payload)
+destructive_action_summary_template: Optional[StrictStr] = "example_destructive_action_summary_template"
+upsert_mcp_tool_request_instance = UpsertMcpToolRequest(name=name, title=title, description=description, destructive=destructive, idempotent=idempotent, open_world=open_world, read_only=read_only, parameters=parameters, luminesce_payload=luminesce_payload, scheduler_payload=scheduler_payload, destructive_action_summary_template=destructive_action_summary_template)
 
 ```
 

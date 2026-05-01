@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **payload_type** | **str** | The type of payload (Luminesce or Scheduler) | [optional] 
 **luminesce_payload** | [**McpToolLuminescePayload**](McpToolLuminescePayload.md) |  | [optional] 
 **scheduler_payload** | [**McpToolSchedulerPayload**](McpToolSchedulerPayload.md) |  | [optional] 
+**destructive_action_summary_template** | **str** | Template for human-readable destructive action summary (e.g. \&quot;Delete file &#39;{filePath}&#39;\&quot;) | [optional] 
 **created_at** | **datetime** | When the MCP tool was created | [optional] 
 **created_by** | **str** | Who created the MCP tool | [optional] 
 **updated_at** | **datetime** | When the MCP tool was last updated | [optional] 
@@ -50,11 +51,12 @@ parameters: Optional[List[McpToolParameter]] = # Replace with your value
 payload_type: Optional[StrictStr] = "example_payload_type"
 luminesce_payload: Optional[McpToolLuminescePayload] = # Replace with your value
 scheduler_payload: Optional[McpToolSchedulerPayload] = # Replace with your value
+destructive_action_summary_template: Optional[StrictStr] = "example_destructive_action_summary_template"
 created_at: Optional[datetime] = # Replace with your value
 created_by: Optional[StrictStr] = "example_created_by"
 updated_at: Optional[datetime] = # Replace with your value
 updated_by: Optional[StrictStr] = "example_updated_by"
-mcp_tool_response_instance = McpToolResponse(scope=scope, code=code, name=name, version=version, title=title, description=description, destructive=destructive, idempotent=idempotent, open_world=open_world, read_only=read_only, parameters=parameters, payload_type=payload_type, luminesce_payload=luminesce_payload, scheduler_payload=scheduler_payload, created_at=created_at, created_by=created_by, updated_at=updated_at, updated_by=updated_by)
+mcp_tool_response_instance = McpToolResponse(scope=scope, code=code, name=name, version=version, title=title, description=description, destructive=destructive, idempotent=idempotent, open_world=open_world, read_only=read_only, parameters=parameters, payload_type=payload_type, luminesce_payload=luminesce_payload, scheduler_payload=scheduler_payload, destructive_action_summary_template=destructive_action_summary_template, created_at=created_at, created_by=created_by, updated_at=updated_at, updated_by=updated_by)
 
 ```
 
