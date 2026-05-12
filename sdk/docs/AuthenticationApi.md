@@ -6,11 +6,13 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**get_authentication_information**](AuthenticationApi.md#get_authentication_information) | **GET** /api/authentication/information | GetAuthenticationInformation: Gets AuthenticationInformation
 [**get_password_policy**](AuthenticationApi.md#get_password_policy) | **GET** /api/authentication/password-policy/{userType} | GetPasswordPolicy: Gets password policy for a user type
+[**get_session_policy**](AuthenticationApi.md#get_session_policy) | **GET** /api/authentication/session-policy | [EXPERIMENTAL] GetSessionPolicy: Get session policy
 [**get_support_access_history**](AuthenticationApi.md#get_support_access_history) | **GET** /api/authentication/support | GetSupportAccessHistory: Get the history of all support access granted and any information pertaining to their termination
 [**get_support_roles**](AuthenticationApi.md#get_support_roles) | **GET** /api/authentication/support-roles | GetSupportRoles: Get mapping of support roles, the internal representation to a human friendly representation
 [**grant_support_access**](AuthenticationApi.md#grant_support_access) | **POST** /api/authentication/support | GrantSupportAccess: Grants FINBOURNE support access to your account
 [**invalidate_support_access**](AuthenticationApi.md#invalidate_support_access) | **DELETE** /api/authentication/support | InvalidateSupportAccess: Revoke any FINBOURNE support access to your account
 [**update_password_policy**](AuthenticationApi.md#update_password_policy) | **PUT** /api/authentication/password-policy/{userType} | UpdatePasswordPolicy: Updates password policy for a user type
+[**update_session_policy**](AuthenticationApi.md#update_session_policy) | **PUT** /api/authentication/session-policy | [EXPERIMENTAL] UpdateSessionPolicy: Update session policy
 
 
 # **get_authentication_information**
@@ -188,6 +190,93 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | Get password policy |  -  |
 **400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to Model list](../README.md#documentation-for-models) &#8226; [Back to README](../README.md)
+
+# **get_session_policy**
+> SessionPolicyResponse get_session_policy()
+
+[EXPERIMENTAL] GetSessionPolicy: Get session policy
+
+Get the configured session timing settings. These settings dictate the duration of user sessions and the frequency of required re-authentication.
+
+### Example
+
+```python
+from finbourne_identity.exceptions import ApiException
+from finbourne_identity.extensions.configuration_options import ConfigurationOptions
+from finbourne_identity.models import *
+from pprint import pprint
+from finbourne_identity import (
+    SyncApiClientFactory,
+    AuthenticationApi
+)
+
+def main():
+
+    with open("secrets.json", "w") as file:
+        file.write('''
+    {
+        "api":
+        {
+            "tokenUrl":"<your-token-url>",
+            "identityUrl":"https://<your-domain>.lusid.com/identity",
+            "username":"<your-username>",
+            "password":"<your-password>",
+            "clientId":"<your-client-id>",
+            "clientSecret":"<your-client-secret>"
+        }
+    }''')
+
+    # Use the finbourne_identity SyncApiClientFactory to build Api instances with a configured api client
+    # By default this will read config from environment variables
+    # Then from a secrets.json file found in the current working directory
+
+    # uncomment the below to use configuration overrides
+    # opts = ConfigurationOptions();
+    # opts.total_timeout_ms = 30_000
+
+    # uncomment the below to use an api client factory with overrides
+    # api_client_factory = SyncApiClientFactory(opts=opts)
+
+    api_client_factory = SyncApiClientFactory()
+
+    # Enter a context with an instance of the SyncApiClientFactory to ensure the connection pool is closed after use
+    
+    # Create an instance of the API class
+    api_instance = api_client_factory.build(AuthenticationApi)
+
+    try:
+        # uncomment the below to set overrides at the request level
+        # api_response =  api_instance.get_session_policy(opts=opts)
+
+        # [EXPERIMENTAL] GetSessionPolicy: Get session policy
+        api_response = api_instance.get_session_policy()
+        pprint(api_response)
+
+    except ApiException as e:
+        print("Exception when calling AuthenticationApi->get_session_policy: %s\n" % e)
+
+main()
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**SessionPolicyResponse**](SessionPolicyResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The current session policy |  -  |
 **0** | Error response |  -  |
 
 [Back to top](#) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to Model list](../README.md#documentation-for-models) &#8226; [Back to README](../README.md)
@@ -651,6 +740,103 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Update password policy |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to Model list](../README.md#documentation-for-models) &#8226; [Back to README](../README.md)
+
+# **update_session_policy**
+> SessionPolicyResponse update_session_policy(update_session_policy_request)
+
+[EXPERIMENTAL] UpdateSessionPolicy: Update session policy
+
+Update the session timing settings. These settings dictate the duration of user sessions and the frequency of required re-authentication.
+
+### Example
+
+```python
+from finbourne_identity.exceptions import ApiException
+from finbourne_identity.extensions.configuration_options import ConfigurationOptions
+from finbourne_identity.models import *
+from pprint import pprint
+from finbourne_identity import (
+    SyncApiClientFactory,
+    AuthenticationApi
+)
+
+def main():
+
+    with open("secrets.json", "w") as file:
+        file.write('''
+    {
+        "api":
+        {
+            "tokenUrl":"<your-token-url>",
+            "identityUrl":"https://<your-domain>.lusid.com/identity",
+            "username":"<your-username>",
+            "password":"<your-password>",
+            "clientId":"<your-client-id>",
+            "clientSecret":"<your-client-secret>"
+        }
+    }''')
+
+    # Use the finbourne_identity SyncApiClientFactory to build Api instances with a configured api client
+    # By default this will read config from environment variables
+    # Then from a secrets.json file found in the current working directory
+
+    # uncomment the below to use configuration overrides
+    # opts = ConfigurationOptions();
+    # opts.total_timeout_ms = 30_000
+
+    # uncomment the below to use an api client factory with overrides
+    # api_client_factory = SyncApiClientFactory(opts=opts)
+
+    api_client_factory = SyncApiClientFactory()
+
+    # Enter a context with an instance of the SyncApiClientFactory to ensure the connection pool is closed after use
+    
+    # Create an instance of the API class
+    api_instance = api_client_factory.build(AuthenticationApi)
+
+    # Objects can be created either via the class constructor, or using the 'from_dict' or 'from_json' methods
+    # Change the lines below to switch approach
+    # update_session_policy_request = UpdateSessionPolicyRequest.from_json("")
+    # update_session_policy_request = UpdateSessionPolicyRequest.from_dict({})
+    update_session_policy_request = UpdateSessionPolicyRequest()
+
+    try:
+        # uncomment the below to set overrides at the request level
+        # api_response =  api_instance.update_session_policy(update_session_policy_request, opts=opts)
+
+        # [EXPERIMENTAL] UpdateSessionPolicy: Update session policy
+        api_response = api_instance.update_session_policy(update_session_policy_request)
+        pprint(api_response)
+
+    except ApiException as e:
+        print("Exception when calling AuthenticationApi->update_session_policy: %s\n" % e)
+
+main()
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **update_session_policy_request** | [**UpdateSessionPolicyRequest**](UpdateSessionPolicyRequest.md)| The desired session timing settings | 
+
+### Return type
+
+[**SessionPolicyResponse**](SessionPolicyResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The session policy as persisted |  -  |
 **400** | The details of the input related failure |  -  |
 **0** | Error response |  -  |
 

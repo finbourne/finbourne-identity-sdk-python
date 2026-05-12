@@ -72,6 +72,7 @@ from finbourne_identity.models.resource_list_of_access_controlled_resource impor
 from finbourne_identity.models.resource_list_of_system_log import ResourceListOfSystemLog
 from finbourne_identity.models.role_id import RoleId
 from finbourne_identity.models.role_response import RoleResponse
+from finbourne_identity.models.session_policy_response import SessionPolicyResponse
 from finbourne_identity.models.set_attaching_key_request import SetAttachingKeyRequest
 from finbourne_identity.models.set_parent_cell_request import SetParentCellRequest
 from finbourne_identity.models.set_password import SetPassword
@@ -92,6 +93,7 @@ from finbourne_identity.models.update_password_policy_request_complexity import 
 from finbourne_identity.models.update_password_policy_request_conditions import UpdatePasswordPolicyRequestConditions
 from finbourne_identity.models.update_password_policy_request_lockout import UpdatePasswordPolicyRequestLockout
 from finbourne_identity.models.update_role_request import UpdateRoleRequest
+from finbourne_identity.models.update_session_policy_request import UpdateSessionPolicyRequest
 from finbourne_identity.models.update_user_request import UpdateUserRequest
 from finbourne_identity.models.update_user_schema_request import UpdateUserSchemaRequest
 from finbourne_identity.models.upsert_mcp_tool_request import UpsertMcpToolRequest
@@ -160,6 +162,7 @@ __all__ = [
     "ResourceListOfSystemLog",
     "RoleId",
     "RoleResponse",
+    "SessionPolicyResponse",
     "SetAttachingKeyRequest",
     "SetParentCellRequest",
     "SetPassword",
@@ -180,6 +183,7 @@ __all__ = [
     "UpdatePasswordPolicyRequestConditions",
     "UpdatePasswordPolicyRequestLockout",
     "UpdateRoleRequest",
+    "UpdateSessionPolicyRequest",
     "UpdateUserRequest",
     "UpdateUserSchemaRequest",
     "UpsertMcpToolRequest",
