@@ -25,6 +25,8 @@ Class | Method | HTTP request | Description
 *CellManagementApi* | [**get_cell_parent_status**](docs/CellManagementApi.md#get_cell_parent_status) | **GET** /api/cellmanagement/parentcell | [EARLY ACCESS] GetCellParentStatus: Get cell parent status
 *CellManagementApi* | [**refuse_cell_attachment**](docs/CellManagementApi.md#refuse_cell_attachment) | **POST** /api/cellmanagement/refuseattachment | [EARLY ACCESS] RefuseCellAttachment: Refuse a Proposed cell attachment
 *CellManagementApi* | [**remove_primary_domain**](docs/CellManagementApi.md#remove_primary_domain) | **DELETE** /api/cellmanagement/primarydomain | [EARLY ACCESS] RemovePrimaryDomain: Remove primary domain
+*CellManagementApi* | [**rotate_attaching_key**](docs/CellManagementApi.md#rotate_attaching_key) | **PUT** /api/cellmanagement/attachingkey/rotate | [EARLY ACCESS] RotateAttachingKey: Rotate the stored Attaching Key on an Attached cell
+*CellManagementApi* | [**rotate_domain_keys**](docs/CellManagementApi.md#rotate_domain_keys) | **POST** /api/cellmanagement/rotatedomainkeys | [EARLY ACCESS] RotateDomainKeys: Force a sweep-rotation of every parent-cell service-user PAT on this cell
 *CellManagementApi* | [**set_attaching_key**](docs/CellManagementApi.md#set_attaching_key) | **PUT** /api/cellmanagement/attachingkey | [EARLY ACCESS] SetAttachingKey: Store the Attaching Key pasted from the parent admin portal
 *CellManagementApi* | [**set_parent_cell**](docs/CellManagementApi.md#set_parent_cell) | **PUT** /api/cellmanagement/parentcell | [EARLY ACCESS] SetParentCell: Set parent cell
 *CellManagementApi* | [**set_primary_domain**](docs/CellManagementApi.md#set_primary_domain) | **PUT** /api/cellmanagement/primarydomain | [EARLY ACCESS] SetPrimaryDomain: Set primary domain
@@ -56,6 +58,7 @@ Class | Method | HTTP request | Description
 *RolesApi* | [**create_role**](docs/RolesApi.md#create_role) | **POST** /api/roles | CreateRole: Create Role
 *RolesApi* | [**delete_role**](docs/RolesApi.md#delete_role) | **DELETE** /api/roles/{id} | DeleteRole: Delete Role
 *RolesApi* | [**get_role**](docs/RolesApi.md#get_role) | **GET** /api/roles/{id} | GetRole: Get Role
+*RolesApi* | [**get_role_by_code**](docs/RolesApi.md#get_role_by_code) | **GET** /api/roles/byCode/{code} | GetRoleByCode: Get Role By Code
 *RolesApi* | [**list_roles**](docs/RolesApi.md#list_roles) | **GET** /api/roles | ListRoles: List Roles
 *RolesApi* | [**list_users_in_role**](docs/RolesApi.md#list_users_in_role) | **GET** /api/roles/{id}/users | ListUsersInRole: Get the users in the specified role.
 *RolesApi* | [**remove_user_from_role**](docs/RolesApi.md#remove_user_from_role) | **DELETE** /api/roles/{id}/users/{userId} | RemoveUserFromRole: Remove User from Role
@@ -139,6 +142,7 @@ Class | Method | HTTP request | Description
  - [ResourceListOfSystemLog](docs/ResourceListOfSystemLog.md)
  - [RoleId](docs/RoleId.md)
  - [RoleResponse](docs/RoleResponse.md)
+ - [RotateAttachingKeyRequest](docs/RotateAttachingKeyRequest.md)
  - [SessionPolicyResponse](docs/SessionPolicyResponse.md)
  - [SetAttachingKeyRequest](docs/SetAttachingKeyRequest.md)
  - [SetParentCellRequest](docs/SetParentCellRequest.md)

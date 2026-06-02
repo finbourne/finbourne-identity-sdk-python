@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**create_role**](RolesApi.md#create_role) | **POST** /api/roles | CreateRole: Create Role
 [**delete_role**](RolesApi.md#delete_role) | **DELETE** /api/roles/{id} | DeleteRole: Delete Role
 [**get_role**](RolesApi.md#get_role) | **GET** /api/roles/{id} | GetRole: Get Role
+[**get_role_by_code**](RolesApi.md#get_role_by_code) | **GET** /api/roles/byCode/{code} | GetRoleByCode: Get Role By Code
 [**list_roles**](RolesApi.md#list_roles) | **GET** /api/roles | ListRoles: List Roles
 [**list_users_in_role**](RolesApi.md#list_users_in_role) | **GET** /api/roles/{id}/users | ListUsersInRole: Get the users in the specified role.
 [**remove_user_from_role**](RolesApi.md#remove_user_from_role) | **DELETE** /api/roles/{id}/users/{userId} | RemoveUserFromRole: Remove User from Role
@@ -368,6 +369,101 @@ main()
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| The unique identifier for the role | 
+
+### Return type
+
+[**RoleResponse**](RoleResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Get the specified role |  -  |
+**404** | Not Found |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to Model list](../README.md#documentation-for-models) &#8226; [Back to README](../README.md)
+
+# **get_role_by_code**
+> RoleResponse get_role_by_code(code, scope=scope)
+
+GetRoleByCode: Get Role By Code
+
+Get the specified role by its code, optionally scoped. Scope defaults to \"default\". The \"code\" is the same value supplied as \"name\" when the role was created via CreateRole.
+
+### Example
+
+```python
+from finbourne_identity.exceptions import ApiException
+from finbourne_identity.extensions.configuration_options import ConfigurationOptions
+from finbourne_identity.models import *
+from pprint import pprint
+from finbourne_identity import (
+    SyncApiClientFactory,
+    RolesApi
+)
+
+def main():
+
+    with open("secrets.json", "w") as file:
+        file.write('''
+    {
+        "api":
+        {
+            "tokenUrl":"<your-token-url>",
+            "identityUrl":"https://<your-domain>.lusid.com/identity",
+            "username":"<your-username>",
+            "password":"<your-password>",
+            "clientId":"<your-client-id>",
+            "clientSecret":"<your-client-secret>"
+        }
+    }''')
+
+    # Use the finbourne_identity SyncApiClientFactory to build Api instances with a configured api client
+    # By default this will read config from environment variables
+    # Then from a secrets.json file found in the current working directory
+
+    # uncomment the below to use configuration overrides
+    # opts = ConfigurationOptions();
+    # opts.total_timeout_ms = 30_000
+
+    # uncomment the below to use an api client factory with overrides
+    # api_client_factory = SyncApiClientFactory(opts=opts)
+
+    api_client_factory = SyncApiClientFactory()
+
+    # Enter a context with an instance of the SyncApiClientFactory to ensure the connection pool is closed after use
+    
+    # Create an instance of the API class
+    api_instance = api_client_factory.build(RolesApi)
+    code = 'code_example' # str | The role code (the value supplied as \"name\" when the role was created).
+    scope = 'default' # str | The scope the role lives in. Defaults to \"default\". (optional) (default to 'default')
+
+    try:
+        # uncomment the below to set overrides at the request level
+        # api_response =  api_instance.get_role_by_code(code, scope=scope, opts=opts)
+
+        # GetRoleByCode: Get Role By Code
+        api_response = api_instance.get_role_by_code(code, scope=scope)
+        pprint(api_response)
+
+    except ApiException as e:
+        print("Exception when calling RolesApi->get_role_by_code: %s\n" % e)
+
+main()
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **code** | **str**| The role code (the value supplied as \&quot;name\&quot; when the role was created). | 
+ **scope** | **str**| The scope the role lives in. Defaults to \&quot;default\&quot;. | [optional] [default to &#39;default&#39;]
 
 ### Return type
 
