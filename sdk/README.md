@@ -69,6 +69,7 @@ Class | Method | HTTP request | Description
 *UsersApi* | [**expire_password**](docs/UsersApi.md#expire_password) | **POST** /api/users/{id}/lifecycle/$expirepassword | ExpirePassword: Reset the user's password to a temporary one
 *UsersApi* | [**find_users_by_id**](docs/UsersApi.md#find_users_by_id) | **GET** /api/directory | FindUsersById: Find users by id endpoint
 *UsersApi* | [**get_user**](docs/UsersApi.md#get_user) | **GET** /api/users/{id} | GetUser: Get User
+*UsersApi* | [**get_user_from_login**](docs/UsersApi.md#get_user_from_login) | **GET** /api/users/fromlogin/{login} | GetUserFromLogin: Get User From Login
 *UsersApi* | [**get_user_schema**](docs/UsersApi.md#get_user_schema) | **GET** /api/users/schema | [EARLY ACCESS] GetUserSchema: Get User Schema
 *UsersApi* | [**list_runnable_users**](docs/UsersApi.md#list_runnable_users) | **GET** /api/users/$runnable | [EARLY ACCESS] ListRunnableUsers: List Runable Users
 *UsersApi* | [**list_users**](docs/UsersApi.md#list_users) | **GET** /api/users | ListUsers: List Users
