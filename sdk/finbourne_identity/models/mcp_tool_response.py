@@ -44,7 +44,7 @@ class McpToolResponse(BaseModel):
     payload_type:  Optional[StrictStr] = Field(None,alias="payloadType", description="The type of payload (Luminesce or Scheduler)") 
     luminesce_payload: Optional[McpToolLuminescePayload] = Field(default=None, alias="luminescePayload")
     scheduler_payload: Optional[McpToolSchedulerPayload] = Field(default=None, alias="schedulerPayload")
-    destructive_action_summary_template:  Optional[StrictStr] = Field(None,alias="destructiveActionSummaryTemplate", description="Template for human-readable destructive action summary (e.g. \"Delete file '{filePath}'\")") 
+    destructive_action_summary_template:  Optional[StrictStr] = Field(None,alias="destructiveActionSummaryTemplate", description="Template for human-readable destructive action summary. Uses {paramName} single-brace placeholders (e.g. \"Delete file '{filePath}'\"). Required when Destructive is true.") 
     created_at: Optional[datetime] = Field(default=None, description="When the MCP tool was created", alias="createdAt")
     created_by:  Optional[StrictStr] = Field(None,alias="createdBy", description="Who created the MCP tool") 
     updated_at: Optional[datetime] = Field(default=None, description="When the MCP tool was last updated", alias="updatedAt")

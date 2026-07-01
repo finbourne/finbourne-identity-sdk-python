@@ -33,7 +33,7 @@ class UpsertMcpToolRequest(BaseModel):
     name:  StrictStr = Field(...,alias="name", description="The name of the MCP tool (alphanumeric, underscore, and hyphen)") 
     title:  StrictStr = Field(...,alias="title", description="The title of the MCP tool") 
     description:  StrictStr = Field(...,alias="description", description="The description of the MCP tool") 
-    destructive: Optional[StrictBool] = Field(default=None, description="Whether the tool is destructive")
+    destructive: Optional[StrictBool] = Field(default=None, description="Whether the tool is destructive. When true, DestructiveActionSummaryTemplate is required and is shown to the user at the destructive-action consent gate before the tool runs.")
     idempotent: Optional[StrictBool] = Field(default=None, description="Whether the tool is idempotent")
     open_world: Optional[StrictBool] = Field(default=None, description="Whether the tool operates in open world", alias="openWorld")
     read_only: Optional[StrictBool] = Field(default=None, description="Whether the tool is read-only", alias="readOnly")

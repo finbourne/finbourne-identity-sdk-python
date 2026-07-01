@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 **payload_type** | **str** | The type of payload (Luminesce or Scheduler) | [optional] 
 **luminesce_payload** | [**McpToolLuminescePayload**](McpToolLuminescePayload.md) |  | [optional] 
 **scheduler_payload** | [**McpToolSchedulerPayload**](McpToolSchedulerPayload.md) |  | [optional] 
-**destructive_action_summary_template** | **str** | Template for human-readable destructive action summary (e.g. \&quot;Delete file &#39;{filePath}&#39;\&quot;) | [optional] 
+**destructive_action_summary_template** | **str** | Template for human-readable destructive action summary. Uses {paramName} single-brace placeholders (e.g. \&quot;Delete file &#39;{filePath}&#39;\&quot;). Required when Destructive is true. | [optional] 
 **created_at** | **datetime** | When the MCP tool was created | [optional] 
 **created_by** | **str** | Who created the MCP tool | [optional] 
 **updated_at** | **datetime** | When the MCP tool was last updated | [optional] 
