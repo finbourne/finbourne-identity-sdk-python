@@ -61,7 +61,7 @@ class IdentityLogsApi:
 
     @validate_arguments
     def list_logs(self, okta_since : Annotated[Optional[datetime], Field(description="Lower bound of log events published property")] = None, okta_until : Annotated[Optional[datetime], Field(description="Upper bound of log events published property")] = None, okta_filter : Annotated[Optional[StrictStr], Field( description="Okta filter expression")] = None, okta_query : Annotated[Optional[StrictStr], Field( description="Filters log events results by one or more case insensitive keywords")] = None, okta_limit : Annotated[Optional[StrictInt], Field(description="Max number of results returned")] = None, okta_sort_order : Annotated[Optional[StrictStr], Field( description="Order of events by published property. Either ASCENDING or DESCENDING")] = None, okta_after : Annotated[Optional[StrictStr], Field( description="Okta Page token")] = None, async_req: Optional[bool]=None, **kwargs) -> Union[ResourceListOfSystemLog, Awaitable[ResourceListOfSystemLog]]:  # noqa: E501
-        """[BETA] ListLogs: Lists system logs for a domain  # noqa: E501
+        """ListLogs: Lists system logs for a domain  # noqa: E501
 
         Lists system logs for a domain  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -104,7 +104,7 @@ class IdentityLogsApi:
 
     @validate_arguments
     def list_logs_with_http_info(self, okta_since : Annotated[Optional[datetime], Field(description="Lower bound of log events published property")] = None, okta_until : Annotated[Optional[datetime], Field(description="Upper bound of log events published property")] = None, okta_filter : Annotated[Optional[StrictStr], Field( description="Okta filter expression")] = None, okta_query : Annotated[Optional[StrictStr], Field( description="Filters log events results by one or more case insensitive keywords")] = None, okta_limit : Annotated[Optional[StrictInt], Field(description="Max number of results returned")] = None, okta_sort_order : Annotated[Optional[StrictStr], Field( description="Order of events by published property. Either ASCENDING or DESCENDING")] = None, okta_after : Annotated[Optional[StrictStr], Field( description="Okta Page token")] = None, **kwargs) -> ApiResponse:  # noqa: E501
-        """[BETA] ListLogs: Lists system logs for a domain  # noqa: E501
+        """ListLogs: Lists system logs for a domain  # noqa: E501
 
         Lists system logs for a domain  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
