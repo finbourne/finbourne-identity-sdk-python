@@ -36,8 +36,9 @@ class AuthenticationInformation(BaseModel):
     support: Optional[SupportAccessExpiry] = None
     support_access_expiry_with_role: Optional[List[SupportAccessExpiryWithRole]] = Field(default=None, alias="supportAccessExpiryWithRole")
     status: Optional[StrictBool] = None
+    code: Optional[StrictInt] = Field(default=None, description="Internal provisioning code.")
     links: Optional[List[Link]] = None
-    __properties = ["issuerUrl", "fallbackIssuerUrls", "samlIdentityProviderId", "support", "supportAccessExpiryWithRole", "status", "links"]
+    __properties = ["issuerUrl", "fallbackIssuerUrls", "samlIdentityProviderId", "support", "supportAccessExpiryWithRole", "status", "code", "links"]
 
     class Config:
         """Pydantic configuration"""
@@ -103,6 +104,11 @@ class AuthenticationInformation(BaseModel):
         if self.support_access_expiry_with_role is None and "support_access_expiry_with_role" in self.__fields_set__:
             _dict['supportAccessExpiryWithRole'] = None
 
+        # set to None if code (nullable) is None
+        # and __fields_set__ contains the field
+        if self.code is None and "code" in self.__fields_set__:
+            _dict['code'] = None
+
         # set to None if links (nullable) is None
         # and __fields_set__ contains the field
         if self.links is None and "links" in self.__fields_set__:
@@ -126,6 +132,7 @@ class AuthenticationInformation(BaseModel):
             "support": SupportAccessExpiry.from_dict(obj.get("support")) if obj.get("support") is not None else None,
             "support_access_expiry_with_role": [SupportAccessExpiryWithRole.from_dict(_item) for _item in obj.get("supportAccessExpiryWithRole")] if obj.get("supportAccessExpiryWithRole") is not None else None,
             "status": obj.get("status"),
+            "code": obj.get("code"),
             "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
         })
         return _obj

@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **support** | [**SupportAccessExpiry**](SupportAccessExpiry.md) |  | [optional] 
 **support_access_expiry_with_role** | [**List[SupportAccessExpiryWithRole]**](SupportAccessExpiryWithRole.md) |  | [optional] 
 **status** | **bool** |  | [optional] 
+**code** | **int** | Internal provisioning code. | [optional] 
 **links** | [**List[Link]**](Link.md) |  | [optional] 
 ## Example
 
@@ -26,8 +27,10 @@ support: Optional[SupportAccessExpiry] = None
 support_access_expiry_with_role: Optional[List[SupportAccessExpiryWithRole]] = # Replace with your value
 status: Optional[StrictBool] = None
 status:Optional[StrictBool] = None
+code: Optional[StrictInt] = # Replace with your value
+code: Optional[StrictInt] = None
 links: Optional[List[Link]] = None
-authentication_information_instance = AuthenticationInformation(issuer_url=issuer_url, fallback_issuer_urls=fallback_issuer_urls, saml_identity_provider_id=saml_identity_provider_id, support=support, support_access_expiry_with_role=support_access_expiry_with_role, status=status, links=links)
+authentication_information_instance = AuthenticationInformation(issuer_url=issuer_url, fallback_issuer_urls=fallback_issuer_urls, saml_identity_provider_id=saml_identity_provider_id, support=support, support_access_expiry_with_role=support_access_expiry_with_role, status=status, code=code, links=links)
 
 ```
 
