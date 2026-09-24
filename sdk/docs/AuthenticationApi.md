@@ -6,13 +6,13 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**get_authentication_information**](AuthenticationApi.md#get_authentication_information) | **GET** /api/authentication/information | GetAuthenticationInformation: Gets AuthenticationInformation
 [**get_password_policy**](AuthenticationApi.md#get_password_policy) | **GET** /api/authentication/password-policy/{userType} | GetPasswordPolicy: Gets password policy for a user type
-[**get_session_policy**](AuthenticationApi.md#get_session_policy) | **GET** /api/authentication/session-policy | [EXPERIMENTAL] GetSessionPolicy: Get session policy
+[**get_session_policy**](AuthenticationApi.md#get_session_policy) | **GET** /api/authentication/session-policy | GetSessionPolicy: Get session policy
 [**get_support_access_history**](AuthenticationApi.md#get_support_access_history) | **GET** /api/authentication/support | GetSupportAccessHistory: Get the history of all support access granted and any information pertaining to their termination
 [**get_support_roles**](AuthenticationApi.md#get_support_roles) | **GET** /api/authentication/support-roles | GetSupportRoles: Get mapping of support roles, the internal representation to a human friendly representation
 [**grant_support_access**](AuthenticationApi.md#grant_support_access) | **POST** /api/authentication/support | GrantSupportAccess: Grants FINBOURNE support access to your account
 [**invalidate_support_access**](AuthenticationApi.md#invalidate_support_access) | **DELETE** /api/authentication/support | InvalidateSupportAccess: Revoke any FINBOURNE support access to your account
 [**update_password_policy**](AuthenticationApi.md#update_password_policy) | **PUT** /api/authentication/password-policy/{userType} | UpdatePasswordPolicy: Updates password policy for a user type
-[**update_session_policy**](AuthenticationApi.md#update_session_policy) | **PUT** /api/authentication/session-policy | [EXPERIMENTAL] UpdateSessionPolicy: Update session policy
+[**update_session_policy**](AuthenticationApi.md#update_session_policy) | **PUT** /api/authentication/session-policy | UpdateSessionPolicy: Update session policy
 
 
 # **get_authentication_information**
@@ -197,7 +197,7 @@ Name | Type | Description  | Notes
 # **get_session_policy**
 > SessionPolicyResponse get_session_policy()
 
-[EXPERIMENTAL] GetSessionPolicy: Get session policy
+GetSessionPolicy: Get session policy
 
 Get the configured session timing settings. These settings dictate the duration of user sessions and the frequency of required re-authentication.
 
@@ -251,7 +251,7 @@ def main():
         # uncomment the below to set overrides at the request level
         # api_response =  api_instance.get_session_policy(opts=opts)
 
-        # [EXPERIMENTAL] GetSessionPolicy: Get session policy
+        # GetSessionPolicy: Get session policy
         api_response = api_instance.get_session_policy()
         pprint(api_response)
 
@@ -748,7 +748,7 @@ Name | Type | Description  | Notes
 # **update_session_policy**
 > SessionPolicyResponse update_session_policy(update_session_policy_request)
 
-[EXPERIMENTAL] UpdateSessionPolicy: Update session policy
+UpdateSessionPolicy: Update session policy
 
 Update the session timing settings. These settings dictate the duration of user sessions and the frequency of required re-authentication.
 
@@ -808,7 +808,7 @@ def main():
         # uncomment the below to set overrides at the request level
         # api_response =  api_instance.update_session_policy(update_session_policy_request, opts=opts)
 
-        # [EXPERIMENTAL] UpdateSessionPolicy: Update session policy
+        # UpdateSessionPolicy: Update session policy
         api_response = api_instance.update_session_policy(update_session_policy_request)
         pprint(api_response)
 

@@ -363,7 +363,7 @@ class AuthenticationApi:
 
     @validate_arguments
     def get_session_policy(self, async_req: Optional[bool]=None, **kwargs) -> Union[SessionPolicyResponse, Awaitable[SessionPolicyResponse]]:  # noqa: E501
-        """[EXPERIMENTAL] GetSessionPolicy: Get session policy  # noqa: E501
+        """GetSessionPolicy: Get session policy  # noqa: E501
 
         Get the configured session timing settings. These settings dictate the duration of user sessions and the frequency of required re-authentication.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -392,7 +392,7 @@ class AuthenticationApi:
 
     @validate_arguments
     def get_session_policy_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
-        """[EXPERIMENTAL] GetSessionPolicy: Get session policy  # noqa: E501
+        """GetSessionPolicy: Get session policy  # noqa: E501
 
         Get the configured session timing settings. These settings dictate the duration of user sessions and the frequency of required re-authentication.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -1284,7 +1284,7 @@ class AuthenticationApi:
 
     @validate_arguments
     def update_session_policy(self, update_session_policy_request : Annotated[UpdateSessionPolicyRequest, Field(description="The desired session timing settings")], async_req: Optional[bool]=None, **kwargs) -> Union[SessionPolicyResponse, Awaitable[SessionPolicyResponse]]:  # noqa: E501
-        """[EXPERIMENTAL] UpdateSessionPolicy: Update session policy  # noqa: E501
+        """UpdateSessionPolicy: Update session policy  # noqa: E501
 
         Update the session timing settings. These settings dictate the duration of user sessions and the frequency of required re-authentication.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -1315,7 +1315,7 @@ class AuthenticationApi:
 
     @validate_arguments
     def update_session_policy_with_http_info(self, update_session_policy_request : Annotated[UpdateSessionPolicyRequest, Field(description="The desired session timing settings")], **kwargs) -> ApiResponse:  # noqa: E501
-        """[EXPERIMENTAL] UpdateSessionPolicy: Update session policy  # noqa: E501
+        """UpdateSessionPolicy: Update session policy  # noqa: E501
 
         Update the session timing settings. These settings dictate the duration of user sessions and the frequency of required re-authentication.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
