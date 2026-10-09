@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "finbourne-identity-sdk"
-version = "2.3.17"
+version = "2.3.18"
 description = "FINBOURNE Identity Service API"
 authors = ["FINBOURNE Technology <info@finbourne.com>"]
 license = "MIT"
@@ -15,7 +15,7 @@ include = ["finbourne_identity/**/*"]
 [tool.poetry.dependencies]
 python = "^3.11"
 
-urllib3 = "^2.7.0"
+urllib3 = "^2.8.0"
 python-dateutil = "^2.8.2"
 requests = "^2"
 aiohttp = "^3.14.2"
