@@ -18,6 +18,7 @@ from finbourne_identity.models.access_controlled_action import AccessControlledA
 from finbourne_identity.models.access_controlled_resource import AccessControlledResource
 from finbourne_identity.models.action_id import ActionId
 from finbourne_identity.models.add_scim_response import AddScimResponse
+from finbourne_identity.models.api_endpoint import ApiEndpoint
 from finbourne_identity.models.api_key import ApiKey
 from finbourne_identity.models.authentication_information import AuthenticationInformation
 from finbourne_identity.models.cell_parent_status_response import CellParentStatusResponse
@@ -73,6 +74,7 @@ from finbourne_identity.models.resource_list_of_system_log import ResourceListOf
 from finbourne_identity.models.role_id import RoleId
 from finbourne_identity.models.role_response import RoleResponse
 from finbourne_identity.models.rotate_attaching_key_request import RotateAttachingKeyRequest
+from finbourne_identity.models.service_api_endpoints import ServiceApiEndpoints
 from finbourne_identity.models.session_policy_response import SessionPolicyResponse
 from finbourne_identity.models.set_attaching_key_request import SetAttachingKeyRequest
 from finbourne_identity.models.set_parent_cell_request import SetParentCellRequest
@@ -109,6 +111,7 @@ __all__ = [
     "AccessControlledResource",
     "ActionId",
     "AddScimResponse",
+    "ApiEndpoint",
     "ApiKey",
     "AuthenticationInformation",
     "CellParentStatusResponse",
@@ -164,6 +167,7 @@ __all__ = [
     "RoleId",
     "RoleResponse",
     "RotateAttachingKeyRequest",
+    "ServiceApiEndpoints",
     "SessionPolicyResponse",
     "SetAttachingKeyRequest",
     "SetParentCellRequest",
